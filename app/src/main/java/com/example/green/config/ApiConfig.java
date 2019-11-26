@@ -2,8 +2,10 @@ package com.example.green.config;
 
 public class ApiConfig {
     // 首页
-    public static final int URL_MOVIELIST = 0;  // 电影列表
-    public static final int URL_MOVIEDETAILS = 1;   // 电影详情
+    public static final int URL_HOMEDATA = 0;  // 首页数据
+    public static final int URL_GOODSDATA = 1;   // 商品推荐
+
+
     public static final int URL_MOVIETRAILER = 3;   // 所有预告片
     public static final int URL_MOVIEPOSTER = 4;   // 所有海报
     public static final int URL_CREATEPOSTER = 5; // 生成海报

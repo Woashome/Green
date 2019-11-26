@@ -10,14 +10,21 @@ public class HomePageModel implements ICommonModel {
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
-  /*          case ApiConfig.URL_MOVIELIST: // 电影列表
-                int pageIndex = (int) t[0];
-                int pageSize_movieList = (int) t[1];
+            case ApiConfig.URL_HOMEDATA: // 首页数据
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getHomeListbean(), view, whichApi, 0);
+                break;
+            case ApiConfig.URL_GOODSDATA: // 商品推荐
+                int size = (int) t[0];  // 每页多少
+                int index = (int) t[1]; // 页码
                 int loadType = (int) t[2]; // 加载类型
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
-                        .getmovielistbean(pageIndex, pageSize_movieList), view, whichApi, loadType);
+                        .getGoodsList(size, index), view, whichApi, loadType);
                 break;
+
+                /*
             case ApiConfig.URL_MOVIEDETAILS: // 电影详情 get
                 String movieId = (String) t[0];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()

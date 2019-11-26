@@ -6,55 +6,226 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.HomeFragment">
 
-    <ImageView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_219"
-        android:scaleType="fitXY"
-        android:src="@mipmap/bannerbg" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.SearchView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_47"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="@dimen/dp_18"></android.support.v7.widget.SearchView>
-
             <ImageView
-                android:id="@+id/information"
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="@dimen/dp_30"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="@dimen/dp_18"
-                android:src="@mipmap/mute" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_219"
+                android:scaleType="fitXY"
+                android:src="@mipmap/bannerbg" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50">
+
+                <ImageView
+                    android:id="@+id/information"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/dp_18"
+                    android:src="@mipmap/mute" />
+
+            </RelativeLayout>
+
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_170"
+                android:layout_marginHorizontal="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_47"
+                android:scaleType="center"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowTips="true"
+                app:pageChangeDuration="800"
+                app:placeholderDrawable="@mipmap/ic_launcher"
+                app:pointsPosition="CENTER"
+                app:pointsVisibility="true"
+                app:tipTextSize="12sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/option"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_150"
+                android:layout_below="@id/banner"
+                android:layout_marginTop="@dimen/dp_20"
+                android:paddingHorizontal="@dimen/dp_25" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_327"
+                android:layout_below="@id/option"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_30"
+                app:cardCornerRadius="@dimen/dp_10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <View
+                            android:id="@+id/line"
+                            android:layout_width="@dimen/dp_1"
+                            android:layout_height="match_parent"
+                            android:layout_centerHorizontal="true"
+                            android:background="@color/gray" />
+
+                        <TextView
+                            android:id="@+id/name1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:text="超值好货"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_18" />
+
+                        <TextView
+                            android:id="@+id/name2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:layout_marginTop="@dimen/dp_24"
+                            android:layout_toRightOf="@id/name1"
+                            android:background="@drawable/boutique_bg"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/dp_10"
+                            android:paddingVertical="@dimen/dp_3"
+                            android:text="数码精品"
+                            android:textColor="@color/app_theme_color"
+                            android:textSize="@dimen/dp_10" />
+
+                        <TextView
+                            android:id="@+id/name3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_20"
+                            android:layout_toRightOf="@id/line"
+                            android:text="热品限时"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dp_18" />
+
+                        <TextView
+                            android:id="@+id/name4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            android:layout_marginTop="@dimen/dp_24"
+                            android:layout_toRightOf="@id/name3"
+                            android:background="@drawable/seckill_bg"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/dp_10"
+                            android:paddingVertical="@dimen/dp_3"
+                            android:text="数码精品"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/dp_10" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/boutique"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/name1"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:layout_toLeftOf="@id/line" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/seckill"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/name1"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:layout_toRightOf="@id/line" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="@dimen/dp_165"
+                android:layout_height="@dimen/dp_110"
+                android:layout_below="@+id/card1"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10">
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="@dimen/dp_165"
+                android:layout_height="@dimen/dp_50"
+                android:layout_below="@id/card1"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_toRightOf="@id/card2">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card4"
+                android:layout_width="@dimen/dp_165"
+                android:layout_height="@dimen/dp_50"
+                android:layout_below="@id/card3"
+                android:layout_marginLeft="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_toRightOf="@id/card2">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/SmartRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card2"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/more_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_15" />
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </android.support.v4.widget.NestedScrollView>
 
-
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_190"
-        android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_16"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="false"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:pageChangeDuration="800"
-        app:pointsVisibility="false" />
 
 </RelativeLayout>

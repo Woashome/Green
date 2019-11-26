@@ -71,7 +71,7 @@ public class NetManager {
 
     public INetService getHttpService() {
         INetService service = new Retrofit.Builder()
-                .baseUrl(NetConfig.Url)
+                .baseUrl(NetConfig.Url_TEST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(NetInterceptor.getNetInterceptor().getClientWithoutCache())

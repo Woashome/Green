@@ -2,8 +2,8 @@ package com.example.green.net;
 
 public class NetConfig {
     //http://front.api.movienow.xtech.fun/ movie/movieList
-    public static String Url_TEST = "http://front.api.movienow.xtech.fun/"; //测试
-    public static String Url = "https://api.chuanyingtech.com/"; // 正式
+    public static String Url_TEST = "https://shop.bayi-shop.com/mobile/"; //测试
+    public static String Url = "https://shop.bayi-shop.com/mobile/"; // 正式
     public static String Url_Upload = "https://file.api.movienow.xtech.fun/"; // 正式,上传图片
 
     public static String HTTPS_SPORTURL = "https://sport-data.dqdgame.com/";

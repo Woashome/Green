@@ -6,4 +6,7 @@
     <color name="app_theme_color">#28B28B</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="gray">#FCFCFC</color>
+    <color name="red">#FE3770</color>
+    <color name="price_gray">#979797</color>
 </resources>

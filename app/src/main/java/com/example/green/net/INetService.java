@@ -1,26 +1,30 @@
 package com.example.green.net;
 
+
+import com.example.green.bean.homepage.GoodsListbean;
+import com.example.green.bean.homepage.HomePgaeList;
+
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Query;
 
-
 public interface INetService {
-   /* *//*
-     * 获取电影列表
-     * https://api.chuanyingtech.com/movie/movieList
-     * *//*
-    @GET("movie/movieList")
-    Observable<MovieListInfo> getmovielistbean(@Query("pageIndex") int pageIndex,
-                                               @Query("pageSize") int pageSize);
+    /*
+     * 获取首页数据
+     * https://shop.bayi-shop.com/mobile/Index/index
+     * */
+    @GET("Index/index")
+    Observable<HomePgaeList> getHomeListbean();
 
-    *//*
+    /*
+     * 商品推荐
+     * https://shop.bayi-shop.com/mobile/Index/getCommendGoods
+     * */
+    @GET("Index/getCommendGoods")
+    Observable<GoodsListbean> getGoodsList(@Query("limit") int size,
+                                           @Query("page") int index);
+    /*
+     *//*
      * 系统消息列表
      * https://api.chuanyingtech.com/my/systemNoticeList
      * *//*
