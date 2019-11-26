@@ -19,8 +19,6 @@ public class BaseActivity extends AppCompatActivity {
 
     //更新头像，修改昵称
     public static final String RECTIFY_UPDATE_HEAD = "rectify_update_head";
-    
-
     //登录成功
     public static final String LOGIN_SUCCESS = "LOGIN_SUCCESS";
     //退出登录
