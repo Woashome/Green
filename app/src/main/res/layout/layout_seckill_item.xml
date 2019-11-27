@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/seckill_goods"
+        android:layout_width="@dimen/dp_113"
+        android:layout_height="@dimen/dp_69"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="@dimen/dp_6"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seckill_goods"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_8"
+        android:text="￥466.9"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/pre_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_2"
+        android:text="￥466.9"
+        android:textColor="#979797" />
+</RelativeLayout>

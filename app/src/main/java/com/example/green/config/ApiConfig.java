@@ -1,13 +1,15 @@
 package com.example.green.config;
 
 public class ApiConfig {
-    // 首页
+    /*首页*/
     public static final int URL_HOMEDATA = 0;  // 首页数据
     public static final int URL_GOODSDATA = 1;   // 商品推荐
 
+    /*分类*/
+    public static final int URL_ALLCLASSIFY = 3;   // 分类首页
+    public static final int URL_RIGHTCLASSIFY = 4;   // 右侧分类
 
-    public static final int URL_MOVIETRAILER = 3;   // 所有预告片
-    public static final int URL_MOVIEPOSTER = 4;   // 所有海报
+
     public static final int URL_CREATEPOSTER = 5; // 生成海报
     public static final int INFORMATION = 6; // 系统消息
 
@@ -66,10 +68,6 @@ public class ApiConfig {
     public static final int URL_USER_LOCATION_COUNTY = 124; // 获取县城
     public static final int URL_CREATE_POSTER_DOWN = 125; // 生成海报,供下载使用(目前的逻辑没有使用)
     public static final int URL_UPLOAD_WATCH_PROGRESS = 126; // 保存播放进度
-
-
-
-
 
 
     //提现

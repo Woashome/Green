@@ -9,4 +9,8 @@
     <color name="gray">#FCFCFC</color>
     <color name="red">#FE3770</color>
     <color name="price_gray">#979797</color>
+    <color name="bg_FDBB01">#FDBB01</color>
+    <color name="tv_F1D7B4">#F1D7B4</color>
+    <color name="bg_F4F4F4">#F4F4F4</color>
+    <color name="c_F8F8F8">#F8F8F8</color>
 </resources>

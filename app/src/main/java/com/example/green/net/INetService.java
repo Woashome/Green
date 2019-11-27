@@ -1,6 +1,8 @@
 package com.example.green.net;
 
 
+import com.example.green.bean.classify.AllClassifyListbean;
+import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
 
@@ -23,16 +25,31 @@ public interface INetService {
     @GET("Index/getCommendGoods")
     Observable<GoodsListbean> getGoodsList(@Query("limit") int size,
                                            @Query("page") int index);
+
+    /*
+     * 店铺列表
+     * https://shop.bayi-shop.com/mobile/Storelist/index
+     * */
+
+
+    /*
+     * 分类首页
+     * https://shop.bayi-shop.com/mobile/goodsclass/index
+     * */
+    @GET("goodsclass/index")
+    Observable<AllClassifyListbean> getClassifyList();
+
+    /*
+     * 分类右侧
+     * https://shop.bayi-shop.com/mobile/goodsclass/get_child_all.html
+     * */
+    @GET("goodsclass/get_child_all.html")
+    Observable<RightClassifyListbean> getRightClassifyList(@Query("gc_id") int gc_id);
+
+
+
     /*
      *//*
-     * 系统消息列表
-     * https://api.chuanyingtech.com/my/systemNoticeList
-     * *//*
-    @GET("my/systemNoticeList")
-    Observable<InformationInfo> getInformation(@Query("pageIndex") int pageIndex,
-                                               @Query("pageSize") int pageSize);
-
-    *//*
      * 获取验证码
      * https://api.chuanyingtech.com/common/getVerificationCode
      * *//*
