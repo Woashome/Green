@@ -2,25 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dp_10"
+    android:layout_marginBottom="@dimen/dp_20">
 
     <ImageView
-        android:id="@+id/seckill_goods"
+        android:id="@+id/goods"
         android:layout_width="@dimen/dp_113"
         android:layout_height="@dimen/dp_69"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="@dimen/dp_6"
+        android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/seckill_goods"
+        android:layout_below="@id/goods"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_8"
         android:text="￥466.9"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_12" />
 
     <TextView
         android:id="@+id/pre_price"
@@ -30,5 +33,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_2"
         android:text="￥466.9"
-        android:textColor="#979797" />
+        android:textColor="#979797"
+        android:textSize="@dimen/dp_10" />
 </RelativeLayout>

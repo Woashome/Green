@@ -309,6 +309,7 @@ public class RightClassifyListbean {
             public void setGoodscn_adv_link(String goodscn_adv_link) {
                 this.goodscn_adv_link = goodscn_adv_link;
             }
+
         }
     }
 }

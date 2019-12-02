@@ -28,7 +28,7 @@ public class MyBoutiqueItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultB
             TextView pre_price = helper.getView(R.id.pre_price);
             pre_price.setText("￥" + item.getGoods_promotion_price());
             pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            ImageView imageView = helper.getView(R.id.boutique_goods);
+            ImageView imageView = helper.getView(R.id.goods);
             RequestOptions options = new RequestOptions()
                     .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片
                     .fallback(R.mipmap.ic_launcher) //url为空的时候,显示的图片
@@ -40,7 +40,7 @@ public class MyBoutiqueItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultB
             }
             helper.addOnClickListener(R.id.price);
             helper.addOnClickListener(R.id.pre_price);
-            helper.addOnClickListener(R.id.boutique_goods);
+            helper.addOnClickListener(R.id.goods);
             helper.addOnClickListener(R.id.rl);
         }
     }

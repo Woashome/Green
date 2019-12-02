@@ -1,7 +1,5 @@
 package com.example.green.bean.homepage;
 
-import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
-
 import java.util.List;
 
 public class HomePgaeList {
@@ -268,7 +266,7 @@ public class HomePgaeList {
             }
         }
 
-        public static class ChartBean extends SimpleBannerInfo {
+        public static class ChartBean {
             /**
              * ap_id : 1
              * adv_title : 首页轮播图
@@ -333,10 +331,6 @@ public class HomePgaeList {
                 this.adv_typedate = adv_typedate;
             }
 
-            @Override
-            public String getXBannerUrl() {
-                return adv_code;
-            }
         }
 
         public static class PromotionBean {

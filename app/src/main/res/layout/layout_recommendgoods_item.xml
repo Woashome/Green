@@ -1,70 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:id="@+id/goods_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_5"
+    android:background="@drawable/recommend_item_shape">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="@dimen/dp_120"
-        android:layout_height="wrap_content"
+
+    <ImageView
+        android:id="@+id/goods_iv"
+        android:layout_width="@dimen/dp_110"
+        android:layout_height="@dimen/dp_80"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp_5"
-        app:cardCornerRadius="@dimen/dp_5">
+        android:src="@mipmap/ic_launcher" />
 
-        <RelativeLayout
-            android:id="@+id/goods_card"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/dp_2">
+    <TextView
+        android:id="@+id/goods_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/goods_iv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_9"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:maxLines="2"
+        android:text="荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金"
+        android:textColor="@color/black" />
 
-            <ImageView
-                android:id="@+id/goods_iv"
-                android:layout_width="@dimen/dp_110"
-                android:layout_height="@dimen/dp_80"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/goods_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/goods_name"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_9"
+        android:layout_marginBottom="@dimen/dp_9"
+        android:maxLength="15"
+        android:text="1000"
+        android:textColor="@color/red" />
 
-            <TextView
-                android:id="@+id/goods_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/goods_iv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginHorizontal="@dimen/dp_13"
-                android:layout_marginTop="@dimen/dp_9"
-                android:ellipsize="end"
-                android:maxEms="10"
-                android:maxLines="2"
-                android:text="荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/goods_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/goods_name"
-                android:layout_marginLeft="@dimen/dp_13"
-                android:layout_marginTop="@dimen/dp_9"
-                android:layout_marginBottom="@dimen/dp_9"
-                android:maxLength="15"
-                android:text="1000"
-                android:textColor="@color/red" />
-
-            <TextView
-                android:id="@+id/goods_preprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/goods_name"
-                android:layout_marginLeft="@dimen/dp_15"
-                android:layout_marginTop="@dimen/dp_9"
-                android:layout_marginRight="@dimen/dp_13"
-                android:layout_toRightOf="@id/goods_price"
-                android:singleLine="true"
-                android:text="11111"
-                android:textColor="@color/price_gray" />
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-
+    <TextView
+        android:id="@+id/goods_preprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/goods_name"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_9"
+        android:layout_marginRight="@dimen/dp_13"
+        android:layout_toRightOf="@id/goods_price"
+        android:singleLine="true"
+        android:text="11111"
+        android:textColor="@color/price_gray" />
 </RelativeLayout>
+

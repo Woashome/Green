@@ -5,12 +5,25 @@ import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
+import com.example.green.bean.store.StoreClassListbean;
+import com.example.green.bean.store.StoreHomebean;
+import com.example.green.bean.store.StoreListbean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface INetService {
+
+    /*
+     * 注册
+     * https://shop.bayi-shop.com/mobile/login/register
+     * */
+    /*@POST("login/register")
+    @FormUrlEncoded*/
+
+
+
     /*
      * 获取首页数据
      * https://shop.bayi-shop.com/mobile/Index/index
@@ -31,7 +44,6 @@ public interface INetService {
      * https://shop.bayi-shop.com/mobile/Storelist/index
      * */
 
-
     /*
      * 分类首页
      * https://shop.bayi-shop.com/mobile/goodsclass/index
@@ -45,6 +57,35 @@ public interface INetService {
      * */
     @GET("goodsclass/get_child_all.html")
     Observable<RightClassifyListbean> getRightClassifyList(@Query("gc_id") int gc_id);
+
+    /*
+     * 店铺列表
+     * https://shop.bayi-shop.com/mobile/Storelist/index
+     * */
+    @GET("Storelist/index")
+    Observable<StoreListbean> getStoreList();
+
+    /*
+     * 店铺首页
+     * https://shop.bayi-shop.com/mobile/Store/store_info
+     * */
+    @GET("Store/store_info")
+    Observable<StoreHomebean> getStoreHome(@Query("store_id") String store_id);
+
+    /*
+     * 店铺分类
+     * https://shop.bayi-shop.com/mobile/storelist/getStoreClassList
+     * */
+    @GET("storelist/getStoreClassList")
+    Observable<StoreClassListbean> getStoreClassList();
+
+    /*
+     * 获取店铺商品
+     * https://shop.bayi-shop.com/mobile/Store/store_goods
+     * */
+
+
+
 
 
 

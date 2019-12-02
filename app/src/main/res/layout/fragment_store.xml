@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.StoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.androidkun.xtablayout.XTabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_47"
+        android:layout_marginLeft="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_20"
+        android:elevation="@dimen/dp_1"
+        app:xTabIndicatorColor="#28B28B"
+        app:xTabIndicatorWidth="@dimen/dp_20"
+        app:xTabMode="scrollable"
+        app:xTabSelectedTextColor="#28B28B"
+        app:xTabSelectedTextSize="@dimen/dp_20"
+        app:xTabTextColor="#CBCBCB"
+        app:xTabTextSelectedBold="false"
+        app:xTabTextSize="@dimen/dp_16" />
+
+    <RelativeLayout
+        android:id="@+id/search_store"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_below="@id/tab"
+        android:layout_marginHorizontal="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/search_view">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:text="搜索店铺"
+            android:textColor="@color/c_D0D0D0"
+            android:textSize="@dimen/dp_16" />
+
+        <ImageView
+            android:layout_width="@dimen/dp_20"
+            android:layout_height="@dimen/dp_20"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_20" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_below="@id/search_store"
+        android:layout_marginTop="@dimen/dp_19" />
+</RelativeLayout>

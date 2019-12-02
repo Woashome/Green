@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.green.R;
@@ -19,7 +18,7 @@ import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.ClassifyModel;
-import com.example.green.ui.fragment.Classify.RightClassifyFragment;
+import com.example.green.ui.fragment.classify.RightClassifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +31,7 @@ import butterknife.OnClick;
  */
 public class ClassifyFragment extends BaseMvpFragment<CommonPresenter, ClassifyModel>
         implements ICommonView, ThemeMainAdapter.OnSelectorListener {
-    @BindView(R.id.search_edittext)
-    EditText mSearchEdittext;
+
     @BindView(R.id.ll_search)
     LinearLayout mLlSearch;
     @BindView(R.id.allclassify_recyclerview)

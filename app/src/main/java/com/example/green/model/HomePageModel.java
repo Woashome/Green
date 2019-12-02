@@ -11,9 +11,10 @@ public class HomePageModel implements ICommonModel {
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
             case ApiConfig.URL_HOMEDATA: // 首页数据
+                int loadMode = (int) t[0]; // 加载类型
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
-                        .getHomeListbean(), view, whichApi, 0);
+                        .getHomeListbean(), view, whichApi, loadMode);
                 break;
             case ApiConfig.URL_GOODSDATA: // 商品推荐
                 int size = (int) t[0];  // 每页多少

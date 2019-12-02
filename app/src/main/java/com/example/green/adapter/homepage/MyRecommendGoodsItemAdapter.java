@@ -41,9 +41,9 @@ public class MyRecommendGoodsItemAdapter extends BaseQuickAdapter<GoodsListbean.
             if (null != resultBean.getGoods_image()) {
                 Glide.with(mContext).load(resultBean.getGoods_image()).apply(options).into(imageView);
             }
-            helper.addOnClickListener(R.id.price);
-            helper.addOnClickListener(R.id.pre_price);
-            helper.addOnClickListener(R.id.boutique_goods);
+            helper.addOnClickListener(R.id.goods_name);
+            helper.addOnClickListener(R.id.goods_price);
+            helper.addOnClickListener(R.id.goods_preprice);
             helper.addOnClickListener(R.id.goods_card);
         }
     }
