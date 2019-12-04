@@ -9,14 +9,16 @@ public class ApiConfig {
     public static final int URL_ALLCLASSIFY = 3;   // 分类首页
     public static final int URL_RIGHTCLASSIFY = 4;   // 右侧分类
 
-
-    public static final int URL_CREATEPOSTER = 5; // 生成海报
-    public static final int INFORMATION = 6; // 系统消息
+    /*店铺*/
+    public static final int RECOMMEND_STORE = 5; // 推荐店铺
+    public static final int STORE_CLASSIFY = 6; // 店铺分类
+    public static final int STORE_INFO = 7; // 店铺首页
+    public static final int STORE_RECOMMEND = 8; // 店铺首页推荐商品
+    public static final int ALL_STOREGOODS = 9; // 全部商品(获取店铺商品)
 
     // 登录
-    public static final int SPLASH = 9; // 启动页广告
-    public static final int POST_GETVERIFYCODE = 10; // 获取验证码
-    public static final int POST_LOGINCODE = 11; // 给服务器传回 验证码
+
+
     public static final int POST_BINDPHONE = 12; // 绑定手机号
     public static final int POST_THIRDLOGIN = 13; // 三方登录
     public static final int URL_SCREENTAG = 14; // 筛选标签

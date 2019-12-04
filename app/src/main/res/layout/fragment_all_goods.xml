@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.store.RecommendFragment">
+    tools:context=".ui.fragment.store.AllGoodsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/store_recyclerview"
+        android:id="@+id/allGoods_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

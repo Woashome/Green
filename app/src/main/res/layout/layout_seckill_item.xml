@@ -3,13 +3,13 @@
     android:id="@+id/rl"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/dp_10"
-    android:layout_marginBottom="@dimen/dp_20">
+    android:layout_marginHorizontal="@dimen/dp_7"
+    android:layout_marginBottom="@dimen/dp_13">
 
     <ImageView
         android:id="@+id/goods"
-        android:layout_width="@dimen/dp_113"
-        android:layout_height="@dimen/dp_69"
+        android:layout_width="@dimen/dp_75"
+        android:layout_height="@dimen/dp_46"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher" />
@@ -20,10 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/goods"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginTop="@dimen/dp_7"
         android:text="￥466.9"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_12" />
+        android:textSize="@dimen/dp_10" />
 
     <TextView
         android:id="@+id/pre_price"
@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/price"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dp_2"
+        android:layout_marginTop="@dimen/dp_6"
         android:text="￥466.9"
         android:textColor="#979797"
-        android:textSize="@dimen/dp_10" />
+        android:textSize="@dimen/dp_8" />
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.green.ui.fragment;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Outline;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
+import com.example.green.ui.activity.PayModeActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -406,6 +408,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
             default:
                 break;
             case R.id.information: // 消息
+                startActivity(new Intent(getContext(), PayModeActivity.class));
                 break;
         }
     }

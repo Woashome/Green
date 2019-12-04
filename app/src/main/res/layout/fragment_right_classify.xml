@@ -16,8 +16,8 @@
 
             <com.youth.banner.Banner
                 android:id="@+id/adv_banner"
-                android:layout_width="@dimen/dp_180"
-                android:layout_height="@dimen/dp_42"
+                android:layout_width="@dimen/dp_240"
+                android:layout_height="@dimen/dp_57"
                 android:layout_centerHorizontal="true"
                 app:image_scale_type="fit_center" />
 
@@ -26,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/adv_banner"
-                android:layout_marginTop="@dimen/dp_10" />
+                android:layout_marginHorizontal="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_17" />
 
         </RelativeLayout>
 

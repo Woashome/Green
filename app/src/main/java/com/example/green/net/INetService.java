@@ -5,9 +5,11 @@ import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
+import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.bean.store.StoreClassListbean;
-import com.example.green.bean.store.StoreHomebean;
+import com.example.green.bean.store.StoreInfoListbean;
 import com.example.green.bean.store.StoreListbean;
+import com.example.green.bean.store.StoreRecommendListbean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -21,7 +23,6 @@ public interface INetService {
      * */
     /*@POST("login/register")
     @FormUrlEncoded*/
-
 
 
     /*
@@ -38,11 +39,6 @@ public interface INetService {
     @GET("Index/getCommendGoods")
     Observable<GoodsListbean> getGoodsList(@Query("limit") int size,
                                            @Query("page") int index);
-
-    /*
-     * 店铺列表
-     * https://shop.bayi-shop.com/mobile/Storelist/index
-     * */
 
     /*
      * 分类首页
@@ -63,14 +59,22 @@ public interface INetService {
      * https://shop.bayi-shop.com/mobile/Storelist/index
      * */
     @GET("Storelist/index")
-    Observable<StoreListbean> getStoreList();
+    Observable<StoreListbean> getStoreList(@Query("page") int index);
 
     /*
      * 店铺首页
      * https://shop.bayi-shop.com/mobile/Store/store_info
      * */
     @GET("Store/store_info")
-    Observable<StoreHomebean> getStoreHome(@Query("store_id") String store_id);
+    Observable<StoreInfoListbean> getStoreInfoList(@Query("store_id") String store_id);
+
+    /*
+     * 店铺首页推荐商品
+     * https://shop.bayi-shop.com/mobile/Store/GetStoreCommentGoods
+     * */
+    @GET("Store/GetStoreCommentGoods")
+    Observable<StoreRecommendListbean> getStoreRecommendList(@Query("store_id") String store_id,
+                                                             @Query("page") int page);
 
     /*
      * 店铺分类
@@ -83,6 +87,9 @@ public interface INetService {
      * 获取店铺商品
      * https://shop.bayi-shop.com/mobile/Store/store_goods
      * */
+    @GET("Store/store_goods")
+    Observable<AllStoreListbean> getAllStoreList(@Query("store_id") String store_id,
+                                                 @Query("page") int page);
 
 
 

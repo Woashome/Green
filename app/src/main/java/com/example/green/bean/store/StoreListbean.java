@@ -6,7 +6,7 @@ public class StoreListbean {
 
     /**
      * code : 200
-     * result : [{"store_id":1,"store_name":"自营店铺","is_platform_store":1,"seller_name":"seller","store_sort":255,"store_addtime":1572950123,"store_logo":"https://shop.bayi-shop.com/uploads/home/common/default_store_avatar.png","num_sales_jq":0,"goods_count":114,"store_credit_percent":100,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5},"store_servicecredit":{"text":"服务态度","credit":5},"store_deliverycredit":{"text":"发货速度","credit":5}},"search_list_goods":[{"goods_id":2,"store_id":1,"goods_name":"荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120144795113.jpg","goods_price":"998.00","goods_salenum":0},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]}]
+     * result : [{"store_id":1,"store_name":"自营店铺","is_platform_store":1,"seller_name":"seller","store_sort":255,"store_addtime":1572950123,"store_logo":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019120310233098236.png","num_sales_jq":2,"goods_count":119,"store_credit_percent":100,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}},"search_list_goods":[{"goods_id":87,"store_id":1,"goods_name":"朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg","goods_price":"55.00","goods_salenum":1},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]}]
      * message : ok
      */
 
@@ -46,12 +46,12 @@ public class StoreListbean {
          * seller_name : seller
          * store_sort : 255
          * store_addtime : 1572950123
-         * store_logo : https://shop.bayi-shop.com/uploads/home/common/default_store_avatar.png
-         * num_sales_jq : 0
-         * goods_count : 114
+         * store_logo : https://shop.bayi-shop.com/uploads/home/store/1/1_2019120310233098236.png
+         * num_sales_jq : 2
+         * goods_count : 119
          * store_credit_percent : 100
-         * store_credit : {"store_desccredit":{"text":"描述相符","credit":5},"store_servicecredit":{"text":"服务态度","credit":5},"store_deliverycredit":{"text":"发货速度","credit":5}}
-         * search_list_goods : [{"goods_id":2,"store_id":1,"goods_name":"荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120144795113.jpg","goods_price":"998.00","goods_salenum":0},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]
+         * store_credit : {"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}
+         * search_list_goods : [{"goods_id":87,"store_id":1,"goods_name":"朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg","goods_price":"55.00","goods_salenum":1},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]
          */
 
         private int store_id;
@@ -165,9 +165,9 @@ public class StoreListbean {
 
         public static class StoreCreditBean {
             /**
-             * store_desccredit : {"text":"描述相符","credit":5}
-             * store_servicecredit : {"text":"服务态度","credit":5}
-             * store_deliverycredit : {"text":"发货速度","credit":5}
+             * store_desccredit : {"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}
+             * store_servicecredit : {"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}
+             * store_deliverycredit : {"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}
              */
 
             private StoreDesccreditBean store_desccredit;
@@ -202,10 +202,16 @@ public class StoreListbean {
                 /**
                  * text : 描述相符
                  * credit : 5
+                 * percent : ----
+                 * percent_class : equal
+                 * percent_text : 持平
                  */
 
                 private String text;
                 private int credit;
+                private String percent;
+                private String percent_class;
+                private String percent_text;
 
                 public String getText() {
                     return text;
@@ -221,6 +227,30 @@ public class StoreListbean {
 
                 public void setCredit(int credit) {
                     this.credit = credit;
+                }
+
+                public String getPercent() {
+                    return percent;
+                }
+
+                public void setPercent(String percent) {
+                    this.percent = percent;
+                }
+
+                public String getPercent_class() {
+                    return percent_class;
+                }
+
+                public void setPercent_class(String percent_class) {
+                    this.percent_class = percent_class;
+                }
+
+                public String getPercent_text() {
+                    return percent_text;
+                }
+
+                public void setPercent_text(String percent_text) {
+                    this.percent_text = percent_text;
                 }
             }
 
@@ -228,10 +258,16 @@ public class StoreListbean {
                 /**
                  * text : 服务态度
                  * credit : 5
+                 * percent : ----
+                 * percent_class : equal
+                 * percent_text : 持平
                  */
 
                 private String text;
                 private int credit;
+                private String percent;
+                private String percent_class;
+                private String percent_text;
 
                 public String getText() {
                     return text;
@@ -247,6 +283,30 @@ public class StoreListbean {
 
                 public void setCredit(int credit) {
                     this.credit = credit;
+                }
+
+                public String getPercent() {
+                    return percent;
+                }
+
+                public void setPercent(String percent) {
+                    this.percent = percent;
+                }
+
+                public String getPercent_class() {
+                    return percent_class;
+                }
+
+                public void setPercent_class(String percent_class) {
+                    this.percent_class = percent_class;
+                }
+
+                public String getPercent_text() {
+                    return percent_text;
+                }
+
+                public void setPercent_text(String percent_text) {
+                    this.percent_text = percent_text;
                 }
             }
 
@@ -254,10 +314,16 @@ public class StoreListbean {
                 /**
                  * text : 发货速度
                  * credit : 5
+                 * percent : ----
+                 * percent_class : equal
+                 * percent_text : 持平
                  */
 
                 private String text;
                 private int credit;
+                private String percent;
+                private String percent_class;
+                private String percent_text;
 
                 public String getText() {
                     return text;
@@ -274,17 +340,41 @@ public class StoreListbean {
                 public void setCredit(int credit) {
                     this.credit = credit;
                 }
+
+                public String getPercent() {
+                    return percent;
+                }
+
+                public void setPercent(String percent) {
+                    this.percent = percent;
+                }
+
+                public String getPercent_class() {
+                    return percent_class;
+                }
+
+                public void setPercent_class(String percent_class) {
+                    this.percent_class = percent_class;
+                }
+
+                public String getPercent_text() {
+                    return percent_text;
+                }
+
+                public void setPercent_text(String percent_text) {
+                    this.percent_text = percent_text;
+                }
             }
         }
 
         public static class SearchListGoodsBean {
             /**
-             * goods_id : 2
+             * goods_id : 87
              * store_id : 1
-             * goods_name : 荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金
-             * goods_image : https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120144795113.jpg
-             * goods_price : 998.00
-             * goods_salenum : 0
+             * goods_name : 朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架
+             * goods_image : https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg
+             * goods_price : 55.00
+             * goods_salenum : 1
              */
 
             private int goods_id;

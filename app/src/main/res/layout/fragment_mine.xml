@@ -9,8 +9,8 @@
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/header"
-        android:layout_width="@dimen/dp_66"
-        android:layout_height="@dimen/dp_66"
+        android:layout_width="@dimen/dp_67"
+        android:layout_height="@dimen/dp_67"
         android:layout_marginLeft="@dimen/dp_22"
         android:layout_marginTop="@dimen/dp_38"
         android:background="@mipmap/header_frame" />
@@ -61,27 +61,27 @@
             android:layout_marginLeft="@dimen/dp_11"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_toRightOf="@+id/tuiguang_icon"
-            android:text="推广"
+            android:text="钱包"
             android:textColor="@color/tv_F1D7B4"
             android:textSize="@dimen/dp_12"
             android:textStyle="bold" />
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_tuiguang"
-            android:layout_marginLeft="@dimen/dp_11"
-            android:layout_toRightOf="@+id/tuiguang_icon"
-            android:text="成为会员优惠享不停"
-            android:textColor="@color/tv_F1D7B4"
-            android:textSize="@dimen/dp_10"
-            android:textStyle="bold" />
+        <!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_tuiguang"
+                    android:layout_marginLeft="@dimen/dp_11"
+                    android:layout_toRightOf="@+id/tuiguang_icon"
+                    android:text="成为会员优惠享不停"
+                    android:textColor="@color/tv_F1D7B4"
+                    android:textSize="@dimen/dp_10"
+                    android:textStyle="bold" />-->
 
         <RelativeLayout
             android:id="@+id/rl_join"
             android:layout_width="@dimen/dp_65"
-            android:layout_height="@dimen/dp_22"
+            android:layout_height="@dimen/dp_23"
             android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/dp_11"
             android:layout_marginRight="@dimen/dp_18"
@@ -116,8 +116,8 @@
             android:id="@+id/order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_22"
-            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginLeft="@dimen/dp_21"
+            android:layout_marginTop="@dimen/dp_17"
             android:text="我的订单"
             android:textColor="@color/black"
             android:textSize="@dimen/dp_15" />

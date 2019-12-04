@@ -74,9 +74,7 @@ public class StoreFragment extends BaseMvpFragment<CommonPresenter, StoreModel>
         mTab.addTab(mTab.newTab().setText("推荐店铺"));
         mTab.addTab(mTab.newTab().setText("店铺分类"));
         mVp.setAdapter(mMyFragmentAdapter);
-        mTab.addOnTabSelectedListener(new XTabLayout.OnTabSelectedListener()
-
-        {
+        mTab.addOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(XTabLayout.Tab tab) {
                 mVp.setCurrentItem(tab.getPosition());
@@ -93,7 +91,6 @@ public class StoreFragment extends BaseMvpFragment<CommonPresenter, StoreModel>
             }
         });
         mVp.addOnPageChangeListener(new XTabLayout.TabLayoutOnPageChangeListener(mTab));
-
     }
 
     @Override
