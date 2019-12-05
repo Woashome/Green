@@ -1,6 +1,7 @@
 package com.example.green.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.ClassifyModel;
+import com.example.green.ui.activity.SearchActivity;
 import com.example.green.ui.fragment.classify.RightClassifyFragment;
 
 import java.util.ArrayList;
@@ -108,6 +110,7 @@ public class ClassifyFragment extends BaseMvpFragment<CommonPresenter, ClassifyM
             default:
                 break;
             case R.id.ll_search:
+                startActivity(new Intent(getContext(), SearchActivity.class));
                 break;
         }
     }

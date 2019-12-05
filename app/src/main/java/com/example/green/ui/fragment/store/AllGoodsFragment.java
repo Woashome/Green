@@ -17,6 +17,9 @@ import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.StoreModel;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.yiyatech.utils.ext.ToastUtils;
 
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
     static AllGoodsFragment fragment;
     @BindView(R.id.allGoods_recycler)
     RecyclerView mRecyclerView;
+    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mSmartRefreshLayout;
     private List<AllStoreListbean.ResultBean.GoodsListBean> mGoodsListBeans;
     private MyAllStoreListAdapter mAllStoreListAdapter;
     private String mStoreId;
@@ -85,6 +90,16 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
                 }
             }
         });
+
+        mSmartRefreshLayout.setEnableRefresh(false);
+        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                if (null != mGoodsListBeans) {
+                    mPresenter.getData(ApiConfig.ALL_STOREGOODS, mStoreId, ++page, LoadConfig.LOADMORE);
+                }
+            }
+        });
     }
 
     @Override
@@ -105,10 +120,14 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
                 if (null != allStoreListbean) {
                     List<AllStoreListbean.ResultBean.GoodsListBean>
                             goods_list = allStoreListbean.getResult().getGoods_list();
-                    if (goods_list != null) {
+                    int loadType = (int) t[1]; // 加载方式
+                    if (loadType == LoadConfig.NORMAL) {
                         mGoodsListBeans.addAll(goods_list);
-                        mAllStoreListAdapter.notifyDataSetChanged();
+                    } else if (loadType == LoadConfig.LOADMORE) {
+                        mGoodsListBeans.addAll(goods_list);
+                        mSmartRefreshLayout.finishLoadmore();
                     }
+                    mAllStoreListAdapter.notifyDataSetChanged();
                 }
                 break;
         }

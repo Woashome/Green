@@ -1,9 +1,12 @@
 package com.example.green.config;
 
 public class ApiConfig {
+
+    public static final int SEARCH_GOODS = 10; // 搜索商品
     /*首页*/
     public static final int URL_HOMEDATA = 0;  // 首页数据
     public static final int URL_GOODSDATA = 1;   // 商品推荐
+    public static final int HOT_SEARCH_KEY = 2; // 搜索页面热门搜索词
 
     /*分类*/
     public static final int URL_ALLCLASSIFY = 3;   // 分类首页
@@ -16,12 +19,20 @@ public class ApiConfig {
     public static final int STORE_RECOMMEND = 8; // 店铺首页推荐商品
     public static final int ALL_STOREGOODS = 9; // 全部商品(获取店铺商品)
 
+
+    // 我的
+    public static final int MINEINFO = 11; // 我的信息
+
+
+
+
+
+
+
+
+
+
     // 登录
-
-
-    public static final int POST_BINDPHONE = 12; // 绑定手机号
-    public static final int POST_THIRDLOGIN = 13; // 三方登录
-    public static final int URL_SCREENTAG = 14; // 筛选标签
     public static final int LIKE_DIRECTOR = 15; // 选中喜欢导演
     public static final int LIKE_ACTOR = 16; // 选中喜欢演员
     public static final int LIKE_FILM = 17; // 选中喜欢电影
@@ -33,8 +44,7 @@ public class ApiConfig {
     public static final int PAYPARAMS = 25; // 获取支付参数  movie/payParams?orderId=105&channelId=8&clientIp=192.168.1.7
     public static final int URL_ORDERSTATUS = 26; // 查询订单状态
 
-    // 我的
-    public static final int URL_USERINFO = 35; // 用户信息
+
     public static final int URL_LOGINLICENSE = 36; // 用户登录协议及政策
     public static final int URL_WATCHRECORD = 37; // 观影记录
     public static final int URL_USERCODE = 38; // 用户观影码

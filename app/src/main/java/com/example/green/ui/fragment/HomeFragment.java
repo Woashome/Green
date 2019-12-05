@@ -31,6 +31,7 @@ import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.PayModeActivity;
+import com.example.green.ui.activity.SearchActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -87,6 +88,8 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     @BindView(R.id.down_promotion_info)
     TextView name_8;
 
+    @BindView(R.id.search_key)
+    TextView searchKey;
     @BindView(R.id.information)
     ImageView mInformation;
     @BindView(R.id.banner)
@@ -402,13 +405,16 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         });
     }
 
-    @OnClick(R.id.information)
+    @OnClick({R.id.information, R.id.rl_search})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
             case R.id.information: // 消息
                 startActivity(new Intent(getContext(), PayModeActivity.class));
+                break;
+            case R.id.rl_search: // 搜索
+                startActivity(new Intent(getContext(), SearchActivity.class));
                 break;
         }
     }

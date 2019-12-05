@@ -12,7 +12,7 @@
         android:layout_width="@dimen/dp_67"
         android:layout_height="@dimen/dp_67"
         android:layout_marginLeft="@dimen/dp_22"
-        android:layout_marginTop="@dimen/dp_38"
+        android:layout_marginTop="@dimen/dp_37"
         android:background="@mipmap/header_frame" />
 
     <TextView
@@ -20,11 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_17"
-        android:layout_marginTop="@dimen/dp_47"
+        android:layout_marginTop="@dimen/dp_56"
         android:layout_toRightOf="@id/header"
-        android:text="汪疯"
         android:textColor="@color/white"
-        android:textSize="@dimen/dp_18" />
+        android:textSize="@dimen/dp_16" />
 
     <TextView
         android:id="@+id/user_phone"
@@ -32,10 +31,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user_name"
         android:layout_marginLeft="@dimen/dp_17"
+        android:layout_marginTop="@dimen/dp_5"
         android:layout_toRightOf="@id/header"
-        android:text="185****0688"
         android:textColor="@color/white"
-        android:textSize="@dimen/dp_15" />
+        android:textSize="@dimen/dp_12" />
 
     <RelativeLayout
         android:id="@+id/tuiguang"
@@ -55,28 +54,28 @@
             android:src="@mipmap/generalize" />
 
         <TextView
-            android:id="@+id/tv_tuiguang"
+            android:id="@+id/tv_qianbao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_11"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_8"
             android:layout_toRightOf="@+id/tuiguang_icon"
             android:text="钱包"
             android:textColor="@color/tv_F1D7B4"
             android:textSize="@dimen/dp_12"
             android:textStyle="bold" />
 
-        <!--
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_tuiguang"
-                    android:layout_marginLeft="@dimen/dp_11"
-                    android:layout_toRightOf="@+id/tuiguang_icon"
-                    android:text="成为会员优惠享不停"
-                    android:textColor="@color/tv_F1D7B4"
-                    android:textSize="@dimen/dp_10"
-                    android:textStyle="bold" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_qianbao"
+            android:layout_marginLeft="@dimen/dp_11"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_toRightOf="@+id/tuiguang_icon"
+            android:text="成为会员优惠享不停"
+            android:textColor="@color/tv_F1D7B4"
+            android:textSize="@dimen/dp_11"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/rl_join"

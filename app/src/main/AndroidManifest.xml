@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.activity.PayModeActivity" />
         <activity android:name=".ui.activity.store.StoreInfoActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.mine.WalletActivity"></activity>
     </application>
 
 </manifest>

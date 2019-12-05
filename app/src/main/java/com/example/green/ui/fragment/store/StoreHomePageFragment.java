@@ -23,6 +23,9 @@ import com.example.green.bean.store.StoreRecommendListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.StoreModel;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.yiyatech.utils.ext.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -45,6 +48,9 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
     Banner mBanner;
     @BindView(R.id.goods_recyclerview)
     RecyclerView mRecyclerView;
+    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mSmartRefreshLayout;
+
     private List<StoreRecommendListbean.ResultBean.RecGoodsListBean> mRecommendList;
     private List<StoreInfoListbean.ResultBean.StoreInfoBean.MbSlidersBean> mBannerList;
     private List<String> imgs;
@@ -104,6 +110,15 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
                 }
             }
         });
+        mSmartRefreshLayout.setEnableRefresh(false);
+        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                if (null != mRecommendList) {
+                    mPresenter.getData(ApiConfig.STORE_RECOMMEND, mStoreId, ++page, LoadConfig.LOADMORE);
+                }
+            }
+        });
     }
 
     @Override
@@ -137,7 +152,13 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
                 if (null != recommendListbeans) {
                     List<StoreRecommendListbean.ResultBean.RecGoodsListBean>
                             rec_goods_list = recommendListbeans.getResult().getRec_goods_list();
-                    mRecommendList.addAll(rec_goods_list);
+                    int loadType = (int) t[1]; // 加载方式
+                    if (loadType == LoadConfig.NORMAL) {
+                        mRecommendList.addAll(rec_goods_list);
+                    } else if (loadType == LoadConfig.LOADMORE) {
+                        mRecommendList.addAll(rec_goods_list);
+                        mSmartRefreshLayout.finishLoadmore();
+                    }
                     mRecommendListAdapter.notifyDataSetChanged();
                 }
                 break;

@@ -9,10 +9,11 @@ public class MineModel implements ICommonModel {
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
-            case ApiConfig.URL_HOMEDATA: // 首页数据
+            case ApiConfig.MINEINFO: // 我的页面
+                String key = (String) t[0];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
-                        .getHomeListbean(), view, whichApi, 0);
+                        .getMineInfo(key), view, whichApi, 0);
                 break;
         }
     }
