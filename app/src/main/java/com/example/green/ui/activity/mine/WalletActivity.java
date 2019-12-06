@@ -1,7 +1,10 @@
 package com.example.green.ui.activity.mine;
 
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +14,8 @@ import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.model.MineModel;
+import com.example.green.ui.fragment.mine.CollegeFragment;
+import com.example.green.ui.fragment.mine.VideoFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -18,6 +23,8 @@ import butterknife.OnClick;
 public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> implements ICommonView {
 
 
+    private static int FRAGMENT_COLLEGE = 0;
+    private static int FRAGMENT_VIDEO = 1;
     @BindView(R.id.back)
     ImageView mBack;
     @BindView(R.id.toolbar)
@@ -64,11 +71,30 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
     RelativeLayout mRlTeam;
     @BindView(R.id.rl_yaoqing)
     RelativeLayout mRlYaoqing;
+    @BindView(R.id.college)
+    TextView mCollege;
+    @BindView(R.id.video)
+    TextView mVideo;
+    @BindView(R.id.tip_1)
+    ImageView mTip1;
+    @BindView(R.id.tip_2)
+    ImageView mTip2;
+    @BindView(R.id.fl)
+    FrameLayout mFl;
+
+    private CollegeFragment mCollegeFragment;
+    private VideoFragment mVideoFragment;
 
     @Override
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+
+        // 商学院
+        selectFragment(FRAGMENT_COLLEGE);
+        mTip1.setVisibility(View.VISIBLE);
+        mTip2.setVisibility(View.GONE);
+        mCollege.setTextColor(getResources().getColor(R.color.c_27b28b));
     }
 
     @Override
@@ -101,7 +127,9 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
 
     }
 
-    @OnClick({R.id.back, R.id.rl_user_level, R.id.rl_user_company, R.id.rl_chongzhi, R.id.rl_tixian, R.id.rl_huzhuan, R.id.rl_chuzhi, R.id.rl_jiaoyi, R.id.rl_jifen, R.id.rl_shiming, R.id.rl_team, R.id.rl_yaoqing})
+    @OnClick({R.id.back, R.id.rl_user_level, R.id.rl_user_company, R.id.rl_chongzhi, R.id.rl_tixian,
+            R.id.rl_huzhuan, R.id.rl_chuzhi, R.id.rl_jiaoyi, R.id.rl_jifen, R.id.rl_shiming, R.id.rl_team,
+            R.id.rl_yaoqing, R.id.rl_college, R.id.rl_video})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -131,6 +159,44 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
                 break;
             case R.id.rl_yaoqing: // 邀请好友
                 break;
+            case R.id.rl_college: // 商学院
+                selectFragment(FRAGMENT_COLLEGE);
+                mTip1.setVisibility(View.VISIBLE);
+                mTip2.setVisibility(View.GONE);
+                mCollege.setTextColor(getResources().getColor(R.color.c_27b28b));
+                mVideo.setTextColor(getResources().getColor(R.color.black));
+                break;
+            case R.id.rl_video: // 视频
+                selectFragment(FRAGMENT_VIDEO);
+                mTip1.setVisibility(View.GONE);
+                mTip2.setVisibility(View.VISIBLE);
+                mCollege.setTextColor(getResources().getColor(R.color.black));
+                mVideo.setTextColor(getResources().getColor(R.color.c_27b28b));
+                break;
         }
+    }
+
+    public void selectFragment(int position) {//设置传入第几值显示第几个fragment
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        switch (position) {
+            case 0:
+                if (mCollegeFragment == null) {
+                    mCollegeFragment = CollegeFragment.newInstance();
+                }
+                //将原来的Fragment替换掉---此处R.id.fragmen指的是FrameLayout
+                ft.replace(R.id.fl, mCollegeFragment);
+                break;
+            case 1:
+                if (mVideoFragment == null) {
+                    mVideoFragment = VideoFragment.newInstance();
+                }
+                ft.replace(R.id.fl, mVideoFragment);
+                break;
+            default:
+                break;
+        }
+        ft.commit();
     }
 }

@@ -15,6 +15,14 @@ public class MineModel implements ICommonModel {
                         .getHttpService()
                         .getMineInfo(key), view, whichApi, 0);
                 break;
+            case ApiConfig.COLLEGE: // 商学院
+                int type = (int) t[0];
+                int page = (int) t[1];
+                int loadMode = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getCollegeList(type, page), view, whichApi, loadMode);
+                break;
         }
     }
 }

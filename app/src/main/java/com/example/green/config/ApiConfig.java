@@ -23,7 +23,7 @@ public class ApiConfig {
     // 我的
     public static final int MINEINFO = 11; // 我的信息
 
-
+    public static final int COLLEGE = 12; // 商学院
 
 
 
@@ -33,7 +33,7 @@ public class ApiConfig {
 
 
     // 登录
-    public static final int LIKE_DIRECTOR = 15; // 选中喜欢导演
+
     public static final int LIKE_ACTOR = 16; // 选中喜欢演员
     public static final int LIKE_FILM = 17; // 选中喜欢电影
 

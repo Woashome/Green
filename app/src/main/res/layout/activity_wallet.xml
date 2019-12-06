@@ -469,5 +469,72 @@
         android:layout_below="@id/rl_menu"
         android:background="@color/c_f7f7f7" />
 
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cut_line"
+        android:layout_marginTop="@dimen/dp_13">
+
+        <RelativeLayout
+            android:id="@+id/rl_college"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_18">
+
+            <TextView
+                android:id="@+id/college"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="商学院"
+                android:textColor="@color/c_999999"
+                android:textSize="@dimen/dp_12" />
+
+            <ImageView
+                android:id="@+id/tip_1"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/college"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_6"
+                android:src="@mipmap/select_tip" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_33"
+            android:layout_toRightOf="@+id/rl_college">
+
+            <TextView
+                android:id="@+id/video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="视频"
+                android:textColor="@color/c_999999"
+                android:textSize="@dimen/dp_12" />
+
+            <ImageView
+                android:id="@+id/tip_2"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/video"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_6"
+                android:src="@mipmap/select_tip" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="@dimen/dp_18"
+        android:layout_marginTop="@dimen/dp_16" />
 
 </RelativeLayout>

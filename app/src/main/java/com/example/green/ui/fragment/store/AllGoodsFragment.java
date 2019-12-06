@@ -47,7 +47,6 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
         // Required empty public constructor
     }
 
-
     public static AllGoodsFragment newInstance() {
         if (fragment == null) {
             fragment = new AllGoodsFragment();

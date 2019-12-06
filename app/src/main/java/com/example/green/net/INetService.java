@@ -7,6 +7,7 @@ import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.bean.homepage.HotSearchKeyListbean;
 import com.example.green.bean.homepage.SearchListbean;
+import com.example.green.bean.mine.CollegeListbean;
 import com.example.green.bean.mine.MineInfobean;
 import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.bean.store.StoreClassListbean;
@@ -114,5 +115,14 @@ public interface INetService {
      * */
     @GET("member/index")
     Observable<MineInfobean> getMineInfo(@Query("key") String key);
+
+    /*
+     * 商学院
+     * https://shop.bayi-shop.com/mobile/college/college
+     * article_type: 0-文章 1-视频
+     * */
+    @GET("college/college")
+    Observable<CollegeListbean> getCollegeList(@Query("article_type") int type,
+                                               @Query("page") int page);
 }
 

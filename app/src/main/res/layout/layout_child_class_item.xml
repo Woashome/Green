@@ -16,7 +16,7 @@
             android:layout_height="@dimen/dp_46"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@mipmap/shuiguo" />
+            android:src="@mipmap/shiming" />
 
         <TextView
             android:id="@+id/goods_tv"
