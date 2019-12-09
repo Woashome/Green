@@ -2,14 +2,17 @@ package com.example.green.ui.fragment;
 
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Outline;
 import android.os.Build;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -88,6 +91,8 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     @BindView(R.id.down_promotion_info)
     TextView name_8;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.search_key)
     TextView searchKey;
     @BindView(R.id.information)
@@ -121,6 +126,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     private List<HomePgaeList.ResultBean.DiscountBean.DateBean.GoodsInfoBean> mSeckill_goods;
     private List<GoodsListbean.ResultBean> mRecommend;
     private GoodsListbean mResultBean;
+    Activity mActivity;
 
     public static HomeFragment newInstance() {
         if (fragment == null) fragment = new HomeFragment();
@@ -148,6 +154,11 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
 
     @Override
     protected void initView() {
+        mActivity = getActivity();
+        mToolbar.setTitle("");
+        AppCompatActivity appCompatActivity = (AppCompatActivity) mActivity;
+        appCompatActivity.setSupportActionBar(mToolbar);
+
         mChart = new ArrayList<>(); // 轮播图
         imgs = new ArrayList<>(); // 轮播图图片
         mMenu = new ArrayList<>(); // 菜单
