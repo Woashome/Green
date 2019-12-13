@@ -7,6 +7,7 @@ public class ApiConfig {
     public static final int URL_HOMEDATA = 0;  // 首页数据
     public static final int URL_GOODSDATA = 1;   // 商品推荐
     public static final int HOT_SEARCH_KEY = 2; // 搜索页面热门搜索词
+    public static final int GOODS_DETAILS = 13; // 商品详情
 
     /*分类*/
     public static final int URL_ALLCLASSIFY = 3;   // 分类首页
@@ -20,21 +21,20 @@ public class ApiConfig {
     public static final int ALL_STOREGOODS = 9; // 全部商品(获取店铺商品)
 
 
-    // 我的
+    /*我的*/
     public static final int MINEINFO = 11; // 我的信息
 
     public static final int COLLEGE = 12; // 商学院
 
 
-
-
-
-
+    public static final int REGISTER = 14; // 注册
+    public static final int ACCQUIRE_CODE = 15; // 验证码发送
+    public static final int LOGIN = 16; // 登录
 
 
     // 登录
 
-    public static final int LIKE_ACTOR = 16; // 选中喜欢演员
+
     public static final int LIKE_FILM = 17; // 选中喜欢电影
 
     // 支付

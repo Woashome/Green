@@ -38,9 +38,6 @@ public class MyBoutiqueItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultB
             if (null != goodsInfoBean.getGoods_image()) {
                 Glide.with(mContext).load(goodsInfoBean.getGoods_image()).apply(options).into(imageView);
             }
-            helper.addOnClickListener(R.id.price);
-            helper.addOnClickListener(R.id.pre_price);
-            helper.addOnClickListener(R.id.goods);
             helper.addOnClickListener(R.id.rl);
         }
     }

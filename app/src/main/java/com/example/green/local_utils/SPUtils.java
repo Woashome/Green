@@ -1,6 +1,8 @@
 package com.example.green.local_utils;
 
 
+import com.tencent.mmkv.MMKV;
+
 /**
  * @author yzzCool
  * @desc 使用的是shengzhigang的原类。
@@ -11,18 +13,18 @@ package com.example.green.local_utils;
 public class SPUtils {
     public static final String KEY_USER_ID = "userId";//登录成功后用户ID
     public static final String KEY_USER_TOKEN = "Token";//登录成功后用户token
+    public static final String KEY_USER_NAME = "username"; // 账号
+    public static final String KEY_PASSWORD = "password"; // 密码
 
 
-    public static final String KEY_USER_ICON = "userIcon";
     public static final String KEY_INVITERID = "inviterId"; // 邀请人ID
 
-
     private static SPUtils sSpUtils;
-//    private MMKV mMMKV;
+    private MMKV mMMKV;
 
-//    private SPUtils() {
-//        mMMKV = MMKV.defaultMMKV();
-//    }
+    private SPUtils() {
+        mMMKV = MMKV.defaultMMKV();
+    }
 
     public static SPUtils getInstance() {
         if (sSpUtils == null) {
@@ -42,7 +44,7 @@ public class SPUtils {
      * @param defaultObject
      * @return
      */
-/*    public <T> T getValue(String key, T defaultObject) {
+    public <T> T getValue(String key, T defaultObject) {
         if (defaultObject == null) {
             defaultObject = (T) "";
         }
@@ -88,5 +90,5 @@ public class SPUtils {
 
     public void removeValue(String[] keys) {
         mMMKV.removeValuesForKeys(keys);
-    }*/
+    }
 }

@@ -3,9 +3,13 @@ package com.example.green.net;
 
 import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.bean.classify.RightClassifyListbean;
+import com.example.green.bean.homepage.DetailsDatabean;
 import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.bean.homepage.HotSearchKeyListbean;
+import com.example.green.bean.register.AccquireSmsbean;
+import com.example.green.bean.register.CodeVerifybean;
+import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.bean.homepage.SearchListbean;
 import com.example.green.bean.mine.CollegeListbean;
 import com.example.green.bean.mine.MineInfobean;
@@ -16,7 +20,10 @@ import com.example.green.bean.store.StoreListbean;
 import com.example.green.bean.store.StoreRecommendListbean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface INetService {
@@ -27,8 +34,8 @@ public interface INetService {
     @GET("goods/goods_list")
     Observable<SearchListbean> getSearchList(@Query("keyword") String keyword,
                                              @Query("page") int page,
-                                             @Query("pagesize") int pagesize,
-                                             @Query("key") String key);
+                                             @Query("key") String key,
+                                             @Query("gc_id") String gcId);
 
     /*
      * 获取首页数据
@@ -51,6 +58,13 @@ public interface INetService {
      * */
     @GET("index/search_key_list")
     Observable<HotSearchKeyListbean> getHotSearchKeyList();
+
+    /*
+     * 商品详情
+     * https://shop.bayi-shop.com/mobile/goods/goods_detail
+     * */
+    @GET("goods/goods_detail")
+    Observable<DetailsDatabean> getGoodsDetailsList(@Query("goods_id") String goods_id);
 
     /*
      * 获取消息列表
@@ -124,5 +138,39 @@ public interface INetService {
     @GET("college/college")
     Observable<CollegeListbean> getCollegeList(@Query("article_type") int type,
                                                @Query("page") int page);
+
+    /*
+     * 注册
+     * https://shop.bayi-shop.com/mobile/login/register
+     * */
+    @POST("login/register")
+    @FormUrlEncoded
+    Observable<RegisterDatabean> getRegisterbean(@Field("username") String username,
+                                                 @Field("password") String password,
+                                                 @Field("password_confirm") String password_confirm,
+                                                 @Field("client") String client,
+                                                 @Field("inviter_code") String inviter_code,
+                                                 @Field("sms_captcha") String sms_captcha,
+                                                 @Field("log_type") int log_type);
+
+    /*
+     * 验证码发送
+     * https://shop.bayi-shop.com/mobile/Connect/get_sms_captcha
+     * */
+    @POST("Connect/get_sms_captcha")
+    @FormUrlEncoded
+    Observable<AccquireSmsbean> getAccquirebean(@Field("member_mobile") String member_mobile,
+                                                @Field("type") int type);
+
+    /*
+     * 登录
+     * https://shop.bayi-shop.com/mobile/login/index
+     * */
+    @POST("login/index")
+    @FormUrlEncoded
+    Observable<RegisterDatabean> getLoginbean(@Field("username") String username,
+                                              @Field("password") String password,
+                                              @Field("client") String client);
+
 }
 

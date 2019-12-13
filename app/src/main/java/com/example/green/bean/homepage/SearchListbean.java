@@ -6,17 +6,17 @@ public class SearchListbean {
 
     /**
      * code : 200
-     * result : {"goods_list":[{"goods_id":128,"store_id":1,"goods_name":"荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 香槟金 32G","goods_advword":"北欧极简设计，EMUI5.1","goods_price":"998.00","goods_promotion_price":"998.00","goods_promotion_type":0,"goods_marketprice":"1290.00","goods_image":"alioss_1_2019120615504452348.png","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019120615504452348.png"},{"goods_id":111,"store_id":1,"goods_name":"儿童智能手表成人电话手机学生男女定位防水蓝牙插卡运动安卓手环","goods_advword":"学习APP 定位 防水 插卡电话","goods_price":"118.00","goods_promotion_price":"118.00","goods_promotion_type":0,"goods_marketprice":"129.00","goods_image":"1_2017092901331891773.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901331891773.jpg"},{"goods_id":109,"store_id":1,"goods_name":" OPPO A57 oppoa57 oppo手机a57","goods_advword":"已降200","goods_price":"1399.00","goods_promotion_price":"1399.00","goods_promotion_type":0,"goods_marketprice":"1599.00","goods_image":"1_2017092901284880537.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901284880537.jpg"},{"goods_id":108,"store_id":1,"goods_name":"OPPO A57 全新手机a59s a33 r9s r11 oppoa57手机正品","goods_advword":"购机享8重豪礼+12期免息+顺丰包邮+全国联保1年+店铺延保2年","goods_price":"1399.00","goods_promotion_price":"1399.00","goods_promotion_type":0,"goods_marketprice":"1560.00","goods_image":"1_2017092901271966752.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901271966752.jpg"},{"goods_id":107,"store_id":1,"goods_name":"vivo X20全面屏4G全网通智能手机vivox20 X20A","goods_advword":"","goods_price":"2980.00","goods_promotion_price":"2980.00","goods_promotion_type":0,"goods_marketprice":"3100.00","goods_image":"1_2017092901242476412.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901242476412.jpg"},{"goods_id":106,"store_id":1,"goods_name":"vivo y66超薄手机正品","goods_advword":"送电话手表 送低音炮","goods_price":"1298.00","goods_promotion_price":"1298.00","goods_promotion_type":0,"goods_marketprice":"1499.00","goods_image":"1_2017092901201262580.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901201262580.jpg"},{"goods_id":105,"store_id":1,"goods_name":"超薄5.5寸移动电信全网通4G双曲屏学生智能指纹一体一加手机","goods_advword":"","goods_price":"748.00","goods_promotion_price":"748.00","goods_promotion_type":0,"goods_marketprice":"820.00","goods_image":"1_2017092901182073726.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901182073726.jpg"},{"goods_id":104,"store_id":1,"goods_name":"OnePlus/一加 一加手机5 一加五 1加5手机 一加5星辰黑","goods_advword":"一加授权 官方直供 优惠低至官网","goods_price":"2068.00","goods_promotion_price":"2068.00","goods_promotion_type":0,"goods_marketprice":"2100.00","goods_image":"1_2017092901111615092.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901111615092.jpg"},{"goods_id":103,"store_id":1,"goods_name":"honor/荣耀 荣耀V9 play全网通4G手机","goods_advword":"","goods_price":"1099.00","goods_promotion_price":"1099.00","goods_promotion_type":0,"goods_marketprice":"1200.00","goods_image":"1_2017092901082884641.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901082884641.jpg"},{"goods_id":102,"store_id":1,"goods_name":"honor/荣耀 荣耀9 全网通4G手机双摄像头智能手机","goods_advword":"后置双摄像头手机","goods_price":"2499.00","goods_promotion_price":"2499.00","goods_promotion_type":0,"goods_marketprice":"2699.00","goods_image":"1_2017092901063965472.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092901063965472.jpg"}]}
+     * result : {"goods_list":[{"goods_id":147,"store_id":1,"goods_name":"台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果","goods_advword":"台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果","goods_price":"29.80","goods_promotion_price":"29.80","goods_promotion_type":0,"goods_marketprice":"119.80","goods_image":"alioss_1_2019121217102927726.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121217102927726.jpg"},{"goods_id":146,"store_id":1,"goods_name":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_advword":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_price":"35.80","goods_promotion_price":"35.80","goods_promotion_type":0,"goods_marketprice":"69.80","goods_image":"alioss_1_2019121217014724405.jpg","goods_salenum":1,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121217014724405.jpg"},{"goods_id":144,"store_id":1,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_advword":"","goods_price":"19.90","goods_promotion_price":"19.90","goods_promotion_type":0,"goods_marketprice":"39.90","goods_image":"alioss_1_2019121216501934568.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121216501934568.jpg"},{"goods_id":142,"store_id":1,"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_advword":"苹果苹果苹果苹果苹果","goods_price":"20.00","goods_promotion_price":"20.00","goods_promotion_type":0,"goods_marketprice":"30.00","goods_image":"alioss_1_2019121117365572753.jpg","goods_salenum":0,"evaluation_good_star":5,"evaluation_count":0,"is_virtual":0,"is_presell":0,"is_goodsfcode":0,"is_have_gift":0,"store_name":"自营店铺","is_platform_store":1,"group_flag":false,"xianshi_flag":false,"goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"}]}
      * message : ok
-     * hasmore : true
-     * page_total : 2
+     * page_total : 1
+     * hasmore : false
      */
 
     private String code;
     private ResultBean result;
     private String message;
-    private boolean hasmore;
     private int page_total;
+    private boolean hasmore;
 
     public String getCode() {
         return code;
@@ -42,20 +42,20 @@ public class SearchListbean {
         this.message = message;
     }
 
-    public boolean isHasmore() {
-        return hasmore;
-    }
-
-    public void setHasmore(boolean hasmore) {
-        this.hasmore = hasmore;
-    }
-
     public int getPage_total() {
         return page_total;
     }
 
     public void setPage_total(int page_total) {
         this.page_total = page_total;
+    }
+
+    public boolean isHasmore() {
+        return hasmore;
+    }
+
+    public void setHasmore(boolean hasmore) {
+        this.hasmore = hasmore;
     }
 
     public static class ResultBean {
@@ -71,15 +71,15 @@ public class SearchListbean {
 
         public static class GoodsListBean {
             /**
-             * goods_id : 128
+             * goods_id : 147
              * store_id : 1
-             * goods_name : 荣耀V9 play 标配版 3+32G 全网通4G手机 铂光金 全网通 香槟金 32G
-             * goods_advword : 北欧极简设计，EMUI5.1
-             * goods_price : 998.00
-             * goods_promotion_price : 998.00
+             * goods_name : 台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果
+             * goods_advword : 台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果
+             * goods_price : 29.80
+             * goods_promotion_price : 29.80
              * goods_promotion_type : 0
-             * goods_marketprice : 1290.00
-             * goods_image : alioss_1_2019120615504452348.png
+             * goods_marketprice : 119.80
+             * goods_image : alioss_1_2019121217102927726.jpg
              * goods_salenum : 0
              * evaluation_good_star : 5
              * evaluation_count : 0
@@ -91,7 +91,7 @@ public class SearchListbean {
              * is_platform_store : 1
              * group_flag : false
              * xianshi_flag : false
-             * goods_image_url : https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019120615504452348.png
+             * goods_image_url : https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121217102927726.jpg
              */
 
             private int goods_id;

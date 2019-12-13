@@ -14,11 +14,12 @@ import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.model.HomePageModel;
+import com.example.green.model.UserModel;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ForgetPasswordActivity extends BaseMvpActivity<CommonPresenter, HomePageModel>
+public class ForgetPasswordActivity extends BaseMvpActivity<CommonPresenter, UserModel>
         implements ICommonView {
 
     @BindView(R.id.toolbar)
@@ -60,8 +61,8 @@ public class ForgetPasswordActivity extends BaseMvpActivity<CommonPresenter, Hom
     }
 
     @Override
-    protected HomePageModel initModel() {
-        return new HomePageModel();
+    protected UserModel initModel() {
+        return new UserModel();
     }
 
     @Override

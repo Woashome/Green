@@ -57,10 +57,12 @@
             <EditText
                 android:id="@+id/user_phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_45"
                 android:background="@null"
                 android:hint="手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:textColorHint="@color/c_999999"
                 android:textSize="@dimen/dp_11" />
         </LinearLayout>
@@ -70,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_1"
             android:layout_below="@id/input_phone"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@color/c_999999" />
 
         <LinearLayout
@@ -78,7 +80,7 @@
             android:layout_width="@dimen/dp_200"
             android:layout_height="wrap_content"
             android:layout_below="@id/input_phone"
-            android:layout_marginTop="@dimen/dp_27"
+            android:layout_marginTop="@dimen/dp_14"
             android:orientation="horizontal">
 
             <TextView
@@ -91,10 +93,11 @@
             <EditText
                 android:id="@+id/user_code"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_33"
                 android:background="@null"
                 android:hint="短信验证码"
+                android:inputType="number"
                 android:textColorHint="@color/c_999999"
                 android:textSize="@dimen/dp_11" />
 
@@ -104,8 +107,8 @@
             android:id="@+id/acquire_code"
             android:layout_width="@dimen/dp_61"
             android:layout_height="@dimen/dp_20"
-            android:layout_below="@id/line"
-            android:layout_marginTop="@dimen/dp_11"
+            android:layout_below="@id/input_phone"
+            android:layout_marginTop="@dimen/dp_20"
             android:layout_toRightOf="@id/input_code"
             android:background="@drawable/code_bg"
             android:gravity="center"
@@ -118,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_1"
             android:layout_below="@id/input_code"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@color/c_999999" />
 
         <LinearLayout
@@ -138,10 +141,12 @@
             <EditText
                 android:id="@+id/user_psw"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_21"
                 android:background="@null"
                 android:hint="6-12位数字字母组合"
+                android:inputType="textPassword"
+                android:maxLength="12"
                 android:textColorHint="@color/c_999999"
                 android:textSize="@dimen/dp_11" />
         </LinearLayout>
@@ -151,7 +156,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_1"
             android:layout_below="@id/input_psw"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@color/c_999999" />
 
         <LinearLayout
@@ -171,10 +176,12 @@
             <EditText
                 android:id="@+id/user_psw_again"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_21"
                 android:background="@null"
                 android:hint="确保两次密码一致"
+                android:inputType="textPassword"
+                android:maxLength="12"
                 android:textColorHint="@color/c_999999"
                 android:textSize="@dimen/dp_11" />
         </LinearLayout>
@@ -184,7 +191,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_1"
             android:layout_below="@id/input_psw_again"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@color/c_999999" />
 
         <LinearLayout
@@ -192,7 +199,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/line3"
-            android:layout_marginTop="@dimen/dp_50">
+            android:layout_marginTop="@dimen/dp_30">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,10 +211,12 @@
             <EditText
                 android:id="@+id/user_invitation_code"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginLeft="@dimen/dp_33"
                 android:background="@null"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="请输入邀请码（必填）"
+                android:maxLength="5"
                 android:textColorHint="@color/c_999999"
                 android:textSize="@dimen/dp_11" />
         </LinearLayout>
@@ -217,7 +226,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_1"
             android:layout_below="@id/input_invitation_code"
-            android:layout_marginTop="@dimen/dp_13"
+            android:layout_marginTop="@dimen/dp_8"
             android:background="@color/c_999999" />
     </RelativeLayout>
 

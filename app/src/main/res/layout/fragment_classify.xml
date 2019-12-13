@@ -9,26 +9,33 @@
 
     <!-- TODO: Update blank fragment layout -->
     <!-- 背景 -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/ll_search"
         android:layout_width="@dimen/dp_303"
         android:layout_height="@dimen/dp_31"
         android:layout_marginHorizontal="@dimen/dp_29"
         android:layout_marginTop="@dimen/dp_11"
-        android:background="@drawable/search_view"
+        android:background="@mipmap/search_bg"
         android:orientation="horizontal">
-
+        <ImageView
+            android:src="@mipmap/search"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/dp_13"
+            android:layout_height="@dimen/dp_13" />
         <!-- 搜索框信息 -->
         <TextView
             android:id="@+id/search_word"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_31"
-            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_33"
             android:gravity="center_vertical"
             android:hint="@string/search"
+            android:textColor="@color/c_cbcbcb"
             android:imeOptions="actionDone"
             android:textSize="@dimen/dp_12" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

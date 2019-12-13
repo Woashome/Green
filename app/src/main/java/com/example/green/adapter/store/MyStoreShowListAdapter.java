@@ -32,10 +32,18 @@ public class MyStoreShowListAdapter extends RecyclerView.Adapter<MyStoreShowList
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         StoreListbean.ResultBean.SearchListGoodsBean searchListGoodsBean = mList.get(position);
         if (null != searchListGoodsBean) {
             Glide.with(mContext).load(searchListGoodsBean.getGoods_image()).into(holder.goods_iv);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View pView) {
+                    if (null != mCallback) {
+                        mCallback.onItemClick(position);
+                    }
+                }
+            });
         }
     }
 
@@ -51,5 +59,15 @@ public class MyStoreShowListAdapter extends RecyclerView.Adapter<MyStoreShowList
             super(itemView);
             goods_iv = itemView.findViewById(R.id.goods_iv);
         }
+    }
+
+    private Callback mCallback;
+
+    public void setCallback(Callback pCallback) {
+        mCallback = pCallback;
+    }
+
+    public interface Callback {
+        void onItemClick(int position);
     }
 }

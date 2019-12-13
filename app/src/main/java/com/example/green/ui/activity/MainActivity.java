@@ -1,5 +1,6 @@
 package com.example.green.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +11,10 @@ import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.config.ApiConfig;
+import com.example.green.config.LoadConfig;
 import com.example.green.customs.MyBottomView;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.fragment.ClassifyFragment;
 import com.example.green.ui.fragment.HomeFragment;
@@ -34,7 +38,7 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomePageModel
     private final int SHOP = 4;
     private final int MINE = 5;
     private FragmentManager mManager;
-
+    private String token;
 
     @Override
     protected void initView() {
@@ -121,5 +125,16 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomePageModel
                 break;
         }
         fragmentTransaction.commit();
+    }
+    @Override
+    protected void receiverBroadCast(Intent intent) {
+        super.receiverBroadCast(intent);
+
+        switch (intent.getAction()) {
+            case LOGIN_SUCCESS:
+                // 用户信息
+                token = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+                break;
+        }
     }
 }

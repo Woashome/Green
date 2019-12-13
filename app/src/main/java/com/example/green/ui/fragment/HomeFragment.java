@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Outline;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.green.R;
 import com.example.green.adapter.homepage.MyBoutiqueItemAdapter;
 import com.example.green.adapter.homepage.MyOptionsItemAdapter;
@@ -33,6 +36,7 @@ import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
+import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.example.green.ui.activity.PayModeActivity;
 import com.example.green.ui.activity.SearchActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -186,7 +190,6 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
 
         mMyRecommendGoodsItemAdapter = new MyRecommendGoodsItemAdapter(R.layout.layout_recommendgoods_item, mRecommend);
         mRecommendGoods.setLayoutManager(new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false));
-        mRecommendGoods.setNestedScrollingEnabled(false); //禁止滑动
         mRecommendGoods.setAdapter(mMyRecommendGoodsItemAdapter);
 
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -215,6 +218,55 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
             }
         });
 
+        // 热品限时
+        mMySeckillItemAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rl:
+                        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goodsId", mSeckill_goods.get(position).getGoods_id() + "");
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
+                        break;
+                }
+            }
+        });
+
+
+        // 超值好货
+        mMyBoutiqueItemAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rl:
+                        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goodsId", mBoutique_goods.get(position).getGoods_id() + "");
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
+                        break;
+                }
+            }
+        });
+
+        // 推荐商品列表
+        mMyRecommendGoodsItemAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.goods_card:
+                        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goodsId", mRecommend.get(position).getGoods_id() + "");
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
+                        break;
+                }
+            }
+        });
+
     }
 
     @Override
@@ -238,16 +290,16 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                     HomePgaeList.ResultBean result = homePgaeLists.getResult();
 
                     List<HomePgaeList.ResultBean.ChartBean>
-                            chart = homePgaeLists.getResult().getChart();
+                            chart = result.getChart();
                     List<HomePgaeList.ResultBean.MenuBean>
-                            menu = homePgaeLists.getResult().getMenu();
+                            menu = result.getMenu();
                     List<HomePgaeList.ResultBean.TransverseBean>
-                            transverse = homePgaeLists.getResult().getTransverse();
+                            transverse = result.getTransverse();
                     List<HomePgaeList.ResultBean.DiscountBean.DateBean>
-                            date = homePgaeLists.getResult().getDiscount().getDate();
-                    List<String> title = homePgaeLists.getResult().getDiscount().getTitle();
+                            date = result.getDiscount().getDate();
+                    List<String> title = result.getDiscount().getTitle();
                     List<HomePgaeList.ResultBean.PromotionBean>
-                            promotion = homePgaeLists.getResult().getPromotion();
+                            promotion = result.getPromotion();
                     int loadType = (int) t[1]; // 加载方式
                     if (loadType == LoadConfig.NORMAL) {
                         // 轮播图
@@ -416,10 +468,44 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         });
     }
 
-    @OnClick({R.id.information, R.id.rl_search})
+    @OnClick({R.id.information, R.id.rl_search, R.id.top_1, R.id.iv_1, R.id.iv_3, R.id.iv_5, R.id.iv_2, R.id.iv_4, R.id.iv_6})
     public void onClick(View v) {
+        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+        Bundle bundle = new Bundle();
         switch (v.getId()) {
             default:
+                break;
+            case R.id.tip_1: // 热卖商品
+                break;
+            case R.id.iv_1: // 促销右上1
+                bundle.putString("goodsId", mPromotion.get(1).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_3: // 促销右上2
+                bundle.putString("goodsId", mPromotion.get(2).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_5: // 促销右上3
+                bundle.putString("goodsId", mPromotion.get(3).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_2: // 促销右下1
+                bundle.putString("goodsId", mPromotion.get(4).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_4: // 促销右下2
+                bundle.putString("goodsId", mPromotion.get(5).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
+                break;
+            case R.id.iv_6: // 促销右下3
+                bundle.putString("goodsId", mPromotion.get(6).getGoodsInfo().getGoods_id() + "");
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
                 break;
             case R.id.information: // 消息
                 startActivity(new Intent(getContext(), PayModeActivity.class));

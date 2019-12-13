@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.tencent.mmkv.MMKV;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -19,8 +20,6 @@ import cn.jpush.android.api.JPushInterface;
 public class MyApplication extends Application {
     private static MyApplication mApplication;
     public static String mToken;
-    //    private LelinkHelper mLelinkHelper;
-    private static String movieId;
 
     private static String otherUserId;//其他用户的ID
 
@@ -34,13 +33,6 @@ public class MyApplication extends Application {
 
     public static boolean isScreening;
 
-    public static String getmMovieId() {
-        return movieId;
-    }
-
-    public static void setmMovieId(String mMovieId) {
-        movieId = mMovieId;
-    }
 
     public static String getmToken() {
         return mToken;
@@ -67,7 +59,7 @@ public class MyApplication extends Application {
         super.onCreate();
         mApplication = this;
 
-
+        MMKV.initialize(this);
         if (Build.VERSION.SDK_INT >= 28) {
             closeAndroidPDialog();
         }

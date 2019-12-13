@@ -134,10 +134,13 @@ public class StoreInfoActivity extends BaseMvpActivity<CommonPresenter, StoreMod
     }
 
 
-    @OnClick({R.id.rl_homepage, R.id.rl_allgoods})
+    @OnClick({R.id.back, R.id.rl_homepage, R.id.rl_allgoods})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
+                break;
+            case R.id.back:
+                finish();
                 break;
             case R.id.rl_homepage:
                 // 店铺首页

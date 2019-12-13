@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize">
 
+        <include layout="@layout/layout_top_action_back" />
+
         <TextView
             android:id="@+id/store_name"
             android:layout_width="wrap_content"

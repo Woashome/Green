@@ -13,21 +13,24 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".ui.activity.MainActivity"></activity>
-        <activity android:name=".ui.activity.PayModeActivity" />
-        <activity android:name=".ui.activity.store.StoreInfoActivity" />
-        <activity android:name=".ui.activity.SearchActivity" />
-        <activity android:name=".ui.activity.mine.WalletActivity" />
-        <activity android:name=".ui.activity.GoodsDetailsActivity" />
-        <activity android:name=".ui.activity.homepage.ForgetPasswordActivity" />
-        <activity android:name=".ui.activity.homepage.LoginActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.homepage.RegisterActivity"></activity>
+        <activity android:name=".ui.activity.PayModeActivity" />
+        <activity android:name=".ui.activity.store.StoreInfoActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.mine.WalletActivity" />
+        <activity android:name=".ui.activity.GoodsDetailsActivity" />
+        <activity android:name=".ui.activity.homepage.ForgetPasswordActivity" />
+        <activity android:name=".ui.activity.homepage.LoginActivity" />
+        <activity android:name=".ui.activity.homepage.RegisterActivity" />
+        <activity android:name=".ui.activity.SearchListActivity" />
+        <activity android:name=".ui.activity.mine.wallet.IntegralActivity" />
+        <activity android:name=".ui.activity.mine.wallet.RechargeActivity"></activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.green.R;
 import com.example.green.adapter.classify.ThemeMainAdapter;
@@ -35,7 +36,7 @@ public class ClassifyFragment extends BaseMvpFragment<CommonPresenter, ClassifyM
         implements ICommonView, ThemeMainAdapter.OnSelectorListener {
 
     @BindView(R.id.ll_search)
-    LinearLayout mLlSearch;
+    RelativeLayout mLlSearch;
     @BindView(R.id.allclassify_recyclerview)
     RecyclerView recyclerView;
 

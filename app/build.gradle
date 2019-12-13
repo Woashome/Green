@@ -10,6 +10,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    /*过滤提示重复文件*/
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -57,6 +61,7 @@ dependencies {
 
     // NetInterceptor拦截器依赖
     implementation project(':utils')
+    implementation project(':flowlayout-lib')
 
     // SmartRefreshLayout上拉加载下拉刷新
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
@@ -64,6 +69,9 @@ dependencies {
 
     // 轮播图
     implementation 'com.youth.banner:banner:1.4.10'
+
+    //腾讯MMkv
+    implementation 'com.tencent:mmkv:1.0.22'
 
     // XTabLayout
     implementation 'com.androidkun:XTabLayout:1.1.4'

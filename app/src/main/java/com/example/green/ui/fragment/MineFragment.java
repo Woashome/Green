@@ -3,6 +3,7 @@ package com.example.green.ui.fragment;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,8 +19,11 @@ import com.example.green.base.ICommonView;
 import com.example.green.bean.mine.MineInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
+import com.example.green.ui.activity.homepage.LoginActivity;
 import com.example.green.ui.activity.mine.WalletActivity;
+import com.yiyatech.utils.ext.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -65,7 +69,9 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     @BindView(R.id.rl_quit)
     RelativeLayout mRlQuit;
 
-    private String key = "bd271df2d303ad1cefc8f21e99a70431";  // token
+    private String key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+    ;  // token
+    private static final String TAG = "MineFragment";
 
     public static MineFragment newInstance() {
         if (fragment == null) fragment = new MineFragment();
@@ -94,7 +100,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
 
     @Override
     protected void initView() {
-
+        Log.e(TAG, "initView: " + key);
     }
 
     @Override
@@ -112,7 +118,11 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
         switch (whichApi) {
             case ApiConfig.MINEINFO:
                 MineInfobean mineInfobeans = (MineInfobean) t[0];
-                if (null != mineInfobeans) {
+                if (null != mineInfobeans && mineInfobeans.getCode().equals("100")) {
+                    ToastUtils.show(getContext(), mineInfobeans.getMessage());
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    getActivity().finish();
+                } else if (null != mineInfobeans && mineInfobeans.getCode().equals("200")) {
                     MineInfobean.ResultBean.MemberInfoBean
                             member_info = mineInfobeans.getResult().getMember_info();
                     RequestOptions options = new RequestOptions().circleCrop();
