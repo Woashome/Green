@@ -3,11 +3,14 @@ package com.example.green.ui.fragment.store;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -23,6 +26,7 @@ import com.example.green.bean.store.StoreRecommendListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.StoreModel;
+import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -62,12 +66,12 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
         // Required empty public constructor
     }
 
-    public static StoreHomePageFragment newInstance() {
+/*    public static StoreHomePageFragment newInstance() {
         if (fragment == null) {
             fragment = new StoreHomePageFragment();
         }
         return fragment;
-    }
+    }*/
 
     @Override
     protected CommonPresenter initPresenter() {
@@ -105,7 +109,11 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rl_goods:
-                        ToastUtils.show(getContext(), "点击了第" + position + "件商品");
+                        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goodsId", mRecommendList.get(position).getGoods_id() + "");
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
                         break;
                 }
             }
@@ -115,6 +123,7 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
                 if (null != mRecommendList) {
+                    mRecommendList.clear();
                     mPresenter.getData(ApiConfig.STORE_RECOMMEND, mStoreId, ++page, LoadConfig.LOADMORE);
                 }
             }
@@ -186,16 +195,18 @@ public class StoreHomePageFragment extends BaseMvpFragment<CommonPresenter, Stor
         mBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                switch (position) {
-                    case 0:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mBannerList.get(position).getLink());
-                        break;
-                    case 1:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mBannerList.get(position).getLink());
-                        break;
-                    /*case 2:
-                        ToastUtils.show(StoreInfoActivity.this, "点击了第" + position + "张轮播图 id:" + mChart.get(position).getAdv_id());
-                        break;*/
+                if (mBannerList.get(position).getType()==1 && !TextUtils.isEmpty(mBannerList.get(position).getLink())){ // h5
+                    Intent intent = new Intent();
+                    intent.setAction("android.intent.action.VIEW");
+                    Uri content_url = Uri.parse(mBannerList.get(position).getLink());//此处填链接
+                    intent.setData(content_url);
+                    startActivity(intent);
+                }else if (mBannerList.get(position).getType()==2 && !TextUtils.isEmpty(mBannerList.get(position).getLink())){ // 商品详情
+                    Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("goodsId", mBannerList.get(position).getLink() + "");
+                    intent.putExtras(bundle);
+                    getActivity().startActivity(intent);
                 }
             }
         });

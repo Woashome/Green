@@ -23,6 +23,14 @@ public class MineModel implements ICommonModel {
                         .getHttpService()
                         .getCollegeList(type, page), view, whichApi, loadMode);
                 break;
+            case ApiConfig.LOGOUT:
+                String username = (String) t[0];
+                String token = (String) t[1];
+                String client = (String) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getLogOutbean(username, token, client), view, whichApi, 0);
+                break;
         }
     }
 }

@@ -10,11 +10,12 @@ public class StoreModel implements ICommonModel {
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
             case ApiConfig.RECOMMEND_STORE: // 店铺列表(推荐) cate_id不传或为0
-                int index = (int) t[0]; // 页码
-                int loadMode = (int) t[1]; // 加载类型
+                String cate_id = (String) t[0];
+                int index = (int) t[1]; // 页码
+                int loadMode = (int) t[2]; // 加载类型
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
-                        .getStoreList(index), view, whichApi, loadMode);
+                        .getStoreList(cate_id, index), view, whichApi, loadMode);
                 break;
             case ApiConfig.STORE_CLASSIFY:
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()

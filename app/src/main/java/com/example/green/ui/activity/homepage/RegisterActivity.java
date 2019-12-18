@@ -1,18 +1,17 @@
 package com.example.green.ui.activity.homepage;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
@@ -22,12 +21,11 @@ import com.example.green.bean.register.AccquireSmsbean;
 import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.customs.SelectorImageView;
 import com.example.green.local_utils.MyDialog;
 import com.example.green.local_utils.SPUtils;
-import com.example.green.model.HomePageModel;
 import com.example.green.model.UserModel;
 import com.example.green.ui.activity.MainActivity;
-import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +52,9 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
     EditText mUserPswAgain;
     @BindView(R.id.user_invitation_code)
     EditText mUserInvitationCode;
+    @BindView(R.id.check)
+    ImageView mCheck;
+
     private int TYPE = 1; // 注册
     private MyDialog mMyDialog;
     private static final String TAG = "RegisterActivity";
@@ -63,6 +64,8 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+        /*mXieyi.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
+        mXieyi.getPaint().setAntiAlias(true);//抗锯齿*/
         mUserPhone.addTextChangedListener(phoneEditInput); // 监听手机号输入状态
         mUserCode.addTextChangedListener(codeEditInput); // 监听验证码输入状态
     }
@@ -132,7 +135,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
 
     @Override
     public void onError(Throwable e) {
-
+        Log.e(TAG, "onError: " + e.getMessage());
     }
 
     @Override
@@ -146,15 +149,15 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 break;
             case ApiConfig.REGISTER:
                 RegisterDatabean registerDatabean = (RegisterDatabean) t[0];
+                Log.e(TAG, "注册信息======: " + registerDatabean.getMessage());
                 if (null != registerDatabean && registerDatabean.getCode().equals("200")) {
                     RegisterDatabean.ResultBean result = registerDatabean.getResult();
                     String key = result.getKey(); // token
                     int userid = result.getUserid();
-                    String username = result.getUsername();
                     // 保存
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key);
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_ID, userid);
-                    SPUtils.getInstance().setValue(SPUtils.KEY_USER_NAME, username);
+                    SPUtils.getInstance().setValue(SPUtils.KEY_USER_NAME, mUserPhone.getText().toString().trim());
                     SPUtils.getInstance().setValue(SPUtils.KEY_PASSWORD, mUserPsw.getText().toString().trim());
                     show(); // 注册成功
                 } else {
@@ -164,6 +167,8 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
             case ApiConfig.LOGIN:
                 RegisterDatabean loginbean = (RegisterDatabean) t[0];
                 if (null != loginbean && loginbean.getCode().equals("200")) {
+                    String key = loginbean.getResult().getKey();
+                    SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key); // 保存token
                     toastActivity("登录成功");
                     startActivity(new Intent(this, MainActivity.class));
                 }
@@ -172,7 +177,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
 
     }
 
-    @OnClick({R.id.back, R.id.acquire_code, R.id.bt_register})
+    @OnClick({R.id.back, R.id.acquire_code,R.id.bt_register, R.id.xieyi})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -205,13 +210,20 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                     toastActivity("手机号为空");
                 }
                 break;
+            case R.id.xieyi:
+                startActivity(new Intent(RegisterActivity.this, AgreementActivity.class));
+                break;
             case R.id.bt_register: // 立即注册
                 String pswRegex = "^(?![^a-zA-Z]+$)(?!\\D+$).{6,12}$";
                 String psw = mUserPsw.getText().toString().trim();
+//                psw.matches(pswRegex);
                 String psw_confirm = mUserPswAgain.getText().toString().trim();
-                if (!TextUtils.isEmpty(psw) && psw.matches(pswRegex) && !TextUtils.isEmpty(psw) && psw.equals(psw_confirm)
-                        && !TextUtils.isEmpty(mUserInvitationCode.getText().toString().trim())) {
-
+                if (!TextUtils.isEmpty(psw)
+                        && !TextUtils.isEmpty(psw_confirm)
+                        && !TextUtils.isEmpty(mUserCode.getText().toString().trim())
+                        && !TextUtils.isEmpty(mUserInvitationCode.getText().toString().trim())
+                        ) {
+                    Log.e(TAG, "onClick---: " + "sssssssssssssss");
                     mPresenter.getData(ApiConfig.REGISTER, mUserPhone.getText().toString().trim(), psw, psw_confirm, "android",
                             mUserInvitationCode.getText().toString().trim(), mUserCode.getText().toString().trim(), TYPE, LoadConfig.NORMAL);
 
@@ -225,6 +237,8 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                     toastActivity("密码不能为空");
                 } else if (TextUtils.isEmpty(psw_confirm)) {
                     toastActivity("确认密码不能为空");
+                } else if (TextUtils.isEmpty(mUserInvitationCode.getText().toString().trim())) {
+                    toastActivity("邀请码不能为空");
                 }
                 break;
         }

@@ -30,7 +30,7 @@ import butterknife.OnClick;
 public class StoreInfoActivity extends BaseMvpActivity<CommonPresenter, StoreModel>
         implements ICommonView {
 
-    private static final String STORE_ID = "storeId";//电影ID
+    private static final String STORE_ID = "storeId";// 商品ID
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.store_name)
@@ -125,6 +125,7 @@ public class StoreInfoActivity extends BaseMvpActivity<CommonPresenter, StoreMod
                     StoreInfoListbean.ResultBean.StoreInfoBean
                             store_info = storeInfoListbean.getResult().getStore_info();
                     storeName.setText(store_info.getStore_name());
+                    goodsName.setText(store_info.getStore_name());
                     Glide.with(this).load(store_info.getMb_title_img()).into(storeBg);
                     Glide.with(this).load(store_info.getStore_avatar()).into(storeLogo);
 
@@ -168,7 +169,7 @@ public class StoreInfoActivity extends BaseMvpActivity<CommonPresenter, StoreMod
         switch (position) {
             case 0:
                 if (mStoreHomePageFragment == null) {
-                    mStoreHomePageFragment = StoreHomePageFragment.newInstance();
+                    mStoreHomePageFragment = new StoreHomePageFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("storeId", mStoreId);
                     mStoreHomePageFragment.setArguments(bundle);
@@ -178,7 +179,7 @@ public class StoreInfoActivity extends BaseMvpActivity<CommonPresenter, StoreMod
                 break;
             case 1:
                 if (mAllGoodsFragment == null) {
-                    mAllGoodsFragment = AllGoodsFragment.newInstance();
+                    mAllGoodsFragment =new AllGoodsFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("storeId", mStoreId);
                     mAllGoodsFragment.setArguments(bundle);

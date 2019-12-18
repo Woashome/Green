@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_5"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -59,10 +60,17 @@
             android:layout_marginTop="@dimen/dp_20" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/store_logo"
-        android:layout_width="@dimen/dp_49"
-        android:layout_height="@dimen/dp_49"
+    <RelativeLayout
+        android:layout_width="@dimen/dp_55"
+        android:layout_height="@dimen/dp_55"
         android:layout_marginLeft="@dimen/dp_25"
-        android:background="@mipmap/header_frame" />
+        android:background="@mipmap/header_frame">
+
+        <ImageView
+            android:id="@+id/store_logo"
+            android:layout_width="@dimen/dp_49"
+            android:layout_height="@dimen/dp_49"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
 </RelativeLayout>

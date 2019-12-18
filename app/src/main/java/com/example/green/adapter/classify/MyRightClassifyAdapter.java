@@ -1,9 +1,12 @@
 package com.example.green.adapter.classify;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.green.R;
 import com.example.green.bean.classify.RightClassifyListbean;
+import com.example.green.ui.activity.SearchListActivity;
 import com.yiyatech.utils.ext.ToastUtils;
 
 import java.util.List;
@@ -18,7 +22,7 @@ import java.util.List;
 public class MyRightClassifyAdapter extends RecyclerView.Adapter {
 
     private static final int TYPE_GOODS = 1;
-
+    private static final String TAG = "MyRightClassifyAdapter";
     private List<RightClassifyListbean.ResultBean.ClassListBean> mClassListBeans;
     private Context mContext;
 
@@ -57,7 +61,11 @@ public class MyRightClassifyAdapter extends RecyclerView.Adapter {
                     childGoodsAdapter.setCallBack(new ChildGoodsAdapter.CallBack() {
                         @Override
                         public void onItemClick(int position, List<RightClassifyListbean.ResultBean.ClassListBean.ChildBean> list) {
-                            ToastUtils.show(mContext, "点击了" + list.get(position).getGc_name());
+                            Intent intent = new Intent(mContext, SearchListActivity.class);
+
+                            Log.e(TAG, "onItemClick: " + list.get(position).getGc_id());
+                            intent.putExtra("gcId", list.get(position).getGc_id());
+                            mContext.startActivity(intent);
                         }
                     });
                 }

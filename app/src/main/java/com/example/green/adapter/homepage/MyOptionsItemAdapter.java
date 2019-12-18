@@ -31,8 +31,8 @@ public class MyOptionsItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultBe
                     .error(R.mipmap.ic_launcher)
                     .centerCrop();//图片加载失败后，显示的图片
             Glide.with(mContext).load(menuBean.getAdv_code()).apply(options).into(imageView);
-            helper.addOnClickListener(R.id.option_tv);
-            helper.addOnClickListener(R.id.option_icon);
+
+            helper.addOnClickListener(R.id.rl_menu_goods);
         }
     }
 }

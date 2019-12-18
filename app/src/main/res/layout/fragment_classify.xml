@@ -17,12 +17,13 @@
         android:layout_marginTop="@dimen/dp_11"
         android:background="@mipmap/search_bg"
         android:orientation="horizontal">
+
         <ImageView
-            android:src="@mipmap/search"
-            android:layout_marginLeft="@dimen/dp_14"
-            android:layout_centerVertical="true"
             android:layout_width="@dimen/dp_13"
-            android:layout_height="@dimen/dp_13" />
+            android:layout_height="@dimen/dp_13"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:src="@mipmap/search" />
         <!-- 搜索框信息 -->
         <TextView
             android:id="@+id/search_word"
@@ -32,8 +33,8 @@
             android:layout_marginLeft="@dimen/dp_33"
             android:gravity="center_vertical"
             android:hint="@string/search"
-            android:textColor="@color/c_cbcbcb"
             android:imeOptions="actionDone"
+            android:textColor="@color/c_cbcbcb"
             android:textSize="@dimen/dp_12" />
     </RelativeLayout>
 
@@ -47,14 +48,14 @@
             android:id="@+id/allclassify_recyclerview"
             android:layout_width="@dimen/dp_80"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_17"
             android:background="@color/c_F8F8F8" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/dp_18"
+            android:layout_marginHorizontal="@dimen/dp_5"
             android:layout_marginTop="@dimen/dp_17" />
     </LinearLayout>
 </RelativeLayout>

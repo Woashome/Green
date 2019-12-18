@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -37,13 +39,13 @@ import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.GoodsDetailsActivity;
-import com.example.green.ui.activity.PayModeActivity;
 import com.example.green.ui.activity.SearchActivity;
+import com.example.green.ui.activity.SearchListActivity;
+import com.example.green.ui.activity.store.StoreInfoActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
-import com.yiyatech.utils.ext.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -62,7 +64,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         implements ICommonView {
     private static final String TAG = "HomeFragment";
     private static HomeFragment fragment;
-    private int page = 1;
+    private int page;
 
     @BindView(R.id.top_1)
     ImageView top;
@@ -95,6 +97,13 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     @BindView(R.id.down_promotion_info)
     TextView name_8;
 
+    @BindView(R.id.card3)
+    RelativeLayout cardThree;
+    @BindView(R.id.card4)
+    RelativeLayout cardFour;
+    @BindView(R.id.rl_home_bg)
+    RelativeLayout home;
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.search_key)
@@ -106,7 +115,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     @BindView(R.id.option)
     RecyclerView mOption;
     @BindView(R.id.adv_img)
-    ImageView mImageView;
+    ImageView mIv_adv;
     @BindView(R.id.boutique)
     RecyclerView mBoutique;
     @BindView(R.id.seckill)
@@ -115,11 +124,11 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.more_goods)
     RecyclerView mRecommendGoods;
-
-    private List<HomePgaeList.ResultBean.ChartBean> mChart;
     private List<String> imgs;
+    private List<HomePgaeList.ResultBean.ChartBean> mChart;
     private List<HomePgaeList.ResultBean.MenuBean> mMenu;
     private List<HomePgaeList.ResultBean.PromotionBean> mPromotion;
+    private List<HomePgaeList.ResultBean.TransverseBean> mTransverse;
     private MyOptionsItemAdapter mMyOptionsItemAdapter;
     private MyBoutiqueItemAdapter mMyBoutiqueItemAdapter;
     private MyBoutiqueItemAdapter mMySeckillItemAdapter;
@@ -129,8 +138,8 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     private List<HomePgaeList.ResultBean.DiscountBean.DateBean.GoodsInfoBean> mBoutique_goods;
     private List<HomePgaeList.ResultBean.DiscountBean.DateBean.GoodsInfoBean> mSeckill_goods;
     private List<GoodsListbean.ResultBean> mRecommend;
-    private GoodsListbean mResultBean;
     Activity mActivity;
+
 
     public static HomeFragment newInstance() {
         if (fragment == null) fragment = new HomeFragment();
@@ -162,7 +171,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         mToolbar.setTitle("");
         AppCompatActivity appCompatActivity = (AppCompatActivity) mActivity;
         appCompatActivity.setSupportActionBar(mToolbar);
-
+        page=1; // 当前页码
         mChart = new ArrayList<>(); // 轮播图
         imgs = new ArrayList<>(); // 轮播图图片
         mMenu = new ArrayList<>(); // 菜单
@@ -195,26 +204,33 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-
-                if (null != mResultBean.getResult()) {
-                    mResultBean.getResult().clear();
+                    page = 1;
                     mPresenter.getData(ApiConfig.URL_HOMEDATA, LoadConfig.REFRESH);
-                }
-                if (null != mRecommend) {
-                    mRecommend.clear();
                     mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, page, LoadConfig.REFRESH);
-                }
-                mSmartRefreshLayout.finishRefresh();
+                    Log.e(TAG, "onRefresh: "+page);
             }
         });
 
         mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                if (null != mResultBean) {
                     mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, ++page, LoadConfig.LOADMORE);
+                    Log.e(TAG, "onLoadmore: "+page );
+            }
+        });
+        // 菜单选项
+        mMyOptionsItemAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rl_menu_goods:
+                        Intent intent = new Intent(getContext(), SearchListActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("gcId", mMenu.get(position).getAdv_typedate());
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
+                        break;
                 }
-                mSmartRefreshLayout.finishLoadmore();
             }
         });
 
@@ -277,6 +293,14 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        home.setBackgroundColor(getResources().getColor(R.color.white));
+        cardThree.setBackgroundColor(getResources().getColor(R.color.white));
+        cardFour.setBackgroundColor(getResources().getColor(R.color.white));
+    }
+
+    @Override
     public void onError(Throwable e) {
 
     }
@@ -293,8 +317,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                             chart = result.getChart();
                     List<HomePgaeList.ResultBean.MenuBean>
                             menu = result.getMenu();
-                    List<HomePgaeList.ResultBean.TransverseBean>
-                            transverse = result.getTransverse();
+                    mTransverse = result.getTransverse(); // 横图广告
                     List<HomePgaeList.ResultBean.DiscountBean.DateBean>
                             date = result.getDiscount().getDate();
                     List<String> title = result.getDiscount().getTitle();
@@ -365,6 +388,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         mData_right.clear();
                         mSeckill_goods.clear();
                         mPromotion.clear();
+
                         /*
                          * 顶部轮播图
                          * */
@@ -391,10 +415,10 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         for (int i = 0; i < mData_right.size(); i++) {
                             mSeckill_goods.add(mData_right.get(i).getGoodsInfo());
                         }
-                        mSmartRefreshLayout.finishRefresh();
                     }
+                    mSmartRefreshLayout.finishRefresh();
                     initBanner();
-                    Glide.with(getContext()).load(transverse.get(0).getAdv_code()).into(mImageView);
+                    Glide.with(getContext()).load(mTransverse.get(0).getAdv_code()).into(mIv_adv);
                     mMyOptionsItemAdapter.notifyDataSetChanged();
 
                     mMyBoutiqueItemAdapter.notifyDataSetChanged();
@@ -404,17 +428,17 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                 break;
 
             case ApiConfig.URL_GOODSDATA:
-                mResultBean = (GoodsListbean) t[0];
-                if (null != mResultBean) {
+                GoodsListbean goodsListbean = (GoodsListbean) t[0];
+                if (null != goodsListbean) {
                     int loadType = (int) t[1]; // 加载方式
                     if (loadType == LoadConfig.NORMAL) {
-                        mRecommend.addAll(mResultBean.getResult());
+                        mRecommend.addAll(goodsListbean.getResult());
                     } else if (loadType == LoadConfig.REFRESH) {
                         mRecommend.clear();
-                        mRecommend.addAll(mResultBean.getResult());
-
+                        mRecommend.addAll(goodsListbean.getResult());
+                        mSmartRefreshLayout.finishRefresh();
                     } else if (loadType == LoadConfig.LOADMORE) {
-                        mRecommend.addAll(mResultBean.getResult());
+                        mRecommend.addAll(goodsListbean.getResult());
                         mSmartRefreshLayout.finishLoadmore();
                     }
                     mMyRecommendGoodsItemAdapter.notifyDataSetChanged();
@@ -432,7 +456,17 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         mBanner.setImages(imgs)
                 .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
                 .isAutoPlay(true)
-                .setDelayTime(2000).start();//图片循环滑动的时间2秒
+                .setDelayTime(2000); //图片循环滑动的时间2秒
+        mBanner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                if (null != mChart.get(position).getAdv_type() && mChart.get(position).getAdv_type().equals("class")) {
+                    Intent intent = new Intent(getContext(), SearchListActivity.class);
+                    intent.putExtra("gcId", mChart.get(position).getAdv_typedate() + "");
+                    startActivity(intent);
+                }
+            }
+        });
 
         mBanner.setImageLoader(new ImageLoader() {
             @Override
@@ -450,65 +484,77 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         });
         mBanner.setClipToOutline(true);
 
-        mBanner.setOnBannerListener(new OnBannerListener() {
-            @Override
-            public void OnBannerClick(int position) {
-                switch (position) {
-                    case 0:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mChart.get(position).getAdv_id());
-                        break;
-                    case 1:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mChart.get(position).getAdv_id());
-                        break;
-                    case 2:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mChart.get(position).getAdv_id());
-                        break;
-                }
-            }
-        });
     }
 
-    @OnClick({R.id.information, R.id.rl_search, R.id.top_1, R.id.iv_1, R.id.iv_3, R.id.iv_5, R.id.iv_2, R.id.iv_4, R.id.iv_6})
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        mBanner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        mBanner.stopAutoPlay();
+    }
+
+    @OnClick({R.id.information, R.id.rl_search, R.id.adv_img, R.id.top_1, R.id.iv_1, R.id.iv_3, R.id.iv_5, R.id.iv_2, R.id.iv_4, R.id.iv_6})
     public void onClick(View v) {
         Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
         Bundle bundle = new Bundle();
         switch (v.getId()) {
             default:
                 break;
-            case R.id.tip_1: // 热卖商品
+            case R.id.adv_img:
+                if (null != mTransverse && mTransverse.get(0).getAdv_type().equals("store")) {
+                    StoreInfoActivity.startInfoActivity(getActivity(), mTransverse.get(0).getAdv_typedate());
+                }
+                break;
+            case R.id.top_1: // 热卖商品
+                if (null != mPromotion.get(0).getAdv_type() && mPromotion.get(0).getAdv_type().equals("class")) {
+                    Intent intent_hot = new Intent(getContext(), SearchListActivity.class);
+                    intent_hot.putExtra("gcId", mPromotion.get(0).getAdv_typedate());
+                    startActivity(intent_hot);
+                } else {
+                    bundle.putString("goodsId", mPromotion.get(0).getAdv_typedate());
+                    intent.putExtras(bundle);
+                    getActivity().startActivity(intent);
+                }
                 break;
             case R.id.iv_1: // 促销右上1
-                bundle.putString("goodsId", mPromotion.get(1).getGoodsInfo().getGoods_id() + "");
+                bundle.putString("goodsId", mPromotion.get(1).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.iv_3: // 促销右上2
-                bundle.putString("goodsId", mPromotion.get(2).getGoodsInfo().getGoods_id() + "");
+            case R.id.iv_2: // 促销右上2
+                bundle.putString("goodsId", mPromotion.get(2).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.iv_5: // 促销右上3
-                bundle.putString("goodsId", mPromotion.get(3).getGoodsInfo().getGoods_id() + "");
+            case R.id.iv_3: // 促销右上3
+                bundle.putString("goodsId", mPromotion.get(3).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.iv_2: // 促销右下1
-                bundle.putString("goodsId", mPromotion.get(4).getGoodsInfo().getGoods_id() + "");
+            case R.id.iv_4: // 促销右下1
+                bundle.putString("goodsId", mPromotion.get(4).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
-            case R.id.iv_4: // 促销右下2
-                bundle.putString("goodsId", mPromotion.get(5).getGoodsInfo().getGoods_id() + "");
+            case R.id.iv_5: // 促销右下2
+                bundle.putString("goodsId", mPromotion.get(5).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
             case R.id.iv_6: // 促销右下3
-                bundle.putString("goodsId", mPromotion.get(6).getGoodsInfo().getGoods_id() + "");
+                bundle.putString("goodsId", mPromotion.get(6).getAdv_typedate());
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
                 break;
             case R.id.information: // 消息
-                startActivity(new Intent(getContext(), PayModeActivity.class));
+//                startActivity(new Intent(getContext(), PayModeActivity.class));
                 break;
             case R.id.rl_search: // 搜索
                 startActivity(new Intent(getContext(), SearchActivity.class));

@@ -30,7 +30,7 @@ public class ApiConfig {
     public static final int REGISTER = 14; // 注册
     public static final int ACCQUIRE_CODE = 15; // 验证码发送
     public static final int LOGIN = 16; // 登录
-
+    public static final int LOGOUT = 17; // 退出登录
 
     // 登录
 
@@ -57,7 +57,7 @@ public class ApiConfig {
     public static final int URL_DAYLABEL = 45; // 我的日签
     public static final int ADDCODE = 46; // 添加观影码
     public static final int USABLECODE = 47; // 用户可用兑换码
-    public static final int LOGOUT = 48; // 退出登录
+
     public static final int NEWVERSION = 49; // 新版本
     public static final int REMOVE_BIND = 50; // 解除绑定
     public static final int BINDTHIRD = 51; // 绑定第三方账号

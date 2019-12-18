@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+    /*debug {
+        storeFile file('D:\\Greenwallkeystore.jks') // 签名证书文件
+        storePassword 'xEySu#&kB14w9D2'
+        keyAlias = 'key0'
+        keyPassword 'xEySu#&kB14w9D2'
+    }*/
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.example.green"

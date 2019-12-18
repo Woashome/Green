@@ -1,6 +1,7 @@
 package com.example.green.ui.fragment.store;
 
 
+import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,10 +32,16 @@ public class RecommendFragment extends BaseMvpFragment<CommonPresenter, StoreMod
 
     @BindView(R.id.store_recyclerview)
     RecyclerView mRecyclerView;
+    private String store_id;
     private int page = 1;
     private List<StoreListbean.ResultBean> mResultBeanList;
     private MyStoreListAdapter mMyStoreListAdapter;
     static RecommendFragment fragment;
+
+    @SuppressLint("ValidFragment")
+    public RecommendFragment(String pStoreclass_id) {
+        store_id = pStoreclass_id;
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -87,7 +94,7 @@ public class RecommendFragment extends BaseMvpFragment<CommonPresenter, StoreMod
 
     @Override
     protected void initData() {
-        mPresenter.getData(ApiConfig.RECOMMEND_STORE, page, LoadConfig.NORMAL);
+        mPresenter.getData(ApiConfig.RECOMMEND_STORE, store_id, page, LoadConfig.NORMAL);
     }
 
     @Override

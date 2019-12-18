@@ -3,6 +3,7 @@ package com.example.green.ui.fragment.classify;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Outline;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.ClassifyModel;
+import com.example.green.ui.activity.SearchListActivity;
 import com.yiyatech.utils.ext.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -46,7 +48,6 @@ public class RightClassifyFragment extends BaseMvpFragment<CommonPresenter, Clas
     RecyclerView mRecyclerView;
     @BindView(R.id.adv_banner)
     Banner mBanner;
-
     private MyRightClassifyAdapter mMyRightClassifyAdapter;
     private AllClassifyListbean.ResultBean.ClassListBean mClassListBean;
     private List<String> imgs;
@@ -111,18 +112,10 @@ public class RightClassifyFragment extends BaseMvpFragment<CommonPresenter, Clas
             }
         });
         mBanner.setClipToOutline(true);
-
         mBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                switch (position) {
-                    case 0:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mAdv_list.get(position).getGoodscn_adv_link());
-                        break;
-                    case 1:
-                        ToastUtils.show(getContext(), "点击了第" + position + "张轮播图 id:" + mAdv_list.get(position).getGoodscn_adv_link());
-                        break;
-                }
+
             }
         });
     }

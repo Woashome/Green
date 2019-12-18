@@ -2,6 +2,7 @@ package com.example.green.ui.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.database.RecordsDao;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -33,6 +35,8 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.example.green.local_utils.SPUtils.KEY_USER_NAME;
 
 public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageModel> implements ICommonView, View.OnClickListener {
 
@@ -65,7 +69,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
 
     protected void initView() {
         //默认账号
-        String username = "a";
+        String username = SPUtils.getInstance().getValue(KEY_USER_NAME, "");
         //初始化数据库
         mRecordsDao = new RecordsDao(this, username);
         //创建历史标签适配器
@@ -227,8 +231,10 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
                 if (!TextUtils.isEmpty(record)) {
                     //添加数据
                     mRecordsDao.addRecords(record);
+                    Intent intent = new Intent(SearchActivity.this, SearchListActivity.class);
+                    intent.putExtra("keyword", editText.getText().toString().trim());
+                    startActivity(intent);
 
-                    toastActivity(record);
                 }
                 break;
             case R.id.iv_clear_search:

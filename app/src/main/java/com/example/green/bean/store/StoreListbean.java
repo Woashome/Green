@@ -6,7 +6,7 @@ public class StoreListbean {
 
     /**
      * code : 200
-     * result : [{"store_id":1,"store_name":"自营店铺","is_platform_store":1,"seller_name":"seller","store_sort":255,"store_addtime":1572950123,"store_logo":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019120310233098236.png","num_sales_jq":2,"goods_count":119,"store_credit_percent":100,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}},"search_list_goods":[{"goods_id":87,"store_id":1,"goods_name":"朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg","goods_price":"55.00","goods_salenum":1},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]}]
+     * result : [{"store_id":1,"store_name":"自营店铺","is_platform_store":1,"seller_name":"seller","store_sort":1,"store_addtime":1572950123,"store_logo":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216053246268.png","store_avatar":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216013778963.png","num_sales_jq":3,"goods_count":41,"store_credit_percent":100,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}},"search_list_goods":[{"goods_id":136,"store_id":1,"goods_name":"红薯红薯红薯红薯红薯","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg","goods_price":"10.00","goods_salenum":0},{"goods_id":138,"store_id":1,"goods_name":"桃树苗桃树苗","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg","goods_price":"5.00","goods_salenum":0},{"goods_id":139,"store_id":1,"goods_name":"土鸡土鸡土鸡","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":140,"store_id":1,"goods_name":"草鱼草鱼草鱼","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg","goods_price":"10.00","goods_salenum":0},{"goods_id":141,"store_id":1,"goods_name":"人参人参人参","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg","goods_price":"100.00","goods_salenum":0},{"goods_id":142,"store_id":1,"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":143,"store_id":1,"goods_name":"苹果苹果苹果苹果 富士康 8kg","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":144,"store_id":1,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg","goods_price":"19.90","goods_salenum":0}]}]
      * message : ok
      */
 
@@ -44,14 +44,15 @@ public class StoreListbean {
          * store_name : 自营店铺
          * is_platform_store : 1
          * seller_name : seller
-         * store_sort : 255
+         * store_sort : 1
          * store_addtime : 1572950123
-         * store_logo : https://shop.bayi-shop.com/uploads/home/store/1/1_2019120310233098236.png
-         * num_sales_jq : 2
-         * goods_count : 119
+         * store_logo : https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216053246268.png
+         * store_avatar : https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216013778963.png
+         * num_sales_jq : 3
+         * goods_count : 41
          * store_credit_percent : 100
          * store_credit : {"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}
-         * search_list_goods : [{"goods_id":87,"store_id":1,"goods_name":"朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg","goods_price":"55.00","goods_salenum":1},{"goods_id":3,"store_id":1,"goods_name":"Apple/苹果 iPhone 7plus 128GB 玫瑰金色 移动联通电信4G手机","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120244885492.jpg","goods_price":"6999.00","goods_salenum":0},{"goods_id":4,"store_id":1,"goods_name":"nubia/努比亚Z17 6G+64G 全网通4G手机 烈焰红 无边框","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120312320763.jpg","goods_price":"2699.00","goods_salenum":0},{"goods_id":5,"store_id":1,"goods_name":"智能电动代步车","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120345719915.jpg","goods_price":"1990.00","goods_salenum":0},{"goods_id":6,"store_id":1,"goods_name":"灵动Lite版 NV3012 视频通话智能机器人","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120365848023.jpg","goods_price":"149.00","goods_salenum":0},{"goods_id":7,"store_id":1,"goods_name":"HOST好帅智能云教育机器人二蛋Q6 ","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120382376796.jpg","goods_price":"1699.00","goods_salenum":0},{"goods_id":8,"store_id":1,"goods_name":"先锋(Pioneer)LED-39B700S 39英寸 高清 网络 智能 液晶电视","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120445748551.jpg","goods_price":"1599.00","goods_salenum":0},{"goods_id":9,"store_id":1,"goods_name":"长虹（CHANGHONG）39M1 39英寸 窄边高清液晶电视（黑色）","goods_image":"https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092120480147477.jpg","goods_price":"1399.00","goods_salenum":0}]
+         * search_list_goods : [{"goods_id":136,"store_id":1,"goods_name":"红薯红薯红薯红薯红薯","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg","goods_price":"10.00","goods_salenum":0},{"goods_id":138,"store_id":1,"goods_name":"桃树苗桃树苗","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg","goods_price":"5.00","goods_salenum":0},{"goods_id":139,"store_id":1,"goods_name":"土鸡土鸡土鸡","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":140,"store_id":1,"goods_name":"草鱼草鱼草鱼","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg","goods_price":"10.00","goods_salenum":0},{"goods_id":141,"store_id":1,"goods_name":"人参人参人参","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg","goods_price":"100.00","goods_salenum":0},{"goods_id":142,"store_id":1,"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":143,"store_id":1,"goods_name":"苹果苹果苹果苹果 富士康 8kg","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg","goods_price":"20.00","goods_salenum":0},{"goods_id":144,"store_id":1,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg","goods_price":"19.90","goods_salenum":0}]
          */
 
         private int store_id;
@@ -61,6 +62,7 @@ public class StoreListbean {
         private int store_sort;
         private int store_addtime;
         private String store_logo;
+        private String store_avatar;
         private int num_sales_jq;
         private int goods_count;
         private int store_credit_percent;
@@ -121,6 +123,14 @@ public class StoreListbean {
 
         public void setStore_logo(String store_logo) {
             this.store_logo = store_logo;
+        }
+
+        public String getStore_avatar() {
+            return store_avatar;
+        }
+
+        public void setStore_avatar(String store_avatar) {
+            this.store_avatar = store_avatar;
         }
 
         public int getNum_sales_jq() {
@@ -369,12 +379,12 @@ public class StoreListbean {
 
         public static class SearchListGoodsBean {
             /**
-             * goods_id : 87
+             * goods_id : 136
              * store_id : 1
-             * goods_name : 朝暮之家厨房置物架落地多层收纳架放锅架子厨具用品转角架 锅架
-             * goods_image : https://shop.bayi-shop.com/uploads/home/store/goods/1/1_2017092900144267524.jpg
-             * goods_price : 55.00
-             * goods_salenum : 1
+             * goods_name : 红薯红薯红薯红薯红薯
+             * goods_image : https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg
+             * goods_price : 10.00
+             * goods_salenum : 0
              */
 
             private int goods_id;

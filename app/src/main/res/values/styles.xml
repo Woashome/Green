@@ -15,6 +15,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--闪屏页-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <!--解决tab栏图片文字不显示-->
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>

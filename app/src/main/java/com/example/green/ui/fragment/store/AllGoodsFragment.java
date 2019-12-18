@@ -1,6 +1,7 @@
 package com.example.green.ui.fragment.store;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.StoreModel;
+import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -47,12 +49,12 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
         // Required empty public constructor
     }
 
-    public static AllGoodsFragment newInstance() {
+/*    public static AllGoodsFragment newInstance() {
         if (fragment == null) {
             fragment = new AllGoodsFragment();
         }
         return fragment;
-    }
+    }*/
 
 
     @Override
@@ -84,7 +86,11 @@ public class AllGoodsFragment extends BaseMvpFragment<CommonPresenter, StoreMode
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rl_goods:
-                        ToastUtils.show(getContext(), "点击了第" + position + "件商品");
+                        Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goodsId", mGoodsListBeans.get(position).getGoods_id() + "");
+                        intent.putExtras(bundle);
+                        getActivity().startActivity(intent);
                         break;
                 }
             }

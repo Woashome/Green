@@ -32,22 +32,6 @@ public abstract class BaseMvpFragment<T extends BasePresenter, M> extends BaseFr
         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
-    private boolean hasInit = false; // 是否已经初始化
-
-    public boolean isHasInit() {
-        return hasInit;
-    }
-
-    public void setHasInit(boolean hasInit) {
-        this.hasInit = hasInit;
-    }
-
-    /**
-     * 刷新页面
-     */
-    public void refreshPage() {
-    }
-
     protected abstract T initPresenter();
 
     protected abstract M initModel();

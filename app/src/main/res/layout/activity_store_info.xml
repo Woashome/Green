@@ -34,15 +34,23 @@
             android:id="@+id/store_bg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_100"
-            android:src="@drawable/cuxiao_bg" />
-
-        <ImageView
-            android:id="@+id/store_logo"
-            android:layout_width="@dimen/dp_55"
-            android:layout_height="@dimen/dp_55"
+            android:scaleType="fitXY"
+            android:src="@color/c_F8784E" />
+        <RelativeLayout
+            android:id="@+id/rl_store_logo"
+            android:layout_width="@dimen/dp_60"
             android:layout_marginLeft="@dimen/dp_13"
             android:layout_marginTop="@dimen/dp_70"
-            android:background="@mipmap/touxiang" />
+            android:background="@mipmap/touxiang"
+            android:layout_height="@dimen/dp_60">
+
+            <ImageView
+                android:id="@+id/store_logo"
+                android:layout_centerInParent="true"
+                android:layout_width="@dimen/dp_55"
+                android:layout_height="@dimen/dp_55" />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/goods_name"
@@ -50,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_7"
             android:layout_marginTop="@dimen/dp_80"
-            android:layout_toRightOf="@id/store_logo"
+            android:layout_toRightOf="@id/rl_store_logo"
             android:text="小红橱麻辣小龙虾"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_12" />
@@ -59,7 +67,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_logo"
+            android:layout_below="@id/rl_store_logo"
             android:layout_marginTop="@dimen/dp_23">
 
             <RelativeLayout

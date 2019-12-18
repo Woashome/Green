@@ -8,14 +8,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_margin="@dimen/dp_17">
+        android:layout_margin="@dimen/dp_1">
 
         <ImageView
             android:id="@+id/goods_iv"
             android:layout_width="@dimen/dp_46"
             android:layout_height="@dimen/dp_46"
             android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
             android:src="@mipmap/shiming" />
 
         <TextView

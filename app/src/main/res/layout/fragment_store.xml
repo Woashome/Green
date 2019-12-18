@@ -54,6 +54,5 @@
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/search_store"
-        android:layout_marginTop="@dimen/dp_13" />
+        android:layout_below="@id/search_store" />
 </RelativeLayout>

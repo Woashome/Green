@@ -21,6 +21,7 @@
         android:layout_below="@id/goods_iv"
         android:layout_marginHorizontal="@dimen/dp_7"
         android:layout_marginTop="@dimen/dp_13"
+        android:textStyle="bold"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@color/black"
@@ -29,6 +30,7 @@
     <TextView
         android:id="@+id/price"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_below="@id/goods_info"
         android:layout_marginHorizontal="@dimen/dp_7"

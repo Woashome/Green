@@ -2,24 +2,27 @@ package com.example.green.ui.activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
 import com.example.green.adapter.homepage.MyDetailsRecommendAdapter;
 import com.example.green.base.BaseMvpActivity;
@@ -29,6 +32,7 @@ import com.example.green.bean.homepage.DetailsDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
+import com.example.green.ui.activity.store.StoreInfoActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
@@ -37,7 +41,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel>
@@ -63,10 +66,10 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     TextView mGoodsTitle;
     @BindView(R.id.goods_info)
     TextView mGoodsInfo;
-    @BindView(R.id.specification)
+    /*@BindView(R.id.specification)
     TextView mSpecification;
     @BindView(R.id.site)
-    TextView mSite;
+    TextView mSite;*/
     @BindView(R.id.iv_store)
     ImageView mIvStore;
     @BindView(R.id.store_name)
@@ -101,6 +104,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     private List<String> imgs;
     private MyDetailsRecommendAdapter mDetailsRecommendAdapter;
     private List<DetailsDatabean.ResultBean.GoodsCommendListBean> mCommendListBeans;
+    private DetailsDatabean.ResultBean mResult; // 商品详情
 
     @Override
     protected void initView() {
@@ -114,13 +118,20 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         mGradualChange = getResources().getDimensionPixelSize(R.dimen.margin_size_300);
         mToolbarTitle.setAlpha(0);
 
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);//允许使用js
-        //不支持屏幕缩放
-        webSettings.setSupportZoom(false);
-        webSettings.setBuiltInZoomControls(false);
-        //不显示webview缩放按钮
-        webSettings.setDisplayZoomControls(false);
+        /*解决图片不显示*/
+        mWebView.getSettings().setBlockNetworkImage(false);//不阻塞网络图片
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //允许混合（http，https）
+            //websettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+            mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();//接受所有网站的证书
+            }
+        });
 
         imgs = new ArrayList<>();
         mCommendListBeans = new ArrayList<>();
@@ -151,7 +162,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
 
     @Override
     public void onError(Throwable e) {
-
+        Log.e(TAG, "onError: " + e.getMessage());
     }
 
     @Override
@@ -159,23 +170,29 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         switch (whichApi) {
             case ApiConfig.GOODS_DETAILS:
                 DetailsDatabean detailsDatabean = (DetailsDatabean) t[0];
-                if (null != detailsDatabean) {
-                    DetailsDatabean.ResultBean result = detailsDatabean.getResult();
-                    imgs.addAll(result.getGoods_image());
-                    initBanner();
-                    String mobile_body = result.getGoods_info().getMobile_body();
-                    /**
-                     * 将文本HTML显示在webview中
-                     */
-                    mWebView.loadDataWithBaseURL(null, getHtmlData(mobile_body), "text/html", "utf-8", null);
-                    mPrice.setText(result.getGoods_info().getGoods_price());
-                    mGoodsTitle.setText(result.getGoods_info().getGoods_name());
-                    mGoodsInfo.setText(result.getGoods_info().getGoods_advword());
-                    Glide.with(this).load(result.getStore_info().getStore_avatar()).into(mIvStore);
-                    mStoreName.setText(result.getStore_info().getStore_name());
-                    mSaleNum.setText("在售商品" + result.getStore_info().getGoods_count() + "件");
-                    mCommendListBeans.addAll(result.getGoods_commend_list());
-                    mDetailsRecommendAdapter.notifyDataSetChanged();
+                if (null != detailsDatabean && detailsDatabean.getCode().equals("200")) {
+                    Log.e(TAG, "onResponse: " + detailsDatabean.getResult().toString());
+                    mResult = detailsDatabean.getResult();
+                    if (null != mResult) {
+                        imgs.addAll(mResult.getGoods_image());
+                        initBanner();
+                        String mobile_body = mResult.getGoods_info().getMobile_body();
+
+                        /**
+                         * 将文本HTML显示在webview中
+                         */
+                        String body = getHtmlData(mobile_body);
+                        mWebView.loadDataWithBaseURL(null, body, "text/html", "UTF-8", null);
+
+                        mPrice.setText(mResult.getGoods_info().getGoods_price());
+                        mGoodsTitle.setText(mResult.getGoods_info().getGoods_name());
+                        mGoodsInfo.setText(mResult.getGoods_info().getGoods_advword());
+                        Glide.with(this).load(mResult.getStore_info().getStore_avatar()).into(mIvStore);
+                        mStoreName.setText(mResult.getStore_info().getStore_name());
+                        mSaleNum.setText("在售商品" + mResult.getStore_info().getGoods_count() + "件");
+                        mCommendListBeans.addAll(mResult.getGoods_commend_list());
+                        mDetailsRecommendAdapter.notifyDataSetChanged();
+                    }
                 }
                 break;
         }
@@ -236,19 +253,19 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     }
 
 
-    @OnClick({R.id.look, R.id.rl_select_goods, R.id.rl_select_site, R.id.iv_store, R.id.ll_go_store,
+    @OnClick({/*R.id.look, R.id.rl_select_goods, R.id.rl_select_site,*/ R.id.iv_store, R.id.ll_go_store,
             R.id.details_finish, R.id.rl_shopping,
             R.id.rl_service, R.id.rl_trolley, R.id.details_add_cart, R.id.details_buy})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
-            case R.id.look: // 进店逛逛
+            /*case R.id.look: // 推广
                 break;
             case R.id.rl_select_goods: // 选择商品规格
                 break;
             case R.id.rl_select_site: // 选择配送地址
-                break;
+                break;*/
             case R.id.iv_store: // 店铺头像
                 break;
             case R.id.ll_go_store: // 进店
@@ -257,8 +274,27 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                 finish();
                 break;
             case R.id.rl_shopping: // 商家
+                StoreInfoActivity.startInfoActivity(this, String.valueOf(mResult.getStore_info().getStore_id()));
                 break;
             case R.id.rl_service: // 客服
+
+                final AlertDialog.Builder builder =  new AlertDialog.Builder(this);
+                builder.setTitle("温馨提示:");
+                builder.setMessage("是否需要拨打客服电话:"+mResult.getStore_info().getStore_phone());
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface pDialogInterface, int pI) {
+                        if (null!=mResult.getStore_info().getStore_phone()) {
+                            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mResult.getStore_info().getStore_phone()));
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }else {
+                            toastActivity("客服手机号为空");
+                        }
+                    }
+                });
+                builder.setNegativeButton("取消",null);
+                builder.show();
                 break;
             case R.id.rl_trolley: // 购物车
                 break;

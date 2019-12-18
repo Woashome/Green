@@ -10,10 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.green.R;
 import com.example.green.base.BaseActivity;
@@ -24,7 +21,6 @@ import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
-import com.example.green.model.HomePageModel;
 import com.example.green.model.UserModel;
 import com.example.green.ui.activity.MainActivity;
 import com.gyf.immersionbar.ImmersionBar;
@@ -88,7 +84,8 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                 if (null != loginbean && loginbean.getCode().equals("200")) {
                     String key = loginbean.getResult().getKey();
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key);
-
+                    SPUtils.getInstance().setValue(SPUtils.KEY_USER_NAME, mUserPhone.getText().toString().trim());
+                    Log.e(TAG, "用户Token-------: " + key); //  token
                     LocalBroadcastManager.getInstance(this)
                             .sendBroadcast(new Intent(BaseActivity.LOGIN_SUCCESS));
 

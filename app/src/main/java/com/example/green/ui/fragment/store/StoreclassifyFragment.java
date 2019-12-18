@@ -85,7 +85,7 @@ public class StoreclassifyFragment extends BaseMvpFragment<CommonPresenter, Stor
                     List<StoreClassListbean.ResultBean> result = storeClassListbean.getResult();
                     for (int i = 0; i < result.size(); i++) {
                         mXTabLayout.addTab(mXTabLayout.newTab().setText(result.get(i).getStoreclass_name()));
-                        mFragments.add(new RecommendFragment());
+                        mFragments.add(new RecommendFragment(result.get(i).getStoreclass_id() + ""));
                     }
 
                     mVp.setAdapter(mMyFragmentAdapter);

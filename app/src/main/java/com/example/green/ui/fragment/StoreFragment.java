@@ -14,6 +14,8 @@ import com.example.green.base.BaseMvpFragment;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.model.StoreModel;
+import com.example.green.ui.activity.SearchActivity;
+import com.example.green.ui.activity.SearchListActivity;
 import com.example.green.ui.fragment.store.RecommendFragment;
 import com.example.green.ui.fragment.store.StoreclassifyFragment;
 
@@ -116,6 +118,7 @@ public class StoreFragment extends BaseMvpFragment<CommonPresenter, StoreModel>
             default:
                 break;
             case R.id.search_store:
+                startActivity(new Intent(getContext(), SearchActivity.class));
                 break;
         }
     }

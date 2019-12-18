@@ -7,12 +7,12 @@ import com.example.green.bean.homepage.DetailsDatabean;
 import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.bean.homepage.HotSearchKeyListbean;
-import com.example.green.bean.register.AccquireSmsbean;
-import com.example.green.bean.register.CodeVerifybean;
-import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.bean.homepage.SearchListbean;
 import com.example.green.bean.mine.CollegeListbean;
+import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
+import com.example.green.bean.register.AccquireSmsbean;
+import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.bean.store.StoreClassListbean;
 import com.example.green.bean.store.StoreInfoListbean;
@@ -34,7 +34,7 @@ public interface INetService {
     @GET("goods/goods_list")
     Observable<SearchListbean> getSearchList(@Query("keyword") String keyword,
                                              @Query("page") int page,
-                                             @Query("key") String key,
+                                             @Query("key") int key,
                                              @Query("gc_id") String gcId);
 
     /*
@@ -91,7 +91,8 @@ public interface INetService {
      * https://shop.bayi-shop.com/mobile/Storelist/index
      * */
     @GET("Storelist/index")
-    Observable<StoreListbean> getStoreList(@Query("page") int index);
+    Observable<StoreListbean> getStoreList(@Query("cate_id") String cate_id,
+                                           @Query("page") int index);
 
     /*
      * 店铺首页
@@ -172,5 +173,14 @@ public interface INetService {
                                               @Field("password") String password,
                                               @Field("client") String client);
 
+    /*
+     * 退出登录
+     * https://shop.bayi-shop.com/mobile/logout/index
+     * */
+    @POST("logout/index")
+    @FormUrlEncoded
+    Observable<Logoutbean> getLogOutbean(@Field("username") String username,
+                                         @Field("key") String key,
+                                         @Field("client") String client);
 }
 

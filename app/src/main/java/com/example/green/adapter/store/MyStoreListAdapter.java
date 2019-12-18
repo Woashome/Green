@@ -44,7 +44,7 @@ public class MyStoreListAdapter extends BaseQuickAdapter<StoreListbean.ResultBea
             store_name.setText(resultBean.getStore_name());
             deal_num.setText("成交订单数量：" + resultBean.getNum_sales_jq());
             RequestOptions options = new RequestOptions().circleCrop();
-            Glide.with(mContext).load(resultBean.getStore_logo()).apply(options).into(store_logo);
+            Glide.with(mContext).load(resultBean.getStore_avatar()).apply(options).into(store_logo);
             // 所有商品
             List<StoreListbean.ResultBean.SearchListGoodsBean>
                     search_list_goods = resultBean.getSearch_list_goods();

@@ -3,6 +3,7 @@ package com.example.green.ui.fragment;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,9 +14,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
+import com.example.green.base.BaseActivity;
 import com.example.green.base.BaseMvpFragment;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
@@ -69,7 +72,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     @BindView(R.id.rl_quit)
     RelativeLayout mRlQuit;
 
-    private String key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+    private String key;
     ;  // token
     private static final String TAG = "MineFragment";
 
@@ -100,6 +103,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
 
     @Override
     protected void initView() {
+        key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
         Log.e(TAG, "initView: " + key);
     }
 
@@ -129,6 +133,17 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                     Glide.with(getContext()).load(member_info.getAvator()).apply(options).into(mHeader);
                     mUserName.setText(member_info.getUser_name());
                     mUserPhone.setText(member_info.getMobile());
+                }
+                break;
+            case ApiConfig.LOGOUT:
+                Logoutbean logoutbean = (Logoutbean) t[0];
+                if (null != logoutbean && logoutbean.getCode().equals("200")) {
+                    SPUtils.getInstance().removeValue(SPUtils.KEY_USER_TOKEN); // 清除Token
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                    LocalBroadcastManager.getInstance(getContext())
+                            .sendBroadcast(new Intent(BaseActivity.LOGIN_OUT));
+                    getActivity().finish();
                 }
                 break;
         }
@@ -163,6 +178,11 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
             case R.id.rl_site: // 收货地址
                 break;
             case R.id.rl_quit: // 退出登录
+                String username = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
+                String token = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+                Log.e(TAG, "onClick: " + username);
+                Log.e(TAG, "onClick: " + token);
+                mPresenter.getData(ApiConfig.LOGOUT, username, token, "android", LoadConfig.NORMAL);
                 break;
         }
     }

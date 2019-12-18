@@ -83,4 +83,9 @@
         <enum name="round" value="1" />
     </attr>
 
+    <!--自定义图片选择器-->
+    <declare-styleable name="SelectorImageView">
+        <attr name="selector_src" format="reference" /><!--选中的src图片属性-->
+        <attr name="checked" format="boolean" />
+    </declare-styleable>
 </resources>

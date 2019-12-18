@@ -14,7 +14,7 @@ public class HomePageModel implements ICommonModel {
             case ApiConfig.SEARCH_GOODS:
                 String keyword = (String) t[0];  // 关键词
                 int page = (int) t[1]; // 页码
-                String key = (String) t[2]; // 相当于token
+                int key = (int) t[2]; //
                 String gc_id = (String) t[3]; // 相当于token
                 int loadMotion = (int) t[4]; // 加载类型
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()

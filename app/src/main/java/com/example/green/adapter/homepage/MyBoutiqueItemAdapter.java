@@ -1,7 +1,10 @@
 package com.example.green.adapter.homepage;
 
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,15 +22,16 @@ public class MyBoutiqueItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultB
         super(layoutResId, data);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void convert(BaseViewHolder helper, HomePgaeList.ResultBean.DiscountBean.DateBean.GoodsInfoBean item) {
         HomePgaeList.ResultBean.DiscountBean.DateBean.GoodsInfoBean goodsInfoBean = item;
         if (null != goodsInfoBean) {
             TextView price = helper.getView(R.id.price);
-            price.setText("￥" + item.getGoods_price());
-            TextView pre_price = helper.getView(R.id.pre_price);
-            pre_price.setText("￥" + item.getGoods_promotion_price());
-            pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_price());
+//            TextView pre_price = helper.getView(R.id.pre_price);
+//            pre_price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_promotion_price());
+//            pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             ImageView imageView = helper.getView(R.id.goods);
             RequestOptions options = new RequestOptions()
                     .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片
