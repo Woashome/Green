@@ -43,6 +43,29 @@ public class UserModel implements ICommonModel {
                         .getHttpService()
                         .getLoginbean(user_name, psw, Client), view, whichApi, 0);
                 break;
+            /*登陆密码修改-修改登陆密码*/
+            case ApiConfig.MODIFICATION_PSW:
+                String key = (String) t[0];
+                String auth_code = (String) t[1];
+                String Password = (String) t[2];
+                String confirm_password = (String) t[3];
+                String mobile_key = (String) t[4];
+
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getModificationbean(key, auth_code, Password, confirm_password, mobile_key), view, whichApi, 0);
+                break;
+            /*支付密码修改--修改支付密码*/
+            case ApiConfig.CHANGE_PAYPSW:
+                String Key = (String) t[0];
+                String authCode = (String) t[1];
+                String Psw = (String) t[2];
+                String confirm_psw = (String) t[3];
+
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getChangePaypswbean(Key, authCode, Psw, confirm_psw), view, whichApi, 0);
+                break;
 
         }
     }

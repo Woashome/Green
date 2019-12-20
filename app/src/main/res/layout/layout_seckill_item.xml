@@ -9,8 +9,7 @@
         android:id="@+id/goods"
         android:layout_width="@dimen/dp_75"
         android:layout_height="@dimen/dp_46"
-        android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/price"

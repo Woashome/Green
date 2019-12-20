@@ -1,6 +1,7 @@
 package com.example.green.adapter.store;
 
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +29,7 @@ public class MyAllStoreListAdapter extends BaseQuickAdapter<AllStoreListbean.Res
             TextView price = helper.getView(R.id.price);
 
             info.setText(goodsListBean.getGoods_name());
-            price.setText("￥" + goodsListBean.getGoods_price());
+            price.setText(Html.fromHtml("&yen;") + item.getGoods_price());
             Glide.with(mContext).load(goodsListBean.getGoods_image_url()).into(iv);
 
             helper.addOnClickListener(R.id.rl_goods);

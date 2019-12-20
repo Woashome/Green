@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.example.green.R;
-import com.example.green.base.BaseActivity;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
@@ -86,8 +84,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key);
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_NAME, mUserPhone.getText().toString().trim());
                     Log.e(TAG, "用户Token-------: " + key); //  token
-                    LocalBroadcastManager.getInstance(this)
-                            .sendBroadcast(new Intent(BaseActivity.LOGIN_SUCCESS));
 
                     startActivity(new Intent(this, MainActivity.class));
                     finish();

@@ -105,6 +105,9 @@ dependencies {
     // gif 动态图片
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
 
+    //图片选择器
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'
+
     // 极光推送
     implementation files('libs/jpush-android-3.3.4.jar')
     implementation files('libs/jcore-android-2.1.2.jar')

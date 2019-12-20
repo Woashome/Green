@@ -23,7 +23,7 @@ public class MyOptionsItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultBe
         HomePgaeList.ResultBean.MenuBean menuBean = item;
         if (null != menuBean) {
             TextView option_tv = helper.getView(R.id.option_tv);
-            option_tv.setText(item.getAdv_title());
+            option_tv.setText(menuBean.getAdv_title());
             ImageView imageView = helper.getView(R.id.option_icon);
             RequestOptions options = new RequestOptions()
                     .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片

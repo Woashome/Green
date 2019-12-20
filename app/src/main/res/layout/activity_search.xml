@@ -47,7 +47,10 @@
                 android:hint="请输入搜索关键字"
                 android:imeOptions="actionSearch"
                 android:singleLine="true"
-                android:textSize="14sp" />
+                android:textSize="14sp">
+
+                <requestFocus />
+            </EditText>
 
             <ImageView
                 android:id="@+id/iv_clear_search"
@@ -110,7 +113,7 @@
             android:paddingTop="@dimen/space_normal"
             app:is_limit="true"
             app:limit_line_count="3"
-            app:max_select="1"/>
+            app:max_select="1" />
 
         <ImageView
             android:id="@+id/iv_arrow"

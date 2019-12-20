@@ -8,10 +8,16 @@ import com.example.green.bean.homepage.GoodsListbean;
 import com.example.green.bean.homepage.HomePgaeList;
 import com.example.green.bean.homepage.HotSearchKeyListbean;
 import com.example.green.bean.homepage.SearchListbean;
+import com.example.green.bean.homepage.SystemMessageListbean;
+import com.example.green.bean.homepage.Versionbean;
+import com.example.green.bean.mine.Addsitebean;
+import com.example.green.bean.mine.ChangePayPswbean;
 import com.example.green.bean.mine.CollegeListbean;
 import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
+import com.example.green.bean.mine.ShoppingAddressListbean;
 import com.example.green.bean.register.AccquireSmsbean;
+import com.example.green.bean.register.ModificationPswbean;
 import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.bean.store.StoreClassListbean;
@@ -27,6 +33,15 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface INetService {
+
+    /*
+     * 获取版本号
+     * https://shop.bayi-shop.com/mobile/Version/GetVersion
+     * */
+    @GET("")
+    Observable<Versionbean> getVersionbean(@Query("version_num") String version_num,
+                                           @Query("type") String type);
+
     /*
      * 商品搜索
      * https://shop.bayi-shop.com/mobile/goods/goods_list
@@ -70,7 +85,10 @@ public interface INetService {
      * 获取消息列表
      * https://shop.bayi-shop.com/index.php/mobile/Membermessage/systemmsg
      * */
-
+    @POST("Membermessage/systemmsg")
+    @FormUrlEncoded
+    Observable<SystemMessageListbean> getSystemMessageList(@Field("key") String key,
+                                                           @Field("page") int page);
 
     /*
      * 分类首页
@@ -132,6 +150,54 @@ public interface INetService {
     Observable<MineInfobean> getMineInfo(@Query("key") String key);
 
     /*
+     * 收货地址列表
+     * https://shop.bayi-shop.com/mobile/Memberaddress/address_list
+     * */
+    @GET("Memberaddress/address_list")
+    Observable<ShoppingAddressListbean> getShoppingAddressList(@Query("key") String key);
+
+    /*
+     * 添加收货地址
+     * https://shop.bayi-shop.com/mobile/Memberaddress/address_add
+     * */
+    @POST("Memberaddress/address_add")
+    @FormUrlEncoded
+    Observable<Addsitebean> getAddSite(@Field("true_name") String true_name,
+                                       @Field("mob_phone") String mob_phone,
+                                       @Field("city_id") String city_id,
+                                       @Field("area_id") String area_id,
+                                       @Field("address") String address,
+                                       @Field("area_info") String area_info,
+                                       @Field("is_default") String is_default,
+                                       @Field("key") String token);
+
+
+    /*
+     * 编辑收货地址
+     * https://shop.bayi-shop.com/mobile/Memberaddress/address_edit
+     * */
+    @POST("Memberaddress/address_edit")
+    @FormUrlEncoded
+    Observable<Logoutbean> getEditorAddressbean(@Field("key") String token,
+                                                @Field("true_name") String true_name,
+                                                @Field("mob_phone") String mob_phone,
+                                                @Field("city_id") String city_id,
+                                                @Field("area_id") String area_id,
+                                                @Field("address") String address,
+                                                @Field("area_info") String area_info,
+                                                @Field("is_default") String is_default,
+                                                @Field("address_id") String address_id);
+
+    /*
+     * 删除收货地址
+     * https://shop.bayi-shop.com/mobile/Memberaddress/address_del
+     * */
+    @POST("Memberaddress/address_del")
+    @FormUrlEncoded
+    Observable<Logoutbean> getDeleteAddressbean(@Field("key") String key,
+                                                @Field("address_id") String address_id);
+
+    /*
      * 商学院
      * https://shop.bayi-shop.com/mobile/college/college
      * article_type: 0-文章 1-视频
@@ -162,6 +228,29 @@ public interface INetService {
     @FormUrlEncoded
     Observable<AccquireSmsbean> getAccquirebean(@Field("member_mobile") String member_mobile,
                                                 @Field("type") int type);
+
+    /*
+     * 登陆密码修改-修改登陆密码
+     * https://shop.bayi-shop.com/mobile/Memberaccount/modify_password_step4
+     * */
+    @POST("Memberaccount/modify_password_step4")
+    @FormUrlEncoded
+    Observable<ModificationPswbean> getModificationbean(@Field("key") String key,
+                                                        @Field("auth_code") String auth_code,
+                                                        @Field("password") String password,
+                                                        @Field("confirm_password") String confirm_password,
+                                                        @Field("mobile_key") String mobile_key);
+
+    /*
+     * 支付密码修改--修改支付密码
+     * https://shop.bayi-shop.com/mobile/Memberaccount/modify_paypwd_step4
+     * */
+    @POST("Memberaccount/modify_paypwd_step4")
+    @FormUrlEncoded
+    Observable<ChangePayPswbean> getChangePaypswbean(@Field("key") String key,
+                                                     @Field("auth_code") String auth_code,
+                                                     @Field("password") String password,
+                                                     @Field("confirm_password") String confirm_password);
 
     /*
      * 登录

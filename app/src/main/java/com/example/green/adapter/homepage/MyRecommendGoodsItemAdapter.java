@@ -1,9 +1,7 @@
 package com.example.green.adapter.homepage;
 
 import android.graphics.Paint;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,17 +21,17 @@ public class MyRecommendGoodsItemAdapter extends BaseQuickAdapter<GoodsListbean.
         super(layoutResId, data);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     protected void convert(BaseViewHolder helper, GoodsListbean.ResultBean item) {
         GoodsListbean.ResultBean resultBean = item;
         if (null != resultBean) {
             TextView name = helper.getView(R.id.goods_name);
-            name.setText(item.getGoods_name());
+            name.setText(resultBean.getGoods_name());
             TextView price = helper.getView(R.id.goods_price);
-            price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_price());
+            price.setText(Html.fromHtml("&yen;") + resultBean.getGoods_price());
             TextView pre_price = helper.getView(R.id.goods_preprice);
-            pre_price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_promotion_price());
+            pre_price.setText(Html.fromHtml("&yen;") + resultBean.getGoods_promotion_price());
             pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             ImageView imageView = helper.getView(R.id.goods_iv);
             RequestOptions options = new RequestOptions()
@@ -44,9 +42,6 @@ public class MyRecommendGoodsItemAdapter extends BaseQuickAdapter<GoodsListbean.
             if (null != resultBean.getGoods_image()) {
                 Glide.with(mContext).load(resultBean.getGoods_image()).apply(options).into(imageView);
             }
-            helper.addOnClickListener(R.id.goods_name);
-            helper.addOnClickListener(R.id.goods_price);
-            helper.addOnClickListener(R.id.goods_preprice);
             helper.addOnClickListener(R.id.goods_card);
         }
     }

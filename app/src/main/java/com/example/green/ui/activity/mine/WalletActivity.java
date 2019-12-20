@@ -1,5 +1,6 @@
 package com.example.green.ui.activity.mine;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
@@ -9,13 +10,21 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.mine.MineInfobean;
+import com.example.green.config.ApiConfig;
+import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
+import com.example.green.ui.activity.homepage.LoginActivity;
 import com.example.green.ui.fragment.mine.CollegeFragment;
 import com.example.green.ui.fragment.mine.VideoFragment;
+import com.yiyatech.utils.ext.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -84,6 +93,8 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
 
     private CollegeFragment mCollegeFragment;
     private VideoFragment mVideoFragment;
+    private String key;
+    private MineInfobean.ResultBean.MemberInfoBean mMember_info;
 
     @Override
     protected void initView() {
@@ -95,11 +106,13 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
         mTip1.setVisibility(View.VISIBLE);
         mTip2.setVisibility(View.GONE);
         mCollege.setTextColor(getResources().getColor(R.color.c_27b28b));
+
+        key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
     }
 
     @Override
     protected void initData() {
-
+        mPresenter.getData(ApiConfig.MINEINFO, key, LoadConfig.NORMAL);
     }
 
     @Override
@@ -124,7 +137,21 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.MINEINFO:
+                MineInfobean mineInfobeans = (MineInfobean) t[0];
+                if (null != mineInfobeans && mineInfobeans.getCode().equals("100")) {
+                    ToastUtils.show(this, mineInfobeans.getMessage());
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                } else if (null != mineInfobeans && mineInfobeans.getCode().equals("200")) {
+                    mMember_info = mineInfobeans.getResult().getMember_info();
+                    RequestOptions options = new RequestOptions().circleCrop();
+                    Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
+                    mName.setText(mMember_info.getUser_name());
+                    mNumber.setText(mMember_info.getMobile());
+                }
+        }
     }
 
     @OnClick({R.id.back, R.id.rl_user_level, R.id.rl_user_company, R.id.rl_chongzhi, R.id.rl_tixian,

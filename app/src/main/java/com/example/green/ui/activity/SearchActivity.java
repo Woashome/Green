@@ -201,9 +201,6 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-        switch (whichApi) {
-
-        }
     }
 
     @Override

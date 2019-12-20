@@ -5,6 +5,7 @@ public class ApiConfig {
     public static final int SEARCH_GOODS = 10; // 搜索商品
     /*首页*/
     public static final int URL_HOMEDATA = 0;  // 首页数据
+    public static final int SYSTEM_MESSAGE = 22;  // 消息列表
     public static final int URL_GOODSDATA = 1;   // 商品推荐
     public static final int HOT_SEARCH_KEY = 2; // 搜索页面热门搜索词
     public static final int GOODS_DETAILS = 13; // 商品详情
@@ -20,22 +21,22 @@ public class ApiConfig {
     public static final int STORE_RECOMMEND = 8; // 店铺首页推荐商品
     public static final int ALL_STOREGOODS = 9; // 全部商品(获取店铺商品)
 
-
     /*我的*/
     public static final int MINEINFO = 11; // 我的信息
-
     public static final int COLLEGE = 12; // 商学院
+    public static final int LOGOUT = 17; // 退出登录
+    public static final int SHOPPING_ADDRESS = 18; // 收货地址列表
+    public static final int ADDADDRESS = 19; // 添加收货地址
+    public static final int EDITOR_ADDRESS = 20; // 编辑收货地址
+    public static final int DELETE_ADDRESS = 21; // 删除收货地址
 
 
+    /*注册 登录*/
     public static final int REGISTER = 14; // 注册
     public static final int ACCQUIRE_CODE = 15; // 验证码发送
     public static final int LOGIN = 16; // 登录
-    public static final int LOGOUT = 17; // 退出登录
-
-    // 登录
-
-
-    public static final int LIKE_FILM = 17; // 选中喜欢电影
+    public static final int MODIFICATION_PSW = 23; // 登陆密码修改-修改登陆密码
+    public static final int CHANGE_PAYPSW = 24; // 登陆密码修改-修改登陆密码
 
     // 支付
     public static final int URL_USESHOUYI = 22; // 收益支付

@@ -11,6 +11,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.webkit.SslErrorHandler;
@@ -184,7 +185,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                         String body = getHtmlData(mobile_body);
                         mWebView.loadDataWithBaseURL(null, body, "text/html", "UTF-8", null);
 
-                        mPrice.setText(mResult.getGoods_info().getGoods_price());
+                        mPrice.setText(Html.fromHtml("&yen;") + mResult.getGoods_info().getGoods_price());
                         mGoodsTitle.setText(mResult.getGoods_info().getGoods_name());
                         mGoodsInfo.setText(mResult.getGoods_info().getGoods_advword());
                         Glide.with(this).load(mResult.getStore_info().getStore_avatar()).into(mIvStore);

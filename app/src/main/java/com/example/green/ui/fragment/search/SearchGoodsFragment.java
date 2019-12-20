@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.green.R;
@@ -49,12 +48,12 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
         super.setUserVisibleHint(isVisibleToUser);
     }
 
-    public static SearchGoodsFragment newInstance(String pKeyWord,String pGcId,int pKEY_STYLE){
+    public static SearchGoodsFragment newInstance(String pKeyWord, String pGcId, int pKEY_STYLE) {
         SearchGoodsFragment myFragment = new SearchGoodsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("keyWord",pKeyWord);
-        bundle.putString("gcId",pGcId);
-        bundle.putInt("key",pKEY_STYLE);
+        bundle.putString("keyWord", pKeyWord);
+        bundle.putString("gcId", pGcId);
+        bundle.putInt("key", pKEY_STYLE);
         myFragment.setArguments(bundle);
         return myFragment;
     }
@@ -77,7 +76,7 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
     @Override
     protected void initView() {
         Bundle bundle = getArguments();
-        if (null!=bundle) {
+        if (null != bundle) {
             keyWord = bundle.getString("keyWord");
             gcId = bundle.getString("gcId");
             KEY_STYLE = bundle.getInt("key");

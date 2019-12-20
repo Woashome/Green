@@ -1,11 +1,8 @@
 package com.example.green.adapter.homepage;
 
 import android.graphics.Paint;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +29,6 @@ public class MySearchListAdapter extends BaseQuickAdapter<SearchListbean.ResultB
         super(layoutResId, data);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void convert(BaseViewHolder helper, SearchListbean.ResultBean.GoodsListBean item) {
         SearchListbean.ResultBean.GoodsListBean goodsListBean = item;
@@ -44,8 +40,8 @@ public class MySearchListAdapter extends BaseQuickAdapter<SearchListbean.ResultB
 //            ImageView view = helper.getView(R.id.new_product);
             ImageView imageView = helper.getView(R.id.iv_goods);
             info.setText(goodsListBean.getGoods_name());
-            price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_price());
-            pre_price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_marketprice());
+            price.setText(Html.fromHtml("&yen;") + goodsListBean.getGoods_price());
+            pre_price.setText(Html.fromHtml("&yen;") + goodsListBean.getGoods_marketprice());
             pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             sales.setText("月售" + goodsListBean.getGoods_salenum());
             /*if (goodsListBean.isXianshi_flag()) {

@@ -24,14 +24,20 @@
             android:textSize="@dimen/dp_15" />
     </android.support.v7.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/header_iv"
-        android:layout_width="@dimen/dp_28"
-        android:layout_height="@dimen/dp_28"
+    <RelativeLayout
+        android:id="@+id/rl_iv"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
         android:layout_below="@id/toolbar"
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_16"
-        android:src="@mipmap/header_frame" />
+        android:background="@mipmap/header_frame">
+
+        <ImageView
+            android:id="@+id/header_iv"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/name"
@@ -40,8 +46,7 @@
         android:layout_below="@id/toolbar"
         android:layout_marginLeft="@dimen/dp_7"
         android:layout_marginTop="@dimen/dp_13"
-        android:layout_toRightOf="@id/header_iv"
-        android:text="汪疯（推荐码：24899）"
+        android:layout_toRightOf="@id/rl_iv"
         android:textColor="@color/c_242424"
         android:textSize="@dimen/dp_11" />
 
@@ -52,8 +57,7 @@
         android:layout_below="@id/name"
         android:layout_marginLeft="@dimen/dp_7"
         android:layout_marginTop="@dimen/dp_5"
-        android:layout_toRightOf="@id/header_iv"
-        android:text="159****1594"
+        android:layout_toRightOf="@id/rl_iv"
         android:textColor="@color/c_242424"
         android:textSize="@dimen/dp_10" />
 
@@ -62,9 +66,9 @@
         android:layout_width="@dimen/dp_70"
         android:layout_height="@dimen/dp_18"
         android:layout_below="@id/toolbar"
-        android:layout_marginLeft="@dimen/dp_25"
         android:layout_marginTop="@dimen/dp_9"
-        android:layout_toRightOf="@id/name"
+        android:layout_marginRight="@dimen/dp_7"
+        android:layout_toLeftOf="@id/rl_user_company"
         android:background="@mipmap/user_bg"
         android:gravity="center">
 
@@ -93,9 +97,9 @@
         android:layout_width="@dimen/dp_75"
         android:layout_height="@dimen/dp_18"
         android:layout_below="@id/toolbar"
-        android:layout_marginLeft="@dimen/dp_7"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="@dimen/dp_9"
-        android:layout_toRightOf="@id/rl_user_level"
+        android:layout_marginRight="@dimen/dp_25"
         android:background="@mipmap/gongsi_bg"
         android:gravity="center">
 
@@ -145,7 +149,6 @@
             android:layout_below="@id/chuzhika"
             android:layout_marginLeft="@dimen/dp_14"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="10685.21"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_21" />
 
@@ -168,7 +171,6 @@
             android:layout_marginLeft="@dimen/dp_11"
             android:layout_marginTop="@dimen/dp_3"
             android:layout_toRightOf="@id/integral"
-            android:text="212.00"
             android:textColor="@color/c_8be5cc"
             android:textSize="@dimen/dp_15" />
 
@@ -202,7 +204,6 @@
             android:layout_marginLeft="@dimen/dp_11"
             android:layout_marginTop="@dimen/dp_3"
             android:layout_toRightOf="@id/dongjie"
-            android:text="212.00"
             android:textColor="@color/c_8be5cc"
             android:textSize="@dimen/dp_15" />
 
@@ -478,7 +479,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_college"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_60"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_18">
 
@@ -486,6 +487,7 @@
                 android:id="@+id/college"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:text="商学院"
                 android:textColor="@color/c_999999"
                 android:textSize="@dimen/dp_12" />
@@ -502,9 +504,9 @@
 
         <RelativeLayout
             android:id="@+id/rl_video"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/dp_60"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_33"
+            android:layout_marginLeft="@dimen/dp_10"
             android:layout_toRightOf="@+id/rl_college">
 
             <TextView

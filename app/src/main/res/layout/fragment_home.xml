@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_home_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_home_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -152,7 +152,6 @@
                                     android:layout_alignParentLeft="true"
                                     android:layout_marginLeft="@dimen/dp_16"
                                     android:layout_marginTop="@dimen/dp_10"
-                                    android:text="超值好货"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dp_13"
                                     android:textStyle="bold" />
@@ -161,12 +160,11 @@
                                     android:id="@+id/name2"
                                     android:layout_width="@dimen/dp_59"
                                     android:layout_height="@dimen/dp_13"
-                                    android:layout_marginLeft="@dimen/dp_8"
                                     android:layout_marginTop="@dimen/dp_13"
-                                    android:layout_toRightOf="@id/name1"
+                                    android:layout_marginRight="@dimen/dp_25"
+                                    android:layout_toLeftOf="@id/name3"
                                     android:background="@drawable/boutique_bg"
                                     android:gravity="center"
-                                    android:text="数码精品"
                                     android:textColor="@color/app_theme_color"
                                     android:textSize="@dimen/dp_9"
                                     android:textStyle="bold" />
@@ -179,7 +177,6 @@
                                     android:layout_marginLeft="@dimen/dp_16"
                                     android:layout_marginTop="@dimen/dp_10"
                                     android:layout_toRightOf="@id/line"
-                                    android:text="热品限时"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/dp_13"
                                     android:textStyle="bold" />
@@ -188,13 +185,13 @@
                                     android:id="@+id/name4"
                                     android:layout_width="@dimen/dp_59"
                                     android:layout_height="@dimen/dp_13"
+                                    android:layout_alignParentRight="true"
                                     android:layout_centerHorizontal="true"
                                     android:layout_marginLeft="@dimen/dp_8"
                                     android:layout_marginTop="@dimen/dp_13"
-                                    android:layout_toRightOf="@id/name3"
+                                    android:layout_marginRight="@dimen/dp_30"
                                     android:background="@drawable/seckill_bg"
                                     android:gravity="center"
-                                    android:text="超值秒杀"
                                     android:textColor="@color/red"
                                     android:textSize="@dimen/dp_9"
                                     android:textStyle="bold" />
@@ -270,10 +267,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_7"
-                            android:textStyle="bold"
-                            android:text="天然山货"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp_9" />
+                            android:textSize="@dimen/dp_9"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/up_promotion_info"
@@ -282,7 +278,6 @@
                             android:layout_marginLeft="@dimen/dp_3"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_toRightOf="@id/up_promotion"
-                            android:text="大自然的馈赠"
                             android:textSize="@dimen/dp_6" />
 
                         <ImageView
@@ -292,8 +287,7 @@
                             android:layout_below="@id/up_promotion"
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
-                            android:layout_marginBottom="@dimen/dp_4"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_marginBottom="@dimen/dp_4" />
 
                         <ImageView
                             android:id="@+id/iv_2"
@@ -303,8 +297,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
                             android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_toRightOf="@id/iv_1"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_toRightOf="@id/iv_1" />
 
                         <ImageView
                             android:id="@+id/iv_3"
@@ -314,8 +307,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
                             android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_toRightOf="@id/iv_2"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_toRightOf="@id/iv_2" />
                     </RelativeLayout>
                     <!--海鲜大咖-->
                     <RelativeLayout
@@ -337,10 +329,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_7"
-                            android:textStyle="bold"
-                            android:text="海鲜大咖"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/dp_9" />
+                            android:textSize="@dimen/dp_9"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/down_promotion_info"
@@ -349,7 +340,6 @@
                             android:layout_marginLeft="@dimen/dp_3"
                             android:layout_marginTop="@dimen/dp_10"
                             android:layout_toRightOf="@id/down_promotion"
-                            android:text="海的味道我知道"
                             android:textSize="@dimen/dp_6" />
 
                         <ImageView
@@ -359,8 +349,7 @@
                             android:layout_below="@id/down_promotion"
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
-                            android:layout_marginBottom="@dimen/dp_4"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_marginBottom="@dimen/dp_4" />
 
                         <ImageView
                             android:id="@+id/iv_5"
@@ -370,8 +359,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
                             android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_toRightOf="@id/iv_4"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_toRightOf="@id/iv_4" />
 
                         <ImageView
                             android:id="@+id/iv_6"
@@ -381,8 +369,7 @@
                             android:layout_marginLeft="@dimen/dp_10"
                             android:layout_marginTop="@dimen/dp_6"
                             android:layout_marginBottom="@dimen/dp_4"
-                            android:layout_toRightOf="@id/iv_5"
-                            android:src="@mipmap/ic_launcher" />
+                            android:layout_toRightOf="@id/iv_5" />
                     </RelativeLayout>
                 </RelativeLayout>
 

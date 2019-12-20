@@ -103,7 +103,6 @@ public class VideoFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 CollegeListbean collegeListbean = (CollegeListbean) t[0];
                 if (null != collegeListbean) {
                     List<CollegeListbean.ResultBean> result = collegeListbean.getResult();
-                    ToastUtils.show(getContext(), result.toString());
                     mResultBeans.addAll(result);
                     mMyCollegeAdapter.notifyDataSetChanged();
                 }

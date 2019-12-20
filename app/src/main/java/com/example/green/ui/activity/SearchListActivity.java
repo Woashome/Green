@@ -2,7 +2,6 @@ package com.example.green.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.androidkun.xtablayout.XTabLayout;
@@ -22,19 +20,13 @@ import com.example.green.adapter.store.MyFragmentAdapter;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
-import com.example.green.config.ApiConfig;
-import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.fragment.search.SearchGoodsFragment;
-import com.example.green.ui.fragment.store.RecommendFragment;
-import com.example.green.ui.fragment.store.StoreHomePageFragment;
-import com.example.green.ui.fragment.store.StoreclassifyFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePageModel>
@@ -55,6 +47,7 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
     private MyFragmentAdapter mMyFragmentAdapter;
     private List<Fragment> mFragments;
     private static final String TAG = "SearchListActivity";
+
     @Override
     protected void initView() {
         mToolbar.setTitle("");
@@ -62,12 +55,12 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
         Intent intent = getIntent();
         keyWord = intent.getStringExtra("keyword");
         gcId = intent.getStringExtra("gcId");
-        Log.e(TAG, "initView: "+keyWord );
-        Log.e(TAG, "initView: "+gcId );
+        Log.e(TAG, "initView: " + keyWord);
+        Log.e(TAG, "initView: " + gcId);
         mFragments = new ArrayList<>();
-        SearchGoodsFragment searchGoodsFragment_synthesize = SearchGoodsFragment.newInstance(keyWord,gcId,0);
-        SearchGoodsFragment searchGoodsFragment_sales = SearchGoodsFragment.newInstance(keyWord,gcId,3);
-        SearchGoodsFragment searchGoodsFragment_price = SearchGoodsFragment.newInstance(keyWord,gcId,2);
+        SearchGoodsFragment searchGoodsFragment_synthesize = SearchGoodsFragment.newInstance(keyWord, gcId, 0);
+        SearchGoodsFragment searchGoodsFragment_sales = SearchGoodsFragment.newInstance(keyWord, gcId, 3);
+        SearchGoodsFragment searchGoodsFragment_price = SearchGoodsFragment.newInstance(keyWord, gcId, 2);
 
         mFragments.add(searchGoodsFragment_synthesize);
         mFragments.add(searchGoodsFragment_sales);
@@ -105,7 +98,7 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
                     //点击搜索的时候隐藏软键盘
                     hideKeyboard(mKeyword);
                     // 在这里写搜索的操作,一般都是网络请求数据
-                    mPresenter.getData(ApiConfig.SEARCH_GOODS);
+//                    mPresenter.getData(ApiConfig.SEARCH_GOODS);
                     return true;
                 }
 
@@ -143,7 +136,7 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
     public void onResponse(int whichApi, Object[] t) {
     }
 
-    @OnClick({R.id.back, R.id.rl_search_view})
+    @OnClick({R.id.back})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -153,9 +146,11 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
                 break;
         }
     }
+
     /**
      * 隐藏软键盘
-     * @param view    :一般为EditText
+     *
+     * @param view :一般为EditText
      */
     public void hideKeyboard(View view) {
         InputMethodManager manager = (InputMethodManager) view.getContext()

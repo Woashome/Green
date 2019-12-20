@@ -23,8 +23,14 @@ public class BaseActivity extends AppCompatActivity {
     public static final String LOGIN_SUCCESS = "LOGIN_SUCCESS";
     //退出登录
     public static final String LOGIN_OUT = "login_out";
-    //修改标签
-    public static final String MINE_LABEL = "mine_label";
+    //添加收货地址
+    public static final String ADD_ADDRESS = "add_address";
+    //编辑收货地址
+    public static final String EDITOR_ADDRESS = "editor_address";
+    //删除收货地址
+    public static final String DELETE_ADDRESS = "delete_address";
+
+
     //预告片播放
     public static final String PLAY_VIDEO = "play_video";
 
@@ -56,7 +62,10 @@ public class BaseActivity extends AppCompatActivity {
         intentFilter.addAction(RECTIFY_UPDATE_HEAD);
         intentFilter.addAction(LOGIN_SUCCESS);
         intentFilter.addAction(LOGIN_OUT);
-        intentFilter.addAction(MINE_LABEL);
+        intentFilter.addAction(ADD_ADDRESS);
+        intentFilter.addAction(EDITOR_ADDRESS);
+        intentFilter.addAction(DELETE_ADDRESS);
+
         intentFilter.addAction(PLAY_VIDEO);
         intentFilter.addAction(MODIFY_CITY);
         intentFilter.addAction(UNBIND_SUCCESS);

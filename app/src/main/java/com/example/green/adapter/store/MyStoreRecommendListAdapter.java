@@ -1,8 +1,6 @@
 package com.example.green.adapter.store;
 
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +19,6 @@ public class MyStoreRecommendListAdapter extends BaseQuickAdapter<StoreRecommend
         super(layoutResId, data);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void convert(BaseViewHolder helper, StoreRecommendListbean.ResultBean.RecGoodsListBean item) {
         StoreRecommendListbean.ResultBean.RecGoodsListBean recGoodsListBean = item;
@@ -31,7 +28,7 @@ public class MyStoreRecommendListAdapter extends BaseQuickAdapter<StoreRecommend
             TextView price = helper.getView(R.id.price);
 
             info.setText(recGoodsListBean.getGoods_name());
-            price.setText(Html.fromHtml("&yen;", Html.FROM_HTML_MODE_LEGACY) + item.getGoods_price());
+            price.setText(Html.fromHtml("&yen;") + recGoodsListBean.getGoods_price());
             Glide.with(mContext).load(recGoodsListBean.getGoods_image_url()).into(iv);
 
             helper.addOnClickListener(R.id.rl_goods);

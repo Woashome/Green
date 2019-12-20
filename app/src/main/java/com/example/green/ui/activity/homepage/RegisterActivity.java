@@ -1,7 +1,6 @@
 package com.example.green.ui.activity.homepage;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -21,7 +20,6 @@ import com.example.green.bean.register.AccquireSmsbean;
 import com.example.green.bean.register.RegisterDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
-import com.example.green.customs.SelectorImageView;
 import com.example.green.local_utils.MyDialog;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.UserModel;
@@ -36,8 +34,6 @@ import butterknife.OnClick;
 public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel>
         implements ICommonView, MyDialog.OnCenterItemClickListener {
 
-    @BindView(R.id.back)
-    ImageView mBack;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.user_phone)
@@ -64,8 +60,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-        /*mXieyi.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-        mXieyi.getPaint().setAntiAlias(true);//抗锯齿*/
+
         mUserPhone.addTextChangedListener(phoneEditInput); // 监听手机号输入状态
         mUserCode.addTextChangedListener(codeEditInput); // 监听验证码输入状态
     }
@@ -177,7 +172,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
 
     }
 
-    @OnClick({R.id.back, R.id.acquire_code,R.id.bt_register, R.id.xieyi})
+    @OnClick({R.id.back, R.id.acquire_code, R.id.bt_register, R.id.xieyi})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -186,7 +181,6 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 finish();
                 break;
             case R.id.acquire_code: // 获取验证码
-
                 // 手机号码 正则判断
                 String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";
                 if (!TextUtils.isEmpty(mUserPhone.getText().toString().trim()) &&

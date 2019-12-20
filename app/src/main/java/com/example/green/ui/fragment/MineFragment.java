@@ -25,6 +25,11 @@ import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.example.green.ui.activity.homepage.LoginActivity;
+import com.example.green.ui.activity.mine.LoginPswActivity;
+import com.example.green.ui.activity.mine.MyOrderActivity;
+import com.example.green.ui.activity.mine.PayPswActivity;
+import com.example.green.ui.activity.mine.PersonalDataActivity;
+import com.example.green.ui.activity.mine.ShoppingAddressActivity;
 import com.example.green.ui.activity.mine.WalletActivity;
 import com.yiyatech.utils.ext.ToastUtils;
 
@@ -72,9 +77,9 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     @BindView(R.id.rl_quit)
     RelativeLayout mRlQuit;
 
-    private String key;
-    ;  // token
+    private String key;// token
     private static final String TAG = "MineFragment";
+    private MineInfobean.ResultBean.MemberInfoBean mMember_info;
 
     public static MineFragment newInstance() {
         if (fragment == null) fragment = new MineFragment();
@@ -127,12 +132,11 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                     startActivity(new Intent(getContext(), LoginActivity.class));
                     getActivity().finish();
                 } else if (null != mineInfobeans && mineInfobeans.getCode().equals("200")) {
-                    MineInfobean.ResultBean.MemberInfoBean
-                            member_info = mineInfobeans.getResult().getMember_info();
+                    mMember_info = mineInfobeans.getResult().getMember_info();
                     RequestOptions options = new RequestOptions().circleCrop();
-                    Glide.with(getContext()).load(member_info.getAvator()).apply(options).into(mHeader);
-                    mUserName.setText(member_info.getUser_name());
-                    mUserPhone.setText(member_info.getMobile());
+                    Glide.with(getContext()).load(mMember_info.getAvator()).apply(options).into(mHeader);
+                    mUserName.setText(mMember_info.getUser_name());
+                    mUserPhone.setText(mMember_info.getMobile());
                 }
                 break;
             case ApiConfig.LOGOUT:
@@ -162,20 +166,39 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 startActivity(new Intent(getContext(), WalletActivity.class));
                 break;
             case R.id.wait_pay_ll: // 待付款
+                Intent intent_wait_pay = new Intent(getContext(), MyOrderActivity.class);
+                intent_wait_pay.putExtra("index", 1);
+                startActivity(intent_wait_pay);
                 break;
             case R.id.wait_deliver_ll: // 待发货
+                Intent intent_wait_deliver = new Intent(getContext(), MyOrderActivity.class);
+                intent_wait_deliver.putExtra("index", 2);
+                startActivity(intent_wait_deliver);
                 break;
             case R.id.finish_ll: // 已完成
+                Intent intent_finish = new Intent(getContext(), MyOrderActivity.class);
+                intent_finish.putExtra("index", 3);
+                startActivity(intent_finish);
                 break;
             case R.id.cancel_ll: // 已取消
+                Intent intent_cancel = new Intent(getContext(), MyOrderActivity.class);
+                intent_cancel.putExtra("index", 4);
+                startActivity(intent_cancel);
                 break;
             case R.id.rl_info: // 个人资料
+                Intent intent = new Intent(getContext(), PersonalDataActivity.class);
+                intent.putExtra("icon", mMember_info.getAvator());
+                intent.putExtra("nick", mMember_info.getUser_name());
+                startActivity(intent);
                 break;
             case R.id.rl_login_password: // 登录密码
+                startActivity(new Intent(getContext(), LoginPswActivity.class));
                 break;
             case R.id.rl_pay_password: // 支付密码
+                startActivity(new Intent(getContext(), PayPswActivity.class));
                 break;
             case R.id.rl_site: // 收货地址
+                startActivity(new Intent(getContext(), ShoppingAddressActivity.class));
                 break;
             case R.id.rl_quit: // 退出登录
                 String username = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");

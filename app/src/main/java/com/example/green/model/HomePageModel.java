@@ -21,6 +21,15 @@ public class HomePageModel implements ICommonModel {
                         .getHttpService()
                         .getSearchList(keyword, page, key, gc_id), view, whichApi, loadMotion);
                 break;
+            /*消息列表*/
+            case ApiConfig.SYSTEM_MESSAGE:
+                String key_token = (String) t[0];
+                int Index = (int) t[1];
+                int type = (int) t[2]; // 加载类型
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getSystemMessageList(key_token, Index), view, whichApi, type);
+                break;
             /*首页数据*/
             case ApiConfig.URL_HOMEDATA:
                 int loadMode = (int) t[0]; // 加载类型
