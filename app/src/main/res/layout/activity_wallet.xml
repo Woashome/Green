@@ -36,7 +36,8 @@
         <ImageView
             android:id="@+id/header_iv"
             android:layout_width="@dimen/dp_28"
-            android:layout_height="@dimen/dp_28" />
+            android:layout_height="@dimen/dp_28"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
     <TextView
