@@ -314,7 +314,7 @@
     <LinearLayout
         android:id="@+id/details_toolbar_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_50"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -354,7 +354,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/details_add_cart"
+            android:layout_toLeftOf="@id/details_buy"
             android:background="#FDFCFC">
 
             <RelativeLayout
@@ -406,7 +406,7 @@
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/dp_8" />
             </RelativeLayout>
-
+<!--
             <RelativeLayout
                 android:id="@+id/rl_trolley"
                 android:layout_width="0dp"
@@ -430,11 +430,11 @@
                     android:text="购物车"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/dp_8" />
-            </RelativeLayout>
+            </RelativeLayout>-->
         </LinearLayout>
 
 
-        <TextView
+       <!-- <TextView
             android:id="@+id/details_add_cart"
             android:layout_width="@dimen/dp_107"
             android:layout_height="match_parent"
@@ -443,7 +443,7 @@
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/dp_12" />
+            android:textSize="@dimen/dp_12" />-->
 
         <TextView
             android:id="@+id/details_buy"

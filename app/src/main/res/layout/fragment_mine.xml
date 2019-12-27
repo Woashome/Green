@@ -7,13 +7,21 @@
     tools:context=".ui.fragment.MineFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:id="@+id/header"
-        android:layout_width="@dimen/dp_67"
-        android:layout_height="@dimen/dp_67"
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
         android:layout_marginLeft="@dimen/dp_22"
         android:layout_marginTop="@dimen/dp_37"
-        android:background="@mipmap/header_frame" />
+        android:background="@mipmap/header_frame">
+
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="@dimen/dp_67"
+            android:layout_height="@dimen/dp_67"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/user_name"
@@ -21,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_17"
         android:layout_marginTop="@dimen/dp_56"
-        android:layout_toRightOf="@id/header"
+        android:layout_toRightOf="@id/rl_header"
         android:textColor="@color/white"
         android:textSize="@dimen/dp_16" />
 
@@ -32,7 +40,7 @@
         android:layout_below="@id/user_name"
         android:layout_marginLeft="@dimen/dp_17"
         android:layout_marginTop="@dimen/dp_5"
-        android:layout_toRightOf="@id/header"
+        android:layout_toRightOf="@id/rl_header"
         android:textColor="@color/white"
         android:textSize="@dimen/dp_12" />
 
@@ -40,7 +48,7 @@
         android:id="@+id/tuiguang"
         android:layout_width="@dimen/dp_293"
         android:layout_height="@dimen/dp_44"
-        android:layout_below="@id/header"
+        android:layout_below="@id/rl_header"
         android:layout_marginHorizontal="@dimen/dp_33"
         android:layout_marginTop="@dimen/dp_30"
         android:background="@mipmap/mine_bg">

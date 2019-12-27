@@ -21,6 +21,16 @@ public class ApiConfig {
     public static final int STORE_RECOMMEND = 8; // 店铺首页推荐商品
     public static final int ALL_STOREGOODS = 9; // 全部商品(获取店铺商品)
 
+
+    /*商品购物*/
+    public static final int SHOPPING_STEP_ONE = 28; // 购买商品--第一步，生成购物信息
+    public static final int SHOPPING_STEP_TWO = 29; // 购买商品--第二步，生成订单
+    public static final int SHOPPING_THIRD = 30; // 购买商品--第三步，获取订单信息
+    public static final int SHOPPING_FOURTH = 31; // 购买商品--第四步，购买
+
+    public static final int RANDOM_GOODS = 34; // 支付成功后获取随机商品
+
+
     /*我的*/
     public static final int MINEINFO = 11; // 我的信息
     public static final int COLLEGE = 12; // 商学院
@@ -29,7 +39,9 @@ public class ApiConfig {
     public static final int ADDADDRESS = 19; // 添加收货地址
     public static final int EDITOR_ADDRESS = 20; // 编辑收货地址
     public static final int DELETE_ADDRESS = 21; // 删除收货地址
-
+    public static final int URL_UPLOAD_PICTURE = 25; // 上传图片
+    public static final int URL_EDIT_USER_INFO = 26; // 个人资料编辑
+    public static final int USER_AUTONYM = 27; // 实名认证
 
     /*注册 登录*/
     public static final int REGISTER = 14; // 注册
@@ -37,6 +49,7 @@ public class ApiConfig {
     public static final int LOGIN = 16; // 登录
     public static final int MODIFICATION_PSW = 23; // 登陆密码修改-修改登陆密码
     public static final int CHANGE_PAYPSW = 24; // 登陆密码修改-修改登陆密码
+
 
     // 支付
     public static final int URL_USESHOUYI = 22; // 收益支付
@@ -72,8 +85,6 @@ public class ApiConfig {
     public static final int URL_MESSAGE_INVITER_OK = 105; //接受 他人的邀请
     public static final int URL_MESSAGE_INVITER_CANCEL = 106; //拒绝 他人的邀请
     public static final int URL_MESSAGE_USER_DETAIL = 107; //获取主控的消息
-    public static final int URL_EDIT_USER_INFO = 108; //设置用户的数据
-    public static final int URL_UPLOAD_PICTURE = 109; //上传图片
     public static final int URL_UPLOAD_NICK_NAME = 120; //修改昵称
     public static final int URL_USER_INFO_DETAILS = 121; // 用户信息,另外的接口\
     public static final int URL_USER_LOCATION_PROVINCE = 122; // 获取省份

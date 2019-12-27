@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
 import com.example.green.base.BaseActivity;
@@ -133,8 +134,13 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                     getActivity().finish();
                 } else if (null != mineInfobeans && mineInfobeans.getCode().equals("200")) {
                     mMember_info = mineInfobeans.getResult().getMember_info();
-                    RequestOptions options = new RequestOptions().circleCrop();
+
+                    RequestOptions options = new RequestOptions()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .circleCrop();
                     Glide.with(getContext()).load(mMember_info.getAvator()).apply(options).into(mHeader);
+                    Log.e(TAG, "onResponse: " + mMember_info.getAvator());
                     mUserName.setText(mMember_info.getUser_name());
                     mUserPhone.setText(mMember_info.getMobile());
                 }
@@ -186,10 +192,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 startActivity(intent_cancel);
                 break;
             case R.id.rl_info: // 个人资料
-                Intent intent = new Intent(getContext(), PersonalDataActivity.class);
-                intent.putExtra("icon", mMember_info.getAvator());
-                intent.putExtra("nick", mMember_info.getUser_name());
-                startActivity(intent);
+                startActivity(new Intent(getContext(), PersonalDataActivity.class));
                 break;
             case R.id.rl_login_password: // 登录密码
                 startActivity(new Intent(getContext(), LoginPswActivity.class));
@@ -206,6 +209,18 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 Log.e(TAG, "onClick: " + username);
                 Log.e(TAG, "onClick: " + token);
                 mPresenter.getData(ApiConfig.LOGOUT, username, token, "android", LoadConfig.NORMAL);
+                break;
+        }
+    }
+
+
+    @Override
+    protected void receiverBroadCast(Intent intent) {
+        super.receiverBroadCast(intent);
+        switch (intent.getAction()) {
+            case RECTIFY_UPDATE_INFO:
+                // 用户信息，修改以后更新
+                mPresenter.getData(ApiConfig.MINEINFO, key, LoadConfig.NORMAL);
                 break;
         }
     }

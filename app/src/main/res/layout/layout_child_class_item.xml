@@ -14,8 +14,7 @@
             android:id="@+id/goods_iv"
             android:layout_width="@dimen/dp_46"
             android:layout_height="@dimen/dp_46"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/shiming" />
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/goods_tv"
@@ -24,7 +23,6 @@
             android:layout_below="@id/goods_iv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_5"
-            android:text="大葱"
             android:textColor="@color/black"
             android:textSize="@dimen/dp_12" />
     </RelativeLayout>

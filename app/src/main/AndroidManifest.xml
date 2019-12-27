@@ -8,6 +8,13 @@
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 允许应⽤程序联⽹，以便向我们的服务器端发送数据。 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -106,7 +113,28 @@
         <activity android:name=".ui.activity.homepage.SystemMessageActivity" />
         <activity android:name=".ui.activity.mine.LoginPswActivity" />
         <activity android:name=".ui.activity.mine.PayPswActivity" />
-        <activity android:name=".ui.activity.mine.MyOrderActivity"></activity>
+        <activity android:name=".ui.activity.mine.MyOrderActivity" />
+        <activity android:name=".ui.activity.mine.wallet.TeamActivity" />
+        <activity android:name=".ui.activity.mine.wallet.StoredActivity" />
+        <activity android:name=".ui.activity.mine.wallet.TopUpActivity" />
+        <activity android:name=".ui.activity.mine.wallet.WithdrawActivity" />
+        <activity android:name=".ui.activity.mine.wallet.RealNmaeActivity" />
+        <activity android:name=".ui.activity.mine.wallet.TransfersActivity" />
+        <activity android:name=".ui.activity.mine.wallet.TransactionCodeActivity" />
+
+        <!-- 安装应用 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.chuanying.xianzaikan.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_movie" />
+        </provider>
+
+        <activity android:name=".ui.activity.shopping.PaymentSuccessActivity" />
+        <activity android:name=".ui.activity.shopping.AffirmOrderActivity"></activity>
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.example.green.ui.fragment.search;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.GoodsDetailsActivity;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,8 @@ import butterknife.BindView;
  */
 @SuppressLint("ValidFragment")
 public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePageModel> implements ICommonView {
-
+    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mSmartRefreshLayout;
     @BindView(R.id.goods_recycler)
     RecyclerView mRecyclerView;
     private int KEY_STYLE;// 0为默认综合排序，2为价格排序，3销量排序，5人气排序
@@ -121,9 +124,31 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
                 SearchListbean searchListbean = (SearchListbean) t[0];
                 if (null != searchListbean) {
                     List<SearchListbean.ResultBean.GoodsListBean> goods_list = searchListbean.getResult().getGoods_list();
-                    mGoodsListBeans.addAll(goods_list);
+                    int loadMode = (int) t[1];
+                    Log.e(TAG, "onResponse: " + loadMode);
+                    if (loadMode == LoadConfig.NORMAL) {
+                        mGoodsListBeans.addAll(goods_list);
+                    } else if (loadMode == LoadConfig.REFRESH) {
+                        mGoodsListBeans.clear();
+                        mGoodsListBeans.addAll(goods_list);
+                        mSmartRefreshLayout.finishRefresh();
+                    } else if (loadMode == LoadConfig.LOADMORE) {
+                        mGoodsListBeans.addAll(goods_list);
+                        mSmartRefreshLayout.finishLoadmore();
+                    }
                     mMySearchListAdapter.notifyDataSetChanged();
                 }
+                break;
+        }
+    }
+
+    // 接收广播
+    protected void receiverBroadCast(Intent intent) {
+        super.receiverBroadCast(intent);
+        switch (intent.getAction()) {
+            case SEARCH_SUCCESS: // 搜索成功
+                mPresenter.getData(ApiConfig.SEARCH_GOODS, keyWord, page, KEY_STYLE, gcId, LoadConfig.REFRESH);
+                Log.e(TAG, "receiverBroadCast: " + keyWord);
                 break;
         }
     }

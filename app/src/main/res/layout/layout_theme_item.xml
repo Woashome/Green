@@ -13,8 +13,7 @@
             android:id="@+id/iv"
             android:layout_width="@dimen/dp_26"
             android:layout_height="@dimen/dp_26"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/shiming" />
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/tv"
@@ -23,7 +22,6 @@
             android:layout_below="@id/iv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_4"
-            android:text="水果"
             android:textSize="@dimen/dp_12" />
     </RelativeLayout>
 

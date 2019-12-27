@@ -34,13 +34,13 @@ public class MyRecommendGoodsItemAdapter extends BaseQuickAdapter<GoodsListbean.
             pre_price.setText(Html.fromHtml("&yen;") + resultBean.getGoods_promotion_price());
             pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
             ImageView imageView = helper.getView(R.id.goods_iv);
-            RequestOptions options = new RequestOptions()
+/*            RequestOptions options = new RequestOptions()
                     .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片
                     .fallback(R.mipmap.ic_launcher) //url为空的时候,显示的图片
-                    .error(R.mipmap.ic_launcher);
+                    .error(R.mipmap.ic_launcher);*/
             // 图片加载失败后，显示的图片
             if (null != resultBean.getGoods_image()) {
-                Glide.with(mContext).load(resultBean.getGoods_image()).apply(options).into(imageView);
+                Glide.with(mContext).load(resultBean.getGoods_image()).into(imageView);
             }
             helper.addOnClickListener(R.id.goods_card);
         }

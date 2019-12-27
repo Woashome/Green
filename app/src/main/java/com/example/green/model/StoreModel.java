@@ -9,6 +9,7 @@ public class StoreModel implements ICommonModel {
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
+            /*推荐店铺*/
             case ApiConfig.RECOMMEND_STORE: // 店铺列表(推荐) cate_id不传或为0
                 String cate_id = (String) t[0];
                 int index = (int) t[1]; // 页码
@@ -17,17 +18,20 @@ public class StoreModel implements ICommonModel {
                         .getHttpService()
                         .getStoreList(cate_id, index), view, whichApi, loadMode);
                 break;
+            /*店铺分类*/
             case ApiConfig.STORE_CLASSIFY:
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
                         .getStoreClassList(), view, whichApi, 0);
                 break;
+            /*店铺信息*/
             case ApiConfig.STORE_INFO:
                 String store_id = (String) t[0];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager()
                         .getHttpService()
                         .getStoreInfoList(store_id), view, whichApi, 0);
                 break;
+            /*店铺推荐商品*/
             case ApiConfig.STORE_RECOMMEND:
                 String storeId = (String) t[0];
                 int page = (int) t[1];
@@ -36,6 +40,7 @@ public class StoreModel implements ICommonModel {
                         .getHttpService()
                         .getStoreRecommendList(storeId, page), view, whichApi, loadmode);
                 break;
+            /*店铺所有商品*/
             case ApiConfig.ALL_STOREGOODS:
                 String store_Id = (String) t[0];
                 int page_index = (int) t[1];

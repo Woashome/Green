@@ -25,12 +25,7 @@ public class MyOptionsItemAdapter extends BaseQuickAdapter<HomePgaeList.ResultBe
             TextView option_tv = helper.getView(R.id.option_tv);
             option_tv.setText(menuBean.getAdv_title());
             ImageView imageView = helper.getView(R.id.option_icon);
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片
-                    .fallback(R.mipmap.ic_launcher) //url为空的时候,显示的图片
-                    .error(R.mipmap.ic_launcher)
-                    .centerCrop();//图片加载失败后，显示的图片
-            Glide.with(mContext).load(menuBean.getAdv_code()).apply(options).into(imageView);
+            Glide.with(mContext).load(menuBean.getAdv_code()).into(imageView);
 
             helper.addOnClickListener(R.id.rl_menu_goods);
         }

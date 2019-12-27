@@ -5,14 +5,22 @@ import com.example.green.base.ICommonView;
 import com.example.green.config.ApiConfig;
 import com.example.green.net.NetManager;
 
+import java.io.File;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 public class MineModel implements ICommonModel {
+    NetManager mNetManager = NetManager.getNetManager();
+
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
             /*个人页面*/
             case ApiConfig.MINEINFO:
                 String key = (String) t[0];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getMineInfo(key), view, whichApi, 0);
                 break;
@@ -21,14 +29,14 @@ public class MineModel implements ICommonModel {
                 int type = (int) t[0];
                 int page = (int) t[1];
                 int loadMode = (int) t[2];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getCollegeList(type, page), view, whichApi, loadMode);
                 break;
             /*收货列表*/
             case ApiConfig.SHOPPING_ADDRESS:
                 String key_site = (String) t[0];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getShoppingAddressList(key_site), view, whichApi, 0);
                 break;
@@ -42,7 +50,7 @@ public class MineModel implements ICommonModel {
                 String area_info = (String) t[5]; // 省 市 县   空格拼接
                 String is_default = (String) t[6]; // 0不默认，1默认地址
                 String user_token = (String) t[7]; // 用户token
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getAddSite(true_name, mob_phone, city_id, area_id, address, area_info, is_default, user_token), view, whichApi, 0);
                 break;
@@ -58,7 +66,7 @@ public class MineModel implements ICommonModel {
                 String isDefault = (String) t[7]; // 0不默认，1默认地址
                 String address_id = (String) t[8]; // 收货地址ID
 
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getEditorAddressbean(userToken, name, phone, cityId, areaId, details_site, areaInfo, isDefault, address_id), view, whichApi, 0);
                 break;
@@ -67,9 +75,79 @@ public class MineModel implements ICommonModel {
                 String Key = (String) t[0];
                 String AddressId = (String) t[1];
 
-                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                mNetManager.getNetManager().netMethod(mNetManager
                         .getHttpService()
                         .getDeleteAddressbean(Key, AddressId), view, whichApi, 0);
+                break;
+            /*用户上传头像*/
+            case ApiConfig.URL_UPLOAD_PICTURE://get
+                String path = (String) t[0];
+                String mtoken = (String) t[1];
+
+                //获取路径对应的文件
+                File file = new File(path);
+                //得到请求体
+                RequestBody fileRQ = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                //创建MultipartBody.Part对象
+                //注意:这个file是后台定义的参数名
+                MultipartBody.Part part = MultipartBody.Part.createFormData("pic", file.getName(), fileRQ);
+                MultipartBody.Part part1 = MultipartBody.Part.createFormData("key", mtoken);
+                mNetManager.netMethod(mNetManager
+                        .getHttpUploadService()
+                        .uploadPicture(part, part1), view, whichApi, 0);
+                break;
+            /*个人资料编辑*/
+            case ApiConfig.URL_EDIT_USER_INFO:
+                String userkey = (String) t[0];
+                int commit = (int) t[1];
+                String Name = (String) t[2];
+                String Sex = (String) t[3];
+                String Email = (String) t[4];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getEditMineInfo(userkey, commit, Name, Sex, Email), view, whichApi, 0);
+                break;
+            /*实名认证*/
+            case ApiConfig.USER_AUTONYM:// post 上传实名身份信息
+                int member_id = (int) t[0];
+                String user_name = (String) t[1];
+                String idcard = (String) t[2];
+                String member_bankname = (String) t[3];
+                String member_bankcard = (String) t[4];
+                String member_idcard_image2 = (String) t[5];
+                String member_idcard_image3 = (String) t[6];
+                String member_provinceid = (String) t[7];
+                String member_cityid = (String) t[8];
+                String member_areaid = (String) t[9];
+                String member_areainfo = (String) t[10];
+                int Commit = (int) t[11];
+
+                RequestBody id = RequestBody.create(null, String.valueOf(member_id));
+                RequestBody xingming = RequestBody.create(null, user_name);
+                RequestBody IdNumber = RequestBody.create(null, idcard);
+                RequestBody bankName = RequestBody.create(null, member_bankname);
+                RequestBody bankCard = RequestBody.create(null, member_bankcard);
+                RequestBody provinceid = RequestBody.create(null, member_provinceid);
+                RequestBody cityid = RequestBody.create(null, member_cityid);
+                RequestBody areaid = RequestBody.create(null, member_areaid);
+                RequestBody areainfo = RequestBody.create(null, member_areainfo);
+                RequestBody commit_type = RequestBody.create(null, String.valueOf(Commit));
+                //获取路径对应的文件
+                File file_img2 = new File(member_idcard_image2);
+                //得到请求体
+                RequestBody fileRQ_2 = RequestBody.create(MediaType.parse("image/jpeg"), file_img2);
+                //创建MultipartBody.Part对象
+                //注意:这个file是后台定义的参数名
+                MultipartBody.Part img_2 = MultipartBody.Part.createFormData("member_idcard_image2", file_img2.getName(), fileRQ_2);
+
+                File file_img3 = new File(member_idcard_image3);
+                RequestBody fileRQ_3 = RequestBody.create(MediaType.parse("image/jpeg"), file_img3);
+                MultipartBody.Part img_3 = MultipartBody.Part.createFormData("member_idcard_image3", file_img3.getName(), fileRQ_3);
+
+                mNetManager.netMethod(mNetManager
+                        .getHttpService()
+                        .getAutonym(id, xingming, IdNumber, bankName, bankCard,
+                                img_2, img_3, provinceid, cityid, areaid, areainfo, commit_type), view, whichApi, 0);
                 break;
             /*退出登录*/
             case ApiConfig.LOGOUT:

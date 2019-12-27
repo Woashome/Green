@@ -3,8 +3,11 @@ package com.example.green.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.TextView;
 import com.androidkun.xtablayout.XTabLayout;
 import com.example.green.R;
 import com.example.green.adapter.store.MyFragmentAdapter;
+import com.example.green.base.BaseActivity;
+import com.example.green.base.BaseFragment;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
@@ -25,6 +30,8 @@ import com.example.green.ui.fragment.search.SearchGoodsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,7 +73,6 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
         mFragments.add(searchGoodsFragment_sales);
         mFragments.add(searchGoodsFragment_price);
 
-
         mMyFragmentAdapter = new MyFragmentAdapter(getSupportFragmentManager(), mFragments);
         mTab.addTab(mTab.newTab().setText("综合"));
         mTab.addTab(mTab.newTab().setText("销量"));
@@ -91,22 +97,51 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
             }
         });
         mVp.addOnPageChangeListener(new XTabLayout.TabLayoutOnPageChangeListener(mTab));
-        mKeyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    //点击搜索的时候隐藏软键盘
-                    hideKeyboard(mKeyword);
-                    // 在这里写搜索的操作,一般都是网络请求数据
-//                    mPresenter.getData(ApiConfig.SEARCH_GOODS);
-                    return true;
-                }
-
-                return false;
-            }
-        });
+        mKeyword.addTextChangedListener(keyEditInput); // 监听验证码输入状态
 
     }
+
+    private TextWatcher keyEditInput = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        //一般我们都是在这个里面进行我们文本框的输入的判断，上面两个方法用到的很少
+        @Override
+        public void afterTextChanged(Editable s) {
+            final String key = mKeyword.getText().toString().trim();
+            mKeyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        toastActivity(key);
+                        //点击搜索的时候隐藏软键盘
+                        hideKeyboard(mKeyword);
+                        // 在这里写搜索的操作,一般都是网络请求数据
+                        mFragments.clear();
+                        SearchGoodsFragment searchGoodsFragment_synthesize = SearchGoodsFragment.newInstance(key, "", 0);
+                        SearchGoodsFragment searchGoodsFragment_sales = SearchGoodsFragment.newInstance(key, "", 3);
+                        SearchGoodsFragment searchGoodsFragment_price = SearchGoodsFragment.newInstance(key, "", 2);
+                        mFragments.add(searchGoodsFragment_synthesize);
+                        mFragments.add(searchGoodsFragment_sales);
+                        mFragments.add(searchGoodsFragment_price);
+                        mMyFragmentAdapter.notifyDataSetChanged();
+
+                        LocalBroadcastManager.getInstance(SearchListActivity.this)
+                                .sendBroadcast(new Intent(BaseActivity.SEARCH_SUCCESS));
+                        return true;
+                    }
+
+                    return false;
+                }
+            });
+        }
+    };
 
     @Override
     protected void initData() {

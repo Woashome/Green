@@ -18,7 +18,7 @@ import com.example.green.local_utils.StatusBarManager;
 public class BaseActivity extends AppCompatActivity {
 
     //更新头像，修改昵称
-    public static final String RECTIFY_UPDATE_HEAD = "rectify_update_head";
+    public static final String RECTIFY_UPDATE_INFO = "rectify_update_info";
     //登录成功
     public static final String LOGIN_SUCCESS = "LOGIN_SUCCESS";
     //退出登录
@@ -29,10 +29,9 @@ public class BaseActivity extends AppCompatActivity {
     public static final String EDITOR_ADDRESS = "editor_address";
     //删除收货地址
     public static final String DELETE_ADDRESS = "delete_address";
+    //搜索列表刷新
+    public static final String SEARCH_SUCCESS = "search_success";
 
-
-    //预告片播放
-    public static final String PLAY_VIDEO = "play_video";
 
     //修改城市
     public static final String MODIFY_CITY = "modify_city";
@@ -59,14 +58,14 @@ public class BaseActivity extends AppCompatActivity {
 
         mUserBroadCastReceiver = new UserBroadCastReceiver();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(RECTIFY_UPDATE_HEAD);
+        intentFilter.addAction(RECTIFY_UPDATE_INFO);
         intentFilter.addAction(LOGIN_SUCCESS);
         intentFilter.addAction(LOGIN_OUT);
         intentFilter.addAction(ADD_ADDRESS);
         intentFilter.addAction(EDITOR_ADDRESS);
         intentFilter.addAction(DELETE_ADDRESS);
+        intentFilter.addAction(SEARCH_SUCCESS);
 
-        intentFilter.addAction(PLAY_VIDEO);
         intentFilter.addAction(MODIFY_CITY);
         intentFilter.addAction(UNBIND_SUCCESS);
         initBroadCastReceiver(intentFilter);

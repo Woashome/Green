@@ -79,6 +79,16 @@ public class NetManager {
         return service;
     }
 
+    public INetService getHttpShoppingService() {
+        INetService service = new Retrofit.Builder()
+                .baseUrl(NetConfig.Url_SHOPPING)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(NetInterceptor.getNetInterceptor().getClientWithoutCache())
+                .build().create(INetService.class);
+        return service;
+    }
+
     /**
      * 上传图片使用
      *

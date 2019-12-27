@@ -106,7 +106,6 @@ public class AddAddressActivity extends BaseMvpActivity<CommonPresenter, MineMod
     protected void initData() {
         addressBeans = new ArrayList<>();
         Gson gson = new Gson();
-
         AddressBean addressBean = gson.fromJson(getCityJson(), AddressBean.class);
         Log.e(TAG, "initData: " + addressBean.toString());
         addressBeans.addAll(addressBean.getResult().getArea_list());

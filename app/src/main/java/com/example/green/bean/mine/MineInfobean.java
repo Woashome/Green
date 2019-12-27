@@ -1,10 +1,9 @@
 package com.example.green.bean.mine;
 
 public class MineInfobean {
-
     /**
      * code : 200
-     * result : {"member_info":{"user_name":"caijunqi","avator":"https://shop.bayi-shop.com/uploads/home/avatar/avatar_11.jpg","level_name":"银牌用户","favorites_store":0,"favorites_goods":0,"mobile":"185****0658","order_nopay_count":1,"order_noreceipt_count":0,"order_notakes_count":0,"order_noeval_count":0}}
+     * result : {"member_info":{"user_name":"小新","avator":"https://shop.bayi-shop.com/uploads/home/avatar/avatar_17.jpg","level_name":"普通用户","favorites_store":0,"favorites_goods":0,"mobile":"159****6215","order_nopay_count":0,"order_noreceipt_count":0,"order_notakes_count":0,"order_noeval_count":0}}
      * message : ok
      */
 
@@ -38,7 +37,7 @@ public class MineInfobean {
 
     public static class ResultBean {
         /**
-         * member_info : {"user_name":"caijunqi","avator":"https://shop.bayi-shop.com/uploads/home/avatar/avatar_11.jpg","level_name":"银牌用户","favorites_store":0,"favorites_goods":0,"mobile":"185****0658","order_nopay_count":1,"order_noreceipt_count":0,"order_notakes_count":0,"order_noeval_count":0}
+         * member_info : {"user_name":"小新","avator":"https://shop.bayi-shop.com/uploads/home/avatar/avatar_17.jpg","level_name":"普通用户","favorites_store":0,"favorites_goods":0,"mobile":"159****6215","order_nopay_count":0,"order_noreceipt_count":0,"order_notakes_count":0,"order_noeval_count":0}
          */
 
         private MemberInfoBean member_info;
@@ -53,13 +52,13 @@ public class MineInfobean {
 
         public static class MemberInfoBean {
             /**
-             * user_name : caijunqi
-             * avator : https://shop.bayi-shop.com/uploads/home/avatar/avatar_11.jpg
-             * level_name : 银牌用户
+             * user_name : 小新
+             * avator : https://shop.bayi-shop.com/uploads/home/avatar/avatar_17.jpg
+             * level_name : 普通用户
              * favorites_store : 0
              * favorites_goods : 0
-             * mobile : 185****0658
-             * order_nopay_count : 1
+             * mobile : 159****6215
+             * order_nopay_count : 0
              * order_noreceipt_count : 0
              * order_notakes_count : 0
              * order_noeval_count : 0

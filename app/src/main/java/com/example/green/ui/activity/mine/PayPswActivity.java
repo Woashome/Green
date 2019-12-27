@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,13 +50,16 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
     EditText mEtPswConfirm;
     private CountDownTimer mStart;
     private int TYPE = 6;
+    private String mPhone;
+    private static final String TAG = "PayPswActivity";
 
     @Override
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-        String phone = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
-        mTvPhone.setText(phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
+        mPhone = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
+        Log.e(TAG, "initView: " + mPhone);
+        mTvPhone.setText(mPhone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
         mEtCode.addTextChangedListener(codeEditInput); // 监听验证码输入状态
     }
 
@@ -112,33 +116,6 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
             case ApiConfig.ACCQUIRE_CODE:
                 AccquireSmsbean accquireSmsbean = (AccquireSmsbean) t[0];
                 if (null != accquireSmsbean && accquireSmsbean.getCode().equals("200")) {
-                    toastActivity("发送成功");
-                } else {
-                    toastActivity(accquireSmsbean.getMessage());
-                }
-                break;
-            case ApiConfig.CHANGE_PAYPSW:
-                ChangePayPswbean changePayPswbean = (ChangePayPswbean) t[0];
-                if (null != changePayPswbean && changePayPswbean.getCode().equals("200"))
-                    toastActivity(changePayPswbean.getMessage());
-                else toastActivity(changePayPswbean.getMessage());
-                break;
-        }
-    }
-
-    @OnClick({R.id.back, R.id.acquireCode, R.id.bt_confirm})
-    public void onClick(View v) {
-        switch (v.getId()) {
-            default:
-                break;
-            case R.id.back:
-                finish();
-                break;
-            case R.id.acquireCode:
-                // 手机号码 正则判断
-                String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";
-                if (!TextUtils.isEmpty(mTvPhone.getText().toString().trim()) &&
-                        mTvPhone.getText().toString().trim().matches(telRegex)) {
                     mStart = new CountDownTimer(60000, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
@@ -153,20 +130,51 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                             mAcquireCode.setClickable(true);
                         }
                     }.start();
-                    mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mTvPhone.getText().toString().trim(), TYPE, LoadConfig.NORMAL);
+                    toastActivity("发送成功");
                 } else {
-                    toastActivity("手机号为空");
+                    toastActivity(accquireSmsbean.getMessage());
                 }
+                break;
+            case ApiConfig.CHANGE_PAYPSW:
+                ChangePayPswbean changePayPswbean = (ChangePayPswbean) t[0];
+                if (changePayPswbean.getCode().equals("200")) {
+                    if (null != changePayPswbean) {
+                        toastActivity(changePayPswbean.getMessage());
+                    }
+                } else {
+                    toastActivity(changePayPswbean.getMessage());
+                }
+                break;
+        }
+    }
+
+    @OnClick({R.id.back, R.id.acquireCode, R.id.bt_confirm})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+            case R.id.back:
+                finish();
+                break;
+            case R.id.acquireCode:
+
+                mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mPhone, TYPE, LoadConfig.NORMAL);
                 break;
             case R.id.bt_confirm:
                 String key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
-                String phone = mTvPhone.getText().toString().trim();
                 String code = mEtCode.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
                 String psw_confirm = mEtPswConfirm.getText().toString().trim();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm))
-                    mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, phone);
-                else toastActivity("请输入完整信息");
+                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+                if (!TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm)) {
+                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
+                        mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, mPhone);
+                    } else {
+                        toastActivity("密码必须为6-16位数字 字母组合");
+                    }
+                } else {
+                    toastActivity("请输入完整信息");
+                }
                 break;
         }
     }

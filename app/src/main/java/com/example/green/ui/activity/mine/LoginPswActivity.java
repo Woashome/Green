@@ -50,15 +50,16 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
     @BindView(R.id.et_psw_confirm)
     EditText mEtPswConfirm;
     private CountDownTimer mStart;
-    private int TYPE = 6;
+    private int TYPE = 2;
     private static final String TAG = "LoginPswActivity";
+    private String mPhone;
 
     @Override
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-        String phone = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
-        mTvPhone.setText(phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
+        mPhone = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
+        mTvPhone.setText(mPhone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2"));
         mEtCode.addTextChangedListener(codeEditInput); // 监听验证码输入状态
     }
 
@@ -115,6 +116,20 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
             case ApiConfig.ACCQUIRE_CODE:
                 AccquireSmsbean accquireSmsbean = (AccquireSmsbean) t[0];
                 if (null != accquireSmsbean && accquireSmsbean.getCode().equals("200")) {
+                    mStart = new CountDownTimer(60000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            mAcquireCode.setText("重新发送" + "(" + millisUntilFinished / 1000 + "s)");
+                            mAcquireCode.setClickable(false);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mAcquireCode.setClickable(true);
+                            mAcquireCode.setText("获取验证码");
+                            mAcquireCode.setClickable(true);
+                        }
+                    }.start();
                     toastActivity("发送成功");
                 } else {
                     toastActivity(accquireSmsbean.getMessage());
@@ -122,10 +137,13 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 break;
             case ApiConfig.MODIFICATION_PSW:
                 ModificationPswbean modificationPswbean = (ModificationPswbean) t[0];
-                if (null != modificationPswbean && modificationPswbean.getCode().equals("200")) {
-                    toastActivity("修改密码成功 请重新登录");
-                    startActivity(new Intent(this, LoginActivity.class));
-                    finish();
+                if (modificationPswbean.getCode().equals("200")) {
+                    if (null != modificationPswbean) {
+                        SPUtils.getInstance().removeValue(SPUtils.KEY_USER_TOKEN); // 清除Token
+                        toastActivity("修改密码成功 请重新登录");
+                        startActivity(new Intent(this, LoginActivity.class));
+                        finish();
+                    }
                 } else {
                     toastActivity(modificationPswbean.getMessage());
                 }
@@ -142,38 +160,23 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 finish();
                 break;
             case R.id.acquireCode:
-                // 手机号码 正则判断
-                String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";
-                if (!TextUtils.isEmpty(mTvPhone.getText().toString().trim()) &&
-                        mTvPhone.getText().toString().trim().matches(telRegex)) {
-                    mStart = new CountDownTimer(60000, 1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                            mAcquireCode.setText("重新发送" + "(" + millisUntilFinished / 1000 + "s)");
-                            mAcquireCode.setClickable(false);
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            mAcquireCode.setClickable(true);
-                            mAcquireCode.setText("获取验证码");
-                            mAcquireCode.setClickable(true);
-                        }
-                    }.start();
-                    mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mTvPhone.getText().toString().trim(), TYPE, LoadConfig.NORMAL);
-                } else {
-                    toastActivity("手机号为空");
-                }
+                mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mPhone, TYPE, LoadConfig.NORMAL);
                 break;
             case R.id.bt_confirm:
                 String key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
-                String phone = mTvPhone.getText().toString().trim();
                 String code = mEtCode.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
                 String psw_confirm = mEtPswConfirm.getText().toString().trim();
-                if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm))
-                    mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, phone);
-                else toastActivity("请输入完整信息");
+                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+                if (!TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm)) {
+                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
+                        mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, mPhone);
+                    } else {
+                        toastActivity("密码必须为6-16位数字 字母组合");
+                    }
+                } else {
+                    toastActivity("请输入完整信息");
+                }
                 break;
         }
     }

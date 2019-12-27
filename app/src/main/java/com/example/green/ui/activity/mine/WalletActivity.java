@@ -22,6 +22,14 @@ import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.example.green.ui.activity.homepage.LoginActivity;
+import com.example.green.ui.activity.mine.wallet.IntegralActivity;
+import com.example.green.ui.activity.mine.wallet.RealNmaeActivity;
+import com.example.green.ui.activity.mine.wallet.RechargeActivity;
+import com.example.green.ui.activity.mine.wallet.StoredActivity;
+import com.example.green.ui.activity.mine.wallet.TeamActivity;
+import com.example.green.ui.activity.mine.wallet.TransactionCodeActivity;
+import com.example.green.ui.activity.mine.wallet.TransfersActivity;
+import com.example.green.ui.activity.mine.wallet.WithdrawActivity;
 import com.example.green.ui.fragment.mine.CollegeFragment;
 import com.example.green.ui.fragment.mine.VideoFragment;
 import com.yiyatech.utils.ext.ToastUtils;
@@ -169,20 +177,28 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
             case R.id.rl_user_company: // 用户公司
                 break;
             case R.id.rl_chongzhi: // 充值
+                startActivity(new Intent(WalletActivity.this, RechargeActivity.class));
                 break;
             case R.id.rl_tixian: // 提现
+                startActivity(new Intent(WalletActivity.this, WithdrawActivity.class));
                 break;
             case R.id.rl_huzhuan: // 互转
+                startActivity(new Intent(WalletActivity.this, TransfersActivity.class));
                 break;
             case R.id.rl_chuzhi: // 储值卡
+                startActivity(new Intent(WalletActivity.this, StoredActivity.class));
                 break;
             case R.id.rl_jiaoyi: // 交易码
+                startActivity(new Intent(WalletActivity.this, TransactionCodeActivity.class));
                 break;
             case R.id.rl_jifen: // 积分
+                startActivity(new Intent(WalletActivity.this, IntegralActivity.class));
                 break;
             case R.id.rl_shiming: // 实名
+                startActivity(new Intent(WalletActivity.this, RealNmaeActivity.class));
                 break;
             case R.id.rl_team: // 团队
+                startActivity(new Intent(WalletActivity.this, TeamActivity.class));
                 break;
             case R.id.rl_yaoqing: // 邀请好友
                 break;

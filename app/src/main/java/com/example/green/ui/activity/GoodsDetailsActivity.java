@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
@@ -32,7 +33,11 @@ import com.example.green.base.ICommonView;
 import com.example.green.bean.homepage.DetailsDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.MyDialog;
+import com.example.green.local_utils.MyDialogBottom;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
+import com.example.green.ui.activity.shopping.AffirmOrderActivity;
 import com.example.green.ui.activity.store.StoreInfoActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -45,7 +50,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel>
-        implements ICommonView, NestedScrollView.OnScrollChangeListener {
+        implements ICommonView, NestedScrollView.OnScrollChangeListener, MyDialogBottom.OnCenterItemClickListener {
 
     @BindView(R.id.details_scroll_view)
     NestedScrollView mScrollView;
@@ -88,14 +93,16 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     RelativeLayout mRlShopping;
     @BindView(R.id.rl_service)
     RelativeLayout mRlService;
-    @BindView(R.id.rl_trolley)
-    RelativeLayout mRlTrolley;
-    @BindView(R.id.details_add_cart)
-    TextView mDetailsAddCart;
+    /* @BindView(R.id.rl_trolley)
+     RelativeLayout mRlTrolley;*/
+    /*@BindView(R.id.details_add_cart)
+    TextView mDetailsAddCart;*/
     @BindView(R.id.details_buy)
     TextView mDetailsBuy;
     private String goodsId;
     private static final String TAG = "GoodsDetailsActivity";
+    private MyDialogBottom mMyDialog;
+
     /**
      * 偏移量阈值，大于300后Toolbar由全透明变成不透明
      */
@@ -106,6 +113,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     private MyDetailsRecommendAdapter mDetailsRecommendAdapter;
     private List<DetailsDatabean.ResultBean.GoodsCommendListBean> mCommendListBeans;
     private DetailsDatabean.ResultBean mResult; // 商品详情
+    private TextView mNum;
+    private int num = 1;
 
     @Override
     protected void initView() {
@@ -193,6 +202,21 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                         mSaleNum.setText("在售商品" + mResult.getStore_info().getGoods_count() + "件");
                         mCommendListBeans.addAll(mResult.getGoods_commend_list());
                         mDetailsRecommendAdapter.notifyDataSetChanged();
+
+                        // 立即购买
+                        View view = LayoutInflater.from(GoodsDetailsActivity.this).inflate(R.layout.layout_pop_purchase, null);
+
+                        ImageView goods_iv = view.findViewById(R.id.iv_goods);
+                        TextView price = view.findViewById(R.id.tv_price);
+                        TextView info = view.findViewById(R.id.tv_info);
+                        mNum = view.findViewById(R.id.num);
+
+                        price.setText(mResult.getGoods_info().getGoods_price());
+                        info.setText(mResult.getGoods_info().getGoods_name());
+                        mNum.setText(num + "");
+                        Glide.with(this).load(mResult.getGoods_image().get(0)).into(goods_iv);
+
+                        Log.e(TAG, "onClick: " + mResult.getGoods_image().get(0));
                     }
                 }
                 break;
@@ -256,7 +280,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
 
     @OnClick({/*R.id.look, R.id.rl_select_goods, R.id.rl_select_site,*/ R.id.iv_store, R.id.ll_go_store,
             R.id.details_finish, R.id.rl_shopping,
-            R.id.rl_service, R.id.rl_trolley, R.id.details_add_cart, R.id.details_buy})
+            R.id.rl_service, /*R.id.rl_trolley, R.id.details_add_cart,*/ R.id.details_buy})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -279,29 +303,63 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                 break;
             case R.id.rl_service: // 客服
 
-                final AlertDialog.Builder builder =  new AlertDialog.Builder(this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("温馨提示:");
-                builder.setMessage("是否需要拨打客服电话:"+mResult.getStore_info().getStore_phone());
+                builder.setMessage("是否需要拨打客服电话:" + mResult.getStore_info().getStore_phone());
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface pDialogInterface, int pI) {
-                        if (null!=mResult.getStore_info().getStore_phone()) {
+                        if (null != mResult.getStore_info().getStore_phone()) {
                             Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mResult.getStore_info().getStore_phone()));
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
-                        }else {
+                        } else {
                             toastActivity("客服手机号为空");
                         }
                     }
                 });
-                builder.setNegativeButton("取消",null);
+                builder.setNegativeButton("取消", null);
                 builder.show();
                 break;
-            case R.id.rl_trolley: // 购物车
+           /* case R.id.rl_trolley: // 购物车
                 break;
             case R.id.details_add_cart: // 加入购物车
-                break;
+                break;*/
             case R.id.details_buy: // 立即购买
+                show();
+                break;
+        }
+    }
+
+    private void show() {
+        mMyDialog = new MyDialogBottom(this, R.layout.layout_pop_purchase, new int[]
+                {R.id.rl_close, R.id.rl_subtract, R.id.rl_add, R.id.bt_buy});
+        mMyDialog.setOnCenterItemClickListener(this);
+        mMyDialog.setCanceledOnTouchOutside(false);// 设置外部点击消失
+        mMyDialog.show();
+    }
+
+    @Override
+    public void OnCenterItemClick(MyDialogBottom dialog, View view) {
+        switch (view.getId()) {
+            case R.id.rl_close:
+                mMyDialog.dismiss();
+                break;
+            case R.id.rl_subtract:
+                if (num > 0) {
+                    num = --num;
+                }
+                mNum.setText(num + "");
+                break;
+            case R.id.rl_add:
+                num = ++num;
+                mNum.setText(num + "");
+                break;
+            case R.id.bt_buy:// 生成购物信息
+                String cart_id = goodsId + "|" + mNum.getText().toString().trim();
+                Intent intent = new Intent(GoodsDetailsActivity.this, AffirmOrderActivity.class);
+                intent.putExtra("cart_id", cart_id);
+                startActivity(intent);
                 break;
         }
     }
