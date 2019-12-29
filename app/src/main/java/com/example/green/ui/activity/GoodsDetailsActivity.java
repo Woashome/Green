@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.green.R;
@@ -33,9 +34,7 @@ import com.example.green.base.ICommonView;
 import com.example.green.bean.homepage.DetailsDatabean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
-import com.example.green.local_utils.MyDialog;
 import com.example.green.local_utils.MyDialogBottom;
-import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.shopping.AffirmOrderActivity;
 import com.example.green.ui.activity.store.StoreInfoActivity;
@@ -49,8 +48,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel>
-        implements ICommonView, NestedScrollView.OnScrollChangeListener, MyDialogBottom.OnCenterItemClickListener {
+public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel> implements ICommonView, NestedScrollView.OnScrollChangeListener  {
 
     @BindView(R.id.details_scroll_view)
     NestedScrollView mScrollView;
@@ -72,10 +70,6 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     TextView mGoodsTitle;
     @BindView(R.id.goods_info)
     TextView mGoodsInfo;
-    /*@BindView(R.id.specification)
-    TextView mSpecification;
-    @BindView(R.id.site)
-    TextView mSite;*/
     @BindView(R.id.iv_store)
     ImageView mIvStore;
     @BindView(R.id.store_name)
@@ -114,7 +108,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     private List<DetailsDatabean.ResultBean.GoodsCommendListBean> mCommendListBeans;
     private DetailsDatabean.ResultBean mResult; // 商品详情
     private TextView mNum;
-    private int num = 1;
+    private PurchaseDiglog purchaseDiglog;
 
     @Override
     protected void initView() {
@@ -203,20 +197,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                         mCommendListBeans.addAll(mResult.getGoods_commend_list());
                         mDetailsRecommendAdapter.notifyDataSetChanged();
 
-                        // 立即购买
-                        View view = LayoutInflater.from(GoodsDetailsActivity.this).inflate(R.layout.layout_pop_purchase, null);
 
-                        ImageView goods_iv = view.findViewById(R.id.iv_goods);
-                        TextView price = view.findViewById(R.id.tv_price);
-                        TextView info = view.findViewById(R.id.tv_info);
-                        mNum = view.findViewById(R.id.num);
-
-                        price.setText(mResult.getGoods_info().getGoods_price());
-                        info.setText(mResult.getGoods_info().getGoods_name());
-                        mNum.setText(num + "");
-                        Glide.with(this).load(mResult.getGoods_image().get(0)).into(goods_iv);
-
-                        Log.e(TAG, "onClick: " + mResult.getGoods_image().get(0));
+                        purchaseDiglog = new PurchaseDiglog(this, mResult);
                     }
                 }
                 break;
@@ -331,36 +313,27 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         }
     }
 
+    /**
+     * 显示弹窗
+     */
     private void show() {
-        mMyDialog = new MyDialogBottom(this, R.layout.layout_pop_purchase, new int[]
-                {R.id.rl_close, R.id.rl_subtract, R.id.rl_add, R.id.bt_buy});
-        mMyDialog.setOnCenterItemClickListener(this);
-        mMyDialog.setCanceledOnTouchOutside(false);// 设置外部点击消失
-        mMyDialog.show();
-    }
-
-    @Override
-    public void OnCenterItemClick(MyDialogBottom dialog, View view) {
-        switch (view.getId()) {
-            case R.id.rl_close:
-                mMyDialog.dismiss();
-                break;
-            case R.id.rl_subtract:
-                if (num > 0) {
-                    num = --num;
-                }
-                mNum.setText(num + "");
-                break;
-            case R.id.rl_add:
-                num = ++num;
-                mNum.setText(num + "");
-                break;
-            case R.id.bt_buy:// 生成购物信息
-                String cart_id = goodsId + "|" + mNum.getText().toString().trim();
+        purchaseDiglog.show();
+        purchaseDiglog.setOnItemClickListener(new PurchaseDiglog.OnItemClickListener() {
+            @Override
+            public void onItemClick(int num, DetailsDatabean.ResultBean mResult) {
+                DetailsDatabean.ResultBean.GoodsInfoBean goods_info = mResult.getGoods_info();
+                String cart_id = goodsId + "|" + num;
                 Intent intent = new Intent(GoodsDetailsActivity.this, AffirmOrderActivity.class);
                 intent.putExtra("cart_id", cart_id);
+                intent.putExtra("name", goods_info.getGoods_name());
+                intent.putExtra("img", mResult.getGoods_image().get(0));
+                intent.putExtra("price", mResult.getGoods_info().getGoods_price());
+                intent.putExtra("store_name", mResult.getStore_info().getStore_name());
+                intent.putExtra("num",String.valueOf(num));
                 startActivity(intent);
-                break;
-        }
+                purchaseDiglog.dismiss();
+            }
+        });
     }
+
 }
