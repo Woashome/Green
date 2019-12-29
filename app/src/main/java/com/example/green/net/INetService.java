@@ -1,6 +1,7 @@
 package com.example.green.net;
 
 
+import com.example.green.bean.MyOrderbean;
 import com.example.green.bean.classify.AllClassifyListbean;
 import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.bean.homepage.DetailsDatabean;
@@ -381,6 +382,25 @@ public interface INetService {
      * */
     @GET("Goods/getRandGoods")
     Observable<RandomRecListbean> getRandomList();
+
+
+    /**
+     * 订单列表
+     * @param token
+     * @param type
+     * @param key
+     * @param page
+     * @param pagesize
+     * @return
+     */
+    @POST("Memberorder/order_list")
+    @FormUrlEncoded
+    Observable<MyOrderbean> getGoodsOrder(@Field("key") String token,
+                                          @Field("state_type") String type,
+                                          @Field("order_key") String key,
+                                          @Field("page") int page,
+                                          @Field("pagesize") int pagesize
+                                          );
 
 
     /*
