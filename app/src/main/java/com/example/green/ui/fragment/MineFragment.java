@@ -111,6 +111,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     protected void initView() {
         key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
         Log.e(TAG, "initView: " + key);
+        mFinishNum.setVisibility(View.GONE); // 已完成件数
     }
 
     @Override

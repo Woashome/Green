@@ -13,12 +13,14 @@ import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.mine.AddressBean;
 import com.example.green.bean.shopping.ShoppingInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.ShopModel;
 import com.example.green.model.StoreModel;
 import com.example.green.ui.activity.PayModeActivity;
+import com.example.green.ui.activity.mine.ShoppingAddressActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +41,10 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
     TextView mPersonPhone;
     @BindView(R.id.rl_site)
     RelativeLayout mRlSite;
+    @BindView(R.id.rl_replace)
+    RelativeLayout mRl_Replace;
+    @BindView(R.id.rl_address_info)
+    RelativeLayout mRl_address;
     @BindView(R.id.store_name)
     TextView mStoreName;
     @BindView(R.id.sp_iv)
@@ -59,6 +65,9 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
         setSupportActionBar(mToolbar);
         Intent intent = getIntent();
         cart_id = intent.getStringExtra("cart_id");
+
+        mRl_Replace.setVisibility(View.VISIBLE);
+        mRl_address.setVisibility(View.GONE);
     }
 
     @Override
@@ -114,12 +123,33 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
                 finish();
                 break;
             case R.id.rl_site:
-
+                Intent intent_site = new Intent(this, ShoppingAddressActivity.class);
+                startActivityForResult(intent_site, 0);//此处的requestCode应与下面结果处理函中调用的requestCode一致
                 break;
             case R.id.bt_commit_order:// 提交订单
                 Intent intent = new Intent(AffirmOrderActivity.this, PayModeActivity.class);
                 startActivity(intent);
                 break;
+        }
+    }
+
+    //结果处理函数，当从secondActivity中返回时调用此函数
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            mRl_address.setVisibility(View.VISIBLE);
+            Bundle bundle = data.getExtras();
+            if (bundle != null) {
+                String site = bundle.getString("site");
+                String name = bundle.getString("name");
+                String phone = bundle.getString("phone");
+                String addressId = bundle.getString("addressId");
+
+                mTvSite.setText(site);
+                mPersonName.setText(name);
+                mPersonPhone.setText(phone);
+            }
         }
     }
 }

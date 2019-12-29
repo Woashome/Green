@@ -46,6 +46,7 @@ public class MyAddressItemAdapter extends BaseQuickAdapter<ShoppingAddressListbe
             }
 
             helper.addOnClickListener(R.id.rl_editor);
+            helper.addOnClickListener(R.id.rl_address);
         }
     }
 }

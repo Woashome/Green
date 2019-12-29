@@ -1,6 +1,7 @@
 package com.example.green.ui.activity.mine;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -66,6 +67,19 @@ public class ShoppingAddressActivity extends BaseMvpActivity<CommonPresenter, Mi
                         intent.putExtra("site", mAddressListBeans.get(position).getAddress_detail());
                         intent.putExtra("is_default", mAddressListBeans.get(position).getAddress_is_default());
                         startActivity(intent);
+                        break;
+                    case R.id.rl_address:
+                        Intent intent_site = getIntent();
+                        //这里使用bundle绷带来传输数据
+                        Bundle bundle = new Bundle();
+                        //传输的内容仍然是键值对的形式
+                        bundle.putString("site", mAddressListBeans.get(position).getAddress_detail());//回发的消息 详细地址
+                        bundle.putString("name", mAddressListBeans.get(position).getAddress_realname());//回发的消息 姓名
+                        bundle.putString("phone", mAddressListBeans.get(position).getAddress_mob_phone());//回发的消息 手机号
+                        bundle.putString("addressId", mAddressListBeans.get(position).getAddress_id());//回发的消息 addressId
+                        intent_site.putExtras(bundle);
+                        setResult(RESULT_OK, intent_site);
+                        finish();
                         break;
                 }
             }
