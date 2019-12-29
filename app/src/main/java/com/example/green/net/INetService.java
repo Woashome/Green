@@ -19,6 +19,7 @@ import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
 import com.example.green.bean.mine.PictureUploadBean;
 import com.example.green.bean.mine.ShoppingAddressListbean;
+import com.example.green.bean.pay.AcquirePayCodebean;
 import com.example.green.bean.register.AccquireSmsbean;
 import com.example.green.bean.register.ModificationPswbean;
 import com.example.green.bean.register.RegisterDatabean;
@@ -380,5 +381,16 @@ public interface INetService {
      * */
     @GET("Goods/getRandGoods")
     Observable<RandomRecListbean> getRandomList();
+
+
+    /*
+     * 生成充值订单并支付
+     * http://w.gw.com/index.php/mobile/Memberpayment/PdaddPay
+     * */
+    @POST("Memberpayment/PdaddPay")
+    @FormUrlEncoded
+    Observable<AcquirePayCodebean> getPayCodeInfo(@Field("key") String key,
+                                                  @Field("payment_code") String payment_code,
+                                                  @Field("pdr_amount") String pdr_amount);
 }
 

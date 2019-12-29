@@ -70,7 +70,7 @@ public class ShoppingAddressActivity extends BaseMvpActivity<CommonPresenter, Mi
                         break;
                     case R.id.rl_address:
                         Intent intent_site = getIntent();
-                        //这里使用bundle绷带来传输数据
+                        //这里使用bundle绷带 来传输数据
                         Bundle bundle = new Bundle();
                         //传输的内容仍然是键值对的形式
                         bundle.putString("site", mAddressListBeans.get(position).getAddress_detail());//回发的消息 详细地址

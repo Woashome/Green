@@ -128,6 +128,7 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
                 break;
             case R.id.bt_commit_order:// 提交订单
                 Intent intent = new Intent(AffirmOrderActivity.this, PayModeActivity.class);
+
                 startActivity(intent);
                 break;
         }
@@ -138,6 +139,7 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && resultCode == RESULT_OK) {
+            mRl_Replace.setVisibility(View.GONE);
             mRl_address.setVisibility(View.VISIBLE);
             Bundle bundle = data.getExtras();
             if (bundle != null) {

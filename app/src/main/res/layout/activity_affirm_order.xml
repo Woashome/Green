@@ -141,8 +141,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_58"
-                    android:layout_marginTop="@dimen/dp_22"
-                    android:text="五谷稻场"
                     android:textColor="@color/c_242424"
                     android:textSize="@dimen/dp_15" />
 

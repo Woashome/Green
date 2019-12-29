@@ -149,6 +149,15 @@ public class MineModel implements ICommonModel {
                         .getAutonym(id, xingming, IdNumber, bankName, bankCard,
                                 img_2, img_3, provinceid, cityid, areaid, areainfo, commit_type), view, whichApi, 0);
                 break;
+            /*生成充值订单并支付*/
+            case ApiConfig.GETPAYMENT:
+                String Token = (String) t[0];
+                String payment_code = (String) t[1];
+                String pdr_amount = (String) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getPayCodeInfo(Token, payment_code, pdr_amount), view, whichApi, 0);
+                break;
             /*退出登录*/
             case ApiConfig.LOGOUT:
                 String username = (String) t[0];

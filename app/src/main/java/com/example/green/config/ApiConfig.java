@@ -52,7 +52,12 @@ public class ApiConfig {
 
 
     // 支付
-    public static final int URL_USESHOUYI = 22; // 收益支付
+    public static final int GETPAYMENT = 40; // 生成充值订单并支付
+
+
+
+
+
     public static final int URL_USECODE = 23; // 观影码支付
     public static final int PAYFOR = 24; // 购买支付，movie/moviePayInfo?movieId=28   back：影片信息，价格，订单号，支付方式
     public static final int PAYPARAMS = 25; // 获取支付参数  movie/payParams?orderId=105&channelId=8&clientIp=192.168.1.7

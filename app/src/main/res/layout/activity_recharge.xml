@@ -28,62 +28,67 @@
         android:textColor="@color/c_242424"
         android:textSize="@dimen/dp_18" />
 
-    <LinearLayout
+    <RadioGroup
         android:id="@+id/chongzhi_jine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:layout_below="@id/jine"
         android:layout_marginHorizontal="@dimen/dp_27"
-        android:layout_marginTop="@dimen/dp_34">
+        android:layout_marginTop="@dimen/dp_34"
+        android:orientation="horizontal">
 
-        <TextView
+        <RadioButton
             android:id="@+id/wushi"
             android:layout_width="@dimen/dp_65"
             android:layout_height="match_parent"
-            android:background="@drawable/recharge_select"
-            android:enabled="true"
+            android:background="@drawable/money_selector"
+            android:button="@null"
+            android:clickable="true"
             android:gravity="center"
             android:text="50元"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_13" />
 
-        <TextView
+        <RadioButton
             android:id="@+id/yibai"
             android:layout_width="@dimen/dp_65"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_13"
             android:background="@drawable/money_selector"
-            android:enabled="true"
+            android:button="@null"
+            android:clickable="true"
             android:gravity="center"
             android:text="100元"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_13" />
 
-        <TextView
+        <RadioButton
             android:id="@+id/wubai"
             android:layout_width="@dimen/dp_65"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_13"
             android:background="@drawable/money_selector"
-            android:enabled="true"
+            android:button="@null"
+            android:clickable="true"
             android:gravity="center"
             android:text="500元"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_13" />
 
-        <TextView
+        <RadioButton
             android:id="@+id/yiqian"
             android:layout_width="@dimen/dp_65"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_13"
             android:background="@drawable/money_selector"
-            android:enabled="true"
+            android:button="@null"
+            android:clickable="true"
             android:gravity="center"
             android:text="1000元"
             android:textColor="@color/white"
             android:textSize="@dimen/dp_13" />
 
-    </LinearLayout>
+    </RadioGroup>
 
     <TextView
         android:id="@+id/other_jine"
@@ -105,6 +110,7 @@
         android:background="@null"
         android:gravity="center"
         android:hint="0"
+        android:textColor="@color/c_242424"
         android:inputType="number"
         android:textColorHint="@color/c_333333"
         android:textSize="@dimen/dp_18" />
@@ -225,12 +231,14 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_36"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rl_bottom"
         android:layout_below="@id/rl_yinlian"
         android:layout_marginTop="@dimen/dp_21"
         android:background="@color/gray" />
 
     <RelativeLayout
+        android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_55"
         android:layout_alignParentBottom="true"
