@@ -106,4 +106,7 @@ public class ApiConfig {
     public static final int PROMOTION_APPLY = 203;
 
 
+    //订单
+    public static final int GOODSORDER = 204;
+
 }

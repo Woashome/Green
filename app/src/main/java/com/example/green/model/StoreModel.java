@@ -1,5 +1,7 @@
 package com.example.green.model;
 
+import android.support.v7.widget.PagerSnapHelper;
+
 import com.example.green.base.ICommonModel;
 import com.example.green.base.ICommonView;
 import com.example.green.config.ApiConfig;
@@ -49,6 +51,7 @@ public class StoreModel implements ICommonModel {
                         .getHttpService()
                         .getAllStoreList(store_Id, page_index), view, whichApi, load_mode);
                 break;
+
         }
     }
 }

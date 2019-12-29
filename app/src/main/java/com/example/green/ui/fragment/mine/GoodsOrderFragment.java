@@ -4,13 +4,23 @@ package com.example.green.ui.fragment.mine;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.green.R;
+import com.example.green.adapter.mine.GoodsOrderAdapter;
 import com.example.green.base.BaseMvpFragment;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.MyOrderbean;
+import com.example.green.config.ApiConfig;
+import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -73,6 +83,11 @@ public class GoodsOrderFragment extends BaseMvpFragment<CommonPresenter, MineMod
         Bundle bundle = getArguments();
         if (null != bundle) {
             status_type = bundle.getString("state_type");
+
+            String token = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+
+            mPresenter.getData(ApiConfig.GOODSORDER,token,status_type,"",1,5, LoadConfig.LOADMORE);
+
         }
     }
 
@@ -88,6 +103,15 @@ public class GoodsOrderFragment extends BaseMvpFragment<CommonPresenter, MineMod
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
+        if (whichApi == ApiConfig.GOODSORDER) {
+            MyOrderbean myOrderbean = (MyOrderbean) t[0];
+            List<MyOrderbean.ResultBean.OrderGroupListBean> order_group_list = myOrderbean.getResult().getOrder_group_list();
+
+            GoodsOrderAdapter goodsOrderAdapter = new GoodsOrderAdapter(R.layout.layout_goodsorder,order_group_list);
+
+            Log.e("zll", "onResponse: "+myOrderbean.getCode());
+        }
+
 
     }
 }

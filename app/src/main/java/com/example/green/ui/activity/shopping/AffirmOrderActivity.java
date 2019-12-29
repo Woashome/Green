@@ -3,12 +3,14 @@ package com.example.green.ui.activity.shopping;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
@@ -58,6 +60,7 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
     @BindView(R.id.order_price)
     TextView mOrderPrice;
     private String cart_id;
+    private String grossPrice;
 
     @Override
     protected void initView() {
@@ -65,6 +68,25 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
         setSupportActionBar(mToolbar);
         Intent intent = getIntent();
         cart_id = intent.getStringExtra("cart_id");
+        String name = intent.getStringExtra("name");
+        String img = intent.getStringExtra("img");
+        String prices = intent.getStringExtra("price");
+        String store_name = intent.getStringExtra("store_name");
+        String num = intent.getStringExtra("num");
+
+        Log.e("zll", "initView: "+ name +"--"+img +"--"+prices +"--"+store_name+"--"+num );
+
+        mStoreName.setText(store_name);
+        mSpInfo.setText(name);
+        mSpNum.setText(num);
+
+        double v = Double.parseDouble(prices);
+        int i = Integer.parseInt(num);
+        grossPrice =String.valueOf(v*i);
+
+        mOrderPrice.setText(prices);
+        Glide.with(this).load(img).into(mSpIv);
+
 
         mRl_Replace.setVisibility(View.VISIBLE);
         mRl_address.setVisibility(View.GONE);
