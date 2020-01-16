@@ -3,25 +3,17 @@ package com.example.green.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.androidkun.xtablayout.XTabLayout;
 import com.example.green.R;
 import com.example.green.adapter.store.MyFragmentAdapter;
-import com.example.green.base.BaseActivity;
-import com.example.green.base.BaseFragment;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
@@ -30,8 +22,6 @@ import com.example.green.ui.fragment.search.SearchGoodsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,7 +34,9 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.keyword)
-    EditText mKeyword;
+    TextView mKeyword;
+    @BindView(R.id.rl_search_view)
+    RelativeLayout mSearch;
     @BindView(R.id.tab)
     XTabLayout mTab;
     @BindView(R.id.vp)
@@ -57,13 +49,15 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
 
     @Override
     protected void initView() {
+//        mKeyword.setFocusable(false);
+//        mKeyword.setFocusableInTouchMode(false);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         Intent intent = getIntent();
         keyWord = intent.getStringExtra("keyword");
         gcId = intent.getStringExtra("gcId");
-        Log.e(TAG, "initView: " + keyWord);
-        Log.e(TAG, "initView: " + gcId);
+        mKeyword.setText(keyWord);
+
         mFragments = new ArrayList<>();
         SearchGoodsFragment searchGoodsFragment_synthesize = SearchGoodsFragment.newInstance(keyWord, gcId, 0);
         SearchGoodsFragment searchGoodsFragment_sales = SearchGoodsFragment.newInstance(keyWord, gcId, 3);
@@ -97,11 +91,11 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
             }
         });
         mVp.addOnPageChangeListener(new XTabLayout.TabLayoutOnPageChangeListener(mTab));
-        mKeyword.addTextChangedListener(keyEditInput); // 监听验证码输入状态
+//        mKeyword.addTextChangedListener(keyEditInput); // 监听验证码输入状态
 
     }
 
-    private TextWatcher keyEditInput = new TextWatcher() {
+   /* private TextWatcher keyEditInput = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
@@ -141,7 +135,7 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
                 }
             });
         }
-    };
+    };*/
 
     @Override
     protected void initData() {
@@ -171,13 +165,18 @@ public class SearchListActivity extends BaseMvpActivity<CommonPresenter, HomePag
     public void onResponse(int whichApi, Object[] t) {
     }
 
-    @OnClick({R.id.back})
+    @OnClick({R.id.back, R.id.rl_search_view})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
             case R.id.back:
                 finish();
+                break;
+            case R.id.rl_search_view:
+                Intent intent = new Intent(SearchListActivity.this, SearchActivity.class);
+                intent.putExtra("keyword", keyWord);
+                startActivity(intent);
                 break;
         }
     }

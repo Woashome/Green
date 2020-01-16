@@ -26,8 +26,7 @@ import com.example.green.bean.classify.RightClassifyListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.ClassifyModel;
-import com.example.green.ui.activity.SearchListActivity;
-import com.yiyatech.utils.ext.ToastUtils;
+import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -53,6 +52,7 @@ public class RightClassifyFragment extends BaseMvpFragment<CommonPresenter, Clas
     private List<String> imgs;
     private List<RightClassifyListbean.ResultBean.AdvListBean> mAdv_list;
     private List<RightClassifyListbean.ResultBean.ClassListBean> mClass_list;
+    private static final String TAG = "RightClassifyFragment";
 
     public RightClassifyFragment() {
         // Required empty public constructor
@@ -115,7 +115,11 @@ public class RightClassifyFragment extends BaseMvpFragment<CommonPresenter, Clas
         mBanner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-
+                if (null != mAdv_list.get(position).getGoodscn_adv_link() && !mAdv_list.get(position).getGoodscn_adv_link().equals("")) {
+                    Intent intent = new Intent(getContext(), GoodsDetailsActivity.class);
+                    intent.putExtra("goodsId", mAdv_list.get(position).getGoodscn_adv_link());
+                    startActivity(intent);
+                }
             }
         });
     }

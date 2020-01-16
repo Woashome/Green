@@ -1,5 +1,6 @@
 package com.example.green.adapter.mine;
 
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -40,5 +41,6 @@ public class ProvinceAdapter extends BaseQuickAdapter<AddressBean.ResultBean.Are
     @Override
     protected void convert(BaseViewHolder helper, AddressBean.ResultBean.AreaListBeanXX item) {
         helper.setText(R.id.textview, item.getArea_name());
+        helper.setTextColor(R.id.textview, item.isStatus() ? Color.parseColor("#65C15C") : Color.parseColor("#444444"));
     }
 }

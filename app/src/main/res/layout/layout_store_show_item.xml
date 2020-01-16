@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/goods_iv"
-        android:layout_width="@dimen/dp_97"
-        android:layout_height="@dimen/dp_93"
+        android:layout_width="@dimen/dp_75"
+        android:layout_height="@dimen/dp_75"
         android:layout_marginRight="@dimen/dp_10" />
 </LinearLayout>

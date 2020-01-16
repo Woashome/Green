@@ -13,7 +13,7 @@ public class Versionbean {
 
     /**
      * code : 200
-     * result : {"type":1,"content":null,"mode":1,"version_num":"1.1.3","url":null,"channel":null,"package_name":null,"time":null,"is_update":-1}
+     * result : {"type":1,"content":"优化了某些功能","mode":1,"version_num":"1.1.3","url":"http://www.baidu.com/","channel":"sss","package_name":"sss","time":1535646546,"is_update":-1}
      * message : ok
      */
 
@@ -48,24 +48,24 @@ public class Versionbean {
     public static class ResultBean {
         /**
          * type : 1
-         * content : null
+         * content : 优化了某些功能
          * mode : 1
          * version_num : 1.1.3
-         * url : null
-         * channel : null
-         * package_name : null
-         * time : null
+         * url : http://www.baidu.com/
+         * channel : sss
+         * package_name : sss
+         * time : 1535646546
          * is_update : -1
          */
 
         private int type;
-        private Object content;
+        private String content;
         private int mode;
         private String version_num;
-        private Object url;
-        private Object channel;
-        private Object package_name;
-        private Object time;
+        private String url;
+        private String channel;
+        private String package_name;
+        private int time;
         private int is_update;
 
         public int getType() {
@@ -76,11 +76,11 @@ public class Versionbean {
             this.type = type;
         }
 
-        public Object getContent() {
+        public String getContent() {
             return content;
         }
 
-        public void setContent(Object content) {
+        public void setContent(String content) {
             this.content = content;
         }
 
@@ -100,35 +100,35 @@ public class Versionbean {
             this.version_num = version_num;
         }
 
-        public Object getUrl() {
+        public String getUrl() {
             return url;
         }
 
-        public void setUrl(Object url) {
+        public void setUrl(String url) {
             this.url = url;
         }
 
-        public Object getChannel() {
+        public String getChannel() {
             return channel;
         }
 
-        public void setChannel(Object channel) {
+        public void setChannel(String channel) {
             this.channel = channel;
         }
 
-        public Object getPackage_name() {
+        public String getPackage_name() {
             return package_name;
         }
 
-        public void setPackage_name(Object package_name) {
+        public void setPackage_name(String package_name) {
             this.package_name = package_name;
         }
 
-        public Object getTime() {
+        public int getTime() {
             return time;
         }
 
-        public void setTime(Object time) {
+        public void setTime(int time) {
             this.time = time;
         }
 

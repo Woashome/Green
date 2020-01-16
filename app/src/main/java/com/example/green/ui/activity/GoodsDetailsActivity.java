@@ -13,7 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
@@ -23,18 +22,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.green.R;
 import com.example.green.adapter.homepage.MyDetailsRecommendAdapter;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.bean.homepage.DetailsDatabean;
+import com.example.green.bean.shopping.AddCartInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
-import com.example.green.local_utils.MyDialogBottom;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.shopping.AffirmOrderActivity;
 import com.example.green.ui.activity.store.StoreInfoActivity;
@@ -48,7 +48,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel> implements ICommonView, NestedScrollView.OnScrollChangeListener  {
+public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomePageModel> implements ICommonView {
 
     @BindView(R.id.details_scroll_view)
     NestedScrollView mScrollView;
@@ -58,18 +58,27 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     ImageView mToolbarImg;
     @BindView(R.id.details_toolbar_title)
     TextView mToolbarTitle;
-
     @BindView(R.id.banner)
     Banner mBannerView;
     @BindView(R.id.details_web_view)
     WebView mWebView;
     @BindView(R.id.price)
     TextView mPrice;
-
     @BindView(R.id.goods_title)
     TextView mGoodsTitle;
     @BindView(R.id.goods_info)
     TextView mGoodsInfo;
+    @BindView(R.id.goods_discount)
+    LinearLayout mLl_discount;
+    @BindView(R.id.putong)
+    TextView mPuTong;
+    @BindView(R.id.yinpai)
+    TextView mYinPai;
+    @BindView(R.id.jinpai)
+    TextView mJinPai;
+    @BindView(R.id.vip)
+    TextView mVip;
+
     @BindView(R.id.iv_store)
     ImageView mIvStore;
     @BindView(R.id.store_name)
@@ -80,47 +89,32 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
     RecyclerView mRecommendRecyclerview;
     @BindView(R.id.ll_go_store)
     LinearLayout mLlGoStore;
-
     @BindView(R.id.details_finish)
     LinearLayout mDetailsFinish;
     @BindView(R.id.rl_shopping)
     RelativeLayout mRlShopping;
     @BindView(R.id.rl_service)
     RelativeLayout mRlService;
-    /* @BindView(R.id.rl_trolley)
-     RelativeLayout mRlTrolley;*/
-    /*@BindView(R.id.details_add_cart)
-    TextView mDetailsAddCart;*/
+    /*@BindView(R.id.rl_trolley)
+    RelativeLayout mRlTrolley;*/
+    @BindView(R.id.details_add_cart)
+    TextView mDetailsAddCart;
     @BindView(R.id.details_buy)
     TextView mDetailsBuy;
     private String goodsId;
     private static final String TAG = "GoodsDetailsActivity";
-    private MyDialogBottom mMyDialog;
+    private int type;
 
-    /**
-     * 偏移量阈值，大于300后Toolbar由全透明变成不透明
-     */
-    protected float mGradualChange;
-
-    private int mToolbarTopPadding;
     private List<String> imgs;
     private MyDetailsRecommendAdapter mDetailsRecommendAdapter;
     private List<DetailsDatabean.ResultBean.GoodsCommendListBean> mCommendListBeans;
     private DetailsDatabean.ResultBean mResult; // 商品详情
-    private TextView mNum;
     private PurchaseDiglog purchaseDiglog;
 
     @Override
     protected void initView() {
         Intent intent = getIntent();
         goodsId = intent.getStringExtra("goodsId");
-        Log.e(TAG, "initView: " + goodsId);
-        mScrollView.setOnScrollChangeListener(this);
-        mToolbarTopPadding = getResources().getDimensionPixelSize(R.dimen.margin_size_24);
-        mToolbarContainer.setPadding(0, mToolbarTopPadding, 0, 0);
-        mToolbarContainer.getBackground().setAlpha(0);
-        mGradualChange = getResources().getDimensionPixelSize(R.dimen.margin_size_300);
-        mToolbarTitle.setAlpha(0);
 
         /*解决图片不显示*/
         mWebView.getSettings().setBlockNetworkImage(false);//不阻塞网络图片
@@ -142,6 +136,25 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         mDetailsRecommendAdapter = new MyDetailsRecommendAdapter(R.layout.layout_details_recommend_item, mCommendListBeans);
         mRecommendRecyclerview.setLayoutManager(new LinearLayoutManager(GoodsDetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
         mRecommendRecyclerview.setAdapter(mDetailsRecommendAdapter);
+
+        mDetailsRecommendAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.goods_iv:
+                    case R.id.goods_name:
+                    case R.id.goods_card:
+                        Log.e(TAG, "onItemChildClick: " + mCommendListBeans.get(position).getGoods_id() + "");
+                        Intent intent_this = new Intent(GoodsDetailsActivity.this, GoodsDetailsActivity.class);
+                        intent_this.putExtra("goodsId", mCommendListBeans.get(position).getGoods_id() + "");
+                        //设置切换动画，从右边进入，左边退出
+                        overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
+                        startActivity(intent_this);
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -175,9 +188,20 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
             case ApiConfig.GOODS_DETAILS:
                 DetailsDatabean detailsDatabean = (DetailsDatabean) t[0];
                 if (null != detailsDatabean && detailsDatabean.getCode().equals("200")) {
-                    Log.e(TAG, "onResponse: " + detailsDatabean.getResult().toString());
                     mResult = detailsDatabean.getResult();
                     if (null != mResult) {
+                        List<DetailsDatabean.ResultBean.GoodsInfoBean.GoodsMgdiscountArrBean>
+                                goods_mgdiscount_arr = detailsDatabean.getResult().getGoods_info().getGoods_mgdiscount_arr();
+                        if (goods_mgdiscount_arr.size() > 0) {
+                            mLl_discount.setVisibility(View.VISIBLE);
+                            mPuTong.setText(goods_mgdiscount_arr.get(0).getLevel_name() + " " + goods_mgdiscount_arr.get(0).getLevel_discount() + "折");
+                            mYinPai.setText(goods_mgdiscount_arr.get(1).getLevel_name() + " " + goods_mgdiscount_arr.get(1).getLevel_discount() + "折");
+                            mJinPai.setText(goods_mgdiscount_arr.get(2).getLevel_name() + " " + goods_mgdiscount_arr.get(2).getLevel_discount() + "折");
+                            mVip.setText(goods_mgdiscount_arr.get(3).getLevel_name() + " " + goods_mgdiscount_arr.get(3).getLevel_discount() + "折");
+                        } else {
+                            mLl_discount.setVisibility(View.GONE);
+                        }
+
                         imgs.addAll(mResult.getGoods_image());
                         initBanner();
                         String mobile_body = mResult.getGoods_info().getMobile_body();
@@ -196,10 +220,15 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                         mSaleNum.setText("在售商品" + mResult.getStore_info().getGoods_count() + "件");
                         mCommendListBeans.addAll(mResult.getGoods_commend_list());
                         mDetailsRecommendAdapter.notifyDataSetChanged();
-
-
-                        purchaseDiglog = new PurchaseDiglog(this, mResult);
                     }
+                }
+                break;
+            case ApiConfig.ADD_CART:
+                AddCartInfobean addCartInfobean = (AddCartInfobean) t[0];
+                if (null != addCartInfobean && addCartInfobean.getCode().equals("200")) {
+                    toastActivity("商品加入购物车成功");
+                } else {
+                    toastActivity(addCartInfobean.getMessage());
                 }
                 break;
         }
@@ -238,31 +267,9 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         return "<html>" + head + "<body>" + bodyHTML + "</body></html>";
     }
 
-    public void onScrollChange(NestedScrollView nestedScrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        int mMoveDistance = oldScrollY - mToolbarTopPadding;
-        int startOffset = 0;
-        if (mMoveDistance <= startOffset) {
-            mToolbarContainer.getBackground().setAlpha(0);
-            mToolbarImg.setBackgroundResource(R.drawable.draw_gray_circle_shape);
-            mToolbarTitle.setAlpha(0);
-        } else if (mMoveDistance < mGradualChange) {
-            int alpha = Math.round(((mMoveDistance - startOffset) / mGradualChange) * 255);
-            mToolbarContainer.getBackground().setAlpha(alpha);
-            if (mToolbarImg.getBackground() != null) {
-                mToolbarImg.getBackground().setAlpha(255 - alpha);
-            }
-            mToolbarTitle.setAlpha(255 - alpha);
-        } else if (mMoveDistance >= mGradualChange) {
-            mToolbarContainer.getBackground().setAlpha(255);
-            mToolbarImg.setBackgroundResource(0);
-            mToolbarTitle.setAlpha(1);
-        }
-    }
-
-
     @OnClick({/*R.id.look, R.id.rl_select_goods, R.id.rl_select_site,*/ R.id.iv_store, R.id.ll_go_store,
             R.id.details_finish, R.id.rl_shopping,
-            R.id.rl_service, /*R.id.rl_trolley, R.id.details_add_cart,*/ R.id.details_buy})
+            R.id.rl_service, R.id.rl_trolley, R.id.details_add_cart, R.id.details_buy})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -274,13 +281,24 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
             case R.id.rl_select_site: // 选择配送地址
                 break;*/
             case R.id.iv_store: // 店铺头像
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                StoreInfoActivity.startInfoActivity(this, String.valueOf(mResult.getStore_info().getStore_id()));
                 break;
             case R.id.ll_go_store: // 进店
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                StoreInfoActivity.startInfoActivity(this, String.valueOf(mResult.getStore_info().getStore_id()));
                 break;
             case R.id.details_finish: // 返回
                 finish();
                 break;
             case R.id.rl_shopping: // 商家
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 StoreInfoActivity.startInfoActivity(this, String.valueOf(mResult.getStore_info().getStore_id()));
                 break;
             case R.id.rl_service: // 客服
@@ -303,11 +321,19 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
                 builder.setNegativeButton("取消", null);
                 builder.show();
                 break;
-           /* case R.id.rl_trolley: // 购物车
+            case R.id.rl_trolley: // 购物车
+                Intent intent = new Intent(GoodsDetailsActivity.this, MainActivity.class);
+                intent.putExtra("id", 4);
+                startActivity(intent);
                 break;
             case R.id.details_add_cart: // 加入购物车
-                break;*/
+                type = 1;
+                purchaseDiglog = new PurchaseDiglog(this, mResult, type);
+                show();
+                break;
             case R.id.details_buy: // 立即购买
+                type = 0;
+                purchaseDiglog = new PurchaseDiglog(this, mResult, type);
                 show();
                 break;
         }
@@ -321,19 +347,24 @@ public class GoodsDetailsActivity extends BaseMvpActivity<CommonPresenter, HomeP
         purchaseDiglog.setOnItemClickListener(new PurchaseDiglog.OnItemClickListener() {
             @Override
             public void onItemClick(int num, DetailsDatabean.ResultBean mResult) {
-                DetailsDatabean.ResultBean.GoodsInfoBean goods_info = mResult.getGoods_info();
-                String cart_id = goodsId + "|" + num;
-                Intent intent = new Intent(GoodsDetailsActivity.this, AffirmOrderActivity.class);
-                intent.putExtra("cart_id", cart_id);
-                intent.putExtra("name", goods_info.getGoods_name());
-                intent.putExtra("img", mResult.getGoods_image().get(0));
-                intent.putExtra("price", mResult.getGoods_info().getGoods_price());
-                intent.putExtra("store_name", mResult.getStore_info().getStore_name());
-                intent.putExtra("num",String.valueOf(num));
-                startActivity(intent);
-                purchaseDiglog.dismiss();
+                if (type == 0) {
+                    String cart_id = goodsId + "|" + num;
+                    Intent intent = new Intent(GoodsDetailsActivity.this, AffirmOrderActivity.class);
+                    intent.putExtra("cart_id", cart_id);
+                    startActivity(intent);
+                    purchaseDiglog.dismiss();
+                } else {
+                    mPresenter.getData(ApiConfig.ADD_CART, SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, ""), goodsId, num + "");
+                    purchaseDiglog.dismiss();
+                }
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        goodsId = intent.getStringExtra("goodsId");
+    }
 }

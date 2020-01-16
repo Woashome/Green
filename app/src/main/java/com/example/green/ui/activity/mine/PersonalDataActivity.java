@@ -1,21 +1,14 @@
 package com.example.green.ui.activity.mine;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +16,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
-import com.example.green.base.BaseActivity;
 import com.example.green.base.BaseFragment;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
@@ -33,14 +25,13 @@ import com.example.green.bean.mine.MineInfobean;
 import com.example.green.bean.mine.PictureUploadBean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.MyDialogBottom;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
-import com.example.green.ui.activity.homepage.LoginActivity;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.yiyatech.utils.ext.ToastUtils;
 
 import java.util.List;
 
@@ -48,7 +39,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineModel>
-        implements ICommonView {
+        implements ICommonView, MyDialogBottom.OnCenterItemClickListener {
 
     @BindView(R.id.back)
     ImageView mBack;
@@ -73,15 +64,14 @@ public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineM
     @BindView(R.id.iv_editor)
     ImageView mIvEditor;
 
-    private BottomSheetDialog selectPicDialog;
     private int Clicked = 0;
     private String key;
     private static final String TAG = "PersonalDataActivity";
     private int COMMIT_TYPE = 1; // 默认为0 获取用户信息  1 为修改信息
-    private String urlUpload;//更新图片
     private String SEX = ""; // 性别
     private String EMAIL = ""; // 邮箱
     private MineInfobean.ResultBean.MemberInfoBean mMember_info;
+    private MyDialogBottom mMyDialogBottom;
 
     @Override
     protected void initView() {
@@ -170,7 +160,6 @@ public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineM
             case ApiConfig.URL_EDIT_USER_INFO:
                 EditMineInfobean editMineInfobean = (EditMineInfobean) t[0];
                 if (null != editMineInfobean && editMineInfobean.getCode().equals("200")) {
-                    toastActivity("修改成功");
                     updateInfoData(); // 修改昵称
                 } else {
                     toastActivity(editMineInfobean.getMessage());
@@ -261,25 +250,30 @@ public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineM
      * 选择图片弹框
      */
     private void showSelectPictureDialog() {
-        selectPicDialog = new BottomSheetDialog(this, R.style.Dialog_NoTitle);
-        selectPicDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
+        mMyDialogBottom = new MyDialogBottom(this, R.layout.dialog_bottom_select_pictrue, new int[]
+                {R.id.tv_select_pictrue_album, R.id.tv_select_pictrue_camera, R.id.tv_select_pictrue_cancel});
+        mMyDialogBottom.setOnCenterItemClickListener(this);
+        mMyDialogBottom.setCanceledOnTouchOutside(false);// 设置外部点击消失
+        mMyDialogBottom.show();
+    }
 
-            }
-        });
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_select_pictrue, null);
-        // 相册
-        TextView album = view.findViewById(R.id.tv_select_pictrue_album);
-        // 相机
-        TextView camera = view.findViewById(R.id.tv_select_pictrue_camera);
-        // 取消
-        TextView cancel = view.findViewById(R.id.tv_select_pictrue_cancel);
 
-        album.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View view) {
+    /**
+     * 隐藏软键盘
+     *
+     * @param view :一般为EditText
+     */
+    public void hideKeyboard(View view) {
+        InputMethodManager manager = (InputMethodManager) view.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void OnCenterItemClick(MyDialogBottom dialog, View view) {
+        switch (view.getId()) {
+            case R.id.tv_select_pictrue_album:
+
                 PictureSelector.create(PersonalDataActivity.this)
                         .openGallery(PictureMimeType.ofImage())
                         .maxSelectNum(1)
@@ -296,14 +290,11 @@ public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineM
                         .minimumCompressSize(200)
                         .isDragFrame(true)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
+                mMyDialogBottom.dismiss();
 
-                selectPicDialog.dismiss();
+                break;
+            case R.id.tv_select_pictrue_camera:
 
-            }
-        });
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 PictureSelector.create(PersonalDataActivity.this)
                         .openCamera(PictureMimeType.ofImage())
                         .maxSelectNum(1)
@@ -321,29 +312,19 @@ public class PersonalDataActivity extends BaseMvpActivity<CommonPresenter, MineM
                         .isDragFrame(true)
                         .forResult(PictureConfig.CHOOSE_REQUEST);
 
-                selectPicDialog.dismiss();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectPicDialog.dismiss();
-            }
-        });
+                mMyDialogBottom.dismiss();
 
-        selectPicDialog.setContentView(view);
-        selectPicDialog.show();
+                break;
+            case R.id.tv_select_pictrue_cancel:
+                mMyDialogBottom.dismiss();
+                break;
+        }
     }
 
-
-    /**
-     * 隐藏软键盘
-     *
-     * @param view :一般为EditText
-     */
-    public void hideKeyboard(View view) {
-        InputMethodManager manager = (InputMethodManager) view.getContext()
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mMyDialogBottom)
+            mMyDialogBottom.dismiss();
     }
 }

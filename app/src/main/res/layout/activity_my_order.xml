@@ -35,12 +35,7 @@
         app:xTabIndicatorColor="@color/c_27b28b"
         app:xTabIndicatorHeight="@dimen/dp_2"
         app:xTabIndicatorWidth="@dimen/dp_25"
-        app:xTabMode="fixed"
-        app:xTabSelectedTextColor="@color/c_28b28b"
-        app:xTabSelectedTextSize="@dimen/dp_14"
-        app:xTabTextBold="true"
-        app:xTabTextColor="@color/c_aeaeae"
-        app:xTabTextSelectedBold="false"
+        app:xTabMode="scrollable"
         app:xTabTextSize="@dimen/dp_12" />
 
     <android.support.v4.view.ViewPager

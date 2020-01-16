@@ -16,7 +16,6 @@ import com.example.green.bean.mine.CollegeListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.model.MineModel;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.yiyatech.utils.ext.ToastUtils;
 
 import java.util.ArrayList;
@@ -36,8 +35,8 @@ public class CollegeFragment extends BaseMvpFragment<CommonPresenter, MineModel>
 
     @BindView(R.id.college_recyclerview)
     RecyclerView mCollegeRecyclerview;
-    @BindView(R.id.SmartRefresh)
-    SmartRefreshLayout mRefreshLayout;
+/*    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mRefreshLayout;*/
 
     public CollegeFragment() {
         // Required empty public constructor
@@ -83,7 +82,7 @@ public class CollegeFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 }
             }
         });
-        mRefreshLayout.setEnableRefresh(false);
+//        mRefreshLayout.setEnableRefresh(false);
     }
 
     @Override

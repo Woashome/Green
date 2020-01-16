@@ -28,7 +28,7 @@ public class MyDialogBottom extends Dialog implements View.OnClickListener {
     private int[] listenedItems;  // 要监听的控件id
 
     public MyDialogBottom(Context context, int layoutResID, int[] listenedItems) {
-        super(context, R.style.dialog_custom); //dialog的样式
+        super(context, R.style.RoundCornerDialog); //dialog的样式
         this.context = context;
         this.layoutResID = layoutResID;
         this.listenedItems = listenedItems;
@@ -40,6 +40,8 @@ public class MyDialogBottom extends Dialog implements View.OnClickListener {
         Window window = getWindow();
         window.setGravity(Gravity.BOTTOM); // 此处可以设置dialog显示的位置为居中
         window.setWindowAnimations(R.style.bottom_menu_animation); // 添加动画效果
+        // 防止按下再重新开启屏幕电源，原先变暗的背景变白色
+        window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         setContentView(layoutResID);
 
         WindowManager windowManager = ((Activity) context).getWindowManager();

@@ -36,23 +36,27 @@ public class MyOrderActivity extends BaseMvpActivity<CommonPresenter, MineModel>
     private MyFragmentAdapter mMyFragmentAdapter;
     private List<Fragment> mFragments;
     private int Index;
+    private static final String TAG = "MyOrderActivity";
 
     @Override
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         Intent intent = getIntent();
-        Index = intent.getIntExtra("index", 0);
+        Index = intent.getIntExtra("index", -1);
+
         mFragments = new ArrayList<>();
         mFragments.add(GoodsOrderFragment.newInstance("")); // 全部
         mFragments.add(GoodsOrderFragment.newInstance("state_new")); // 待付款
-        mFragments.add(GoodsOrderFragment.newInstance("state_pay")); // 代发货
+        mFragments.add(GoodsOrderFragment.newInstance("state_pay")); // 待发货
+        mFragments.add(GoodsOrderFragment.newInstance("state_send")); // 待收货
         mFragments.add(GoodsOrderFragment.newInstance("state_success")); // 已完成
         mFragments.add(GoodsOrderFragment.newInstance("state_cancel")); // 已取消
         mMyFragmentAdapter = new MyFragmentAdapter(getSupportFragmentManager(), mFragments);
         mTab.addTab(mTab.newTab().setText("全部"));
         mTab.addTab(mTab.newTab().setText("待付款"));
         mTab.addTab(mTab.newTab().setText("待发货"));
+        mTab.addTab(mTab.newTab().setText("待收货"));
         mTab.addTab(mTab.newTab().setText("已完成"));
         mTab.addTab(mTab.newTab().setText("已取消"));
         mVp.setAdapter(mMyFragmentAdapter);
@@ -71,7 +75,7 @@ public class MyOrderActivity extends BaseMvpActivity<CommonPresenter, MineModel>
 
             @Override
             public void onTabReselected(XTabLayout.Tab tab) {
-
+                mVp.setCurrentItem(tab.getPosition());
             }
         });
         mVp.addOnPageChangeListener(new XTabLayout.TabLayoutOnPageChangeListener(mTab));

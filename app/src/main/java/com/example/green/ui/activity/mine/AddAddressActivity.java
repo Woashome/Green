@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -78,6 +77,7 @@ public class AddAddressActivity extends BaseMvpActivity<CommonPresenter, MineMod
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         mEtPhone.addTextChangedListener(phoneEditInput); // 监听手机号输入状态
+        addressBeans = new ArrayList<>();
     }
 
     private TextWatcher phoneEditInput = new TextWatcher() {
@@ -104,12 +104,10 @@ public class AddAddressActivity extends BaseMvpActivity<CommonPresenter, MineMod
 
     @Override
     protected void initData() {
-        addressBeans = new ArrayList<>();
+
         Gson gson = new Gson();
         AddressBean addressBean = gson.fromJson(getCityJson(), AddressBean.class);
-        Log.e(TAG, "initData: " + addressBean.toString());
         addressBeans.addAll(addressBean.getResult().getArea_list());
-        Log.e(TAG, "initData: " + addressBeans.toString());
         areaPickerView = new AreaPickerView(this, R.style.Dialog, addressBeans);
         areaPickerView.setAreaPickerViewCallback(new AreaPickerView.AreaPickerViewCallback() {
             @Override
@@ -121,12 +119,13 @@ public class AddAddressActivity extends BaseMvpActivity<CommonPresenter, MineMod
                             + " " + addressBeans.get(value[0]).getArea_list().get(value[1]).getArea_list().get(value[2]).getArea_name());
                     city_id = addressBeans.get(value[0]).getArea_list().get(value[1]).getArea_id() + "";
                     area_id = addressBeans.get(value[0]).getArea_list().get(value[1]).getArea_list().get(value[2]).getArea_id() + "";
-                } else {
+                } else if (value.length == 2) {
                     mTvSelectArea.setText(addressBeans.get(value[0]).getArea_name()
                             + " " + addressBeans.get(value[0]).getArea_list().get(value[1]).getArea_name());
                 }
             }
         });
+
     }
 
 
@@ -174,6 +173,7 @@ public class AddAddressActivity extends BaseMvpActivity<CommonPresenter, MineMod
                 finish();
                 break;
             case R.id.rl_select_area:
+                hideInput();
                 areaPickerView.setSelect(i);
                 areaPickerView.show();
                 break;

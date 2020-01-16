@@ -232,19 +232,19 @@
 
     <RelativeLayout
         android:id="@+id/rl_check"
-        android:layout_centerHorizontal="true"
         android:layout_width="@dimen/dp_20"
         android:layout_height="@dimen/dp_20"
-        android:layout_toLeftOf="@id/xieyi"
         android:layout_below="@id/rl_interior"
-        android:layout_marginTop="@dimen/dp_10">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_toLeftOf="@id/xieyi">
 
         <ImageView
             android:id="@+id/check"
             android:layout_width="@dimen/dp_11"
-            android:clickable="false"
             android:layout_height="@dimen/dp_11"
             android:layout_centerInParent="true"
+            android:clickable="false"
             android:src="@mipmap/check" />
     </RelativeLayout>
 
@@ -253,8 +253,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_interior"
-        android:layout_marginTop="@dimen/dp_11"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_11"
         android:text="用户隐私协议手册"
         android:textColor="@color/c_242424"
         android:textSize="@dimen/dp_12" />

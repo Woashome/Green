@@ -18,6 +18,7 @@ import java.lang.reflect.Method;
 import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application {
+    public static final String APP_ID = "wxb53dbb4718418f8e";
     private static MyApplication mApplication;
     public static String mToken;
 

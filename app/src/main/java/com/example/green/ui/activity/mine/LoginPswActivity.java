@@ -1,17 +1,13 @@
 package com.example.green.ui.activity.mine;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.green.R;
@@ -23,7 +19,7 @@ import com.example.green.bean.register.ModificationPswbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
-import com.example.green.model.MineModel;
+import com.example.green.local_utils.StatusBarUtil;
 import com.example.green.model.UserModel;
 import com.example.green.ui.activity.homepage.LoginActivity;
 
@@ -31,7 +27,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
@@ -50,7 +45,7 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
     @BindView(R.id.et_psw_confirm)
     EditText mEtPswConfirm;
     private CountDownTimer mStart;
-    private int TYPE = 2;
+    private int TYPE = 6;
     private static final String TAG = "LoginPswActivity";
     private String mPhone;
 
@@ -167,13 +162,13 @@ public class LoginPswActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 String code = mEtCode.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
                 String psw_confirm = mEtPswConfirm.getText().toString().trim();
-                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+//                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
                 if (!TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm)) {
-                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
-                        mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, mPhone);
-                    } else {
-                        toastActivity("密码必须为6-16位数字 字母组合");
-                    }
+//                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
+                    mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, mPhone);
+//                    } else {
+//                        toastActivity("密码必须为6-16位数字 字母组合");
+//                    }
                 } else {
                     toastActivity("请输入完整信息");
                 }

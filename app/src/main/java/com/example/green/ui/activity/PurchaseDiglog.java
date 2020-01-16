@@ -13,27 +13,29 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.bumptech.glide.Glide;
 import com.example.green.R;
 import com.example.green.bean.homepage.DetailsDatabean;
+import com.yiyatech.utils.ext.ToastUtils;
+
+import androidx.annotation.NonNull;
 
 
 public class PurchaseDiglog extends Dialog {
 
     private int num = 1;
+    private int type;
     @NonNull
     private final Context context;
     private final DetailsDatabean.ResultBean mResult;
 
-    public PurchaseDiglog(@NonNull @android.support.annotation.NonNull Context context, DetailsDatabean.ResultBean mResult) {
+    public PurchaseDiglog(@NonNull @android.support.annotation.NonNull Context context, DetailsDatabean.ResultBean mResult, int type) {
         super(context);
         this.context = context;
         this.mResult = mResult;
+        this.type = type;
         // 立即购买
         View view = LayoutInflater.from(context).inflate(R.layout.layout_pop_purchase, null);
-
 
         initView(view);
 
@@ -44,11 +46,16 @@ public class PurchaseDiglog extends Dialog {
         ImageView goods_iv = view.findViewById(R.id.iv_goods);
         TextView price = view.findViewById(R.id.tv_price);
         TextView info = view.findViewById(R.id.tv_info);
-         final TextView mNum = view.findViewById(R.id.num);
+        final TextView mNum = view.findViewById(R.id.num);
         RelativeLayout rl_add = view.findViewById(R.id.rl_add);
         RelativeLayout rl_subtract = view.findViewById(R.id.rl_subtract);
         RelativeLayout rl_close = view.findViewById(R.id.rl_close);
         Button bt_buy = view.findViewById(R.id.bt_buy);
+        if (type == 0) {
+            bt_buy.setText("立即购买");
+        } else {
+            bt_buy.setText("加入购物车");
+        }
 
         rl_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +77,12 @@ public class PurchaseDiglog extends Dialog {
         rl_subtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (num > 0) {
+                String trim = mNum.getText().toString().trim();
+                Integer integer = Integer.valueOf(trim);
+                if (integer > 1) {
                     num = num - 1;
+                } else {
+                    ToastUtils.show(context, "商品不能再减少了");
                 }
                 mNum.setText(String.valueOf(num));
             }
@@ -82,7 +93,7 @@ public class PurchaseDiglog extends Dialog {
         bt_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onItemClickListener.onItemClick(num,mResult);
+                onItemClickListener.onItemClick(num, mResult);
             }
         });
 

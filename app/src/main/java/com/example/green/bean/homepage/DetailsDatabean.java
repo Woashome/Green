@@ -5,9 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class DetailsDatabean {
+
     /**
      * code : 200
-     * result : {"goods_info":{"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_advword":"苹果苹果苹果苹果苹果","gc_id_1":1,"gc_id_2":2,"gc_id_3":75,"spec_name":{"1":"样式","2":"颜色","3":"大小"},"spec_value":{"1":{"140":"富士康"},"3":{"141":"4kg","142":"8kg"}},"goods_attr":false,"mobile_body":"<img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117364879565.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365267422.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117363770715.jpg\"><div>苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果<\/div>","goods_shelftime":0,"goods_specname":null,"goods_price":"20.00","goods_marketprice":"30.00","goods_costprice":"10.00","goods_discount":66,"goods_serial":"","goods_storage_alarm":0,"transport_id":0,"transport_title":"","goods_freight":"0.00","goods_vat":0,"areaid_1":1,"areaid_2":36,"goods_stcids":"","plateid_top":0,"plateid_bottom":0,"is_virtual":0,"virtual_indate":0,"virtual_limit":0,"virtual_invalid_refund":0,"is_goodsfcode":0,"is_appoint":0,"appoint_satedate":0,"is_presell":0,"presell_deliverdate":0,"is_platform_store":1,"goods_mgdiscount":null,"inviter_ratio_1":"0.00","inviter_ratio_2":"0.00","inviter_ratio_3":"0.00","inviter_total_quantity":0,"inviter_total_amount":"0.00","inviter_amount":"0.00","inviter_open":0,"mall_goods_commend":1,"mall_goods_sort":255,"goods_id":142,"goods_promotion_price":"20.00","goods_promotion_type":0,"goods_click":103,"goods_salenum":0,"goods_collect":0,"goods_spec":{"140":"富士康","141":"4kg"},"goods_storage":0,"region_id":0,"color_id":140,"evaluation_good_star":5,"evaluation_count":0,"is_have_gift":0,"groupbuy_info":"","pintuan_info":"","bargain_info":null,"xianshi_info":"","mgdiscount_info":"","cart":true,"goods_url":"/mobile/goods/index/goods_id/142.html"},"spec_image":[{"type":140,"img":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"}],"mansong_info":[],"gift_array":[],"goods_commend_list":[{"goods_id":142,"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"},{"goods_id":136,"goods_name":"红薯红薯红薯红薯红薯","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"},{"goods_id":138,"goods_name":"桃树苗桃树苗","goods_price":"5.00","goods_promotion_price":"5.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg"},{"goods_id":139,"goods_name":"土鸡土鸡土鸡","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg"},{"goods_id":140,"goods_name":"草鱼草鱼草鱼","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg"},{"goods_id":141,"goods_name":"人参人参人参","goods_price":"100.00","goods_promotion_price":"100.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg"},{"goods_id":144,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_price":"19.90","goods_promotion_price":"19.90","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg"},{"goods_id":146,"goods_name":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_price":"35.80","goods_promotion_price":"35.80","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301242837787.jpg"}],"store_info":{"store_id":1,"store_name":"自营店铺","store_phone":"18514070310","member_id":1,"member_name":"buyer","is_platform_store":1,"store_avatar":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216013778963.png","goods_count":26,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}},"spec_list":{"140|141":142,"140|142":143},"goods_image":["https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"],"goods_eval_list":[],"goods_evaluate_info":{"good":0,"normal":0,"bad":0,"all":0,"good_percent":100,"normal_percent":0,"bad_percent":0,"good_star":5,"star_average":5},"goods_hair_info":{"content":"免运费","if_store_cn":"有货","if_store":true,"area_name":"全国"}}
+     * result : {"goods_info":{"goods_name":"红薯红薯红薯红薯红薯","goods_advword":"红薯红薯红薯红薯红薯","gc_id_1":4,"gc_id_2":5,"gc_id_3":94,"spec_name":null,"spec_value":null,"goods_attr":null,"mobile_body":"<img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg\"><div>红薯红薯红薯红薯红薯红薯红薯<\/div><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445631417.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445456159.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445961146.jpg\">","goods_shelftime":0,"goods_specname":null,"goods_price":"10.00","goods_marketprice":"15.00","goods_costprice":"5.00","goods_discount":66,"goods_serial":"","goods_storage_alarm":0,"transport_id":0,"transport_title":"","goods_freight":"0.00","goods_vat":0,"areaid_1":0,"areaid_2":0,"goods_stcids":"","plateid_top":0,"plateid_bottom":0,"is_virtual":0,"virtual_indate":0,"virtual_limit":0,"virtual_invalid_refund":0,"is_goodsfcode":0,"is_appoint":0,"appoint_satedate":0,"is_presell":0,"presell_deliverdate":0,"is_platform_store":1,"goods_mgdiscount":null,"inviter_ratio_1":"0.00","inviter_ratio_2":"0.00","inviter_ratio_3":"0.00","inviter_total_quantity":0,"inviter_total_amount":"0.00","inviter_amount":"0.00","inviter_open":0,"mall_goods_commend":1,"mall_goods_sort":17,"goods_id":136,"goods_promotion_price":"10.00","goods_promotion_type":0,"goods_click":418,"goods_salenum":109,"goods_collect":0,"goods_spec":null,"goods_storage":890,"region_id":0,"color_id":0,"evaluation_good_star":5,"evaluation_count":0,"is_have_gift":0,"goods_sort":17,"groupbuy_info":"","pintuan_info":"","bargain_info":null,"xianshi_info":"","mgdiscount_type":"mgdiscount","goods_mgdiscount_arr":[{"level_discount":10,"level_name":"普通用户","level":1},{"level_discount":11,"level_name":"银牌用户","level":2},{"level_discount":12,"level_name":"金牌用户","level":3},{"level_discount":13,"level_name":"VIP用户","level":4}],"cart":true,"goods_url":"/index.php/mobile/goods/index/goods_id/136.html"},"spec_image":[{"type":0,"img":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"}],"mansong_info":[],"gift_array":[],"goods_commend_list":[{"goods_id":136,"goods_name":"红薯红薯红薯红薯红薯","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"},{"goods_id":137,"goods_name":"桃树苗桃树苗","goods_price":"5.00","goods_promotion_price":"5.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg"},{"goods_id":138,"goods_name":"土鸡土鸡土鸡","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg"},{"goods_id":139,"goods_name":"草鱼草鱼草鱼","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg"},{"goods_id":140,"goods_name":"人参人参人参","goods_price":"100.00","goods_promotion_price":"100.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg"},{"goods_id":141,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_price":"19.90","goods_promotion_price":"19.90","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg"},{"goods_id":142,"goods_name":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_price":"35.80","goods_promotion_price":"35.80","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301242837787.jpg"},{"goods_id":143,"goods_name":"台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果","goods_price":"29.80","goods_promotion_price":"29.80","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121217102927726.jpg"}],"store_info":{"store_id":1,"store_name":"自营店铺","store_phone":"18511310658","member_id":1,"member_name":"buyer","is_platform_store":1,"store_avatar":"http://w.gw.com/uploads/home/store/1/1_2019121216013778963.png","goods_count":23,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}},"spec_list":{"":136},"goods_image":["http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445961146.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445631417.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445456159.jpg"],"goods_eval_list":[],"goods_evaluate_info":{"good":0,"normal":0,"bad":0,"all":0,"good_percent":100,"normal_percent":0,"bad_percent":0,"good_star":5,"star_average":5},"goods_hair_info":{"content":"免运费","if_store_cn":"有货","if_store":true,"area_name":"全国"}}
      * message : ok
      */
 
@@ -39,18 +40,16 @@ public class DetailsDatabean {
         this.message = message;
     }
 
-
-
     public static class ResultBean {
         /**
-         * goods_info : {"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_advword":"苹果苹果苹果苹果苹果","gc_id_1":1,"gc_id_2":2,"gc_id_3":75,"spec_name":{"1":"样式","2":"颜色","3":"大小"},"spec_value":{"1":{"140":"富士康"},"3":{"141":"4kg","142":"8kg"}},"goods_attr":false,"mobile_body":"<img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117364879565.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365267422.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117363770715.jpg\"><div>苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果<\/div>","goods_shelftime":0,"goods_specname":null,"goods_price":"20.00","goods_marketprice":"30.00","goods_costprice":"10.00","goods_discount":66,"goods_serial":"","goods_storage_alarm":0,"transport_id":0,"transport_title":"","goods_freight":"0.00","goods_vat":0,"areaid_1":1,"areaid_2":36,"goods_stcids":"","plateid_top":0,"plateid_bottom":0,"is_virtual":0,"virtual_indate":0,"virtual_limit":0,"virtual_invalid_refund":0,"is_goodsfcode":0,"is_appoint":0,"appoint_satedate":0,"is_presell":0,"presell_deliverdate":0,"is_platform_store":1,"goods_mgdiscount":null,"inviter_ratio_1":"0.00","inviter_ratio_2":"0.00","inviter_ratio_3":"0.00","inviter_total_quantity":0,"inviter_total_amount":"0.00","inviter_amount":"0.00","inviter_open":0,"mall_goods_commend":1,"mall_goods_sort":255,"goods_id":142,"goods_promotion_price":"20.00","goods_promotion_type":0,"goods_click":103,"goods_salenum":0,"goods_collect":0,"goods_spec":{"140":"富士康","141":"4kg"},"goods_storage":0,"region_id":0,"color_id":140,"evaluation_good_star":5,"evaluation_count":0,"is_have_gift":0,"groupbuy_info":"","pintuan_info":"","bargain_info":null,"xianshi_info":"","mgdiscount_info":"","cart":true,"goods_url":"/mobile/goods/index/goods_id/142.html"}
-         * spec_image : [{"type":140,"img":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"}]
+         * goods_info : {"goods_name":"红薯红薯红薯红薯红薯","goods_advword":"红薯红薯红薯红薯红薯","gc_id_1":4,"gc_id_2":5,"gc_id_3":94,"spec_name":null,"spec_value":null,"goods_attr":null,"mobile_body":"<img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg\"><div>红薯红薯红薯红薯红薯红薯红薯<\/div><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445631417.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445456159.jpg\"><img src=\"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445961146.jpg\">","goods_shelftime":0,"goods_specname":null,"goods_price":"10.00","goods_marketprice":"15.00","goods_costprice":"5.00","goods_discount":66,"goods_serial":"","goods_storage_alarm":0,"transport_id":0,"transport_title":"","goods_freight":"0.00","goods_vat":0,"areaid_1":0,"areaid_2":0,"goods_stcids":"","plateid_top":0,"plateid_bottom":0,"is_virtual":0,"virtual_indate":0,"virtual_limit":0,"virtual_invalid_refund":0,"is_goodsfcode":0,"is_appoint":0,"appoint_satedate":0,"is_presell":0,"presell_deliverdate":0,"is_platform_store":1,"goods_mgdiscount":null,"inviter_ratio_1":"0.00","inviter_ratio_2":"0.00","inviter_ratio_3":"0.00","inviter_total_quantity":0,"inviter_total_amount":"0.00","inviter_amount":"0.00","inviter_open":0,"mall_goods_commend":1,"mall_goods_sort":17,"goods_id":136,"goods_promotion_price":"10.00","goods_promotion_type":0,"goods_click":418,"goods_salenum":109,"goods_collect":0,"goods_spec":null,"goods_storage":890,"region_id":0,"color_id":0,"evaluation_good_star":5,"evaluation_count":0,"is_have_gift":0,"goods_sort":17,"groupbuy_info":"","pintuan_info":"","bargain_info":null,"xianshi_info":"","mgdiscount_type":"mgdiscount","goods_mgdiscount_arr":[{"level_discount":10,"level_name":"普通用户","level":1},{"level_discount":11,"level_name":"银牌用户","level":2},{"level_discount":12,"level_name":"金牌用户","level":3},{"level_discount":13,"level_name":"VIP用户","level":4}],"cart":true,"goods_url":"/index.php/mobile/goods/index/goods_id/136.html"}
+         * spec_image : [{"type":0,"img":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"}]
          * mansong_info : []
          * gift_array : []
-         * goods_commend_list : [{"goods_id":142,"goods_name":"苹果苹果苹果苹果 富士康 4kg","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"},{"goods_id":136,"goods_name":"红薯红薯红薯红薯红薯","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"},{"goods_id":138,"goods_name":"桃树苗桃树苗","goods_price":"5.00","goods_promotion_price":"5.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg"},{"goods_id":139,"goods_name":"土鸡土鸡土鸡","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg"},{"goods_id":140,"goods_name":"草鱼草鱼草鱼","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg"},{"goods_id":141,"goods_name":"人参人参人参","goods_price":"100.00","goods_promotion_price":"100.00","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg"},{"goods_id":144,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_price":"19.90","goods_promotion_price":"19.90","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg"},{"goods_id":146,"goods_name":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_price":"35.80","goods_promotion_price":"35.80","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301242837787.jpg"}]
-         * store_info : {"store_id":1,"store_name":"自营店铺","store_phone":"18514070310","member_id":1,"member_name":"buyer","is_platform_store":1,"store_avatar":"https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216013778963.png","goods_count":26,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}}
-         * spec_list : {"140|141":142,"140|142":143}
-         * goods_image : ["https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg"]
+         * goods_commend_list : [{"goods_id":136,"goods_name":"红薯红薯红薯红薯红薯","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"},{"goods_id":137,"goods_name":"桃树苗桃树苗","goods_price":"5.00","goods_promotion_price":"5.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121118424369048.jpg"},{"goods_id":138,"goods_name":"土鸡土鸡土鸡","goods_price":"20.00","goods_promotion_price":"20.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121212590222769.jpg"},{"goods_id":139,"goods_name":"草鱼草鱼草鱼","goods_price":"10.00","goods_promotion_price":"10.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213002151769.jpg"},{"goods_id":140,"goods_name":"人参人参人参","goods_price":"100.00","goods_promotion_price":"100.00","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121213255634668.jpg"},{"goods_id":141,"goods_name":"梨子鸭梨梨子新鲜10斤砀山梨皇冠梨香梨翠冠梨当季水果新鲜雪梨 中果","goods_price":"19.90","goods_promotion_price":"19.90","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301265027009.jpg"},{"goods_id":142,"goods_name":"现摘水蜜桃子水果新鲜雪桃10斤整箱包邮冬桃甜当季时令孕妇毛桃蟠","goods_price":"35.80","goods_promotion_price":"35.80","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121301242837787.jpg"},{"goods_id":143,"goods_name":"台湾牛奶枣贵妃枣大青枣5斤包邮冬枣现摘青枣脆甜新鲜当季水果","goods_price":"29.80","goods_promotion_price":"29.80","goods_image_url":"http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121217102927726.jpg"}]
+         * store_info : {"store_id":1,"store_name":"自营店铺","store_phone":"18511310658","member_id":1,"member_name":"buyer","is_platform_store":1,"store_avatar":"http://w.gw.com/uploads/home/store/1/1_2019121216013778963.png","goods_count":23,"store_credit":{"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}}
+         * spec_list : {"":136}
+         * goods_image : ["http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445961146.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445631417.jpg","http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445456159.jpg"]
          * goods_eval_list : []
          * goods_evaluate_info : {"good":0,"normal":0,"bad":0,"all":0,"good_percent":100,"normal_percent":0,"bad_percent":0,"good_star":5,"star_average":5}
          * goods_hair_info : {"content":"免运费","if_store_cn":"有货","if_store":true,"area_name":"全国"}
@@ -158,20 +157,20 @@ public class DetailsDatabean {
 
         public static class GoodsInfoBean {
             /**
-             * goods_name : 苹果苹果苹果苹果 富士康 4kg
-             * goods_advword : 苹果苹果苹果苹果苹果
-             * gc_id_1 : 1
-             * gc_id_2 : 2
-             * gc_id_3 : 75
-             * spec_name : {"1":"样式","2":"颜色","3":"大小"}
-             * spec_value : {"1":{"140":"富士康"},"3":{"141":"4kg","142":"8kg"}}
-             * goods_attr : false
-             * mobile_body : <img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117364879565.jpg"><img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365267422.jpg"><img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117363770715.jpg"><div>苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果苹果</div>
+             * goods_name : 红薯红薯红薯红薯红薯
+             * goods_advword : 红薯红薯红薯红薯红薯
+             * gc_id_1 : 4
+             * gc_id_2 : 5
+             * gc_id_3 : 94
+             * spec_name : null
+             * spec_value : null
+             * goods_attr : null
+             * mobile_body : <img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg"><div>红薯红薯红薯红薯红薯红薯红薯</div><img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445631417.jpg"><img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445456159.jpg"><img src="http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117445961146.jpg">
              * goods_shelftime : 0
              * goods_specname : null
-             * goods_price : 20.00
-             * goods_marketprice : 30.00
-             * goods_costprice : 10.00
+             * goods_price : 10.00
+             * goods_marketprice : 15.00
+             * goods_costprice : 5.00
              * goods_discount : 66
              * goods_serial :
              * goods_storage_alarm : 0
@@ -179,8 +178,8 @@ public class DetailsDatabean {
              * transport_title :
              * goods_freight : 0.00
              * goods_vat : 0
-             * areaid_1 : 1
-             * areaid_2 : 36
+             * areaid_1 : 0
+             * areaid_2 : 0
              * goods_stcids :
              * plateid_top : 0
              * plateid_bottom : 0
@@ -203,27 +202,29 @@ public class DetailsDatabean {
              * inviter_amount : 0.00
              * inviter_open : 0
              * mall_goods_commend : 1
-             * mall_goods_sort : 255
-             * goods_id : 142
-             * goods_promotion_price : 20.00
+             * mall_goods_sort : 17
+             * goods_id : 136
+             * goods_promotion_price : 10.00
              * goods_promotion_type : 0
-             * goods_click : 103
-             * goods_salenum : 0
+             * goods_click : 418
+             * goods_salenum : 109
              * goods_collect : 0
-             * goods_spec : {"140":"富士康","141":"4kg"}
-             * goods_storage : 0
+             * goods_spec : null
+             * goods_storage : 890
              * region_id : 0
-             * color_id : 140
+             * color_id : 0
              * evaluation_good_star : 5
              * evaluation_count : 0
              * is_have_gift : 0
+             * goods_sort : 17
              * groupbuy_info :
              * pintuan_info :
              * bargain_info : null
              * xianshi_info :
-             * mgdiscount_info :
+             * mgdiscount_type : mgdiscount
+             * goods_mgdiscount_arr : [{"level_discount":10,"level_name":"普通用户","level":1},{"level_discount":11,"level_name":"银牌用户","level":2},{"level_discount":12,"level_name":"金牌用户","level":3},{"level_discount":13,"level_name":"VIP用户","level":4}]
              * cart : true
-             * goods_url : /mobile/goods/index/goods_id/142.html
+             * goods_url : /index.php/mobile/goods/index/goods_id/136.html
              */
 
             private String goods_name;
@@ -231,9 +232,9 @@ public class DetailsDatabean {
             private int gc_id_1;
             private int gc_id_2;
             private int gc_id_3;
-            private SpecNameBean spec_name;
-            private SpecValueBean spec_value;
-            private boolean goods_attr;
+            private Object spec_name;
+            private Object spec_value;
+            private Object goods_attr;
             private String mobile_body;
             private int goods_shelftime;
             private Object goods_specname;
@@ -278,20 +279,22 @@ public class DetailsDatabean {
             private int goods_click;
             private int goods_salenum;
             private int goods_collect;
-            private GoodsSpecBean goods_spec;
+            private Object goods_spec;
             private int goods_storage;
             private int region_id;
             private int color_id;
             private int evaluation_good_star;
             private int evaluation_count;
             private int is_have_gift;
+            private int goods_sort;
             private String groupbuy_info;
             private String pintuan_info;
             private Object bargain_info;
             private String xianshi_info;
-            private String mgdiscount_info;
+            private String mgdiscount_type;
             private boolean cart;
             private String goods_url;
+            private List<GoodsMgdiscountArrBean> goods_mgdiscount_arr;
 
             public String getGoods_name() {
                 return goods_name;
@@ -333,27 +336,27 @@ public class DetailsDatabean {
                 this.gc_id_3 = gc_id_3;
             }
 
-            public SpecNameBean getSpec_name() {
+            public Object getSpec_name() {
                 return spec_name;
             }
 
-            public void setSpec_name(SpecNameBean spec_name) {
+            public void setSpec_name(Object spec_name) {
                 this.spec_name = spec_name;
             }
 
-            public SpecValueBean getSpec_value() {
+            public Object getSpec_value() {
                 return spec_value;
             }
 
-            public void setSpec_value(SpecValueBean spec_value) {
+            public void setSpec_value(Object spec_value) {
                 this.spec_value = spec_value;
             }
 
-            public boolean isGoods_attr() {
+            public Object getGoods_attr() {
                 return goods_attr;
             }
 
-            public void setGoods_attr(boolean goods_attr) {
+            public void setGoods_attr(Object goods_attr) {
                 this.goods_attr = goods_attr;
             }
 
@@ -709,11 +712,11 @@ public class DetailsDatabean {
                 this.goods_collect = goods_collect;
             }
 
-            public GoodsSpecBean getGoods_spec() {
+            public Object getGoods_spec() {
                 return goods_spec;
             }
 
-            public void setGoods_spec(GoodsSpecBean goods_spec) {
+            public void setGoods_spec(Object goods_spec) {
                 this.goods_spec = goods_spec;
             }
 
@@ -765,6 +768,14 @@ public class DetailsDatabean {
                 this.is_have_gift = is_have_gift;
             }
 
+            public int getGoods_sort() {
+                return goods_sort;
+            }
+
+            public void setGoods_sort(int goods_sort) {
+                this.goods_sort = goods_sort;
+            }
+
             public String getGroupbuy_info() {
                 return groupbuy_info;
             }
@@ -797,12 +808,12 @@ public class DetailsDatabean {
                 this.xianshi_info = xianshi_info;
             }
 
-            public String getMgdiscount_info() {
-                return mgdiscount_info;
+            public String getMgdiscount_type() {
+                return mgdiscount_type;
             }
 
-            public void setMgdiscount_info(String mgdiscount_info) {
-                this.mgdiscount_info = mgdiscount_info;
+            public void setMgdiscount_type(String mgdiscount_type) {
+                this.mgdiscount_type = mgdiscount_type;
             }
 
             public boolean isCart() {
@@ -821,143 +832,47 @@ public class DetailsDatabean {
                 this.goods_url = goods_url;
             }
 
-            public static class SpecNameBean {
-                /**
-                 * 1 : 样式
-                 * 2 : 颜色
-                 * 3 : 大小
-                 */
-
-                @SerializedName("1")
-                private String _$1;
-                @SerializedName("2")
-                private String _$2;
-                @SerializedName("3")
-                private String _$3;
-
-                public String get_$1() {
-                    return _$1;
-                }
-
-                public void set_$1(String _$1) {
-                    this._$1 = _$1;
-                }
-
-                public String get_$2() {
-                    return _$2;
-                }
-
-                public void set_$2(String _$2) {
-                    this._$2 = _$2;
-                }
-
-                public String get_$3() {
-                    return _$3;
-                }
-
-                public void set_$3(String _$3) {
-                    this._$3 = _$3;
-                }
+            public List<GoodsMgdiscountArrBean> getGoods_mgdiscount_arr() {
+                return goods_mgdiscount_arr;
             }
 
-            public static class SpecValueBean {
-                /**
-                 * 1 : {"140":"富士康"}
-                 * 3 : {"141":"4kg","142":"8kg"}
-                 */
-
-                @SerializedName("1")
-                private _$1Bean _$1;
-                @SerializedName("3")
-                private _$3Bean _$3;
-
-                public _$1Bean get_$1() {
-                    return _$1;
-                }
-
-                public void set_$1(_$1Bean _$1) {
-                    this._$1 = _$1;
-                }
-
-                public _$3Bean get_$3() {
-                    return _$3;
-                }
-
-                public void set_$3(_$3Bean _$3) {
-                    this._$3 = _$3;
-                }
-
-                public static class _$1Bean {
-                    /**
-                     * 140 : 富士康
-                     */
-
-                    @SerializedName("140")
-                    private String _$140;
-
-                    public String get_$140() {
-                        return _$140;
-                    }
-
-                    public void set_$140(String _$140) {
-                        this._$140 = _$140;
-                    }
-                }
-
-                public static class _$3Bean {
-                    /**
-                     * 141 : 4kg
-                     * 142 : 8kg
-                     */
-
-                    @SerializedName("141")
-                    private String _$141;
-                    @SerializedName("142")
-                    private String _$142;
-
-                    public String get_$141() {
-                        return _$141;
-                    }
-
-                    public void set_$141(String _$141) {
-                        this._$141 = _$141;
-                    }
-
-                    public String get_$142() {
-                        return _$142;
-                    }
-
-                    public void set_$142(String _$142) {
-                        this._$142 = _$142;
-                    }
-                }
+            public void setGoods_mgdiscount_arr(List<GoodsMgdiscountArrBean> goods_mgdiscount_arr) {
+                this.goods_mgdiscount_arr = goods_mgdiscount_arr;
             }
 
-            public static class GoodsSpecBean {
+            public static class GoodsMgdiscountArrBean {
                 /**
-                 * 140 : 富士康
-                 * 141 : 4kg
+                 * level_discount : 10
+                 * level_name : 普通用户
+                 * level : 1
                  */
 
-                @SerializedName("140")
-                private String _$140;
-                @SerializedName("141")
-                private String _$141;
+                private int level_discount;
+                private String level_name;
+                private int level;
 
-                public String get_$140() {
-                    return _$140;
+                public int getLevel_discount() {
+                    return level_discount;
                 }
 
-                public void set_$140(String _$140) {
-                    this._$140 = _$140;
+                public void setLevel_discount(int level_discount) {
+                    this.level_discount = level_discount;
                 }
 
-                public String get_$141() {
-                    return _$141;
+                public String getLevel_name() {
+                    return level_name;
                 }
 
-                public void set_$141(String _$141) {
-                    this._$141 = _$141;
+                public void setLevel_name(String level_name) {
+                    this.level_name = level_name;
+                }
+
+                public int getLevel() {
+                    return level;
+                }
+
+                public void setLevel(int level) {
+                    this.level = level;
                 }
             }
         }
@@ -966,12 +881,12 @@ public class DetailsDatabean {
             /**
              * store_id : 1
              * store_name : 自营店铺
-             * store_phone : 18514070310
+             * store_phone : 18511310658
              * member_id : 1
              * member_name : buyer
              * is_platform_store : 1
-             * store_avatar : https://shop.bayi-shop.com/uploads/home/store/1/1_2019121216013778963.png
-             * goods_count : 26
+             * store_avatar : http://w.gw.com/uploads/home/store/1/1_2019121216013778963.png
+             * goods_count : 23
              * store_credit : {"store_desccredit":{"text":"描述相符","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_servicecredit":{"text":"服务态度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"},"store_deliverycredit":{"text":"发货速度","credit":5,"percent":"----","percent_class":"equal","percent_text":"持平"}}
              */
 
@@ -1263,25 +1178,19 @@ public class DetailsDatabean {
         }
 
         public static class SpecListBean {
-            @SerializedName("140|141")
-            private int _$_140141278; // FIXME check this code
-            @SerializedName("140|142")
-            private int _$_140142203; // FIXME check this code
+            /**
+             * : 136
+             */
 
-            public int get_$_140141278() {
-                return _$_140141278;
+            @SerializedName("")
+            private int _$167; // FIXME check this code
+
+            public int get_$167() {
+                return _$167;
             }
 
-            public void set_$_140141278(int _$_140141278) {
-                this._$_140141278 = _$_140141278;
-            }
-
-            public int get_$_140142203() {
-                return _$_140142203;
-            }
-
-            public void set_$_140142203(int _$_140142203) {
-                this._$_140142203 = _$_140142203;
+            public void set_$167(int _$167) {
+                this._$167 = _$167;
             }
         }
 
@@ -1429,8 +1338,8 @@ public class DetailsDatabean {
 
         public static class SpecImageBean {
             /**
-             * type : 140
-             * img : https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg
+             * type : 0
+             * img : http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg
              */
 
             private int type;
@@ -1455,11 +1364,11 @@ public class DetailsDatabean {
 
         public static class GoodsCommendListBean {
             /**
-             * goods_id : 142
-             * goods_name : 苹果苹果苹果苹果 富士康 4kg
-             * goods_price : 20.00
-             * goods_promotion_price : 20.00
-             * goods_image_url : https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117365572753.jpg
+             * goods_id : 136
+             * goods_name : 红薯红薯红薯红薯红薯
+             * goods_price : 10.00
+             * goods_promotion_price : 10.00
+             * goods_image_url : http://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121117450292048.jpg
              */
 
             private int goods_id;

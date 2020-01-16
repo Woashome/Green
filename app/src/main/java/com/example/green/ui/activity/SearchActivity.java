@@ -18,6 +18,8 @@ import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.homepage.HotSearchKeyListbean;
+import com.example.green.config.ApiConfig;
 import com.example.green.database.RecordsDao;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.HomePageModel;
@@ -44,7 +46,9 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
     //默然展示词条个数
     private final int DEFAULT_RECORD_NUMBER = 10;
     private List<String> recordList = new ArrayList<>();
+    private List<String> hotLsit = new ArrayList<>();
     private TagAdapter mRecordsAdapter;
+    private TagAdapter mHotAdapter;
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -62,12 +66,20 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
     ImageView clearAllRecords;
     @BindView(R.id.fl_search_records)
     TagFlowLayout tagFlowLayout;
+    @BindView(R.id.fl_search_hot)
+    TagFlowLayout hotTagFlowLayout;
     @BindView(R.id.iv_arrow)
     ImageView moreArrow;
     @BindView(R.id.ll_history_content)
     LinearLayout mHistoryContent;
 
     protected void initView() {
+        Intent intent = getIntent();
+        String keyword = intent.getStringExtra("keyword");
+        if (null != keyword) {
+            editText.setText(keyword);
+            editText.setSelection(keyword.length());//将光标移至文字末尾
+        }
         //默认账号
         String username = SPUtils.getInstance().getValue(KEY_USER_NAME, "");
         //初始化数据库
@@ -142,6 +154,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
                 initData();
             }
         });
+
     }
 
     private void showDialog(String dialogTitle, @NonNull DialogInterface.OnClickListener onClickListener) {
@@ -176,6 +189,9 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
                         }
                     }
                 });
+
+        // 搜索页面热门搜索词
+        mPresenter.getData(ApiConfig.HOT_SEARCH_KEY);
     }
 
     @Override
@@ -201,6 +217,37 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomePageMod
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
+        switch (whichApi) {
+            case ApiConfig.HOT_SEARCH_KEY:
+                HotSearchKeyListbean hotSearchKeyListbean = (HotSearchKeyListbean) t[0];
+                if (null != hotSearchKeyListbean && hotSearchKeyListbean.getCode().equals("200")) {
+                    hotLsit.clear();
+                    hotLsit.addAll(hotSearchKeyListbean.getResult().getList());
+
+                    mHotAdapter = new TagAdapter<String>(hotLsit) {
+                        @Override
+                        public View getView(FlowLayout parent, int position, String pS) {
+                            TextView tv = (TextView) LayoutInflater.from(SearchActivity.this).inflate(R.layout.tv_hot,
+                                    hotTagFlowLayout, false);
+                            //为标签设置对应的内容
+                            tv.setText(pS);
+                            return tv;
+                        }
+                    };
+                    hotTagFlowLayout.setAdapter(mHotAdapter);
+                    hotTagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                        @Override
+                        public void onTagClick(View view, int position, FlowLayout parent) {
+                            //清空editText之前的数据
+                            editText.setText("");
+                            //将获取到的字符串传到搜索结果界面,点击后搜索对应条目内容
+                            editText.setText(hotLsit.get(position));
+                            editText.setSelection(editText.length());
+                        }
+                    });
+                }
+                break;
+        }
     }
 
     @Override

@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-        <com.scwang.smartrefresh.header.BezierCircleHeader
+        <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -39,9 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.scwang.smartrefresh.layout.footer.FalsifyFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </RelativeLayout>

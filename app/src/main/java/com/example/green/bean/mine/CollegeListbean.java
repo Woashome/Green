@@ -4,10 +4,9 @@ import java.util.List;
 
 public class CollegeListbean {
 
-
     /**
      * code : 200
-     * result : [{"article_id":48,"ac_id":8,"article_url":"http://shop.com/admin/index/index.html","article_show":1,"article_sort":0,"article_title":"啊啊士大夫","article_content":"&lt;p&gt;爱的施工方&lt;/p&gt;","article_time":"2019-12-03 15:44:35","article_pic":"","article_type":0}]
+     * result : [{"article_id":48,"ac_id":8,"article_url":"","article_show":1,"article_sort":0,"article_title":"习主席2020年新年贺词！","article_time":"2020-01-02 15:03:05","article_type":0,"article_pic":"https://shop.bayi-shop.com/uploads/home/article/5e096a47cc821.jpg"}]
      * message : ok
      */
 
@@ -43,14 +42,13 @@ public class CollegeListbean {
         /**
          * article_id : 48
          * ac_id : 8
-         * article_url : http://shop.com/admin/index/index.html
+         * article_url :
          * article_show : 1
          * article_sort : 0
-         * article_title : 啊啊士大夫
-         * article_content : &lt;p&gt;爱的施工方&lt;/p&gt;
-         * article_time : 2019-12-03 15:44:35
-         * article_pic :
+         * article_title : 习主席2020年新年贺词！
+         * article_time : 2020-01-02 15:03:05
          * article_type : 0
+         * article_pic : https://shop.bayi-shop.com/uploads/home/article/5e096a47cc821.jpg
          */
 
         private int article_id;
@@ -59,10 +57,9 @@ public class CollegeListbean {
         private int article_show;
         private int article_sort;
         private String article_title;
-        private String article_content;
         private String article_time;
-        private String article_pic;
         private int article_type;
+        private String article_pic;
 
         public int getArticle_id() {
             return article_id;
@@ -112,14 +109,6 @@ public class CollegeListbean {
             this.article_title = article_title;
         }
 
-        public String getArticle_content() {
-            return article_content;
-        }
-
-        public void setArticle_content(String article_content) {
-            this.article_content = article_content;
-        }
-
         public String getArticle_time() {
             return article_time;
         }
@@ -128,20 +117,20 @@ public class CollegeListbean {
             this.article_time = article_time;
         }
 
-        public String getArticle_pic() {
-            return article_pic;
-        }
-
-        public void setArticle_pic(String article_pic) {
-            this.article_pic = article_pic;
-        }
-
         public int getArticle_type() {
             return article_type;
         }
 
         public void setArticle_type(int article_type) {
             this.article_type = article_type;
+        }
+
+        public String getArticle_pic() {
+            return article_pic;
+        }
+
+        public void setArticle_pic(String article_pic) {
+            this.article_pic = article_pic;
         }
     }
 }

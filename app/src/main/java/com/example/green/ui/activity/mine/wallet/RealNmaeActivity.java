@@ -1,17 +1,13 @@
 package com.example.green.ui.activity.mine.wallet;
 
-import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,21 +16,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
-import com.example.green.base.MyApplication;
 import com.example.green.bean.mine.AddressBean;
+import com.example.green.bean.mine.AuthInfobean;
 import com.example.green.bean.mine.AutonymBean;
 import com.example.green.config.ApiConfig;
-import com.example.green.config.LoadConfig;
 import com.example.green.customs.AreaPickerView;
+import com.example.green.local_utils.MyDialogBottom;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
-import com.example.green.ui.activity.mine.PersonalDataActivity;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -42,17 +37,15 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel> implements ICommonView {
+public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel> implements ICommonView, MyDialogBottom.OnCenterItemClickListener {
 
     @BindView(R.id.back)
     ImageView mBack;
@@ -68,6 +61,8 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
     ImageView mFrontPic;
     @BindView(R.id.reverse_pic)
     ImageView mReversePic;
+    @BindView(R.id.hand_photo)
+    ImageView mHandPic;
     @BindView(R.id.et_bank_name)
     EditText mEtBankName;
     @BindView(R.id.et_bank_account)
@@ -75,17 +70,21 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
     @BindView(R.id.btn_commit)
     Button mBtnCommit;
     private static final String TAG = "RealNmaeActivity";
-    private BottomSheetDialog selectPicDialog;
     private int TYPE;
     //所选相册图片的路径(原图/压缩后/剪裁后)
     String FrontPic = "";
     String ReversePic = "";
+    String HandPic = "";
     private AreaPickerView areaPickerView;
     private List<AddressBean.ResultBean.AreaListBeanXX> addressBeans;
     private int[] i;
     private String province_id;
     private String city_id;
     private String area_id;
+    private MyDialogBottom mMyDialogBottom;
+    private String userId;
+    // 信息提交中加载
+    ProgressDialog progressDialog;
 
     @Override
     protected void initView() {
@@ -118,7 +117,9 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
 
     @Override
     protected void initData() {
-
+        Integer value = SPUtils.getInstance().getValue(SPUtils.KEY_USER_ID, 0);
+        userId = String.valueOf(value);
+        mPresenter.getData(ApiConfig.AUTHINFO, userId);
     }
 
     @Override
@@ -138,24 +139,153 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
 
     @Override
     public void onError(Throwable e) {
+        if (null != progressDialog) {
+            dismissDialog();
+        }
         Log.e(TAG, "onError: " + e.getMessage());
     }
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
         switch (whichApi) {
+            case ApiConfig.AUTHINFO:
+                AuthInfobean authInfobean = (AuthInfobean) t[0];
+                if (null != authInfobean && authInfobean.getCode() == 200) {
+                    final AuthInfobean.ResultBean authInfobeanResult = authInfobean.getResult();
+                    int member_auth_state = authInfobeanResult.getMember_auth_state();
+                    Log.e(TAG, "onResponse: " + member_auth_state);
+                    if (member_auth_state == 0) {
+                        // 默认
+                    } else if (member_auth_state == 2) {
+                        toastActivity("审核未通过!!! 请重新提交信息");
+                        mEtName.setText(authInfobeanResult.getUsername());
+                        mEtIDnumber.setText(authInfobeanResult.getIdcard());
+                        mTvArea.setText(authInfobeanResult.getMember_areainfo());
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image1())
+                                .into(mHandPic);
+
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image2())
+                                .into(mFrontPic);
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image3())
+                                .into(mReversePic);
+
+                        mEtBankName.setText(authInfobeanResult.getMember_bankname());
+                        mEtBankAccount.setText(authInfobeanResult.getMember_bankcard());
+                        province_id = authInfobeanResult.getMember_provinceid() + "";
+                        city_id = authInfobeanResult.getMember_cityid() + "";
+                        area_id = authInfobeanResult.getMember_areaid() + "";
+                    } else if (member_auth_state == 1) {
+                        mEtName.setText(authInfobeanResult.getUsername());
+                        mEtIDnumber.setText(authInfobeanResult.getIdcard());
+                        mTvArea.setText(authInfobeanResult.getMember_areainfo());
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image1())
+                                .into(mHandPic);
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image2())
+                                .into(mFrontPic);
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image3())
+                                .into(mReversePic);
+
+                        mEtBankName.setText(authInfobeanResult.getMember_bankname());
+                        mEtBankAccount.setText(authInfobeanResult.getMember_bankcard());
+                        province_id = authInfobeanResult.getMember_provinceid() + "";
+                        city_id = authInfobeanResult.getMember_cityid() + "";
+                        area_id = authInfobeanResult.getMember_areaid() + "";
+                        mBtnCommit.setText("审核中");
+                        mEtName.setKeyListener(null);
+                        mEtIDnumber.setKeyListener(null);
+                        mTvArea.setClickable(false);
+                        mFrontPic.setClickable(false);
+                        mReversePic.setClickable(false);
+                        mHandPic.setClickable(false);
+                        mEtBankName.setKeyListener(null);
+                        mEtBankAccount.setKeyListener(null);
+                        mBtnCommit.setTextColor(getResources().getColor(R.color.c_242424));
+                        mBtnCommit.setClickable(false);
+                        mBtnCommit.setBackgroundResource(R.drawable.commit_bg);
+                    } else if (member_auth_state == 3) {
+                        mEtName.setText(authInfobeanResult.getUsername());
+                        mEtIDnumber.setText(authInfobeanResult.getIdcard());
+                        mTvArea.setText(authInfobeanResult.getMember_areainfo());
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image1())
+                                .into(mHandPic);
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image2())
+                                .into(mFrontPic);
+
+                        Glide.with(RealNmaeActivity.this)
+                                .asBitmap()
+                                .load(authInfobeanResult.getMember_idcard_image3())
+                                .into(mReversePic);
+
+                        mEtBankName.setText(authInfobeanResult.getMember_bankname());
+                        mEtBankAccount.setText(authInfobeanResult.getMember_bankcard());
+                        province_id = authInfobeanResult.getMember_provinceid() + "";
+                        city_id = authInfobeanResult.getMember_cityid() + "";
+                        area_id = authInfobeanResult.getMember_areaid() + "";
+                        mBtnCommit.setText("已认证");
+                        mEtName.setKeyListener(null);
+                        mEtIDnumber.setKeyListener(null);
+                        mTvArea.setClickable(false);
+                        mFrontPic.setClickable(false);
+                        mReversePic.setClickable(false);
+                        mHandPic.setClickable(false);
+                        mEtBankName.setKeyListener(null);
+                        mEtBankAccount.setKeyListener(null);
+                        mBtnCommit.setClickable(false);
+                    }
+                }
+                break;
             case ApiConfig.USER_AUTONYM:
                 AutonymBean autonymBean = (AutonymBean) t[0];
                 if (null != autonymBean && autonymBean.getCode() == 200) {
-                    toastActivity("认证成功");
+                    toastActivity("提交成功");
+                    dismissDialog();
+                    mPresenter.getData(ApiConfig.AUTHINFO, userId);
+
                 } else {
                     toastActivity(autonymBean.getMessage());
+                    dismissDialog();
+                }
+                break;
+            case ApiConfig.USER_AUTONYMTWICE:
+                AutonymBean autonymBeanTwice = (AutonymBean) t[0];
+                if (null != autonymBeanTwice && autonymBeanTwice.getCode() == 200) {
+                    toastActivity("提交成功");
+
+                    mPresenter.getData(ApiConfig.AUTHINFO, userId);
+                    dismissDialog();
+                } else {
+                    toastActivity(autonymBeanTwice.getMessage());
+                    dismissDialog();
                 }
                 break;
         }
     }
 
-    @OnClick({R.id.back, R.id.tv_Area, R.id.front_pic, R.id.reverse_pic, R.id.btn_commit})
+    @OnClick({R.id.back, R.id.tv_Area, R.id.front_pic, R.id.reverse_pic, R.id.hand_photo, R.id.btn_commit})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -170,10 +300,17 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
                 break;
             case R.id.front_pic:
                 TYPE = 1;
+                hideInput();
                 showSelectPictureDialog();
                 break;
             case R.id.reverse_pic:
                 TYPE = 2;
+                hideInput();
+                showSelectPictureDialog();
+                break;
+            case R.id.hand_photo:
+                TYPE = 3;
+                hideInput();
                 showSelectPictureDialog();
                 break;
             case R.id.btn_commit:
@@ -185,11 +322,13 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
                 String account = mEtBankAccount.getText().toString().trim();
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(Idnumber) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(bankname) && !TextUtils.isEmpty(account)) {
                     if (isIDNumber(Idnumber)) {
-                        if (!FrontPic.equals("") && !ReversePic.equals("")) {
+                        if (!HandPic.equals("") && !FrontPic.equals("") && !ReversePic.equals("")) {
                             mPresenter.getData(ApiConfig.USER_AUTONYM, userId, name, Idnumber, bankname, account,
-                                    FrontPic, ReversePic, province_id, city_id, area_id, area, 1);
+                                    HandPic, FrontPic, ReversePic, province_id, city_id, area_id, area, 1);
+                            initProgressDialog();
                         } else {
-                            toastActivity("请选择身份证正反面照片");
+                            mPresenter.getData(ApiConfig.USER_AUTONYMTWICE, userId, name, Idnumber, bankname, account, province_id, city_id, area_id, area, 1);
+                            initProgressDialog();
                         }
                     } else {
                         toastActivity("身份证号有误");
@@ -253,78 +392,11 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
      * 选择图片弹框
      */
     private void showSelectPictureDialog() {
-        selectPicDialog = new BottomSheetDialog(this, R.style.Dialog_NoTitle);
-        selectPicDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialogInterface) {
-
-            }
-        });
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_bottom_select_pictrue, null);
-        // 相册
-        TextView album = view.findViewById(R.id.tv_select_pictrue_album);
-        // 相机
-        TextView camera = view.findViewById(R.id.tv_select_pictrue_camera);
-        // 取消
-        TextView cancel = view.findViewById(R.id.tv_select_pictrue_cancel);
-
-        album.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View view) {
-                PictureSelector.create(RealNmaeActivity.this)
-                        .openGallery(PictureMimeType.ofImage())
-                        .maxSelectNum(1)
-                        .selectionMode(PictureConfig.MULTIPLE)
-                        .previewImage(true)
-                        .isZoomAnim(false)
-                        .isCamera(false)
-                        .imageFormat(PictureMimeType.JPEG)
-                        .enableCrop(true)
-                        .cropWH(400, 400)
-                        .rotateEnabled(false)
-                        .compress(true)
-                        .withAspectRatio(1, 1)
-                        .minimumCompressSize(200)
-                        .isDragFrame(true)
-                        .forResult(PictureConfig.CHOOSE_REQUEST);
-
-                selectPicDialog.dismiss();
-
-            }
-        });
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PictureSelector.create(RealNmaeActivity.this)
-                        .openCamera(PictureMimeType.ofImage())
-                        .maxSelectNum(1)
-                        .selectionMode(PictureConfig.SINGLE)
-                        .previewImage(true)
-                        .isZoomAnim(false)
-                        .isCamera(true)
-                        .imageFormat(PictureMimeType.JPEG)
-                        .enableCrop(true)
-                        .cropWH(400, 400)
-                        .rotateEnabled(false)
-                        .compress(true)
-                        .withAspectRatio(1, 1)
-                        .minimumCompressSize(200)
-                        .isDragFrame(true)
-                        .forResult(PictureConfig.CHOOSE_REQUEST);
-
-                selectPicDialog.dismiss();
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectPicDialog.dismiss();
-            }
-        });
-
-        selectPicDialog.setContentView(view);
-        selectPicDialog.show();
+        mMyDialogBottom = new MyDialogBottom(this, R.layout.dialog_bottom_select_pictrue, new int[]
+                {R.id.tv_select_pictrue_album, R.id.tv_select_pictrue_camera, R.id.tv_select_pictrue_cancel});
+        mMyDialogBottom.setOnCenterItemClickListener(this);
+        mMyDialogBottom.setCanceledOnTouchOutside(false);// 设置外部点击消失
+        mMyDialogBottom.show();
     }
 
     @Override
@@ -339,31 +411,42 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
                         if (localMedia.size() > 0) {
                             LocalMedia localMedia1 = localMedia.get(0);
                             if (localMedia1.isCut()) {
-                               /* albumPath = localMedia1.getCompressPath();
-                                //设置图片圆角角度
-                                //通过RequestOptions扩展功能
-                                RequestOptions options = RequestOptions.overrideOf(300, 300)
-                                        //圆形
-                                        .circleCrop();
-                                Glide.with(RealNmaeActivity.this)
-                                        .load(albumPath).apply(options).into(mFrontPic);*/
+
 
                                 String path = localMedia1.getCutPath();
                                 if (TYPE == 1) {
-                                    mFrontPic.setImageURI(Uri.fromFile(new File(path)));
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mFrontPic);
                                     FrontPic = path;
                                 } else if (TYPE == 2) {
-                                    mReversePic.setImageURI(Uri.fromFile(new File(path)));
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mReversePic);
                                     ReversePic = path;
+                                } else if (TYPE == 3) {
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mHandPic);
+                                    HandPic = path;
                                 }
                             } else {
                                 String path = localMedia1.getPath();
                                 if (TYPE == 1) {
-                                    mFrontPic.setImageURI(Uri.fromFile(new File(path)));
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mFrontPic);
                                     FrontPic = path;
                                 } else if (TYPE == 2) {
-                                    mReversePic.setImageURI(Uri.fromFile(new File(path)));
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mReversePic);
                                     ReversePic = path;
+                                } else if (TYPE == 3) {
+                                    RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
+                                    Glide.with(RealNmaeActivity.this)
+                                            .load(path).apply(options).into(mHandPic);
+                                    HandPic = path;
                                 }
                             }
                         }
@@ -401,6 +484,87 @@ public class RealNmaeActivity extends BaseMvpActivity<CommonPresenter, MineModel
         View v = getWindow().peekDecorView();
         if (null != v) {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    public void OnCenterItemClick(MyDialogBottom dialog, View view) {
+        switch (view.getId()) {
+            case R.id.tv_select_pictrue_album:
+
+                PictureSelector.create(RealNmaeActivity.this)
+                        .openGallery(PictureMimeType.ofImage())
+                        .maxSelectNum(1)
+                        .selectionMode(PictureConfig.MULTIPLE)
+                        .previewImage(true)
+                        .isZoomAnim(false)
+                        .isCamera(false)
+                        .imageFormat(PictureMimeType.JPEG)
+                        .enableCrop(false)
+                        .cropWH(400, 400)
+                        .rotateEnabled(false)
+                        .compress(true)
+                        .withAspectRatio(1, 1)
+                        .minimumCompressSize(200)
+                        .isDragFrame(true)
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
+                mMyDialogBottom.dismiss();
+
+                break;
+            case R.id.tv_select_pictrue_camera:
+
+                PictureSelector.create(RealNmaeActivity.this)
+                        .openCamera(PictureMimeType.ofImage())
+                        .maxSelectNum(1)
+                        .selectionMode(PictureConfig.SINGLE)
+                        .previewImage(true)
+                        .isZoomAnim(false)
+                        .isCamera(true)
+                        .imageFormat(PictureMimeType.JPEG)
+                        .enableCrop(false)
+                        .cropWH(400, 400)
+                        .rotateEnabled(false)
+                        .compress(true)
+                        .withAspectRatio(1, 1)
+                        .minimumCompressSize(200)
+                        .isDragFrame(true)
+                        .forResult(PictureConfig.CHOOSE_REQUEST);
+
+                mMyDialogBottom.dismiss();
+
+                break;
+            case R.id.tv_select_pictrue_cancel:
+                mMyDialogBottom.dismiss();
+                break;
+        }
+    }
+
+    private void initProgressDialog() {
+        progressDialog = new ProgressDialog(RealNmaeActivity.this);
+        progressDialog.setIndeterminate(false);//循环滚动
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("正在审核");
+        progressDialog.show();
+        progressDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        progressDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+    }
+
+    DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener() {
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
+
+    /**
+     * 取消
+     */
+    private void dismissDialog() {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
         }
     }
 }

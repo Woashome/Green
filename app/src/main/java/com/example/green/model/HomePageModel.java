@@ -10,6 +10,14 @@ public class HomePageModel implements ICommonModel {
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
         switch (whichApi) {
+            /*获取版本号*/
+            case ApiConfig.ACQUIRE_VERSIONCODE:
+                String version_num = (String) t[0];  // 当前APP版本号
+                String vtype = (String) t[1]; // iOS传2，Android传1
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getVersionbean(version_num, vtype), view, whichApi, 0);
+                break;
             /*搜索商品*/
             case ApiConfig.SEARCH_GOODS:
                 String keyword = (String) t[0];  // 关键词
@@ -59,6 +67,16 @@ public class HomePageModel implements ICommonModel {
                         .getHttpService()
                         .getGoodsDetailsList(goods_id), view, whichApi, 0);
                 break;
+            /*商品加入购物车*/
+            case ApiConfig.ADD_CART:
+                String ckey = (String) t[0];
+                String cgoods_id = (String) t[1];
+                String quantity = (String) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager()
+                        .getHttpService()
+                        .getAddCartInfo(ckey, cgoods_id, quantity), view, whichApi, 0);
+                break;
+
         }
     }
 }

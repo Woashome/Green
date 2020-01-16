@@ -205,6 +205,7 @@ public class EditorSiteActivity extends BaseMvpActivity<CommonPresenter, MineMod
                 mPresenter.getData(ApiConfig.DELETE_ADDRESS, userToken, address_id);
                 break;
             case R.id.rl_select_area:
+                hideInput();
                 areaPickerView.setSelect(i);
                 areaPickerView.show();
                 break;

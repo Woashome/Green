@@ -72,9 +72,24 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ll_title"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/dp_33"
+                    android:layout_marginTop="@dimen/dp_23"
                     android:textColor="@color/c_27b28b"
                     android:textSize="@dimen/dp_17" />
+
+
+                <Button
+                    android:id="@+id/draw_award"
+                    android:layout_width="@dimen/dp_100"
+                    android:layout_height="@dimen/dp_25"
+                    android:layout_below="@id/pay_price"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_15"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:background="@drawable/login_bg"
+                    android:clickable="true"
+                    android:text="抽奖"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dp_12" />
 
                 <LinearLayout
                     android:id="@+id/ll_discounts"
@@ -83,14 +98,8 @@
                     android:layout_below="@id/pay_price"
                     android:layout_marginTop="@dimen/dp_11"
                     android:layout_marginBottom="@dimen/dp_43"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="麦穗长城给您优惠 "
-                        android:textColor="@color/c_242424"
-                        android:textSize="@dimen/dp_12" />
+                    android:gravity="center"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/discounts_price"

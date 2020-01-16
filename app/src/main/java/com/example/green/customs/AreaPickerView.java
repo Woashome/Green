@@ -179,19 +179,19 @@ public class AreaPickerView extends Dialog {
                 Log.e("AreaPickerView", oldProvinceSelected + "~~~" + oldCitySelected + "~~~" + oldAreaSelected);
                 cityBeans.clear();
                 areaBeans.clear();
-//                addressBeans.get(position).setStatus(true);
+                addressBeans.get(position).setStatus(true);
                 provinceSelected = position;
                 if (oldProvinceSelected != -1 && oldProvinceSelected != provinceSelected) {
-//                    addressBeans.get(oldProvinceSelected).setStatus(false);
+                    addressBeans.get(oldProvinceSelected).setStatus(false);
                     Log.e("AreaPickerView", "清空");
                 }
                 if (position != oldProvinceSelected) {
-                    /*if (oldCitySelected != -1) {
-                        addressBeans.get(oldProvinceSelected).getChildren().get(oldCitySelected).setStatus(false);
+                    if (oldCitySelected != -1) {
+                        addressBeans.get(oldProvinceSelected).getArea_list().get(oldCitySelected).setStatus(false);
                     }
                     if (oldAreaSelected != -1) {
-                        addressBeans.get(oldProvinceSelected).getChildren().get(oldCitySelected).getChildren().get(oldAreaSelected).setStatus(false);
-                    }*/
+                        addressBeans.get(oldProvinceSelected).getArea_list().get(oldCitySelected).getArea_list().get(oldAreaSelected).setStatus(false);
+                    }
                     oldCitySelected = -1;
                     oldAreaSelected = -1;
                 }
@@ -226,19 +226,19 @@ public class AreaPickerView extends Dialog {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 areaBeans.clear();
-//                cityBeans.get(position).setStatus(true);
+                cityBeans.get(position).setStatus(true);
                 citySelected = position;
-                /*if (oldCitySelected != -1 && oldCitySelected != citySelected) {
+                if (oldCitySelected != -1 && oldCitySelected != citySelected) {
                     addressBeans.get(oldProvinceSelected).getArea_list().get(oldCitySelected).setStatus(false);
-                }*/
+                }
                 if (position != oldCitySelected) {
                     if (oldAreaSelected != -1 && cityBeans.get(position).getArea_list() != null) {
-//                        addressBeans.get(oldProvinceSelected).getChildren().get(oldCitySelected).getChildren().get(oldAreaSelected).setStatus(false);
+                        addressBeans.get(oldProvinceSelected).getArea_list().get(oldCitySelected).getArea_list().get(oldAreaSelected).setStatus(false);
                     }
                     oldAreaSelected = -1;
                 }
                 oldCitySelected = citySelected;
-                if (cityBeans.get(position).getArea_list() != null) {
+                if (cityBeans.get(position).getArea_list().size() > 0) {
                     areaBeans.addAll(cityBeans.get(position).getArea_list());
                     cityAdapter.notifyDataSetChanged();
                     areaAdapter.notifyDataSetChanged();
@@ -275,11 +275,11 @@ public class AreaPickerView extends Dialog {
                 strings.set(2, areaBeans.get(position).getArea_name());
                 tabLayout.setupWithViewPager(viewPager);
                 viewPagerAdapter.notifyDataSetChanged();
-//                areaBeans.get(position).setStatus(true);
+                areaBeans.get(position).setStatus(true);
                 areaSelected = position;
-                /*if (oldAreaSelected != -1 && oldAreaSelected != position) {
+                if (oldAreaSelected != -1 && oldAreaSelected != position) {
                     areaBeans.get(oldAreaSelected).setStatus(false);
-                }*/
+                }
                 oldAreaSelected = areaSelected;
                 areaAdapter.notifyDataSetChanged();
                 dismiss();
@@ -366,10 +366,10 @@ public class AreaPickerView extends Dialog {
                 tabLayout.setupWithViewPager(viewPager);
                 viewPagerAdapter.notifyDataSetChanged();
                 tabLayout.getTabAt(0).select();
-                /*if (provinceSelected != -1)
+                if (provinceSelected != -1)
                     addressBeans.get(provinceSelected).setStatus(false);
                 if (citySelected != -1)
-                    addressBeans.get(provinceSelected).getChildren().get(citySelected).setStatus(false);*/
+                    addressBeans.get(provinceSelected).getArea_list().get(citySelected).setStatus(false);
                 cityBeans.clear();
                 areaBeans.clear();
                 provinceAdapter.notifyDataSetChanged();
@@ -385,13 +385,13 @@ public class AreaPickerView extends Dialog {
             tabLayout.setupWithViewPager(viewPager);
             viewPagerAdapter.notifyDataSetChanged();
             tabLayout.getTabAt(value.length - 1).select();
-            /*if (provinceSelected != -1)
+            if (provinceSelected != -1)
                 addressBeans.get(provinceSelected).setStatus(false);
             if (citySelected != -1)
-                addressBeans.get(provinceSelected).getChildren().get(citySelected).setStatus(false);
+                addressBeans.get(provinceSelected).getArea_list().get(citySelected).setStatus(false);
             addressBeans.get(value[0]).setStatus(true);
-            addressBeans.get(value[0]).getChildren().get(value[1]).setStatus(true);
-            addressBeans.get(value[0]).getChildren().get(value[1]).getChildren().get(value[2]).setStatus(true);*/
+            addressBeans.get(value[0]).getArea_list().get(value[1]).setStatus(true);
+            addressBeans.get(value[0]).getArea_list().get(value[1]).getArea_list().get(value[2]).setStatus(true);
             cityBeans.clear();
             cityBeans.addAll(addressBeans.get(value[0]).getArea_list());
             areaBeans.clear();
@@ -411,10 +411,10 @@ public class AreaPickerView extends Dialog {
             tabLayout.setupWithViewPager(viewPager);
             viewPagerAdapter.notifyDataSetChanged();
             tabLayout.getTabAt(value.length - 1).select();
-            /*addressBeans.get(provinceSelected).setStatus(false);
-            addressBeans.get(provinceSelected).getChildren().get(citySelected).setStatus(false);
+            addressBeans.get(provinceSelected).setStatus(false);
+            addressBeans.get(provinceSelected).getArea_list().get(citySelected).setStatus(false);
             addressBeans.get(value[0]).setStatus(true);
-            addressBeans.get(value[0]).getChildren().get(value[1]).setStatus(true);*/
+            addressBeans.get(value[0]).getArea_list().get(value[1]).setStatus(true);
             cityBeans.clear();
             cityBeans.addAll(addressBeans.get(value[0]).getArea_list());
             provinceAdapter.notifyDataSetChanged();
@@ -428,3 +428,4 @@ public class AreaPickerView extends Dialog {
     }
 
 }
+

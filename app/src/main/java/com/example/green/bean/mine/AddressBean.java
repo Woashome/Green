@@ -82,6 +82,15 @@ public class AddressBean {
             private int area_id;
             private String area_name;
             private List<AreaListBeanX> area_list;
+            private boolean Status;
+
+            public boolean isStatus() {
+                return Status;
+            }
+
+            public void setStatus(boolean pStatus) {
+                Status = pStatus;
+            }
 
             public int getArea_id() {
                 return area_id;
@@ -117,6 +126,15 @@ public class AddressBean {
                 private int area_id;
                 private String area_name;
                 private List<AreaListBean> area_list;
+                private boolean Status;
+
+                public boolean isStatus() {
+                    return Status;
+                }
+
+                public void setStatus(boolean pStatus) {
+                    Status = pStatus;
+                }
 
                 public int getArea_id() {
                     return area_id;
@@ -150,6 +168,15 @@ public class AddressBean {
 
                     private int area_id;
                     private String area_name;
+                    private boolean Status;
+
+                    public boolean isStatus() {
+                        return Status;
+                    }
+
+                    public void setStatus(boolean pStatus) {
+                        Status = pStatus;
+                    }
 
                     public int getArea_id() {
                         return area_id;

@@ -3,7 +3,7 @@ package com.example.green.net;
 public class NetConfig {
     //http://front.api.movienow.xtech.fun/ movie/movieList
     public static String Url_TEST = "https://shop.bayi-shop.com/mobile/"; //测试
-    public static String Url_SHOPPING = "https://shop.bayi-shop.com/index.php/mobile/"; // 正式
+    public static String Url_SHOPPING = "https://shop.bayi-shop.com/index.php/mobile/"; // 订单流程
     public static String Url_Upload = "https://shop.bayi-shop.com/mobile/member/upload/"; // 上传图片
 
     public static String HTTPS_SPORTURL = "https://sport-data.dqdgame.com/";

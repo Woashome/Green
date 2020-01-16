@@ -2,6 +2,7 @@ package com.example.green.pay.weixin;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.tencent.mm.opensdk.constants.Build;
 import com.tencent.mm.opensdk.modelpay.PayReq;
@@ -25,6 +26,7 @@ public class WXPay {
     public static final int NO_OR_LOW_WX = 1;   //未安装微信或微信版本过低
     public static final int ERROR_PAY_PARAM = 2;  //支付参数错误
     public static final int ERROR_PAY = 3;  //支付失败
+    private static final String TAG = "WXPay";
 
     public interface WXPayResultCallBack {
         void onSuccess(); //支付成功
@@ -77,9 +79,9 @@ public class WXPay {
             }
             return;
         }
-        if (TextUtils.isEmpty(param.optString("appid")) || TextUtils.isEmpty(param.optString("partnerid"))
-                || TextUtils.isEmpty(param.optString("prepayid")) || TextUtils.isEmpty(param.optString("package")) ||
-                TextUtils.isEmpty(param.optString("noncestr")) || TextUtils.isEmpty(param.optString("timestamp")) ||
+        if (TextUtils.isEmpty(param.optString("appid")) || TextUtils.isEmpty(param.optString("mch_id"))
+                || TextUtils.isEmpty(param.optString("prepay_id")) /*|| TextUtils.isEmpty(param.optString("package"))*/ ||
+                TextUtils.isEmpty(param.optString("nonce_str")) || TextUtils.isEmpty(param.optString("timestamp")) ||
                 TextUtils.isEmpty(param.optString("sign"))) {
             if (mCallback != null) {
                 mCallback.onError(ERROR_PAY_PARAM);
@@ -89,13 +91,16 @@ public class WXPay {
 
         PayReq req = new PayReq();
         req.appId = param.optString("appid");
-        req.partnerId = param.optString("partnerid");
-        req.prepayId = param.optString("prepayid");
-        req.packageValue = param.optString("package");
-        req.nonceStr = param.optString("noncestr");
+        req.partnerId = param.optString("mch_id");
+        req.prepayId = param.optString("prepay_id");
+        req.packageValue = "Sign=WXPay";
+        req.nonceStr = param.optString("nonce_str");
         req.timeStamp = param.optString("timestamp");
         req.sign = param.optString("sign");
 
+        Log.e(TAG, "doPay: " + param.optString("mch_id") + "---" + param.optString("prepay_id") +
+                "---" + param.optString("nonce_str") + "---" + param.optString("timestamp") +
+                "---" + param.optString("sign"));
         mWXApi.sendReq(req);
     }
 

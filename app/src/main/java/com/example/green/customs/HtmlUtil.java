@@ -5,6 +5,7 @@ package com.example.green.customs;
  */
 public class HtmlUtil {
     public static String getHtmlData(String bodyHTML) {
+
         String head = "<head>" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"> " +
                 "<style>mip-img{max-width: 100%; height:auto;}*{font-family: Noto Sans CJK SC!improtant;}*{font-size: 1rem!important;line-height:22px;}" +
@@ -48,7 +49,7 @@ public class HtmlUtil {
         //去除代码中所有下划线格式
 //        bodyHTML = bodyHTML.replaceAll("<u[^>]*\\>([\\s\\S]*?)</u>", "$1");
         //去除下划线
-        bodyHTML=bodyHTML.replaceAll("(<\\/?a.*?>)|(<\\/?span.*?>)","");
+        bodyHTML = bodyHTML.replaceAll("(<\\/?a.*?>)|(<\\/?span.*?>)", "");
 //        bodyHTML = bodyHTML.replaceAll("<span\\b[^>]+\\bstyle=\"text-decoration:[^\"]*\"[^>]*>([\\s\\S]*?)</span>", "$1");
         //去除代码中所有颜色格式
 //        bodyHTML = bodyHTML.replaceAll("<span\\b[^>]+\\bstyle=\"color:[^\"]*\"[^>]*>([\\s\\S]*?)</span>", "$1");

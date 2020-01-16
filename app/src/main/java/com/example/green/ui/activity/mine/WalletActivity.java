@@ -3,26 +3,32 @@ package com.example.green.ui.activity.mine;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.green.R;
+import com.example.green.adapter.mine.MyCollegeAdapter;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
-import com.example.green.bean.mine.MineInfobean;
+import com.example.green.bean.mine.CollegeListbean;
+import com.example.green.bean.mine.WalletInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.example.green.ui.activity.homepage.LoginActivity;
+import com.example.green.ui.activity.mine.wallet.CollegeDetailsActivity;
 import com.example.green.ui.activity.mine.wallet.IntegralActivity;
+import com.example.green.ui.activity.mine.wallet.InviteActivity;
 import com.example.green.ui.activity.mine.wallet.RealNmaeActivity;
 import com.example.green.ui.activity.mine.wallet.RechargeActivity;
 import com.example.green.ui.activity.mine.wallet.StoredActivity;
@@ -32,7 +38,13 @@ import com.example.green.ui.activity.mine.wallet.TransfersActivity;
 import com.example.green.ui.activity.mine.wallet.WithdrawActivity;
 import com.example.green.ui.fragment.mine.CollegeFragment;
 import com.example.green.ui.fragment.mine.VideoFragment;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yiyatech.utils.ext.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -90,19 +102,25 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
     RelativeLayout mRlYaoqing;
     @BindView(R.id.college)
     TextView mCollege;
-    @BindView(R.id.video)
-    TextView mVideo;
+    /* @BindView(R.id.video)
+     TextView mVideo;*/
     @BindView(R.id.tip_1)
     ImageView mTip1;
-    @BindView(R.id.tip_2)
-    ImageView mTip2;
-    @BindView(R.id.fl)
-    FrameLayout mFl;
+    /*    @BindView(R.id.tip_2)
+        ImageView mTip2;
+        @BindView(R.id.fl)
+        FrameLayout mFl;*/
+    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.college_recyclerview)
+    RecyclerView mCollegeRecyclerview;
 
     private CollegeFragment mCollegeFragment;
     private VideoFragment mVideoFragment;
     private String key;
-    private MineInfobean.ResultBean.MemberInfoBean mMember_info;
+    private WalletInfobean.ResultBean.MemberInfoBean mMember_info;
+    private List<CollegeListbean.ResultBean> mResultBeans;
+    private MyCollegeAdapter mMyCollegeAdapter;
 
     @Override
     protected void initView() {
@@ -110,17 +128,46 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
         setSupportActionBar(mToolbar);
 
         // 商学院
-        selectFragment(FRAGMENT_COLLEGE);
+//        selectFragment(FRAGMENT_COLLEGE);
         mTip1.setVisibility(View.VISIBLE);
-        mTip2.setVisibility(View.GONE);
+//        mTip2.setVisibility(View.GONE);
         mCollege.setTextColor(getResources().getColor(R.color.c_27b28b));
 
         key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+        mResultBeans = new ArrayList<>();
+        mMyCollegeAdapter = new MyCollegeAdapter(R.layout.layout_college_item, mResultBeans);
+        mCollegeRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        mCollegeRecyclerview.setAdapter(mMyCollegeAdapter);
+
+        mMyCollegeAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rl_college_card:
+                        Intent intent = new Intent(WalletActivity.this, CollegeDetailsActivity.class);
+                        intent.putExtra("article_id", mResultBeans.get(position).getArticle_id());
+                        //设置切换动画，从右边进入，左边退出
+                        overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                mPresenter.getData(ApiConfig.WALLET, key, LoadConfig.REFRESH);
+                mPresenter.getData(ApiConfig.COLLEGE, FRAGMENT_COLLEGE, LoadConfig.REFRESH);
+            }
+        });
+        mRefreshLayout.setEnableLoadmore(false);
     }
 
     @Override
     protected void initData() {
-        mPresenter.getData(ApiConfig.MINEINFO, key, LoadConfig.NORMAL);
+        mPresenter.getData(ApiConfig.WALLET, key, LoadConfig.NORMAL);
+        mPresenter.getData(ApiConfig.COLLEGE, FRAGMENT_COLLEGE, LoadConfig.NORMAL);
     }
 
     @Override
@@ -146,25 +193,85 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
     @Override
     public void onResponse(int whichApi, Object[] t) {
         switch (whichApi) {
-            case ApiConfig.MINEINFO:
-                MineInfobean mineInfobeans = (MineInfobean) t[0];
-                if (null != mineInfobeans && mineInfobeans.getCode().equals("100")) {
-                    ToastUtils.show(this, mineInfobeans.getMessage());
+            case ApiConfig.WALLET:
+                WalletInfobean walletInfobean = (WalletInfobean) t[0];
+                if (null != walletInfobean && walletInfobean.getCode().equals("100")) {
+                    ToastUtils.show(this, walletInfobean.getMessage());
                     startActivity(new Intent(this, LoginActivity.class));
                     finish();
-                } else if (null != mineInfobeans && mineInfobeans.getCode().equals("200")) {
-                    mMember_info = mineInfobeans.getResult().getMember_info();
-                    RequestOptions options = new RequestOptions().circleCrop();
-                    Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
-                    mName.setText(mMember_info.getUser_name());
-                    mNumber.setText(mMember_info.getMobile());
+                } else if (null != walletInfobean && walletInfobean.getCode().equals("200")) {
+
+                    mMember_info = walletInfobean.getResult().getMember_info();
+                    int loadmode = (int) t[1];
+                    if (loadmode == LoadConfig.NORMAL) {
+                        RequestOptions options = new RequestOptions().circleCrop();
+                        Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
+                        mName.setText(mMember_info.getUser_name());
+                        mNumber.setText(mMember_info.getMobile() + "  （推荐码" + mMember_info.getInviter_code() + "）");
+                        mUserLevel.setText(mMember_info.getLevel_name());
+
+                        if (mMember_info.getCompany_level().equals("0")) {
+                            mRlUserCompany.setVisibility(View.INVISIBLE);
+                        } else {
+                            mUserCompany.setText(mMember_info.getCompany_level());
+                        }
+
+                        if (mMember_info.getLevel_name().equals("普通用户")) {
+                            mMember.setImageResource(R.mipmap.no_member);
+                        } else {
+                            mMember.setImageResource(R.mipmap.member);
+                        }
+                        mChuzhikaBalance.setText(mMember_info.getAvailable_predeposit());
+                        mUsableIntegral.setText(mMember_info.getMember_points_available());
+                        mUnuseIntegral.setText(mMember_info.getMember_points());
+
+                    } else if (loadmode == LoadConfig.REFRESH) {
+                        RequestOptions options = new RequestOptions().circleCrop();
+                        Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
+                        mName.setText(mMember_info.getUser_name());
+                        mNumber.setText(mMember_info.getMobile() + "  （推荐码" + mMember_info.getInviter_code() + "）");
+                        mUserLevel.setText(mMember_info.getLevel_name());
+
+                        if (mMember_info.getCompany_level().equals("0")) {
+                            mRlUserCompany.setVisibility(View.INVISIBLE);
+                        } else {
+                            mUserCompany.setText(mMember_info.getCompany_level());
+                        }
+
+                        if (mMember_info.getLevel_name().equals("普通用户")) {
+                            mMember.setImageResource(R.mipmap.no_member);
+                        } else {
+                            mMember.setImageResource(R.mipmap.member);
+                        }
+                        mChuzhikaBalance.setText(mMember_info.getAvailable_predeposit());
+                        mUsableIntegral.setText(mMember_info.getMember_points_available());
+                        mUnuseIntegral.setText(mMember_info.getMember_points());
+                        mRefreshLayout.finishRefresh();
+                    }
                 }
+                break;
+            case ApiConfig.COLLEGE:
+                CollegeListbean collegeListbean = (CollegeListbean) t[0];
+                if (null != collegeListbean && collegeListbean.getCode().equals("200")) {
+                    List<CollegeListbean.ResultBean> result = collegeListbean.getResult();
+                    int loadMode = (int) t[1];
+                    if (loadMode == LoadConfig.NORMAL) {
+                        mResultBeans.addAll(result);
+                    } else if (loadMode == LoadConfig.REFRESH) {
+                        mResultBeans.clear();
+                        mResultBeans.addAll(result);
+                        mRefreshLayout.finishRefresh();
+                    }
+
+                    mMyCollegeAdapter.notifyDataSetChanged();
+                }
+                break;
         }
     }
 
     @OnClick({R.id.back, R.id.rl_user_level, R.id.rl_user_company, R.id.rl_chongzhi, R.id.rl_tixian,
             R.id.rl_huzhuan, R.id.rl_chuzhi, R.id.rl_jiaoyi, R.id.rl_jifen, R.id.rl_shiming, R.id.rl_team,
-            R.id.rl_yaoqing, R.id.rl_college, R.id.rl_video})
+            R.id.rl_yaoqing, R.id.rl_college/*, R.id.rl_video*/})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -177,45 +284,74 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
             case R.id.rl_user_company: // 用户公司
                 break;
             case R.id.rl_chongzhi: // 充值
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, RechargeActivity.class));
                 break;
             case R.id.rl_tixian: // 提现
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, WithdrawActivity.class));
                 break;
             case R.id.rl_huzhuan: // 互转
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, TransfersActivity.class));
                 break;
             case R.id.rl_chuzhi: // 储值卡
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, StoredActivity.class));
                 break;
-            case R.id.rl_jiaoyi: // 交易码
+            case R.id.rl_jiaoyi: // 认筹股
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, TransactionCodeActivity.class));
                 break;
             case R.id.rl_jifen: // 积分
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, IntegralActivity.class));
                 break;
             case R.id.rl_shiming: // 实名
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, RealNmaeActivity.class));
                 break;
             case R.id.rl_team: // 团队
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(WalletActivity.this, TeamActivity.class));
                 break;
             case R.id.rl_yaoqing: // 邀请好友
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                Intent mInviteIntent = new Intent(this, InviteActivity.class);
+                startActivity(mInviteIntent);
                 break;
             case R.id.rl_college: // 商学院
-                selectFragment(FRAGMENT_COLLEGE);
-                mTip1.setVisibility(View.VISIBLE);
-                mTip2.setVisibility(View.GONE);
+//                selectFragment(FRAGMENT_COLLEGE);
+//                mTip1.setVisibility(View.VISIBLE);
+//                mTip2.setVisibility(View.GONE);
                 mCollege.setTextColor(getResources().getColor(R.color.c_27b28b));
-                mVideo.setTextColor(getResources().getColor(R.color.black));
+//                mVideo.setTextColor(getResources().getColor(R.color.black));
                 break;
-            case R.id.rl_video: // 视频
+            /*case R.id.rl_video: // 视频
                 selectFragment(FRAGMENT_VIDEO);
                 mTip1.setVisibility(View.GONE);
                 mTip2.setVisibility(View.VISIBLE);
                 mCollege.setTextColor(getResources().getColor(R.color.black));
                 mVideo.setTextColor(getResources().getColor(R.color.c_27b28b));
-                break;
+                break;*/
         }
     }
 
@@ -241,5 +377,16 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
                 break;
         }
         ft.commit();
+    }
+
+    @Override
+    protected void receiverBroadCast(Intent intent) {
+        super.receiverBroadCast(intent);
+        switch (intent.getAction()) {
+            case TRANSFORM_SUCCESS: // 用户 互转后 刷新
+            case RECHARGE_SUCCESS: // 用户 充值后 刷新
+                mPresenter.getData(ApiConfig.WALLET, key, LoadConfig.NORMAL);
+                break;
+        }
     }
 }

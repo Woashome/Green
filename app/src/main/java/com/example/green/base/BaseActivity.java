@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,32 +16,30 @@ import com.example.green.local_utils.StatusBarManager;
 
 public class BaseActivity extends AppCompatActivity {
 
-    //更新头像，修改昵称
+    // 更新头像，修改昵称
     public static final String RECTIFY_UPDATE_INFO = "rectify_update_info";
-    //登录成功
-    public static final String LOGIN_SUCCESS = "LOGIN_SUCCESS";
-    //退出登录
-    public static final String LOGIN_OUT = "login_out";
-    //添加收货地址
+
+    // 提交订单成功
+    public static final String SUBMIT_ORDER = "submit_order";
+    // 添加收货地址
     public static final String ADD_ADDRESS = "add_address";
-    //编辑收货地址
+    // 编辑收货地址
     public static final String EDITOR_ADDRESS = "editor_address";
-    //删除收货地址
+    // 删除收货地址
     public static final String DELETE_ADDRESS = "delete_address";
-    //搜索列表刷新
+    // 搜索列表刷新
     public static final String SEARCH_SUCCESS = "search_success";
+    // 付款成功
+    public static final String PAY_SUCCESS = "pay_success";
+    // 修改订单状态
+    public static final String CHANGE_ORDER_STATE = "change_order_state";
+    // 成功互转
+    public static final String TRANSFORM_SUCCESS = "transform_success";
+    // 充值成功
+    public static final String RECHARGE_SUCCESS = "recharge_success";
 
 
-    //修改城市
-    public static final String MODIFY_CITY = "modify_city";
-
-    //电影进度,给Main专用
-    public static final String UPLOAD_PLAY_WATCH = "upload_play_watch";
-
-    // 解绑成功
-    public static final String UNBIND_SUCCESS = "UNBIND_SUCCESS";
     private MyApplication application;
-    public int mAppColor;
     private LoadingDialogWithContent mDialog;
 
     private UserBroadCastReceiver mUserBroadCastReceiver;
@@ -50,27 +47,29 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         // 获取userId Token
         application = (MyApplication) getApplication();
         Log.e("-------绿色长城-------", this.getClass().getSimpleName());
-        mAppColor = ContextCompat.getColor(this, R.color.app_theme_color);
         mDialog = new LoadingDialogWithContent(this, false, getString(R.string.Info));
 
         mUserBroadCastReceiver = new UserBroadCastReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(RECTIFY_UPDATE_INFO);
-        intentFilter.addAction(LOGIN_SUCCESS);
-        intentFilter.addAction(LOGIN_OUT);
+        intentFilter.addAction(SUBMIT_ORDER);
         intentFilter.addAction(ADD_ADDRESS);
         intentFilter.addAction(EDITOR_ADDRESS);
         intentFilter.addAction(DELETE_ADDRESS);
         intentFilter.addAction(SEARCH_SUCCESS);
+        intentFilter.addAction(PAY_SUCCESS);
+        intentFilter.addAction(CHANGE_ORDER_STATE);
+        intentFilter.addAction(TRANSFORM_SUCCESS);
+        intentFilter.addAction(RECHARGE_SUCCESS);
 
-        intentFilter.addAction(MODIFY_CITY);
-        intentFilter.addAction(UNBIND_SUCCESS);
         initBroadCastReceiver(intentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(mUserBroadCastReceiver, intentFilter);
     }
+
 
     public void showLoadingDialog() {
         if (!mDialog.isShowing()) mDialog.show();

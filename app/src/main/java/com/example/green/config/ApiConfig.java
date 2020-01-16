@@ -1,7 +1,7 @@
 package com.example.green.config;
 
 public class ApiConfig {
-
+    public static final int ACQUIRE_VERSIONCODE = 62; // 获取版本号
     public static final int SEARCH_GOODS = 10; // 搜索商品
     /*首页*/
     public static final int URL_HOMEDATA = 0;  // 首页数据
@@ -9,6 +9,7 @@ public class ApiConfig {
     public static final int URL_GOODSDATA = 1;   // 商品推荐
     public static final int HOT_SEARCH_KEY = 2; // 搜索页面热门搜索词
     public static final int GOODS_DETAILS = 13; // 商品详情
+    public static final int ADD_CART = 61; // 商品加入购物车
 
     /*分类*/
     public static final int URL_ALLCLASSIFY = 3;   // 分类首页
@@ -27,13 +28,23 @@ public class ApiConfig {
     public static final int SHOPPING_STEP_TWO = 29; // 购买商品--第二步，生成订单
     public static final int SHOPPING_THIRD = 30; // 购买商品--第三步，获取订单信息
     public static final int SHOPPING_FOURTH = 31; // 购买商品--第四步，购买
+    public static final int DRAW_AWARD = 63; // 转盘抽奖页面
+    public static final int STAR_DRAW = 65; // 转盘抽奖页面
 
     public static final int RANDOM_GOODS = 34; // 支付成功后获取随机商品
+    public static final int ORDER_DETAILS = 59; // 订单详情查看
+    public static final int GET_LOGISTICS = 60; // 获取物流信息
+
+    /*购物车*/
+    public static final int SHOPPING_CART = 52; // 购物车列表
+    public static final int DELETE_CART = 61; // 删除购物车商品
+    public static final int CHANGE_GOODS_NUM = 62; // 修改购物车商品数量
 
 
     /*我的*/
     public static final int MINEINFO = 11; // 我的信息
     public static final int COLLEGE = 12; // 商学院
+    public static final int COLLEGE_DETAILS = 37; // 商学院
     public static final int LOGOUT = 17; // 退出登录
     public static final int SHOPPING_ADDRESS = 18; // 收货地址列表
     public static final int ADDADDRESS = 19; // 添加收货地址
@@ -42,71 +53,34 @@ public class ApiConfig {
     public static final int URL_UPLOAD_PICTURE = 25; // 上传图片
     public static final int URL_EDIT_USER_INFO = 26; // 个人资料编辑
     public static final int USER_AUTONYM = 27; // 实名认证
+    public static final int USER_AUTONYMTWICE = 36; // 二次提交实名认证
+    public static final int AUTHINFO = 35; // 获取实名认证信息
+    public static final int USER_TEAM = 50; // 团队
+    public static final int WALLET = 51; // 钱包页面个人资产查询
+    public static final int QUERY_PROPERT = 52; // 个人资产查询
+    public static final int CHUZHI_DETAIL = 53; // 储值卡交易明细
+    public static final int JIFEN_DETAIL = 54; // 积分交易明细
+    public static final int GRAPH = 64; // 认筹股价格曲线图
+    public static final int DEAL_DETAIL = 55; // 交易码明细
+    public static final int WITHDRAW_APPLY = 56; // 提现申请
+    public static final int WIRHDRAW_RECORD = 57; // 提现记录
+    public static final int TRANSFORM = 58; // 可用积分转换为交易码 （互转）
+
+    //订单
+    public static final int GOODSORDER = 204; // 订单列表
+    public static final int CHANGER_ORDER_STATE = 205; // 修改订单状态
 
     /*注册 登录*/
     public static final int REGISTER = 14; // 注册
     public static final int ACCQUIRE_CODE = 15; // 验证码发送
     public static final int LOGIN = 16; // 登录
     public static final int MODIFICATION_PSW = 23; // 登陆密码修改-修改登陆密码
-    public static final int CHANGE_PAYPSW = 24; // 登陆密码修改-修改登陆密码
+    public static final int CHANGE_PAYPSW = 24; // 支付密码修改--修改支付密码
 
 
     // 支付
     public static final int GETPAYMENT = 40; // 生成充值订单并支付
+    public static final int REMITTANCE = 66; // 线下汇款信息
 
-
-
-
-
-    public static final int URL_USECODE = 23; // 观影码支付
-    public static final int PAYFOR = 24; // 购买支付，movie/moviePayInfo?movieId=28   back：影片信息，价格，订单号，支付方式
-    public static final int PAYPARAMS = 25; // 获取支付参数  movie/payParams?orderId=105&channelId=8&clientIp=192.168.1.7
-    public static final int URL_ORDERSTATUS = 26; // 查询订单状态
-
-
-    public static final int URL_LOGINLICENSE = 36; // 用户登录协议及政策
-    public static final int URL_WATCHRECORD = 37; // 观影记录
-    public static final int URL_USERCODE = 38; // 用户观影码
-    public static final int URL_ORDER = 39; // 订单列表
-    public static final int URL_ORDERDETAILS = 40; // 订单详情
-    public static final int URL_USERBIND = 41; // 用户绑定信息
-    public static final int FEEDBACK = 42; // 用户反馈
-    public static final int ABOUTUS = 43; // 关于我们
-    public static final int USERTRADE = 44; // 用户收益详情
-    public static final int URL_DAYLABEL = 45; // 我的日签
-    public static final int ADDCODE = 46; // 添加观影码
-    public static final int USABLECODE = 47; // 用户可用兑换码
-
-    public static final int NEWVERSION = 49; // 新版本
-    public static final int REMOVE_BIND = 50; // 解除绑定
-    public static final int BINDTHIRD = 51; // 绑定第三方账号
-
-    //星球页面
-    public static final int URL_WATCH_LIST = 100; // 星球列表
-    public static final int URL_WATCH_USER_LIST = 101; // 星球用户
-    public static final int URL_WATCH_INVITER_INFO = 102; // 获取邀请人的信息
-    public static final int URL_WATCH_INVITER_OTHER = 103; // 去邀请他人
-    public static final int URL_MESSAGE_INVITER = 104; // 他人的邀请
-    public static final int URL_MESSAGE_INVITER_OK = 105; //接受 他人的邀请
-    public static final int URL_MESSAGE_INVITER_CANCEL = 106; //拒绝 他人的邀请
-    public static final int URL_MESSAGE_USER_DETAIL = 107; //获取主控的消息
-    public static final int URL_UPLOAD_NICK_NAME = 120; //修改昵称
-    public static final int URL_USER_INFO_DETAILS = 121; // 用户信息,另外的接口\
-    public static final int URL_USER_LOCATION_PROVINCE = 122; // 获取省份
-    public static final int URL_USER_LOCATION_CITY = 123; // 获取城市
-    public static final int URL_USER_LOCATION_COUNTY = 124; // 获取县城
-    public static final int URL_CREATE_POSTER_DOWN = 125; // 生成海报,供下载使用(目前的逻辑没有使用)
-    public static final int URL_UPLOAD_WATCH_PROGRESS = 126; // 保存播放进度
-
-
-    //提现
-    public static final int CASHOUT_INFO = 200;//提现信息
-    public static final int APPLY_CASHOUT = 201;//提现申请
-    public static final int SAVE_ALIPAY_INFO = 202;//保存支付宝信息
-    public static final int PROMOTION_APPLY = 203;
-
-
-    //订单
-    public static final int GOODSORDER = 204;
 
 }

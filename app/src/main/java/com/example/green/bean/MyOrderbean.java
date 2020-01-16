@@ -8,14 +8,14 @@ import java.util.List;
  * @ClassName: MyOrderbean
  * @Author: hjl
  * @email: 51721997@163.com
- * @Description: java类作用描述
+ * @Description: 订单bean类
  * @CreateDate: 2019/12/29 12:54
  */
 public class MyOrderbean {
 
     /**
      * code : 200
-     * result : {"order_group_list":[{"order_list":[{"order_id":5,"order_sn":"2000000000000501","pay_sn":"19112716193553630002","store_id":1,"store_name":"自营店铺","buyer_id":2,"buyer_name":"buyer2","buyer_email":null,"add_time":1574842775,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"89.00","order_amount":"89.00","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"extend_order_goods":[{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}],"if_cancel":true,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_evaluation_again":false,"if_delete":false,"ownshop":true,"zengpin_list":false}],"pay_amount":89,"add_time":1574842775,"pay_sn":"19112716193553630002"},{"order_list":[{"order_id":5,"order_sn":"2000000000000501","pay_sn":"19112716193553630002","store_id":1,"store_name":"自营店铺","buyer_id":2,"buyer_name":"buyer2","buyer_email":null,"add_time":1574842775,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"89.00","order_amount":"89.00","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"extend_order_goods":[{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}],"if_cancel":true,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_evaluation_again":false,"if_delete":false,"ownshop":true,"zengpin_list":false}],"pay_amount":90,"add_time":1574842776,"pay_sn":"19112716163665328002"},{"order_list":[{"order_id":5,"order_sn":"2000000000000501","pay_sn":"19112716193553630002","store_id":1,"store_name":"自营店铺","buyer_id":2,"buyer_name":"buyer2","buyer_email":null,"add_time":1574842775,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"89.00","order_amount":"89.00","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"extend_order_goods":[{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}],"if_cancel":true,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_evaluation_again":false,"if_delete":false,"ownshop":true,"zengpin_list":false}],"pay_amount":91,"add_time":1574842777,"pay_sn":"19112716154989453002"},{"order_list":[{"order_id":5,"order_sn":"2000000000000501","pay_sn":"19112716193553630002","store_id":1,"store_name":"自营店铺","buyer_id":2,"buyer_name":"buyer2","buyer_email":null,"add_time":1574842775,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"89.00","order_amount":"89.00","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"extend_order_goods":[{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}],"if_cancel":true,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_evaluation_again":false,"if_delete":false,"ownshop":true,"zengpin_list":false}],"pay_amount":92,"add_time":1574842778,"pay_sn":"19112715562038620002"}]}
+     * result : {"order_group_list":[{"add_time":1578393864,"order_state":10,"order_amount":"76.60","state_desc":"待付款","order_id":3,"order_sn":"3000000000000301","pay_sn":"20010718442406583011","buyer_id":11,"buyer_name":"caijunqi99","order_list":[{"order_id":4,"order_sn":"3000000000000302","pay_sn":"20010718442406583011","store_id":2,"store_name":"水果大全","buyer_id":11,"buyer_name":"caijunqi99","buyer_email":null,"add_time":1578393864,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"49.80","order_amount":"49.80","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":4,"store_id":2,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":2,"store_name":"水果大全","grade_id":0,"member_id":null,"member_name":"shuiguo","seller_name":"shuiguo","storeclass_id":2,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":2,"store_addtime":1576153861,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":"2_2019121523542715582.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"15304538341","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"2_2019121523552995937.jpg","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"2_1.jpg\";s:4:\"type\";i:2;s:4:\"link\";i:176;}i:2;a:3:{s:3:\"img\";s:7:\"2_2.jpg\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"if_cancel":true,"if_refund_cancel":false,"if_complain":false,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_delete":false,"if_drop":false,"if_restore":false,"goods_list":[{"rec_id":5,"order_id":4,"goods_id":176,"goods_name":"绿企 海南芒果青芒10斤一整箱新鲜水果金煌芒果凯特芒果批发包邮5","goods_price":"49.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg","goods_pay_price":"49.80","store_id":2,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":293,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg"}],"goods_count":1},{"order_id":3,"order_sn":"3000000000000301","pay_sn":"20010718442406583011","store_id":1,"store_name":"自营店铺","buyer_id":11,"buyer_name":"caijunqi99","buyer_email":null,"add_time":1578393864,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"76.60","order_amount":"76.60","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":3,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":1,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":1,"store_addtime":1572950123,"store_endtime":0,"store_logo":"1_2019121216053246268.png","store_banner":"1_2019121216065721366.png","store_avatar":"1_2019121216013778963.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"18511310658","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":",,,,","store_slide_url":"http://,http://,http://,http://,http://","store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"1_2019121216081656544.png","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"1_3.png\";s:4:\"type\";i:2;s:4:\"link\";i:177;}i:2;a:3:{s:3:\"img\";s:7:\"1_2.png\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"if_cancel":true,"if_refund_cancel":false,"if_complain":false,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_delete":false,"if_drop":false,"if_restore":false,"goods_list":[{"rec_id":3,"order_id":3,"goods_id":166,"goods_name":"皇冠梨新鲜梨子10斤整箱砀山梨香梨鸭梨早酥梨当季水果现摘翠冠梨","goods_price":"39.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg","goods_pay_price":"39.80","store_id":1,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":76,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg"},{"rec_id":4,"order_id":3,"goods_id":172,"goods_name":"突尼斯软籽石榴净重5斤纯甜会理红石榴新鲜水果包邮现货大果10 5斤 大果","goods_price":"36.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313571867987.jpg","goods_pay_price":"36.80","store_id":1,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":78,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313571867987.jpg"}],"goods_count":2}],"pay_amount":126.39999999999999},{"add_time":1578393026,"order_state":10,"order_amount":"39.80","state_desc":"待付款","order_id":2,"order_sn":"3000000000000201","pay_sn":"20010718302600467011","buyer_id":11,"buyer_name":"caijunqi99","order_list":[{"order_id":2,"order_sn":"3000000000000201","pay_sn":"20010718302600467011","store_id":1,"store_name":"自营店铺","buyer_id":11,"buyer_name":"caijunqi99","buyer_email":null,"add_time":1578393026,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"39.80","order_amount":"39.80","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":2,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":1,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":1,"store_addtime":1572950123,"store_endtime":0,"store_logo":"1_2019121216053246268.png","store_banner":"1_2019121216065721366.png","store_avatar":"1_2019121216013778963.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"18511310658","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":",,,,","store_slide_url":"http://,http://,http://,http://,http://","store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"1_2019121216081656544.png","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"1_3.png\";s:4:\"type\";i:2;s:4:\"link\";i:177;}i:2;a:3:{s:3:\"img\";s:7:\"1_2.png\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"if_cancel":true,"if_refund_cancel":false,"if_complain":false,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_delete":false,"if_drop":false,"if_restore":false,"goods_list":[{"rec_id":2,"order_id":2,"goods_id":166,"goods_name":"皇冠梨新鲜梨子10斤整箱砀山梨香梨鸭梨早酥梨当季水果现摘翠冠梨","goods_price":"39.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg","goods_pay_price":"39.80","store_id":1,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":76,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg"}],"goods_count":1}],"pay_amount":39.8}]}
      * message : ok
      * page_total : 1
      * hasmore : false
@@ -80,24 +80,30 @@ public class MyOrderbean {
 
         public static class OrderGroupListBean {
             /**
-             * order_list : [{"order_id":5,"order_sn":"2000000000000501","pay_sn":"19112716193553630002","store_id":1,"store_name":"自营店铺","buyer_id":2,"buyer_name":"buyer2","buyer_email":null,"add_time":1574842775,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"89.00","order_amount":"89.00","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"extend_order_goods":[{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}],"if_cancel":true,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_evaluation_again":false,"if_delete":false,"ownshop":true,"zengpin_list":false}]
-             * pay_amount : 89
-             * add_time : 1574842775
-             * pay_sn : 19112716193553630002
+             * add_time : 1578393864
+             * order_state : 10
+             * order_amount : 76.60
+             * state_desc : 待付款
+             * order_id : 3
+             * order_sn : 3000000000000301
+             * pay_sn : 20010718442406583011
+             * buyer_id : 11
+             * buyer_name : caijunqi99
+             * order_list : [{"order_id":4,"order_sn":"3000000000000302","pay_sn":"20010718442406583011","store_id":2,"store_name":"水果大全","buyer_id":11,"buyer_name":"caijunqi99","buyer_email":null,"add_time":1578393864,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"49.80","order_amount":"49.80","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":4,"store_id":2,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":2,"store_name":"水果大全","grade_id":0,"member_id":null,"member_name":"shuiguo","seller_name":"shuiguo","storeclass_id":2,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":2,"store_addtime":1576153861,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":"2_2019121523542715582.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"15304538341","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"2_2019121523552995937.jpg","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"2_1.jpg\";s:4:\"type\";i:2;s:4:\"link\";i:176;}i:2;a:3:{s:3:\"img\";s:7:\"2_2.jpg\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"if_cancel":true,"if_refund_cancel":false,"if_complain":false,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_delete":false,"if_drop":false,"if_restore":false,"goods_list":[{"rec_id":5,"order_id":4,"goods_id":176,"goods_name":"绿企 海南芒果青芒10斤一整箱新鲜水果金煌芒果凯特芒果批发包邮5","goods_price":"49.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg","goods_pay_price":"49.80","store_id":2,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":293,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg"}],"goods_count":1},{"order_id":3,"order_sn":"3000000000000301","pay_sn":"20010718442406583011","store_id":1,"store_name":"自营店铺","buyer_id":11,"buyer_name":"caijunqi99","buyer_email":null,"add_time":1578393864,"payment_code":"online","payment_time":0,"trade_no":null,"finnshed_time":0,"goods_amount":"76.60","order_amount":"76.60","rcb_amount":"0.00","pd_amount":"0.00","shipping_fee":"0.00","evaluation_state":0,"order_state":10,"refund_state":0,"lock_state":0,"delete_state":0,"refund_amount":"0.00","delay_time":0,"order_from":1,"shipping_code":"","order_type":null,"ob_no":0,"state_desc":"待付款","payment_name":"在线付款","extend_order_common":{"order_id":3,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null},"extend_store":{"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":1,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":1,"store_addtime":1572950123,"store_endtime":0,"store_logo":"1_2019121216053246268.png","store_banner":"1_2019121216065721366.png","store_avatar":"1_2019121216013778963.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"18511310658","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":",,,,","store_slide_url":"http://,http://,http://,http://,http://","store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"1_2019121216081656544.png","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"1_3.png\";s:4:\"type\";i:2;s:4:\"link\";i:177;}i:2;a:3:{s:3:\"img\";s:7:\"1_2.png\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"},"if_cancel":true,"if_refund_cancel":false,"if_complain":false,"if_receive":false,"if_lock":false,"if_deliver":false,"if_evaluation":false,"if_delete":false,"if_drop":false,"if_restore":false,"goods_list":[{"rec_id":3,"order_id":3,"goods_id":166,"goods_name":"皇冠梨新鲜梨子10斤整箱砀山梨香梨鸭梨早酥梨当季水果现摘翠冠梨","goods_price":"39.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg","goods_pay_price":"39.80","store_id":1,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":76,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313342746239.jpg"},{"rec_id":4,"order_id":3,"goods_id":172,"goods_name":"突尼斯软籽石榴净重5斤纯甜会理红石榴新鲜水果包邮现货大果10 5斤 大果","goods_price":"36.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313571867987.jpg","goods_pay_price":"36.80","store_id":1,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":78,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/1/alioss_1_2019121313571867987.jpg"}],"goods_count":2}]
+             * pay_amount : 126.39999999999999
              */
 
-            private int pay_amount;
             private int add_time;
+            private int order_state;
+            private String order_amount;
+            private String state_desc;
+            private int order_id;
+            private String order_sn;
             private String pay_sn;
+            private int buyer_id;
+            private String buyer_name;
+            private double pay_amount;
             private List<OrderListBean> order_list;
-
-            public int getPay_amount() {
-                return pay_amount;
-            }
-
-            public void setPay_amount(int pay_amount) {
-                this.pay_amount = pay_amount;
-            }
 
             public int getAdd_time() {
                 return add_time;
@@ -107,12 +113,76 @@ public class MyOrderbean {
                 this.add_time = add_time;
             }
 
+            public int getOrder_state() {
+                return order_state;
+            }
+
+            public void setOrder_state(int order_state) {
+                this.order_state = order_state;
+            }
+
+            public String getOrder_amount() {
+                return order_amount;
+            }
+
+            public void setOrder_amount(String order_amount) {
+                this.order_amount = order_amount;
+            }
+
+            public String getState_desc() {
+                return state_desc;
+            }
+
+            public void setState_desc(String state_desc) {
+                this.state_desc = state_desc;
+            }
+
+            public int getOrder_id() {
+                return order_id;
+            }
+
+            public void setOrder_id(int order_id) {
+                this.order_id = order_id;
+            }
+
+            public String getOrder_sn() {
+                return order_sn;
+            }
+
+            public void setOrder_sn(String order_sn) {
+                this.order_sn = order_sn;
+            }
+
             public String getPay_sn() {
                 return pay_sn;
             }
 
             public void setPay_sn(String pay_sn) {
                 this.pay_sn = pay_sn;
+            }
+
+            public int getBuyer_id() {
+                return buyer_id;
+            }
+
+            public void setBuyer_id(int buyer_id) {
+                this.buyer_id = buyer_id;
+            }
+
+            public String getBuyer_name() {
+                return buyer_name;
+            }
+
+            public void setBuyer_name(String buyer_name) {
+                this.buyer_name = buyer_name;
+            }
+
+            public double getPay_amount() {
+                return pay_amount;
+            }
+
+            public void setPay_amount(double pay_amount) {
+                this.pay_amount = pay_amount;
             }
 
             public List<OrderListBean> getOrder_list() {
@@ -125,21 +195,21 @@ public class MyOrderbean {
 
             public static class OrderListBean {
                 /**
-                 * order_id : 5
-                 * order_sn : 2000000000000501
-                 * pay_sn : 19112716193553630002
-                 * store_id : 1
-                 * store_name : 自营店铺
-                 * buyer_id : 2
-                 * buyer_name : buyer2
+                 * order_id : 4
+                 * order_sn : 3000000000000302
+                 * pay_sn : 20010718442406583011
+                 * store_id : 2
+                 * store_name : 水果大全
+                 * buyer_id : 11
+                 * buyer_name : caijunqi99
                  * buyer_email : null
-                 * add_time : 1574842775
+                 * add_time : 1578393864
                  * payment_code : online
                  * payment_time : 0
                  * trade_no : null
                  * finnshed_time : 0
-                 * goods_amount : 89.00
-                 * order_amount : 89.00
+                 * goods_amount : 49.80
+                 * order_amount : 49.80
                  * rcb_amount : 0.00
                  * pd_amount : 0.00
                  * shipping_fee : 0.00
@@ -156,18 +226,20 @@ public class MyOrderbean {
                  * ob_no : 0
                  * state_desc : 待付款
                  * payment_name : 在线付款
-                 * extend_order_common : {"order_id":5,"store_id":1,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"王某某","reciver_info":{"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"},"reciver_province_id":0,"reciver_city_id":82,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null}
-                 * extend_store : {"store_id":1,"store_name":"自营店铺","grade_id":1,"member_id":1,"member_name":"buyer","seller_name":"seller","storeclass_id":0,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":null,"store_sort":255,"store_addtime":1572950123,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":null,"store_keywords":null,"store_description":null,"store_qq":null,"store_ww":null,"store_phone":null,"store_mainbusiness":null,"store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":null,"mb_sliders":null,"deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"}
-                 * extend_order_goods : [{"rec_id":7,"order_id":5,"goods_id":86,"goods_name":"拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合","goods_price":"89.00","goods_num":1,"goods_image":"1_2017092900132832208.jpg","goods_pay_price":"89.00","store_id":1,"buyer_id":2,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":22,"goods_image_url":"http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg"}]
+                 * extend_order_common : {"order_id":4,"store_id":2,"shipping_time":0,"shipping_express_id":0,"evaluation_time":0,"evalseller_state":"0","evalseller_time":0,"order_message":"","order_pointscount":0,"voucher_price":null,"voucher_code":null,"deliver_explain":null,"daddress_id":0,"reciver_name":"冥界警","reciver_info":{"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"},"reciver_province_id":0,"reciver_city_id":99,"invoice_info":[],"promotion_info":null,"dlyo_pickup_code":null}
+                 * extend_store : {"store_id":2,"store_name":"水果大全","grade_id":0,"member_id":null,"member_name":"shuiguo","seller_name":"shuiguo","storeclass_id":2,"store_company_name":null,"region_id":null,"area_info":null,"store_address":null,"store_zip":null,"store_state":1,"store_close_info":"","store_sort":2,"store_addtime":1576153861,"store_endtime":0,"store_logo":null,"store_banner":null,"store_avatar":"2_2019121523542715582.png","store_keywords":"","store_description":"","store_qq":"","store_ww":"","store_phone":"15304538341","store_mainbusiness":"","store_recommend":0,"store_theme":"default","store_credit":0,"store_desccredit":0,"store_servicecredit":0,"store_deliverycredit":0,"store_collect":0,"store_slide":null,"store_slide_url":null,"store_seal":null,"store_printexplain":null,"store_sales":0,"store_presales":null,"store_aftersales":null,"store_workingtime":null,"store_free_price":"0.00","store_decoration_switch":0,"store_decoration_only":0,"store_decoration_image_count":0,"live_store_name":null,"live_store_address":null,"live_store_tel":null,"live_store_bus":null,"is_platform_store":1,"bind_all_gc":1,"store_vrcode_prefix":null,"store_baozh":0,"store_qtian":0,"store_zhping":0,"store_erxiaoshi":0,"store_tuihuo":0,"store_shiyong":0,"store_shiti":0,"store_xiaoxie":0,"store_huodaofk":0,"store_free_time":null,"store_longitude":"","store_latitude":"","mb_title_img":"2_2019121523552995937.jpg","mb_sliders":"a:5:{i:1;a:3:{s:3:\"img\";s:7:\"2_1.jpg\";s:4:\"type\";i:2;s:4:\"link\";i:176;}i:2;a:3:{s:3:\"img\";s:7:\"2_2.jpg\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:3;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:4;a:3:{s:3:\"img\";s:0:\"\";s:4:\"type\";i:1;s:4:\"link\";s:0:\"\";}i:5;N;}","deliver_region":null,"store_mgdiscount":null,"store_mgdiscount_state":0,"store_bill_time":0,"store_avaliable_deposit":"0.00","store_freeze_deposit":"0.00","store_payable_deposit":"0.00","store_avaliable_money":"0.00","store_freeze_money":"0.00"}
                  * if_cancel : true
+                 * if_refund_cancel : false
+                 * if_complain : false
                  * if_receive : false
                  * if_lock : false
                  * if_deliver : false
                  * if_evaluation : false
-                 * if_evaluation_again : false
                  * if_delete : false
-                 * ownshop : true
-                 * zengpin_list : false
+                 * if_drop : false
+                 * if_restore : false
+                 * goods_list : [{"rec_id":5,"order_id":4,"goods_id":176,"goods_name":"绿企 海南芒果青芒10斤一整箱新鲜水果金煌芒果凯特芒果批发包邮5","goods_price":"49.80","goods_num":1,"goods_image":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg","goods_pay_price":"49.80","store_id":2,"buyer_id":11,"goods_type":"1","promotions_id":0,"commis_rate":0,"gc_id":293,"goods_type_cn":"","goods_image_url":"https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg"}]
+                 * goods_count : 1
                  */
 
                 private int order_id;
@@ -204,15 +276,17 @@ public class MyOrderbean {
                 private ExtendOrderCommonBean extend_order_common;
                 private ExtendStoreBean extend_store;
                 private boolean if_cancel;
+                private boolean if_refund_cancel;
+                private boolean if_complain;
                 private boolean if_receive;
                 private boolean if_lock;
                 private boolean if_deliver;
                 private boolean if_evaluation;
-                private boolean if_evaluation_again;
                 private boolean if_delete;
-                private boolean ownshop;
-                private boolean zengpin_list;
-                private List<ExtendOrderGoodsBean> extend_order_goods;
+                private boolean if_drop;
+                private boolean if_restore;
+                private int goods_count;
+                private List<GoodsListBean> goods_list;
 
                 public int getOrder_id() {
                     return order_id;
@@ -486,6 +560,22 @@ public class MyOrderbean {
                     this.if_cancel = if_cancel;
                 }
 
+                public boolean isIf_refund_cancel() {
+                    return if_refund_cancel;
+                }
+
+                public void setIf_refund_cancel(boolean if_refund_cancel) {
+                    this.if_refund_cancel = if_refund_cancel;
+                }
+
+                public boolean isIf_complain() {
+                    return if_complain;
+                }
+
+                public void setIf_complain(boolean if_complain) {
+                    this.if_complain = if_complain;
+                }
+
                 public boolean isIf_receive() {
                     return if_receive;
                 }
@@ -518,14 +608,6 @@ public class MyOrderbean {
                     this.if_evaluation = if_evaluation;
                 }
 
-                public boolean isIf_evaluation_again() {
-                    return if_evaluation_again;
-                }
-
-                public void setIf_evaluation_again(boolean if_evaluation_again) {
-                    this.if_evaluation_again = if_evaluation_again;
-                }
-
                 public boolean isIf_delete() {
                     return if_delete;
                 }
@@ -534,34 +616,42 @@ public class MyOrderbean {
                     this.if_delete = if_delete;
                 }
 
-                public boolean isOwnshop() {
-                    return ownshop;
+                public boolean isIf_drop() {
+                    return if_drop;
                 }
 
-                public void setOwnshop(boolean ownshop) {
-                    this.ownshop = ownshop;
+                public void setIf_drop(boolean if_drop) {
+                    this.if_drop = if_drop;
                 }
 
-                public boolean isZengpin_list() {
-                    return zengpin_list;
+                public boolean isIf_restore() {
+                    return if_restore;
                 }
 
-                public void setZengpin_list(boolean zengpin_list) {
-                    this.zengpin_list = zengpin_list;
+                public void setIf_restore(boolean if_restore) {
+                    this.if_restore = if_restore;
                 }
 
-                public List<ExtendOrderGoodsBean> getExtend_order_goods() {
-                    return extend_order_goods;
+                public int getGoods_count() {
+                    return goods_count;
                 }
 
-                public void setExtend_order_goods(List<ExtendOrderGoodsBean> extend_order_goods) {
-                    this.extend_order_goods = extend_order_goods;
+                public void setGoods_count(int goods_count) {
+                    this.goods_count = goods_count;
+                }
+
+                public List<GoodsListBean> getGoods_list() {
+                    return goods_list;
+                }
+
+                public void setGoods_list(List<GoodsListBean> goods_list) {
+                    this.goods_list = goods_list;
                 }
 
                 public static class ExtendOrderCommonBean {
                     /**
-                     * order_id : 5
-                     * store_id : 1
+                     * order_id : 4
+                     * store_id : 2
                      * shipping_time : 0
                      * shipping_express_id : 0
                      * evaluation_time : 0
@@ -573,10 +663,10 @@ public class MyOrderbean {
                      * voucher_code : null
                      * deliver_explain : null
                      * daddress_id : 0
-                     * reciver_name : 王某某
-                     * reciver_info : {"phone":"15236615592","mob_phone":"15236615592","tel_phone":"","address":"河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元","area":"河北 廊坊市 三河市","street":"廊坊市三河市潮白星光公馆18号楼3单元"}
+                     * reciver_name : 冥界警
+                     * reciver_info : {"phone":"18511310658","mob_phone":"18511310658","tel_phone":"","address":"内蒙古 通辽市 科尔沁区 基因","area":"内蒙古 通辽市 科尔沁区","street":"基因"}
                      * reciver_province_id : 0
-                     * reciver_city_id : 82
+                     * reciver_city_id : 99
                      * invoice_info : []
                      * promotion_info : null
                      * dlyo_pickup_code : null
@@ -765,12 +855,12 @@ public class MyOrderbean {
 
                     public static class ReciverInfoBean {
                         /**
-                         * phone : 15236615592
-                         * mob_phone : 15236615592
+                         * phone : 18511310658
+                         * mob_phone : 18511310658
                          * tel_phone :
-                         * address : 河北 廊坊市 三河市 廊坊市三河市潮白星光公馆18号楼3单元
-                         * area : 河北 廊坊市 三河市
-                         * street : 廊坊市三河市潮白星光公馆18号楼3单元
+                         * address : 内蒙古 通辽市 科尔沁区 基因
+                         * area : 内蒙古 通辽市 科尔沁区
+                         * street : 基因
                          */
 
                         private String phone;
@@ -832,32 +922,32 @@ public class MyOrderbean {
 
                 public static class ExtendStoreBean {
                     /**
-                     * store_id : 1
-                     * store_name : 自营店铺
-                     * grade_id : 1
-                     * member_id : 1
-                     * member_name : buyer
-                     * seller_name : seller
-                     * storeclass_id : 0
+                     * store_id : 2
+                     * store_name : 水果大全
+                     * grade_id : 0
+                     * member_id : null
+                     * member_name : shuiguo
+                     * seller_name : shuiguo
+                     * storeclass_id : 2
                      * store_company_name : null
                      * region_id : null
                      * area_info : null
                      * store_address : null
                      * store_zip : null
                      * store_state : 1
-                     * store_close_info : null
-                     * store_sort : 255
-                     * store_addtime : 1572950123
+                     * store_close_info :
+                     * store_sort : 2
+                     * store_addtime : 1576153861
                      * store_endtime : 0
                      * store_logo : null
                      * store_banner : null
-                     * store_avatar : null
-                     * store_keywords : null
-                     * store_description : null
-                     * store_qq : null
-                     * store_ww : null
-                     * store_phone : null
-                     * store_mainbusiness : null
+                     * store_avatar : 2_2019121523542715582.png
+                     * store_keywords :
+                     * store_description :
+                     * store_qq :
+                     * store_ww :
+                     * store_phone : 15304538341
+                     * store_mainbusiness :
                      * store_recommend : 0
                      * store_theme : default
                      * store_credit : 0
@@ -896,8 +986,8 @@ public class MyOrderbean {
                      * store_free_time : null
                      * store_longitude :
                      * store_latitude :
-                     * mb_title_img : null
-                     * mb_sliders : null
+                     * mb_title_img : 2_2019121523552995937.jpg
+                     * mb_sliders : a:5:{i:1;a:3:{s:3:"img";s:7:"2_1.jpg";s:4:"type";i:2;s:4:"link";i:176;}i:2;a:3:{s:3:"img";s:7:"2_2.jpg";s:4:"type";i:1;s:4:"link";s:0:"";}i:3;a:3:{s:3:"img";s:0:"";s:4:"type";i:1;s:4:"link";s:0:"";}i:4;a:3:{s:3:"img";s:0:"";s:4:"type";i:1;s:4:"link";s:0:"";}i:5;N;}
                      * deliver_region : null
                      * store_mgdiscount : null
                      * store_mgdiscount_state : 0
@@ -912,7 +1002,7 @@ public class MyOrderbean {
                     private int store_id;
                     private String store_name;
                     private int grade_id;
-                    private int member_id;
+                    private Object member_id;
                     private String member_name;
                     private String seller_name;
                     private int storeclass_id;
@@ -922,19 +1012,19 @@ public class MyOrderbean {
                     private Object store_address;
                     private Object store_zip;
                     private int store_state;
-                    private Object store_close_info;
+                    private String store_close_info;
                     private int store_sort;
                     private int store_addtime;
                     private int store_endtime;
                     private Object store_logo;
                     private Object store_banner;
-                    private Object store_avatar;
-                    private Object store_keywords;
-                    private Object store_description;
-                    private Object store_qq;
-                    private Object store_ww;
-                    private Object store_phone;
-                    private Object store_mainbusiness;
+                    private String store_avatar;
+                    private String store_keywords;
+                    private String store_description;
+                    private String store_qq;
+                    private String store_ww;
+                    private String store_phone;
+                    private String store_mainbusiness;
                     private int store_recommend;
                     private String store_theme;
                     private int store_credit;
@@ -973,8 +1063,8 @@ public class MyOrderbean {
                     private Object store_free_time;
                     private String store_longitude;
                     private String store_latitude;
-                    private Object mb_title_img;
-                    private Object mb_sliders;
+                    private String mb_title_img;
+                    private String mb_sliders;
                     private Object deliver_region;
                     private Object store_mgdiscount;
                     private int store_mgdiscount_state;
@@ -1009,11 +1099,11 @@ public class MyOrderbean {
                         this.grade_id = grade_id;
                     }
 
-                    public int getMember_id() {
+                    public Object getMember_id() {
                         return member_id;
                     }
 
-                    public void setMember_id(int member_id) {
+                    public void setMember_id(Object member_id) {
                         this.member_id = member_id;
                     }
 
@@ -1089,11 +1179,11 @@ public class MyOrderbean {
                         this.store_state = store_state;
                     }
 
-                    public Object getStore_close_info() {
+                    public String getStore_close_info() {
                         return store_close_info;
                     }
 
-                    public void setStore_close_info(Object store_close_info) {
+                    public void setStore_close_info(String store_close_info) {
                         this.store_close_info = store_close_info;
                     }
 
@@ -1137,59 +1227,59 @@ public class MyOrderbean {
                         this.store_banner = store_banner;
                     }
 
-                    public Object getStore_avatar() {
+                    public String getStore_avatar() {
                         return store_avatar;
                     }
 
-                    public void setStore_avatar(Object store_avatar) {
+                    public void setStore_avatar(String store_avatar) {
                         this.store_avatar = store_avatar;
                     }
 
-                    public Object getStore_keywords() {
+                    public String getStore_keywords() {
                         return store_keywords;
                     }
 
-                    public void setStore_keywords(Object store_keywords) {
+                    public void setStore_keywords(String store_keywords) {
                         this.store_keywords = store_keywords;
                     }
 
-                    public Object getStore_description() {
+                    public String getStore_description() {
                         return store_description;
                     }
 
-                    public void setStore_description(Object store_description) {
+                    public void setStore_description(String store_description) {
                         this.store_description = store_description;
                     }
 
-                    public Object getStore_qq() {
+                    public String getStore_qq() {
                         return store_qq;
                     }
 
-                    public void setStore_qq(Object store_qq) {
+                    public void setStore_qq(String store_qq) {
                         this.store_qq = store_qq;
                     }
 
-                    public Object getStore_ww() {
+                    public String getStore_ww() {
                         return store_ww;
                     }
 
-                    public void setStore_ww(Object store_ww) {
+                    public void setStore_ww(String store_ww) {
                         this.store_ww = store_ww;
                     }
 
-                    public Object getStore_phone() {
+                    public String getStore_phone() {
                         return store_phone;
                     }
 
-                    public void setStore_phone(Object store_phone) {
+                    public void setStore_phone(String store_phone) {
                         this.store_phone = store_phone;
                     }
 
-                    public Object getStore_mainbusiness() {
+                    public String getStore_mainbusiness() {
                         return store_mainbusiness;
                     }
 
-                    public void setStore_mainbusiness(Object store_mainbusiness) {
+                    public void setStore_mainbusiness(String store_mainbusiness) {
                         this.store_mainbusiness = store_mainbusiness;
                     }
 
@@ -1497,19 +1587,19 @@ public class MyOrderbean {
                         this.store_latitude = store_latitude;
                     }
 
-                    public Object getMb_title_img() {
+                    public String getMb_title_img() {
                         return mb_title_img;
                     }
 
-                    public void setMb_title_img(Object mb_title_img) {
+                    public void setMb_title_img(String mb_title_img) {
                         this.mb_title_img = mb_title_img;
                     }
 
-                    public Object getMb_sliders() {
+                    public String getMb_sliders() {
                         return mb_sliders;
                     }
 
-                    public void setMb_sliders(Object mb_sliders) {
+                    public void setMb_sliders(String mb_sliders) {
                         this.mb_sliders = mb_sliders;
                     }
 
@@ -1586,23 +1676,24 @@ public class MyOrderbean {
                     }
                 }
 
-                public static class ExtendOrderGoodsBean {
+                public static class GoodsListBean {
                     /**
-                     * rec_id : 7
-                     * order_id : 5
-                     * goods_id : 86
-                     * goods_name : 拜格不锈钢锅具套装铁炒锅家用汤锅全套厨房厨具组合
-                     * goods_price : 89.00
+                     * rec_id : 5
+                     * order_id : 4
+                     * goods_id : 176
+                     * goods_name : 绿企 海南芒果青芒10斤一整箱新鲜水果金煌芒果凯特芒果批发包邮5
+                     * goods_price : 49.80
                      * goods_num : 1
-                     * goods_image : 1_2017092900132832208.jpg
-                     * goods_pay_price : 89.00
-                     * store_id : 1
-                     * buyer_id : 2
+                     * goods_image : https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg
+                     * goods_pay_price : 49.80
+                     * store_id : 2
+                     * buyer_id : 11
                      * goods_type : 1
                      * promotions_id : 0
                      * commis_rate : 0
-                     * gc_id : 22
-                     * goods_image_url : http://w.gw.com/uploads/home/store/goods/1/1_2017092900132832208.jpg
+                     * gc_id : 293
+                     * goods_type_cn :
+                     * goods_image_url : https://oss.bayi-shop.com/home/store/goods/2/alioss_2_2019121314291160951.jpg
                      */
 
                     private int rec_id;
@@ -1619,6 +1710,7 @@ public class MyOrderbean {
                     private int promotions_id;
                     private int commis_rate;
                     private int gc_id;
+                    private String goods_type_cn;
                     private String goods_image_url;
 
                     public int getRec_id() {
@@ -1731,6 +1823,14 @@ public class MyOrderbean {
 
                     public void setGc_id(int gc_id) {
                         this.gc_id = gc_id;
+                    }
+
+                    public String getGoods_type_cn() {
+                        return goods_type_cn;
+                    }
+
+                    public void setGoods_type_cn(String goods_type_cn) {
+                        this.goods_type_cn = goods_type_cn;
                     }
 
                     public String getGoods_image_url() {

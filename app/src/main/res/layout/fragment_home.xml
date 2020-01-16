@@ -42,7 +42,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp_14"
                     android:layout_toRightOf="@+id/search_icon"
-                    android:text="双十一299月礼包"
+                    android:text="搜索商品"
                     android:textColor="@color/c_E7E7E7"
                     android:textSize="@dimen/dp_14" />
             </RelativeLayout>

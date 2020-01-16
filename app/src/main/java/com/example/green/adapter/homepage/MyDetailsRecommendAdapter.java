@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.green.R;
@@ -25,14 +24,14 @@ public class MyDetailsRecommendAdapter extends BaseQuickAdapter<DetailsDatabean.
             TextView name = helper.getView(R.id.goods_name);
             name.setText(goodsCommendListBean.getGoods_name());
             ImageView imageView = helper.getView(R.id.goods_iv);
-            RequestOptions options = new RequestOptions()
+            /*RequestOptions options = new RequestOptions()
                     .placeholder(R.mipmap.ic_launcher)//图片加载出来前，显示的图片
                     .fallback(R.mipmap.ic_launcher) //url为空的时候,显示的图片
                     .error(R.mipmap.ic_launcher)
-                    .centerCrop();//
+                    .centerCrop();//*/
             // 图片加载失败后，显示的图片
             if (null != goodsCommendListBean.getGoods_image_url()) {
-                Glide.with(mContext).load(goodsCommendListBean.getGoods_image_url()).apply(options).into(imageView);
+                Glide.with(mContext).load(goodsCommendListBean.getGoods_image_url())/*.apply(options)*/.into(imageView);
             }
             helper.addOnClickListener(R.id.goods_iv);
             helper.addOnClickListener(R.id.goods_name);

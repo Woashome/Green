@@ -52,44 +52,55 @@
         tools:replace="android:theme">
         <activity
             android:name=".ui.activity.MainActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.PayModeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.store.StoreInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
         <activity
             android:name=".ui.activity.mine.WalletActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.GoodsDetailsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.homepage.ForgetPasswordActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.homepage.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.homepage.RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.SearchListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.mine.wallet.IntegralActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.mine.wallet.RechargeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.homepage.AgreementActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
@@ -102,39 +113,90 @@
         </activity>
         <activity
             android:name=".ui.activity.mine.ShoppingAddressActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.mine.AddAddressActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.mine.PersonalDataActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.mine.EditorSiteActivity" />
-        <activity android:name=".ui.activity.homepage.SystemMessageActivity" />
-        <activity android:name=".ui.activity.mine.LoginPswActivity" />
-        <activity android:name=".ui.activity.mine.PayPswActivity" />
-        <activity android:name=".ui.activity.mine.MyOrderActivity" />
-        <activity android:name=".ui.activity.mine.wallet.TeamActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.EditorSiteActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.homepage.SystemMessageActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.LoginPswActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.PayPswActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.MyOrderActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.TeamActivity"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity android:name=".ui.activity.mine.wallet.StoredActivity" />
-        <activity android:name=".ui.activity.mine.wallet.TopUpActivity" />
-        <activity android:name=".ui.activity.mine.wallet.WithdrawActivity" />
-        <activity android:name=".ui.activity.mine.wallet.RealNmaeActivity" />
-        <activity android:name=".ui.activity.mine.wallet.TransfersActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.TopUpActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.WithdrawActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.RealNmaeActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.TransfersActivity"
+            android:theme="@style/AppTheme_StartActivity" />
         <activity android:name=".ui.activity.mine.wallet.TransactionCodeActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.InviteActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 安装应用 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.chuanying.xianzaikan.fileprovider"
+            android:authorities="com.example.green.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths_movie" />
+                android:resource="@xml/file_paths_green" />
         </provider>
 
-        <activity android:name=".ui.activity.shopping.PaymentSuccessActivity" />
-        <activity android:name=".ui.activity.shopping.AffirmOrderActivity"></activity>
+        <activity
+            android:name=".ui.activity.shopping.PaymentSuccessActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.shopping.AffirmOrderActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.CollegeDetailsActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.WithdrawRecordActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity android:name=".ui.activity.mine.OrderDetailsActivity" />
+        <activity
+            android:name=".ui.activity.mine.LogisticsActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.shopping.AwardActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.RemittanceActivity"
+            android:theme="@style/AppTheme_StartActivity"></activity>
     </application>
 
 </manifest>

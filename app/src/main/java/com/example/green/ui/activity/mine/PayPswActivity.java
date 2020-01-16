@@ -1,9 +1,6 @@
 package com.example.green.ui.activity.mine;
 
-import android.content.Intent;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -19,13 +16,11 @@ import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
 import com.example.green.bean.mine.ChangePayPswbean;
 import com.example.green.bean.register.AccquireSmsbean;
-import com.example.green.bean.register.ModificationPswbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
 import com.example.green.local_utils.SPUtils;
-import com.example.green.model.MineModel;
+import com.example.green.local_utils.StatusBarUtil;
 import com.example.green.model.UserModel;
-import com.example.green.ui.activity.homepage.LoginActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -137,10 +132,11 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                 break;
             case ApiConfig.CHANGE_PAYPSW:
                 ChangePayPswbean changePayPswbean = (ChangePayPswbean) t[0];
+                Log.e(TAG, "onResponse: " + changePayPswbean.getResult().getState());
+                Log.e(TAG, "onResponse: " + changePayPswbean.getMessage());
                 if (changePayPswbean.getCode().equals("200")) {
-                    if (null != changePayPswbean) {
-                        toastActivity(changePayPswbean.getMessage());
-                    }
+                    toastActivity("密码修改成功");
+                    finish();
                 } else {
                     toastActivity(changePayPswbean.getMessage());
                 }
@@ -157,7 +153,6 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                 finish();
                 break;
             case R.id.acquireCode:
-
                 mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mPhone, TYPE, LoadConfig.NORMAL);
                 break;
             case R.id.bt_confirm:
@@ -165,13 +160,13 @@ public class PayPswActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                 String code = mEtCode.getText().toString().trim();
                 String psw = mEtPsw.getText().toString().trim();
                 String psw_confirm = mEtPswConfirm.getText().toString().trim();
-                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+//                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
                 if (!TextUtils.isEmpty(code) && !TextUtils.isEmpty(psw) && !TextUtils.isEmpty(psw_confirm)) {
-                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
-                        mPresenter.getData(ApiConfig.MODIFICATION_PSW, key, code, psw, psw_confirm, mPhone);
-                    } else {
-                        toastActivity("密码必须为6-16位数字 字母组合");
-                    }
+//                    if (psw.matches(passRegex) && psw_confirm.matches(passRegex)) {
+                    mPresenter.getData(ApiConfig.CHANGE_PAYPSW, key, code, psw, psw_confirm, mPhone);
+//                    } else {
+//                        toastActivity("密码必须为6-16位数字 字母组合");
+//                    }
                 } else {
                     toastActivity("请输入完整信息");
                 }

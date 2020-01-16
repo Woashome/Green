@@ -113,18 +113,18 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, UserModel>
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
+//                String passRegex = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
                 if (!TextUtils.isEmpty(mUserPhone.getText().toString().trim()) && !TextUtils.isEmpty(mUserPsw.getText().toString().trim())) {
-                    if (mUserPsw.getText().toString().trim().matches(passRegex)) {
-                        mPresenter.getData(ApiConfig.LOGIN, mUserPhone.getText().toString().trim(),
-                                mUserPsw.getText().toString().trim(), "android", LoadConfig.NORMAL);
-                        SharedPreferences.Editor editor = mPreference.edit();
-                        editor.putString(ACCOUNT_PREF, mUserPhone.getText().toString().trim());
-                        editor.putString(PASSWORD_PREF, mUserPsw.getText().toString().trim());
-                        editor.apply();
-                    } else {
-                        toastActivity("密码必须为6-16位数字 字母组合");
-                    }
+//                    if (mUserPsw.getText().toString().trim().matches(passRegex)) {
+                    mPresenter.getData(ApiConfig.LOGIN, mUserPhone.getText().toString().trim(),
+                            mUserPsw.getText().toString().trim(), "android", LoadConfig.NORMAL);
+                    SharedPreferences.Editor editor = mPreference.edit();
+                    editor.putString(ACCOUNT_PREF, mUserPhone.getText().toString().trim());
+                    editor.putString(PASSWORD_PREF, mUserPsw.getText().toString().trim());
+                    editor.apply();
+//                    } else {
+//                        toastActivity("密码必须为6-16位数字 字母组合");
+//                    }
                 } else {
                     toastActivity("用户名密码不能为空！");
                 }

@@ -26,6 +26,18 @@
                 android:text="提现"
                 android:textColor="@color/c_242424"
                 android:textSize="@dimen/dp_15" />
+
+            <TextView
+                android:id="@+id/tixian_record"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/dp_10"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="提现记录"
+                android:textColor="@color/c_242424" />
+
         </android.support.v7.widget.Toolbar>
 
         <RelativeLayout
@@ -60,18 +72,17 @@
                     android:layout_below="@id/kezhuan"
                     android:layout_marginLeft="@dimen/dp_21"
                     android:layout_marginTop="@dimen/dp_7"
-                    android:text="￥ 550.00"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dp_22"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/low_withdraw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="@dimen/dp_21"
                     android:layout_marginBottom="@dimen/dp_10"
-                    android:text="最低提现10积分"
                     android:textColor="@color/white"
                     android:textSize="@dimen/dp_10" />
 
@@ -111,8 +122,9 @@
                 android:layout_marginTop="@dimen/dp_17"
                 android:background="@drawable/top_up_bg"
                 android:gravity="left|center"
+                android:hint="0"
+                android:inputType="numberDecimal"
                 android:paddingHorizontal="@dimen/dp_18"
-                android:text="500"
                 android:textColor="@color/c_242424" />
 
             <TextView
@@ -121,124 +133,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_jifen"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_6"
                 android:layout_marginRight="@dimen/dp_16"
-                android:text="手续费：20"
+                android:layout_marginBottom="@dimen/dp_6"
                 android:textColor="@color/app_theme_color"
                 android:textSize="@dimen/dp_12" />
 
-            <TextView
-                android:id="@+id/tv_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/et_jifen"
-                android:layout_marginLeft="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_46"
-                android:text="请填写持卡人银行卡信息："
-                android:textColor="@color/c_999999"
-                android:textSize="@dimen/dp_11" />
-            <!--持卡人-->
-            <RelativeLayout
-                android:id="@+id/chikaren"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_39"
-                android:layout_below="@id/tv_info">
-
-                <TextView
-                    android:id="@+id/tv_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_16"
-                    android:text="持卡人"
-                    android:textColor="@color/c_242424"
-                    android:textSize="@dimen/dp_12" />
-
-                <EditText
-                    android:id="@+id/et_chikaren"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_38"
-                    android:layout_marginLeft="@dimen/dp_55"
-                    android:background="@null"
-                    android:gravity="right|center"
-                    android:hint="请输入"
-                    android:paddingRight="@dimen/dp_16"
-                    android:textSize="@dimen/dp_12" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_below="@+id/et_chikaren"
-                    android:layout_marginHorizontal="@dimen/dp_16"
-                    android:background="@color/c_cbcbcb" />
-
-            </RelativeLayout>
-            <!--卡号-->
-            <RelativeLayout
-                android:id="@+id/kahao"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_39"
-                android:layout_below="@id/chikaren">
-
-                <TextView
-                    android:id="@+id/tv_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_16"
-                    android:text="卡号"
-                    android:textColor="@color/c_242424"
-                    android:textSize="@dimen/dp_12" />
-
-                <EditText
-                    android:id="@+id/et_kahao"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_38"
-                    android:layout_marginLeft="@dimen/dp_55"
-                    android:background="@null"
-                    android:gravity="right|center"
-                    android:hint="请输入"
-                    android:paddingRight="@dimen/dp_16"
-                    android:textSize="@dimen/dp_12" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_below="@+id/et_kahao"
-                    android:layout_marginHorizontal="@dimen/dp_16"
-                    android:background="@color/c_cbcbcb" />
-
-            </RelativeLayout>
-            <!--开户行-->
-            <RelativeLayout
-                android:id="@+id/kaihuhang"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_39"
-                android:layout_below="@id/kahao">
-
-                <TextView
-                    android:id="@+id/tv_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/dp_16"
-                    android:text="开户行"
-                    android:textColor="@color/c_242424"
-                    android:textSize="@dimen/dp_12" />
-
-                <EditText
-                    android:id="@+id/et_kaihuhang"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_38"
-                    android:layout_marginLeft="@dimen/dp_55"
-                    android:background="@null"
-                    android:gravity="right|center"
-                    android:hint="请输入"
-                    android:paddingRight="@dimen/dp_16"
-                    android:textSize="@dimen/dp_12" />
-
-
-            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -268,18 +168,19 @@
                 android:layout_toRightOf="@id/tv_code"
                 android:background="@null"
                 android:hint="输入验证码"
+                android:inputType="number"
                 android:paddingLeft="@dimen/dp_29"
-
                 android:textSize="@dimen/dp_12" />
 
             <TextView
                 android:id="@+id/acquire_yanzheng"
-                android:layout_width="@dimen/dp_70"
+                android:layout_width="@dimen/dp_80"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_16"
-                android:gravity="center|right"
+                android:clickable="true"
+                android:gravity="center"
                 android:text="获取验证码"
                 android:textColor="@color/c_27b28b"
                 android:textSize="@dimen/dp_12" />

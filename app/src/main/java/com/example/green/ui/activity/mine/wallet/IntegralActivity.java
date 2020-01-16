@@ -1,59 +1,98 @@
 package com.example.green.ui.activity.mine.wallet;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.green.R;
+import com.example.green.adapter.mine.wallet.PointItemAdapter;
 import com.example.green.base.BaseMvpActivity;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
+import com.example.green.bean.mine.QueryPropertybean;
+import com.example.green.bean.mine.wallet.PointListbean;
+import com.example.green.config.ApiConfig;
+import com.example.green.config.LoadConfig;
+import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
-import com.example.green.ui.fragment.store.AllGoodsFragment;
-import com.example.green.ui.fragment.store.StoreHomePageFragment;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 public class IntegralActivity extends BaseMvpActivity<CommonPresenter, MineModel>
         implements ICommonView {
 
+
     @BindView(R.id.login_back)
     ImageView mLoginBack;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.ji)
-    TextView mJi;
-    @BindView(R.id.ji_ge)
-    TextView mJiGe;
+    @BindView(R.id.ji_point)
+    TextView mJiPoint;
+    @BindView(R.id.ji_available)
+    TextView mJiAvailable;
     @BindView(R.id.rl_huzhuang)
-    LinearLayout mRlHuzhuang;
+    LinearLayout mLlHuzhuan;
     @BindView(R.id.rl_tixian)
-    LinearLayout mRlTixian;
-    @BindView(R.id.fl)
-    FrameLayout mFl;
-    public static final int FRAGMENT_ONE = 0;
-    public static final int FRAGMENT_TWO = 1;
-    public FragmentManager fragmentManager;
+    LinearLayout mLlTixian;
+    @BindView(R.id.SmartRefresh)
+    SmartRefreshLayout mSmartRefreshLayout;
+    @BindView(R.id.jifen_recyclerview)
+    RecyclerView mJifenRecyclerview;
+    private String key;
+    private int page;
+    private int pageSize = 10;
+    private List<PointListbean.ResultBean.LogListBean> mLogListBeans;
+    private PointItemAdapter mPointItemAdapter;
+    private PointListbean mPointListbean;
 
     @Override
     protected void initView() {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-        fragmentManager = getSupportFragmentManager();
+        key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
+        mLogListBeans = new ArrayList<>();
+        mPointItemAdapter = new PointItemAdapter(R.layout.record_item, mLogListBeans);
+        mJifenRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        mJifenRecyclerview.setAdapter(mPointItemAdapter);
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                page = 1;
+                mPresenter.getData(ApiConfig.JIFEN_DETAIL, key, page, pageSize, LoadConfig.REFRESH);
+            }
+        });
+        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                if (mPointListbean.isHasmore() == true) {
+                    mPresenter.getData(ApiConfig.JIFEN_DETAIL, key, ++page, pageSize, LoadConfig.LOADMORE);
+                } else {
+                    mSmartRefreshLayout.finishLoadmore();
+                }
+            }
+        });
+
     }
 
     @Override
     protected void initData() {
-
+        page = 1;
+        mPresenter.getData(ApiConfig.QUERY_PROPERT, key);
+        mPresenter.getData(ApiConfig.JIFEN_DETAIL, key, page, pageSize, LoadConfig.NORMAL);
     }
 
     @Override
@@ -78,8 +117,39 @@ public class IntegralActivity extends BaseMvpActivity<CommonPresenter, MineModel
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.QUERY_PROPERT:
+                QueryPropertybean queryPropertybean = (QueryPropertybean) t[0];
+                if (null != queryPropertybean && queryPropertybean.getCode().equals("200")) {
+                    String available = queryPropertybean.getResult().getAvailable();
+                    String point = queryPropertybean.getResult().getPoint();
+                    mJiAvailable.setText(available);
+                    mJiPoint.setText(point);
+                } else {
+                    toastActivity(queryPropertybean.getMessage());
+                }
+                break;
+            case ApiConfig.JIFEN_DETAIL:
+                mPointListbean = (PointListbean) t[0];
+                if (null != mPointListbean && mPointListbean.getCode().equals("200")) {
+                    List<PointListbean.ResultBean.LogListBean> log_list = mPointListbean.getResult().getLog_list();
+                    int loadMode = (int) t[1];
+                    if (loadMode == LoadConfig.NORMAL) {
+                        mLogListBeans.addAll(log_list);
+                    } else if (loadMode == LoadConfig.REFRESH) {
+                        mLogListBeans.clear();
+                        mLogListBeans.addAll(log_list);
+                        mSmartRefreshLayout.finishRefresh();
+                    } else if (loadMode == LoadConfig.LOADMORE) {
+                        mLogListBeans.addAll(log_list);
+                        mSmartRefreshLayout.finishLoadmore();
+                    }
+                    mPointItemAdapter.notifyDataSetChanged();
+                }
+                break;
+        }
     }
+
 
     @OnClick({R.id.login_back, R.id.rl_huzhuang, R.id.rl_tixian})
     public void onClick(View v) {
@@ -90,40 +160,17 @@ public class IntegralActivity extends BaseMvpActivity<CommonPresenter, MineModel
                 finish();
                 break;
             case R.id.rl_huzhuang:
-                //                selectFragment(FRAGMENT_ONE);
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                startActivity(new Intent(IntegralActivity.this, TransfersActivity.class));
                 break;
             case R.id.rl_tixian:
-                //                selectFragment(FRAGMENT_TWO);
+                //设置切换动画，从右边进入，左边退出
+                overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                startActivity(new Intent(IntegralActivity.this, WithdrawActivity.class));
                 break;
         }
     }
-    /*public void selectFragment(int position) {//设置传入第几值显示第几个fragment
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-
-        switch (position) {
-            case 0:
-                if (mStoreHomePageFragment == null) {
-                    mStoreHomePageFragment = new StoreHomePageFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("storeId", mStoreId);
-                    mStoreHomePageFragment.setArguments(bundle);
-                }
-                //将原来的Fragment替换掉---此处R.id.fragmen指的是FrameLayout
-                ft.replace(R.id.fl, mStoreHomePageFragment);
-                break;
-            case 1:
-                if (mAllGoodsFragment == null) {
-                    mAllGoodsFragment =new AllGoodsFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("storeId", mStoreId);
-                    mAllGoodsFragment.setArguments(bundle);
-                }
-                ft.replace(R.id.fl, mAllGoodsFragment);
-                break;
-            default:
-                break;
-        }
-        ft.commit();
-    }*/
 }

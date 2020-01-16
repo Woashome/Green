@@ -1,7 +1,6 @@
 package com.example.green.adapter.mine;
 
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,11 +26,9 @@ public class MyCollegeAdapter extends BaseQuickAdapter<CollegeListbean.ResultBea
         if (null != item) {
             ImageView iv = helper.getView(R.id.college_iv);
             TextView title = helper.getView(R.id.title_tv);
-            TextView info = helper.getView(R.id.info_tv);
             TextView date = helper.getView(R.id.date_tv);
 
             title.setText(resultBean.getArticle_title());
-            info.setText(resultBean.getArticle_content());
             date.setText(resultBean.getArticle_time());
             RequestOptions transform = new RequestOptions().transform(new RoundedCorners(20));
             Glide.with(mContext).load(resultBean.getArticle_pic()).apply(transform).into(iv);

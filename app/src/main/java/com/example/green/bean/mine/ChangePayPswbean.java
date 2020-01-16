@@ -13,8 +13,8 @@ public class ChangePayPswbean {
 
     /**
      * code : 200
-     * result : {"state":1,"msg":"密码设置成功"}
-     * message : ok
+     * result : {"state":"false"}
+     * message : 密码设置失败
      */
 
     private String code;
@@ -47,27 +47,17 @@ public class ChangePayPswbean {
 
     public static class ResultBean {
         /**
-         * state : 1
-         * msg : 密码设置成功
+         * state : false
          */
 
-        private int state;
-        private String msg;
+        private String state;
 
-        public int getState() {
+        public String getState() {
             return state;
         }
 
-        public void setState(int state) {
+        public void setState(String state) {
             this.state = state;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
         }
     }
 }

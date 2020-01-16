@@ -148,7 +148,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 if (null != registerDatabean && registerDatabean.getCode().equals("200")) {
                     RegisterDatabean.ResultBean result = registerDatabean.getResult();
                     String key = result.getKey(); // token
-                    int userid = result.getUserid();
+                    int userid = result.getUserid();// userid
                     // 保存
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key);
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_ID, userid);
@@ -163,7 +163,9 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 RegisterDatabean loginbean = (RegisterDatabean) t[0];
                 if (null != loginbean && loginbean.getCode().equals("200")) {
                     String key = loginbean.getResult().getKey();
+                    int userid = loginbean.getResult().getUserid();// userid
                     SPUtils.getInstance().setValue(SPUtils.KEY_USER_TOKEN, key); // 保存token
+                    SPUtils.getInstance().setValue(SPUtils.KEY_USER_ID, userid);
                     toastActivity("登录成功");
                     startActivity(new Intent(this, MainActivity.class));
                 }
@@ -182,7 +184,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                 break;
             case R.id.acquire_code: // 获取验证码
                 // 手机号码 正则判断
-                String telRegex = "^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8]))\\d{8}$";
+                String telRegex = "^((13[0-9])|(14[4-9])|(15[^4])|(16[6-7])|(17[^9])|(18[0-9])|(19[1|8|9]))\\d{8}$";
                 if (!TextUtils.isEmpty(mUserPhone.getText().toString().trim()) &&
                         mUserPhone.getText().toString().trim().matches(telRegex)) {
                     mStart = new CountDownTimer(60000, 1000) {
@@ -201,7 +203,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, UserModel
                     }.start();
                     mPresenter.getData(ApiConfig.ACCQUIRE_CODE, mUserPhone.getText().toString().trim(), TYPE, LoadConfig.NORMAL);
                 } else {
-                    toastActivity("手机号为空");
+                    toastActivity("手机号为空或有误");
                 }
                 break;
             case R.id.xieyi:

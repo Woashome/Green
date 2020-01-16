@@ -92,17 +92,17 @@ public class MyBottomView extends LinearLayout {
         initView();
     }
 
-    public void setBottomBg(int color){
+    public void setBottomBg(int color) {
         bottom.setBackgroundColor(color);
     }
 
-    public void setBottomNum(int pBottomNum){
-        if (pBottomNum == 4){
+    public void setBottomNum(int pBottomNum) {
+        if (pBottomNum == 4) {
             rlFifth.setVisibility(GONE);
-        } else if (pBottomNum == 3){
+        } else if (pBottomNum == 3) {
             rlFifth.setVisibility(GONE);
             rlFourth.setVisibility(GONE);
-        } else if (pBottomNum == 2){
+        } else if (pBottomNum == 2) {
             rlFifth.setVisibility(GONE);
             rlThird.setVisibility(GONE);
             rlFourth.setVisibility(GONE);
@@ -116,6 +116,18 @@ public class MyBottomView extends LinearLayout {
         textThird.setTextSize(pTextSize);
         textFourth.setTextSize(pTextSize);
         textFifth.setTextSize(pTextSize);
+    }
+
+    public void setFourthSelected() {
+        if (mChangeDrawable) {
+            setUpImage();
+            imageFourth.setImageResource(mImageSelectedFourth);
+        }
+        if (mChangeTextColor) {
+            setUpTextColor();
+            textFourth.setTextColor(mTextSelectedColor);
+        }
+        mBottomClick.onFourthClick();
     }
 
     private void initAttrs(Context context, TypedArray pTypedArray) {
@@ -160,12 +172,12 @@ public class MyBottomView extends LinearLayout {
         setUpTextContent();
         textFirst.setTextColor(mTextSelectedColor);
         imageFirst.setImageResource(mImageSelectedFirst);
-        if (mBottomNum == 4){
+        if (mBottomNum == 4) {
             rlFifth.setVisibility(GONE);
-        } else if (mBottomNum == 3){
+        } else if (mBottomNum == 3) {
             rlFifth.setVisibility(GONE);
             rlFourth.setVisibility(GONE);
-        } else if (mBottomNum == 2){
+        } else if (mBottomNum == 2) {
             rlFifth.setVisibility(GONE);
             rlThird.setVisibility(GONE);
             rlFourth.setVisibility(GONE);

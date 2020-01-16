@@ -3,11 +3,9 @@ package com.example.green.ui.fragment;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.green.R;
-import com.example.green.base.BaseActivity;
 import com.example.green.base.BaseMvpFragment;
 import com.example.green.base.CommonPresenter;
 import com.example.green.base.ICommonView;
@@ -32,6 +29,7 @@ import com.example.green.ui.activity.mine.PayPswActivity;
 import com.example.green.ui.activity.mine.PersonalDataActivity;
 import com.example.green.ui.activity.mine.ShoppingAddressActivity;
 import com.example.green.ui.activity.mine.WalletActivity;
+import com.example.green.ui.activity.mine.wallet.InviteActivity;
 import com.yiyatech.utils.ext.ToastUtils;
 
 import butterknife.BindView;
@@ -56,17 +54,21 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     @BindView(R.id.tuiguang)
     RelativeLayout mTuiguang;
     @BindView(R.id.wait_pay_ll)
-    LinearLayout mWaitPayLl;
+    RelativeLayout mWaitPayLl;
+    @BindView(R.id.wait_pay_num)
+    TextView mWaitPayNum;
     @BindView(R.id.wait_deliver_ll)
-    LinearLayout mWaitDeliverLl;
+    RelativeLayout mWaitDeliverLl;
+    @BindView(R.id.wait_deliver_num)
+    TextView mWaitDeliverNum;
+    @BindView(R.id.notakes_ll)
+    RelativeLayout mNoTakes;
+    @BindView(R.id.notakes_num)
+    TextView mNoTakesNum;
     @BindView(R.id.finish_ll)
-    LinearLayout mFinishLl;
+    RelativeLayout mFinishLl;
     @BindView(R.id.finish_num)
     TextView mFinishNum;
-    @BindView(R.id.cancel_ll)
-    LinearLayout mCancelLl;
-    @BindView(R.id.rl_status)
-    RelativeLayout mRlStatus;
     @BindView(R.id.rl_info)
     RelativeLayout mRlInfo;
     @BindView(R.id.rl_login_password)
@@ -75,6 +77,8 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     RelativeLayout mRlPayPassword;
     @BindView(R.id.rl_site)
     RelativeLayout mRlSite;
+    @BindView(R.id.rl_invite)
+    RelativeLayout mRlInvite;
     @BindView(R.id.rl_quit)
     RelativeLayout mRlQuit;
 
@@ -110,8 +114,7 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     @Override
     protected void initView() {
         key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
-        Log.e(TAG, "initView: " + key);
-        mFinishNum.setVisibility(View.GONE); // 已完成件数
+        Log.e(TAG, "------token------: " + key);
     }
 
     @Override
@@ -144,6 +147,34 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                     Log.e(TAG, "onResponse: " + mMember_info.getAvator());
                     mUserName.setText(mMember_info.getUser_name());
                     mUserPhone.setText(mMember_info.getMobile());
+                    /*待付款*/
+                    if (0 != mMember_info.getOrder_nopay_count()) {
+                        mWaitPayNum.setVisibility(View.VISIBLE);
+                        mWaitPayNum.setText(mMember_info.getOrder_nopay_count() + "");
+                    } else {
+                        mWaitPayNum.setVisibility(View.GONE);
+                    }
+                    /*待发货*/
+                    if (0 != mMember_info.getOrder_noreceipt_count()) {
+                        mWaitDeliverNum.setVisibility(View.VISIBLE);
+                        mWaitDeliverNum.setText(mMember_info.getOrder_noreceipt_count() + "");
+                    } else {
+                        mWaitDeliverNum.setVisibility(View.GONE);
+                    }
+                    /*待收货*/
+                    if (0 != mMember_info.getOrder_notakes_count()) {
+                        mNoTakesNum.setVisibility(View.VISIBLE);
+                        mNoTakesNum.setText(mMember_info.getOrder_notakes_count() + "");
+                    } else {
+                        mNoTakesNum.setVisibility(View.GONE);
+                    }
+                    /*已完成*/
+                    if (0 != mMember_info.getOrder_noeval_count()) {
+                        mFinishNum.setVisibility(View.VISIBLE);
+                        mFinishNum.setText(mMember_info.getOrder_noeval_count() + "");
+                    } else {
+                        mFinishNum.setVisibility(View.GONE);
+                    }
                 }
                 break;
             case ApiConfig.LOGOUT:
@@ -152,8 +183,6 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                     SPUtils.getInstance().removeValue(SPUtils.KEY_USER_TOKEN); // 清除Token
                     Intent intent = new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
-                    LocalBroadcastManager.getInstance(getContext())
-                            .sendBroadcast(new Intent(BaseActivity.LOGIN_OUT));
                     getActivity().finish();
                 }
                 break;
@@ -161,8 +190,8 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     }
 
     @OnClick({R.id.header, R.id.rl_join, R.id.wait_pay_ll, R.id.wait_deliver_ll,
-            R.id.finish_ll, R.id.cancel_ll, R.id.rl_info, R.id.rl_login_password,
-            R.id.rl_pay_password, R.id.rl_site, R.id.rl_quit})
+            R.id.notakes_ll, R.id.finish_ll, R.id.rl_info, R.id.rl_login_password,
+            R.id.rl_pay_password, R.id.rl_site, R.id.rl_invite, R.id.rl_quit})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -182,12 +211,12 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
                 intent_wait_deliver.putExtra("index", 2);
                 startActivity(intent_wait_deliver);
                 break;
-            case R.id.finish_ll: // 已完成
+            case R.id.notakes_ll: // 待收货
                 Intent intent_finish = new Intent(getContext(), MyOrderActivity.class);
                 intent_finish.putExtra("index", 3);
                 startActivity(intent_finish);
                 break;
-            case R.id.cancel_ll: // 已取消
+            case R.id.finish_ll: // 已完成
                 Intent intent_cancel = new Intent(getContext(), MyOrderActivity.class);
                 intent_cancel.putExtra("index", 4);
                 startActivity(intent_cancel);
@@ -204,6 +233,9 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
             case R.id.rl_site: // 收货地址
                 startActivity(new Intent(getContext(), ShoppingAddressActivity.class));
                 break;
+            case R.id.rl_invite: // 邀请好友
+                startActivity(new Intent(getContext(), InviteActivity.class));
+                break;
             case R.id.rl_quit: // 退出登录
                 String username = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");
                 String token = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
@@ -219,8 +251,9 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
     protected void receiverBroadCast(Intent intent) {
         super.receiverBroadCast(intent);
         switch (intent.getAction()) {
-            case RECTIFY_UPDATE_INFO:
-                // 用户信息，修改以后更新
+            case RECTIFY_UPDATE_INFO: // 用户信息，修改以后更新
+            case PAY_SUCCESS: // 支付成功
+            case CHANGE_ORDER_STATE: // 修改订单状态
                 mPresenter.getData(ApiConfig.MINEINFO, key, LoadConfig.NORMAL);
                 break;
         }

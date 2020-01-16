@@ -7,7 +7,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#FCFCFC</color>
-    <color name="red">#FE3770</color>
+    <color name="red">#FF0000</color>
     <color name="price_gray">#979797</color>
     <color name="bg_FDBB01">#FDBB01</color>
     <color name="tv_F1D7B4">#F1D7B4</color>
@@ -35,4 +35,5 @@
     <color name="c_0fa3f0">#0fa3f0</color>
     <color name="c_ff8f00">#ff8f00</color>
     <color name="c_ffa344">#ffa344</color>
+    <color name="transparent">#00000000</color>
 </resources>

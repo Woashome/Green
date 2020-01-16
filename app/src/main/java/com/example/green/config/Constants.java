@@ -5,7 +5,7 @@ public class Constants {
 
     public static final int PERMISSIONS_REQUEST_STORAGE = 1;
 
-    public static final String AUTHORITY = "com.chuanying.xianzaikan.fileprovider";//安装APP使用的，固定的值。
+    public static final String AUTHORITY = "com.example.green.fileprovider";//安装APP使用的，固定的值。
 
     public static class ShowMsgActivity {
         public static final String STitle = "showmsg_title";

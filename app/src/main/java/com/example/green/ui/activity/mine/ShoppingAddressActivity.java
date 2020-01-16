@@ -70,16 +70,20 @@ public class ShoppingAddressActivity extends BaseMvpActivity<CommonPresenter, Mi
                         break;
                     case R.id.rl_address:
                         Intent intent_site = getIntent();
-                        //这里使用bundle绷带 来传输数据
-                        Bundle bundle = new Bundle();
-                        //传输的内容仍然是键值对的形式
-                        bundle.putString("site", mAddressListBeans.get(position).getAddress_detail());//回发的消息 详细地址
-                        bundle.putString("name", mAddressListBeans.get(position).getAddress_realname());//回发的消息 姓名
-                        bundle.putString("phone", mAddressListBeans.get(position).getAddress_mob_phone());//回发的消息 手机号
-                        bundle.putString("addressId", mAddressListBeans.get(position).getAddress_id());//回发的消息 addressId
-                        intent_site.putExtras(bundle);
-                        setResult(RESULT_OK, intent_site);
-                        finish();
+                        int tag = intent_site.getIntExtra("tag", 0);
+                        if (tag == 1) {
+                            //这里使用bundle绷带 来传输数据
+                            Bundle bundle = new Bundle();
+                            //传输的内容仍然是键值对的形式
+                            bundle.putString("area", mAddressListBeans.get(position).getArea_info());//回发的消息 地区
+                            bundle.putString("site", mAddressListBeans.get(position).getAddress_detail());//回发的消息 详细地址
+                            bundle.putString("name", mAddressListBeans.get(position).getAddress_realname());//回发的消息 姓名
+                            bundle.putString("phone", mAddressListBeans.get(position).getAddress_mob_phone());//回发的消息 手机号
+                            bundle.putString("addressId", mAddressListBeans.get(position).getAddress_id());//回发的消息 addressId
+                            intent_site.putExtras(bundle);
+                            setResult(RESULT_OK, intent_site);
+                            finish();
+                        }
                         break;
                 }
             }

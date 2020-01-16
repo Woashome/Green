@@ -15,7 +15,7 @@ public class SystemMessageListbean {
 
     /**
      * code : 200
-     * result : [{"message_id":66,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 18:04:50 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000003201，可用金额变化 ：-998.00元。","message_time":"1575367489","message_update_time":"1575367489","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":67,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 16:36:29 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000002801，可用金额变化 ：-998.00元。","message_time":"1575362189","message_update_time":"1575362189","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":68,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"您的订单已经出库。<a href=\"/index.php/home/memberorder/show_order/order_id/28.html\" target=\"_blank\">点击查看订单<\/a>","message_time":"1575361438","message_update_time":"1575361438","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":69,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 16:10:22 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000002901，可用金额变化 ：-998.00元。","message_time":"1575360622","message_update_time":"1575360622","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":70,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"您的订单已经出库。<a href=\"/index.php/home/memberorder/show_order/order_id/29.html\" target=\"_blank\">点击查看订单<\/a>","message_time":"1575359778","message_update_time":"1575359778","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":71,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 15:37:22 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000003001，可用金额变化 ：-998.00元。","message_time":"1575358642","message_update_time":"1575358642","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""},{"message_id":72,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-02 12:30:49 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19120212304995782008,备注：，可用金额变化 ：10000.00元。","message_time":"1575261049","message_update_time":"1575261049","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":""}]
+     * result : [{"message_id":66,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 18:04:50 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000003201，可用金额变化 ：-998.00元。","message_time":"1575367489","message_update_time":"1575367489","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":67,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 16:36:29 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000002801，可用金额变化 ：-998.00元。","message_time":"1575362189","message_update_time":"1575362189","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":68,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"您的订单已经出库。<a href=\"/index.php/home/memberorder/show_order/order_id/28.html\" target=\"_blank\">点击查看订单<\/a>","message_time":"1575361438","message_update_time":"1575361438","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":69,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 16:10:22 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000002901，可用金额变化 ：-998.00元。","message_time":"1575360622","message_update_time":"1575360622","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":70,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"您的订单已经出库。<a href=\"/index.php/home/memberorder/show_order/order_id/29.html\" target=\"_blank\">点击查看订单<\/a>","message_time":"1575359778","message_update_time":"1575359778","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":71,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-03 15:37:22 账户资金有变化，描述：下单，支付储值卡，订单号: 2000000000003001，可用金额变化 ：-998.00元。","message_time":"1575358642","message_update_time":"1575358642","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"},{"message_id":72,"message_parent_id":0,"from_member_id":0,"to_member_id":"8","message_title":null,"message_body":"你的账户于 2019-12-02 12:30:49 账户资金有变化，描述：管理员调节储值卡【增加】，充值单号: 19120212304995782008,备注：，可用金额变化 ：10000.00元。","message_time":"1575261049","message_update_time":"1575261049","message_open":"0","message_state":0,"message_type":1,"read_member_id":"","del_member_id":"","message_ismore":0,"from_member_name":"系统消息","to_member_name":"","times":"2020-01-03 17:27:41"}]
      * message : ok
      */
 
@@ -65,6 +65,7 @@ public class SystemMessageListbean {
          * message_ismore : 0
          * from_member_name : 系统消息
          * to_member_name :
+         * times : 2020-01-03 17:27:41
          */
 
         private int message_id;
@@ -83,6 +84,7 @@ public class SystemMessageListbean {
         private int message_ismore;
         private String from_member_name;
         private String to_member_name;
+        private String times;
 
         public int getMessage_id() {
             return message_id;
@@ -210,6 +212,14 @@ public class SystemMessageListbean {
 
         public void setTo_member_name(String to_member_name) {
             this.to_member_name = to_member_name;
+        }
+
+        public String getTimes() {
+            return times;
+        }
+
+        public void setTimes(String times) {
+            this.times = times;
         }
     }
 }

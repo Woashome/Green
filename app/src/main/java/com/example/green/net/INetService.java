@@ -12,30 +12,49 @@ import com.example.green.bean.homepage.SearchListbean;
 import com.example.green.bean.homepage.SystemMessageListbean;
 import com.example.green.bean.homepage.Versionbean;
 import com.example.green.bean.mine.Addsitebean;
+import com.example.green.bean.mine.AuthInfobean;
 import com.example.green.bean.mine.AutonymBean;
+import com.example.green.bean.mine.ChangeOrderStatebean;
 import com.example.green.bean.mine.ChangePayPswbean;
+import com.example.green.bean.mine.CollegeDetailsInfo;
 import com.example.green.bean.mine.CollegeListbean;
 import com.example.green.bean.mine.EditMineInfobean;
+import com.example.green.bean.mine.LogisticsInfobean;
 import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
+import com.example.green.bean.mine.OrderDetailsInfobean;
 import com.example.green.bean.mine.PictureUploadBean;
+import com.example.green.bean.mine.QueryPropertybean;
 import com.example.green.bean.mine.ShoppingAddressListbean;
+import com.example.green.bean.mine.TeamBean;
+import com.example.green.bean.mine.WalletInfobean;
+import com.example.green.bean.mine.wallet.DealCodeListbean;
+import com.example.green.bean.mine.wallet.GraphListbean;
+import com.example.green.bean.mine.wallet.PointListbean;
+import com.example.green.bean.mine.wallet.PointTransformbean;
+import com.example.green.bean.mine.wallet.StoredValueListbean;
+import com.example.green.bean.mine.wallet.WithdrawAppforbean;
+import com.example.green.bean.mine.wallet.WithdrawRecordListbean;
+import com.example.green.bean.pay.AcquireOrderInfobean;
 import com.example.green.bean.pay.AcquirePayCodebean;
+import com.example.green.bean.pay.CreateOrderbean;
+import com.example.green.bean.pay.GetMarketWheelbean;
+import com.example.green.bean.pay.PayOrderInfobean;
+import com.example.green.bean.pay.RemittanceInfobean;
+import com.example.green.bean.pay.ShoppingInfobean;
+import com.example.green.bean.pay.ToSurpriseInfo;
 import com.example.green.bean.register.AccquireSmsbean;
 import com.example.green.bean.register.ModificationPswbean;
 import com.example.green.bean.register.RegisterDatabean;
-import com.example.green.bean.shopping.AcquireOrderInfobean;
-import com.example.green.bean.shopping.CreateOrderbean;
-import com.example.green.bean.shopping.PayOrderInfobean;
-import com.example.green.bean.shopping.ShoppingInfobean;
+import com.example.green.bean.shopping.AddCartInfobean;
+import com.example.green.bean.shopping.ChangeGoodsNumInfobean;
+import com.example.green.bean.shopping.ShoppingtrolleyListbean;
 import com.example.green.bean.store.AllStoreListbean;
 import com.example.green.bean.store.RandomRecListbean;
 import com.example.green.bean.store.StoreClassListbean;
 import com.example.green.bean.store.StoreInfoListbean;
 import com.example.green.bean.store.StoreListbean;
 import com.example.green.bean.store.StoreRecommendListbean;
-
-import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -46,7 +65,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface INetService {
@@ -55,7 +73,7 @@ public interface INetService {
      * 获取版本号
      * https://shop.bayi-shop.com/mobile/Version/GetVersion
      * */
-    @GET("")
+    @GET("Version/GetVersion")
     Observable<Versionbean> getVersionbean(@Query("version_num") String version_num,
                                            @Query("type") String type);
 
@@ -245,6 +263,7 @@ public interface INetService {
                                        @Part("idcard") RequestBody idcard,
                                        @Part("member_bankname") RequestBody member_bankname,
                                        @Part("member_bankcard") RequestBody member_bankcard,
+                                       @Part MultipartBody.Part member_idcard_image1,// 手持身份证照片
                                        @Part MultipartBody.Part member_idcard_image2,// 身份证正面
                                        @Part MultipartBody.Part member_idcard_image3,// 身份证反面
                                        @Part("member_provinceid") RequestBody member_provinceid,
@@ -254,13 +273,45 @@ public interface INetService {
                                        @Part("commit") RequestBody commit);
 
     /*
+     * 实名认证(二次)
+     * https://shop.bayi-shop.com/mobile/memberauth/auth
+     * */
+    @POST("memberauth/auth")
+    @FormUrlEncoded
+    Observable<AutonymBean> getAutonymtwice(@Field("member_id") int member_id,
+                                            @Field("username") String username,
+                                            @Field("idcard") String idcard,
+                                            @Field("member_bankname") String member_bankname,
+                                            @Field("member_bankcard") String member_bankcard,
+                                            @Field("member_provinceid") String member_provinceid,
+                                            @Field("member_cityid") String member_cityid,
+                                            @Field("member_areaid") String member_areaid,
+                                            @Field("member_areainfo") String member_areainfo,
+                                            @Field("commit") int commit);
+
+    /*
+     * 获取实名认证信息
+     * https://shop.bayi-shop.com/mobile/memberauth/auth
+     * */
+    @POST("memberauth/auth")
+    @FormUrlEncoded
+    Observable<AuthInfobean> getAuthInfo(@Field("member_id") String member_id);
+
+    /*
      * 商学院
      * https://shop.bayi-shop.com/mobile/college/college
      * article_type: 0-文章 1-视频
      * */
     @GET("college/college")
-    Observable<CollegeListbean> getCollegeList(@Query("article_type") int type,
-                                               @Query("page") int page);
+    Observable<CollegeListbean> getCollegeList(@Query("article_type") int type);
+
+    /*
+     * 商学院详情页
+     * https://shop.bayi-shop.com/mobile/college/detail
+     * */
+    @GET("college/detail")
+    Observable<CollegeDetailsInfo> getCollegeDetails(@Query("article_id") String article_id);
+
 
     /*
      * 注册
@@ -376,6 +427,27 @@ public interface INetService {
                                                      @Field("pd_pay") String pd_pay,
                                                      @Field("payment_code") String payment_code);
 
+
+    /*
+     * 转盘抽奖页面
+     * https://shop.bayi-shop.com/index.php/mobile/Membermarket/GetMarketWheel
+     * */
+    @POST("Membermarket/GetMarketWheel")
+    @FormUrlEncoded
+    Observable<GetMarketWheelbean> getMarketWheelbean(@Field("key") String key,
+                                                      @Field("marketmanage_id") String marketmanage_id,
+                                                      @Field("pay_sn") String pay_sn);
+
+    /*
+     * 开始抽奖
+     * https://shop.bayi-shop.com/index.php/mobile/Membermarket/ToSurprise
+     * */
+    @POST("Membermarket/ToSurprise")
+    @FormUrlEncoded
+    Observable<ToSurpriseInfo> getSurprise(@Field("key") String key,
+                                           @Field("marketmanage_id") String marketmanage_id);
+
+
     /*
      * 支付成功后获取随机商品
      * https://shop.bayi-shop.com/mobile/Goods/getRandGoods
@@ -386,9 +458,9 @@ public interface INetService {
 
     /**
      * 订单列表
+     *
      * @param token
      * @param type
-     * @param key
      * @param page
      * @param pagesize
      * @return
@@ -397,20 +469,191 @@ public interface INetService {
     @FormUrlEncoded
     Observable<MyOrderbean> getGoodsOrder(@Field("key") String token,
                                           @Field("state_type") String type,
-                                          @Field("order_key") String key,
                                           @Field("page") int page,
-                                          @Field("pagesize") int pagesize
-                                          );
+                                          @Field("pagesize") int pagesize);
+
+    /*
+     * 修改订单状态
+     * https://shop.bayi-shop.com/mobile/memberorder/change_state
+     * */
+    @POST("memberorder/change_state")
+    @FormUrlEncoded
+    Observable<ChangeOrderStatebean> getChangeOrderState(@Field("key") String key,
+                                                         @Field("state_type") String state_type,
+                                                         @Field("order_id") String order_id);
+
+    /*
+     * 订单详情查看
+     * https://shop.bayi-shop.com/index.php/mobile/Memberorder/order_info
+     * */
+    @POST("Memberorder/order_info")
+    @FormUrlEncoded
+    Observable<OrderDetailsInfobean> getOrderDetailsInfo(@Field("key") String key,
+                                                         @Field("order_id") String order_id);
+
+
+    /*
+     * 获取物流信息
+     * https://shop.bayi-shop.com/mobile/Memberorder/get_express
+     * */
+    @POST("Memberorder/get_express")
+    @FormUrlEncoded
+    Observable<LogisticsInfobean> getLogisticsInfo(@Field("key") String key,
+                                                   @Field("express_code") String express_code,
+                                                   @Field("shipping_code") String shipping_code,
+                                                   @Field("phone") String phone);
 
 
     /*
      * 生成充值订单并支付
-     * http://w.gw.com/index.php/mobile/Memberpayment/PdaddPay
+     * https://shop.bayi-shop.com/mobile/Memberpayment/PdaddPay
      * */
     @POST("Memberpayment/PdaddPay")
     @FormUrlEncoded
     Observable<AcquirePayCodebean> getPayCodeInfo(@Field("key") String key,
                                                   @Field("payment_code") String payment_code,
                                                   @Field("pdr_amount") String pdr_amount);
+
+    /*
+     * 线下汇款信息
+     * https://shop.bayi-shop.com/mobile/Payoffline/remittance
+     * */
+    @POST("Payoffline/remittance")
+    @FormUrlEncoded
+    Observable<RemittanceInfobean> getRemittanceInfo(@Field("key") String key);
+
+    /*
+     * 团队成员信息获取
+     * https://shop.bayi-shop.com/mobile/member/inviter
+     */
+    @POST("member/inviter")
+    @FormUrlEncoded
+    Observable<TeamBean> getTeamList(@Field("key") String key);
+
+    /*
+     * 钱包页面个人资产查询
+     * https://shop.bayi-shop.com/mobile/member/wallet
+     * */
+    @POST("member/wallet")
+    @FormUrlEncoded
+    Observable<WalletInfobean> getWalletInfo(@Field("key") String key);
+
+    /*
+     * 可用积分/冻结积分/储值卡/交易码 查询接口
+     * https://shop.bayi-shop.com/mobile/member/my_asset
+     * */
+    @POST("member/my_asset")
+    @FormUrlEncoded
+    Observable<QueryPropertybean> getPropertybean(@Field("key") String key);
+
+    /*
+     * 储值卡交易明细
+     * https://shop.bayi-shop.com/mobile/memberfund/predepositlog
+     * */
+    @POST("memberfund/predepositlog")
+    @FormUrlEncoded
+    Observable<StoredValueListbean> getStoredValueList(@Field("key") String key,
+                                                       @Field("page") int page,
+                                                       @Field("pagesize") int pagesize);
+
+    /*
+     * 积分交易明细
+     * https://shop.bayi-shop.com/mobile/memberpoints/pointslog
+     * */
+    @POST("memberpoints/pointslog")
+    @FormUrlEncoded
+    Observable<PointListbean> getPointList(@Field("key") String key,
+                                           @Field("page") int page,
+                                           @Field("pagesize") int pagesize);
+
+    /*
+     * 认筹股价格曲线图
+     * https://shop.bayi-shop.com/mobile/memberfund/tranprice
+     * */
+    @POST("memberfund/tranprice")
+    @FormUrlEncoded
+    Observable<GraphListbean> getGraphList(@Field("key") String key);
+
+    /*
+     * 认筹股明细
+     * https://shop.bayi-shop.com/mobile/memberfund/transactionlog
+     * */
+    @POST("memberfund/transactionlog")
+    @FormUrlEncoded
+    Observable<DealCodeListbean> getDealCodeList(@Field("key") String key,
+                                                 @Field("page") int page,
+                                                 @Field("pagesize") int pagesize);
+
+    /*
+     * 提现申请
+     * https://shop.bayi-shop.com/mobile/member/my_withdraw
+     * */
+    @POST("member/my_withdraw")
+    @FormUrlEncoded
+    Observable<WithdrawAppforbean> getWithdrawInfo(@Field("key") String key,
+                                                   @Field("amount") String amount,
+                                                   @Field("commission") String commission,
+                                                   @Field("memberbank_name") String memberbank_name,
+                                                   @Field("memberbank_no") String memberbank_no,
+                                                   @Field("memberbank_truename") String memberbank_truename,
+                                                   @Field("auth_code") String auth_code);
+
+    /*
+     * 提现记录
+     * https://shop.bayi-shop.com/mobile/memberfund/pdcashlist
+     * */
+    @POST("memberfund/pdcashlist")
+    @FormUrlEncoded
+    Observable<WithdrawRecordListbean> getWithdrawList(@Field("key") String key,
+                                                       @Field("page") int page,
+                                                       @Field("pagesize") int pagesize);
+
+    /*
+     * 可用积分转换为交易码
+     * https://shop.bayi-shop.com/mobile/Membertransform/PointTransform
+     * */
+    @POST("Membertransform/PointTransform")
+    @FormUrlEncoded
+    Observable<PointTransformbean> getPointTransformInfo(@Field("key") String key,
+                                                         @Field("transtype") int transtype,
+                                                         @Field("point") String point);
+
+    /*
+     * 商品加入购物车
+     * https://shop.bayi-shop.com/mobile/membercart/cart_add
+     * */
+    @POST("membercart/cart_add")
+    @FormUrlEncoded
+    Observable<AddCartInfobean> getAddCartInfo(@Field("key") String key,
+                                               @Field("goods_id") String goods_id,
+                                               @Field("quantity") String quantity);
+
+    /*
+     * 删除购物车商品
+     * https://shop.bayi-shop.com/mobile/Membercart/cart_del
+     * */
+    @POST("Membercart/cart_del")
+    @FormUrlEncoded
+    Observable<Logoutbean> getDelete(@Field("key") String key,
+                                     @Field("cart_id") String cart_id);
+
+    /*
+     * 修改购物车商品数量
+     * https://shop.bayi-shop.com/mobile/membercart/cart_edit_quantity
+     * */
+    @POST("membercart/cart_edit_quantity")
+    @FormUrlEncoded
+    Observable<ChangeGoodsNumInfobean> getChangeGoodsNumInfo(@Field("key") String key,
+                                                             @Field("quantity") String quantity,
+                                                             @Field("cart_id") String cart_id);
+
+    /*
+     * 购物车列表
+     * https://shop.bayi-shop.com/mobile/membercart/cart_list
+     * */
+    @POST("membercart/cart_list")
+    @FormUrlEncoded
+    Observable<ShoppingtrolleyListbean> getShoppingCartList(@Field("key") String key);
+
 }
 

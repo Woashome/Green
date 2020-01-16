@@ -10,12 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -41,6 +39,7 @@ import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.example.green.ui.activity.SearchActivity;
 import com.example.green.ui.activity.SearchListActivity;
+import com.example.green.ui.activity.homepage.SystemMessageActivity;
 import com.example.green.ui.activity.store.StoreInfoActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -171,7 +170,7 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         mToolbar.setTitle("");
         AppCompatActivity appCompatActivity = (AppCompatActivity) mActivity;
         appCompatActivity.setSupportActionBar(mToolbar);
-        page=1; // 当前页码
+        page = 1; // 当前页码
         mChart = new ArrayList<>(); // 轮播图
         imgs = new ArrayList<>(); // 轮播图图片
         mMenu = new ArrayList<>(); // 菜单
@@ -204,18 +203,16 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                    page = 1;
-                    mPresenter.getData(ApiConfig.URL_HOMEDATA, LoadConfig.REFRESH);
-                    mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, page, LoadConfig.REFRESH);
-                    Log.e(TAG, "onRefresh: "+page);
+                page = 1;
+                mPresenter.getData(ApiConfig.URL_HOMEDATA, LoadConfig.REFRESH);
+                mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, page, LoadConfig.REFRESH);
             }
         });
 
         mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                    mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, ++page, LoadConfig.LOADMORE);
-                    Log.e(TAG, "onLoadmore: "+page );
+                mPresenter.getData(ApiConfig.URL_GOODSDATA, 6, ++page, LoadConfig.LOADMORE);
             }
         });
         // 菜单选项
@@ -228,6 +225,9 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         Bundle bundle = new Bundle();
                         bundle.putString("gcId", mMenu.get(position).getAdv_typedate());
                         intent.putExtras(bundle);
+                        //设置切换动画，从右边进入，左边退出
+                        getActivity().overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
                         getActivity().startActivity(intent);
                         break;
                 }
@@ -244,6 +244,9 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         Bundle bundle = new Bundle();
                         bundle.putString("goodsId", mSeckill_goods.get(position).getGoods_id() + "");
                         intent.putExtras(bundle);
+                        //设置切换动画，从右边进入，左边退出
+                        getActivity().overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
                         getActivity().startActivity(intent);
                         break;
                 }
@@ -261,6 +264,9 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         Bundle bundle = new Bundle();
                         bundle.putString("goodsId", mBoutique_goods.get(position).getGoods_id() + "");
                         intent.putExtras(bundle);
+                        //设置切换动画，从右边进入，左边退出
+                        getActivity().overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
                         getActivity().startActivity(intent);
                         break;
                 }
@@ -277,6 +283,9 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                         Bundle bundle = new Bundle();
                         bundle.putString("goodsId", mRecommend.get(position).getGoods_id() + "");
                         intent.putExtras(bundle);
+                        //设置切换动画，从右边进入，左边退出
+                        getActivity().overridePendingTransition(R.anim.in_from_right,
+                                R.anim.out_to_left);
                         getActivity().startActivity(intent);
                         break;
                 }
@@ -509,6 +518,9 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                 break;
             case R.id.adv_img:
                 if (null != mTransverse && mTransverse.get(0).getAdv_type().equals("store")) {
+                    //设置切换动画，从右边进入，左边退出
+                    getActivity().overridePendingTransition(R.anim.in_from_right,
+                            R.anim.out_to_left);
                     StoreInfoActivity.startInfoActivity(getActivity(), mTransverse.get(0).getAdv_typedate());
                 }
                 break;
@@ -516,31 +528,49 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
                 if (null != mPromotion.get(0).getAdv_type() && mPromotion.get(0).getAdv_type().equals("class")) {
                     Intent intent_hot = new Intent(getContext(), SearchListActivity.class);
                     intent_hot.putExtra("gcId", mPromotion.get(0).getAdv_typedate());
+                    //设置切换动画，从右边进入，左边退出
+                    getActivity().overridePendingTransition(R.anim.in_from_right,
+                            R.anim.out_to_left);
                     startActivity(intent_hot);
                 } else {
                     bundle.putString("goodsId", mPromotion.get(0).getAdv_typedate());
                     intent.putExtras(bundle);
+                    //设置切换动画，从右边进入，左边退出
+                    getActivity().overridePendingTransition(R.anim.in_from_right,
+                            R.anim.out_to_left);
                     getActivity().startActivity(intent);
                 }
                 break;
             case R.id.iv_1: // 促销右上1
                 bundle.putString("goodsId", mPromotion.get(1).getAdv_typedate());
                 intent.putExtras(bundle);
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 getActivity().startActivity(intent);
                 break;
             case R.id.iv_2: // 促销右上2
                 bundle.putString("goodsId", mPromotion.get(2).getAdv_typedate());
                 intent.putExtras(bundle);
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 getActivity().startActivity(intent);
                 break;
             case R.id.iv_3: // 促销右上3
                 bundle.putString("goodsId", mPromotion.get(3).getAdv_typedate());
                 intent.putExtras(bundle);
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 getActivity().startActivity(intent);
                 break;
             case R.id.iv_4: // 促销右下1
                 bundle.putString("goodsId", mPromotion.get(4).getAdv_typedate());
                 intent.putExtras(bundle);
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 getActivity().startActivity(intent);
                 break;
             case R.id.iv_5: // 促销右下2
@@ -551,12 +581,21 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
             case R.id.iv_6: // 促销右下3
                 bundle.putString("goodsId", mPromotion.get(6).getAdv_typedate());
                 intent.putExtras(bundle);
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 getActivity().startActivity(intent);
                 break;
             case R.id.information: // 消息
-//                startActivity(new Intent(getContext(), PayModeActivity.class));
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                startActivity(new Intent(getContext(), SystemMessageActivity.class));
                 break;
             case R.id.rl_search: // 搜索
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), SearchActivity.class));
                 break;
         }

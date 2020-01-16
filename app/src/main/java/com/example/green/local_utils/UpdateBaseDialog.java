@@ -57,11 +57,11 @@ public class UpdateBaseDialog extends Dialog implements View.OnClickListener {
         getWindow().setAttributes(lp);
         setCanceledOnTouchOutside(false);// 点击Dialog外部消失
         //遍历控件id,添加点击事件
-        /*tvVersion = findViewById(R.id.Versioncode);
+        tvVersion = findViewById(R.id.Versioncode);
         tvInfo = findViewById(R.id.tv_info);
         tvLater = findViewById(R.id.tv_later);
         tvUpdate = findViewById(R.id.tv_update);
-*/
+
         tvVersion.setText(mVersion + "");
         tvInfo.setText(mInfo + "");
 

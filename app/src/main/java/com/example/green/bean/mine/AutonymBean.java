@@ -11,9 +11,10 @@ package com.example.green.bean.mine;
  */
 public class AutonymBean {
 
+
     /**
      * code : 200
-     * result : {"member_id":14,"member_auth_state":1,"idcard":"141033695695986656","member_provinceid":45067,"member_cityid":4566,"member_areaid":2717,"member_townid":0,"member_villageid":0,"member_areainfo":"河南 新乡市 原阳县 太平镇 后白寨村","member_idcard_image2":"http://shop.com/uploads/home/idcard_image/14_idcard_z.jpeg","member_idcard_image3":"http://shop.com/uploads/home/idcard_image/14_idcard_f.jpg","username":"阿狸","member_bankname":"建设银行","member_bankcard":"62170000365696568"}
+     * result : {"member_id":14,"member_auth_state":1,"idcard":"141033695695986656","member_provinceid":45067,"member_cityid":4566,"member_areaid":2717,"member_townid":0,"member_villageid":0,"member_areainfo":"河南 新乡市 原阳县 太平镇 后白寨村","member_idcard_image2":"http://shop.com/uploads/home/idcard_image/14_idcard_z.jpeg","member_idcard_image3":"http://shop.com/uploads/home/idcard_image/14_idcard_f.jpg","username":"阿狸","member_bankname":"建设银行","member_bankcard":"62170000365696568","member_idcard_image1":"http://shop.com/uploads/home/idcard_image/14_idcard_z.jpeg\n"}
      * message : ok
      */
 
@@ -61,6 +62,7 @@ public class AutonymBean {
          * username : 阿狸
          * member_bankname : 建设银行
          * member_bankcard : 62170000365696568
+         * member_idcard_image1 : http://shop.com/uploads/home/idcard_image/14_idcard_z.jpeg
          */
 
         private int member_id;
@@ -77,6 +79,7 @@ public class AutonymBean {
         private String username;
         private String member_bankname;
         private String member_bankcard;
+        private String member_idcard_image1;
 
         public int getMember_id() {
             return member_id;
@@ -188,6 +191,14 @@ public class AutonymBean {
 
         public void setMember_bankcard(String member_bankcard) {
             this.member_bankcard = member_bankcard;
+        }
+
+        public String getMember_idcard_image1() {
+            return member_idcard_image1;
+        }
+
+        public void setMember_idcard_image1(String member_idcard_image1) {
+            this.member_idcard_image1 = member_idcard_image1;
         }
     }
 }

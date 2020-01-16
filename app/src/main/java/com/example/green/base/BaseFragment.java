@@ -22,20 +22,29 @@ public class BaseFragment extends Fragment {
     private UserBroadCastReceiver mUserBroadCastReceiver;
     //更新头像，修改昵称
     public static final String RECTIFY_UPDATE_INFO = "rectify_update_info";
+    // 搜索成功
     public static final String SEARCH_SUCCESS = "search_success";
+    // 支付成功
+    public static final String PAY_SUCCESS = "pay_success";
+    // 修改订单状态
+    public static final String CHANGE_ORDER_STATE = "change_order_state";
+    // 提交订单成功
+    public static final String SUBMIT_ORDER = "submit_order";
+
     public int mAppColor;
-//    private LoadingDialogWithContent mDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mAppColor = ContextCompat.getColor(getContext(), R.color.app_theme_color);
-//        mDialog = new LoadingDialogWithContent(getContext(), getString(R.string.loading));
 
         mUserBroadCastReceiver = new UserBroadCastReceiver();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(RECTIFY_UPDATE_INFO);
         intentFilter.addAction(SEARCH_SUCCESS);
+        intentFilter.addAction(PAY_SUCCESS);
+        intentFilter.addAction(CHANGE_ORDER_STATE);
+        intentFilter.addAction(SUBMIT_ORDER);
         initBroadCastReceiver(intentFilter);
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(mUserBroadCastReceiver, intentFilter);
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -48,13 +57,6 @@ public class BaseFragment extends Fragment {
     public void loadMore() {
     }
 
-//    public void showLoadingDialog() {
-//        if (!mDialog.isShowing()) mDialog.show();
-//    }
-//
-//    public void hideLoadingDialog() {
-//        if (mDialog.isShowing()) mDialog.dismiss();
-//    }
 
     public void showToast(String content) {// 2.5s
         Toast.makeText(getContext().getApplicationContext(), content, Toast.LENGTH_SHORT).show();
