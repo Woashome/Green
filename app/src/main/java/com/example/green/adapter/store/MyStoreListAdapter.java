@@ -42,7 +42,7 @@ public class MyStoreListAdapter extends BaseQuickAdapter<StoreListbean.ResultBea
                 platform.setBackgroundResource(R.mipmap.qianyue);
             }
             store_name.setText(resultBean.getStore_name());
-            deal_num.setText("成交订单数量：" + resultBean.getNum_sales_jq());
+            deal_num.setText("成交订单量：" + resultBean.getNum_sales_jq());
             RequestOptions options = new RequestOptions().circleCrop();
             Glide.with(mContext).load(resultBean.getStore_avatar()).apply(options).into(store_logo);
             // 所有商品

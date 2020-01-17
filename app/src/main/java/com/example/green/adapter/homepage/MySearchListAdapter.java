@@ -43,7 +43,7 @@ public class MySearchListAdapter extends BaseQuickAdapter<SearchListbean.ResultB
             price.setText(Html.fromHtml("&yen;") + goodsListBean.getGoods_price());
             pre_price.setText(Html.fromHtml("&yen;") + goodsListBean.getGoods_marketprice());
             pre_price.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-            sales.setText("月售" + goodsListBean.getGoods_salenum());
+            sales.setText("总销量:" + goodsListBean.getGoods_salenum());
             /*if (goodsListBean.isXianshi_flag()) {
                 view.setVisibility(View.VISIBLE);
             } else {

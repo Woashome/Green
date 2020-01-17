@@ -115,7 +115,6 @@ public class ShopFragment extends BaseMvpFragment<CommonPresenter, ShopModel>
     @Override
     protected void initView() {
         key = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
-        mInfo.setVisibility(View.GONE);
         datas = new ArrayList<>();
         cartList = new ArrayList<>();
         shoppingCarAdapter = new ShoppingCarAdapter(getContext(), mLlSelectAll, mIvSelectAll, mBtSettlement, mBtDelete, mRlTotalPrice, mTvTotalPrice);

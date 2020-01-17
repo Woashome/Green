@@ -54,6 +54,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.ycbjie.ycstatusbarlib.StatusBarUtils;
+import cn.ycbjie.ycstatusbarlib.bar.YCAppBar;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
@@ -108,7 +110,7 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomePageModel
 
     @Override
     protected void initData() {
-        mPresenter.getData(ApiConfig.ACQUIRE_VERSIONCODE, String.valueOf(AppTools.getVersionCode(MainActivity.this)), TYPE);
+        mPresenter.getData(ApiConfig.ACQUIRE_VERSIONCODE, String.valueOf(AppTools.getVersionName(MainActivity.this)), TYPE);
     }
 
     @Override
@@ -186,18 +188,41 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomePageModel
         FragmentTransaction fragmentTransaction = mManager.beginTransaction();
         switch (index) {
             case HOME:
+                YCAppBar.setStatusBarColor(MainActivity.this,
+                        ContextCompat.getColor(MainActivity.this,
+                                R.color.app_theme_color));
                 fragmentTransaction.replace(R.id.frame_layout, HomeFragment.newInstance());
                 break;
             case STORE:
+                //设置状态栏为透明，相当于隐藏状态栏，也称之为沉浸式状态栏
+                YCAppBar.translucentStatusBar(MainActivity.this,
+                        true);
+                //状态栏亮色模式，设置状态栏黑色文字、图标
+                StatusBarUtils.StatusBarLightMode(MainActivity.this);
                 fragmentTransaction.replace(R.id.frame_layout, StoreFragment.newInstance());
                 break;
             case CLASSIFY:
+                //设置状态栏为透明，相当于隐藏状态栏，也称之为沉浸式状态栏
+                YCAppBar.translucentStatusBar(MainActivity.this,
+                        true);
+                //状态栏亮色模式，设置状态栏黑色文字、图标
+                StatusBarUtils.StatusBarLightMode(MainActivity.this);
+
                 fragmentTransaction.replace(R.id.frame_layout, ClassifyFragment.newInstance());
                 break;
             case SHOP:
+                //设置状态栏为透明，相当于隐藏状态栏，也称之为沉浸式状态栏
+                YCAppBar.translucentStatusBar(MainActivity.this,
+                        true);
+                //状态栏亮色模式，设置状态栏黑色文字、图标
+                StatusBarUtils.StatusBarLightMode(MainActivity.this);
+
                 fragmentTransaction.replace(R.id.frame_layout, ShopFragment.newInstance());
                 break;
             case MINE:
+                YCAppBar.setStatusBarColor(MainActivity.this,
+                        ContextCompat.getColor(MainActivity.this,
+                                R.color.app_theme_color));
                 fragmentTransaction.replace(R.id.frame_layout, MineFragment.newInstance());
                 break;
         }

@@ -22,7 +22,8 @@
             <com.youth.banner.Banner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_283" />
+                android:layout_height="@dimen/dp_300"
+                app:image_scale_type="fit_xy" />
 
             <TextView
                 android:id="@+id/price"
@@ -282,8 +283,7 @@
                     android:layout_marginTop="@dimen/dp_17"
                     android:layout_toRightOf="@id/iv_store"
                     android:textColor="@color/c_242424"
-                    android:textSize="@dimen/dp_12"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/dp_12" />
 
                 <TextView
                     android:id="@+id/sale_num"
@@ -294,13 +294,12 @@
                     android:layout_marginTop="@dimen/dp_7"
                     android:layout_toRightOf="@id/iv_store"
                     android:textColor="@color/c_242424"
-                    android:textSize="@dimen/dp_12"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/dp_12" />
 
                 <LinearLayout
                     android:id="@+id/ll_go_store"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_30"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/dp_36"
                     android:layout_marginRight="@dimen/dp_13">
@@ -310,8 +309,7 @@
                         android:layout_height="wrap_content"
                         android:text="进店逛逛"
                         android:textColor="@color/c_242424"
-                        android:textSize="@dimen/dp_12"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/dp_12" />
 
                     <ImageView
                         android:layout_width="@dimen/dp_11"

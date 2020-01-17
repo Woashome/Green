@@ -81,8 +81,8 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_user_level"
-                    android:layout_width="@dimen/dp_70"
-                    android:layout_height="@dimen/dp_18"
+                    android:layout_width="@dimen/dp_75"
+                    android:layout_height="@dimen/dp_20"
                     android:layout_marginTop="@dimen/dp_9"
                     android:layout_marginRight="@dimen/dp_7"
                     android:layout_toLeftOf="@id/rl_user_company"
@@ -104,14 +104,24 @@
                         android:layout_marginLeft="@dimen/dp_3"
                         android:layout_toRightOf="@id/member"
                         android:textColor="@color/c_242424"
-                        android:textSize="@dimen/dp_7" />
+                        android:textSize="@dimen/dp_8" />
 
                 </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/recommend_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_user_level"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_7"
+                    android:layout_toLeftOf="@id/rl_user_company"
+                    android:textSize="@dimen/dp_10" />
 
                 <RelativeLayout
                     android:id="@+id/rl_user_company"
                     android:layout_width="@dimen/dp_75"
-                    android:layout_height="@dimen/dp_18"
+                    android:layout_height="@dimen/dp_20"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/dp_9"
                     android:layout_marginRight="@dimen/dp_25"
@@ -133,7 +143,7 @@
                         android:layout_marginLeft="@dimen/dp_3"
                         android:layout_toRightOf="@id/company"
                         android:textColor="@color/c_242424"
-                        android:textSize="@dimen/dp_7" />
+                        android:textSize="@dimen/dp_8" />
 
                 </RelativeLayout>
 
@@ -238,8 +248,8 @@
 
                         <ImageView
                             android:id="@+id/iv_chongzhi"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/chongzhi" />
 
@@ -251,7 +261,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="充值"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -259,14 +269,14 @@
                         android:id="@+id/rl_tixian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_toRightOf="@id/rl_chongzhi">
 
 
                         <ImageView
                             android:id="@+id/iv_tixian"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/tixian" />
 
@@ -278,7 +288,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="提现"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -286,14 +296,14 @@
                         android:id="@+id/rl_huzhuan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_toRightOf="@id/rl_tixian">
 
 
                         <ImageView
                             android:id="@+id/iv_huzhuan"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/zhuanhuan" />
 
@@ -305,7 +315,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="互转"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -319,8 +329,8 @@
 
                         <ImageView
                             android:id="@+id/iv_chuzhi"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/chuzhi" />
 
@@ -332,7 +342,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="储值卡"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -341,14 +351,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rl_chongzhi"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_marginTop="@dimen/dp_17"
                         android:layout_toRightOf="@id/rl_chuzhi">
 
                         <ImageView
                             android:id="@+id/iv_jiaoyi"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/jiaoyi" />
 
@@ -360,7 +370,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="认筹股"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -369,14 +379,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rl_chongzhi"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_marginTop="@dimen/dp_17"
                         android:layout_toRightOf="@id/rl_jiaoyi">
 
                         <ImageView
                             android:id="@+id/iv_jifen"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/jifen" />
 
@@ -388,7 +398,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="积分"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -403,8 +413,8 @@
 
                         <ImageView
                             android:id="@+id/iv_shiming"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/shiming" />
 
@@ -416,7 +426,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="实名"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -425,14 +435,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rl_chuzhi"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_marginTop="@dimen/dp_17"
                         android:layout_toRightOf="@id/rl_shiming">
 
                         <ImageView
                             android:id="@+id/iv_team"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/team" />
 
@@ -444,7 +454,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="团队"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
 
@@ -453,14 +463,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rl_chuzhi"
-                        android:layout_marginLeft="@dimen/dp_83"
+                        android:layout_marginLeft="@dimen/dp_73"
                         android:layout_marginTop="@dimen/dp_17"
                         android:layout_toRightOf="@id/rl_team">
 
                         <ImageView
                             android:id="@+id/iv_yaoqing"
-                            android:layout_width="@dimen/dp_31"
-                            android:layout_height="@dimen/dp_31"
+                            android:layout_width="@dimen/dp_40"
+                            android:layout_height="@dimen/dp_40"
                             android:layout_centerHorizontal="true"
                             android:src="@mipmap/yaoqing" />
 
@@ -472,7 +482,7 @@
                             android:layout_marginTop="@dimen/dp_7"
                             android:text="邀请好友"
                             android:textColor="@color/c_666666"
-                            android:textSize="@dimen/dp_10" />
+                            android:textSize="@dimen/dp_12" />
 
                     </RelativeLayout>
                 </RelativeLayout>
@@ -489,7 +499,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/cut_line"
-                    android:layout_marginTop="@dimen/dp_13">
+                    android:layout_marginTop="@dimen/dp_5">
 
                     <RelativeLayout
                         android:id="@+id/rl_college"

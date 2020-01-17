@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/option_icon"
-        android:layout_width="@dimen/dp_45"
-        android:layout_height="@dimen/dp_45"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="@dimen/dp_33" />
+        android:layout_marginRight="@dimen/dp_23" />
 
     <TextView
         android:id="@+id/option_tv"
@@ -20,6 +20,6 @@
         android:layout_below="@id/option_icon"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_10" />
+        android:textSize="@dimen/dp_12" />
 </RelativeLayout>
 

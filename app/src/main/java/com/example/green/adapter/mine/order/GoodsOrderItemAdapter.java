@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -46,7 +45,7 @@ public class GoodsOrderItemAdapter extends BaseQuickAdapter<MyOrderbean.ResultBe
 
             String state_desc = groupListBean.getState_desc();
             state.setText(state_desc);
-            orderInfo.setText("订单总价为:" + Html.fromHtml("&yen; ") + groupListBean.getOrder_amount() + "元");
+            orderInfo.setText("订单总价:" + groupListBean.getOrder_amount() + "元");
             if (order_state == 10) {
                 type.setVisibility(View.VISIBLE);
                 type.setText("去付款");

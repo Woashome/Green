@@ -48,6 +48,7 @@ public class PaymentSuccessActivity extends BaseMvpActivity<CommonPresenter, Sho
     private static final String TAG = "PaymentSuccessActivity";
     private String pay_sn;
     private int TYPE;
+    private int draw;
 
     @Override
     protected void initView() {
@@ -56,6 +57,12 @@ public class PaymentSuccessActivity extends BaseMvpActivity<CommonPresenter, Sho
 
         final Intent intent = getIntent();
         TYPE = intent.getIntExtra("type", 0);
+        draw = intent.getIntExtra("draw", 0); // 抽奖 0抽奖关闭，1抽奖开启
+        if (draw == 1) {
+            mDraw_award.setVisibility(View.VISIBLE);
+        } else {
+            mDraw_award.setVisibility(View.GONE);
+        }
         String payment = intent.getStringExtra("payment");
         pay_sn = intent.getStringExtra("pay_sn");
         mPayPrice.setText(Html.fromHtml("&yen;") + payment);
@@ -135,7 +142,6 @@ public class PaymentSuccessActivity extends BaseMvpActivity<CommonPresenter, Sho
                 finish();
                 break;
             case R.id.draw_award:
-
                 //设置切换动画，从右边进入，左边退出
                 overridePendingTransition(R.anim.in_from_right,
                         R.anim.out_to_left);

@@ -196,6 +196,9 @@
             android:theme="@style/AppTheme_StartActivity" />
         <activity
             android:name=".ui.activity.mine.wallet.RemittanceActivity"
+            android:theme="@style/AppTheme_StartActivity" />
+        <activity
+            android:name=".ui.activity.mine.wallet.GraphActivity"
             android:theme="@style/AppTheme_StartActivity"></activity>
     </application>
 

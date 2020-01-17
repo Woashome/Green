@@ -20,6 +20,7 @@ import com.example.green.bean.mine.Logoutbean;
 import com.example.green.bean.mine.MineInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.customs.RoundCornerDialog;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.example.green.ui.activity.homepage.LoginActivity;
@@ -189,6 +190,26 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
         }
     }
 
+    private void showRuleDialog() {
+        View view = View.inflate(getContext(), R.layout.dialog_draw_rule, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(getContext(), 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(true);// 设置点击屏幕Dialog消失
+//        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+//        tv_message.setText(msg);
+
+        //确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roundCornerDialog.dismiss();
+            }
+        });
+    }
+
     @OnClick({R.id.header, R.id.rl_join, R.id.wait_pay_ll, R.id.wait_deliver_ll,
             R.id.notakes_ll, R.id.finish_ll, R.id.rl_info, R.id.rl_login_password,
             R.id.rl_pay_password, R.id.rl_site, R.id.rl_invite, R.id.rl_quit})
@@ -197,44 +218,77 @@ public class MineFragment extends BaseMvpFragment<CommonPresenter, MineModel>
             default:
                 break;
             case R.id.header: // 头像
+//                showRuleDialog();
                 break;
             case R.id.rl_join: // 进入钱包
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), WalletActivity.class));
                 break;
             case R.id.wait_pay_ll: // 待付款
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 Intent intent_wait_pay = new Intent(getContext(), MyOrderActivity.class);
                 intent_wait_pay.putExtra("index", 1);
                 startActivity(intent_wait_pay);
                 break;
             case R.id.wait_deliver_ll: // 待发货
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 Intent intent_wait_deliver = new Intent(getContext(), MyOrderActivity.class);
                 intent_wait_deliver.putExtra("index", 2);
                 startActivity(intent_wait_deliver);
                 break;
             case R.id.notakes_ll: // 待收货
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 Intent intent_finish = new Intent(getContext(), MyOrderActivity.class);
                 intent_finish.putExtra("index", 3);
                 startActivity(intent_finish);
                 break;
             case R.id.finish_ll: // 已完成
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 Intent intent_cancel = new Intent(getContext(), MyOrderActivity.class);
                 intent_cancel.putExtra("index", 4);
                 startActivity(intent_cancel);
                 break;
             case R.id.rl_info: // 个人资料
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), PersonalDataActivity.class));
                 break;
-            case R.id.rl_login_password: // 登录密码
+            case R.id.rl_login_password: // 重置登录密码
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), LoginPswActivity.class));
                 break;
-            case R.id.rl_pay_password: // 支付密码
+            case R.id.rl_pay_password: // 重置支付密码
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), PayPswActivity.class));
                 break;
             case R.id.rl_site: // 收货地址
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
                 startActivity(new Intent(getContext(), ShoppingAddressActivity.class));
                 break;
             case R.id.rl_invite: // 邀请好友
-                startActivity(new Intent(getContext(), InviteActivity.class));
+                //设置切换动画，从右边进入，左边退出
+                getActivity().overridePendingTransition(R.anim.in_from_right,
+                        R.anim.out_to_left);
+                Intent intent_invite = new Intent(getContext(), InviteActivity.class);
+                intent_invite.putExtra("type", 1);
+                startActivity(intent_invite);
                 break;
             case R.id.rl_quit: // 退出登录
                 String username = SPUtils.getInstance().getValue(SPUtils.KEY_USER_NAME, "");

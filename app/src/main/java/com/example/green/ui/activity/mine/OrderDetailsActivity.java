@@ -1,10 +1,12 @@
 package com.example.green.ui.activity.mine;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -20,6 +22,7 @@ import com.example.green.base.ICommonView;
 import com.example.green.bean.mine.ChangeOrderStatebean;
 import com.example.green.bean.mine.OrderDetailsInfobean;
 import com.example.green.config.ApiConfig;
+import com.example.green.customs.RoundCornerDialog;
 import com.example.green.local_utils.DateUtil;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
@@ -203,7 +206,8 @@ public class OrderDetailsActivity extends BaseMvpActivity<CommonPresenter, MineM
                 if (null != changeOrderStatebean && changeOrderStatebean.getCode().equals("200")) {
                     ToastUtils.show(this, changeOrderStatebean.getMessage());
                     LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(BaseActivity.CHANGE_ORDER_STATE));
-
+                } else {
+                    ToastUtils.show(this, changeOrderStatebean.getMessage());
                 }
                 break;
         }
@@ -227,15 +231,59 @@ public class OrderDetailsActivity extends BaseMvpActivity<CommonPresenter, MineM
                 break;
             case R.id.tv_type:
                 if (mOrder_state == 10) { // 10：待付款  30：待收货  40：已完成  0：已取消
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_cancel", order_id);
+                    showChangeDialog("确认取消订单", mOrder_state, order_id);
                 } else if (mOrder_state == 30) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_receive", order_id);
+                    showChangeDialog("确认收货", mOrder_state, order_id);
                 } else if (mOrder_state == 40) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_delete", order_id);
+                    showChangeDialog("确认删除订单", mOrder_state, order_id);
                 } else if (mOrder_state == 0) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_delete", order_id);
+                    showChangeDialog("确认删除订单", mOrder_state, order_id);
                 }
                 break;
         }
     }
+
+    private void showChangeDialog(String msg, final int order_state, final String order_id) {
+        View view = View.inflate(this, R.layout.dialog_withdraw_hint, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(this, 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_cancel = (TextView) view.findViewById(R.id.tv_logout_cancel);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+        tv_message.setText(msg);
+        // 确认
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View pView) {
+                if (order_state == 10) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_cancel", order_id);
+                } else if (order_state == 30) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_receive", order_id);
+                } else if (order_state == 40 || order_state == 0) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, key, "order_delete", order_id);
+                }
+                roundCornerDialog.dismiss();
+            }
+        });
+        // 取消
+        tv_logout_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roundCornerDialog.dismiss();
+            }
+        });
+    }
+
+    DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener() {
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
 }

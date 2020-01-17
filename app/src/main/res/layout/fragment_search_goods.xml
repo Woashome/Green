@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.search.SearchGoodsFragment">
 
-    <com.scwang.smartrefresh.header.BezierCircleHeader
+    <com.scwang.smartrefresh.header.MaterialHeader
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <!-- TODO: Update blank fragment layout -->

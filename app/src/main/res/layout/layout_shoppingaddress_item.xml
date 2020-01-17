@@ -46,14 +46,16 @@
 
     <TextView
         android:id="@+id/default_address"
-        android:layout_width="@dimen/dp_40"
-        android:layout_height="@dimen/dp_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="#27B28B"
+        android:background="@drawable/default_address"
         android:gravity="center"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_5"
         android:text="默认"
         android:textColor="@color/white"
-        android:textSize="@dimen/dp_10" />
+        android:textSize="@dimen/dp_12" />
 
     <RelativeLayout
         android:id="@+id/rl_editor"

@@ -95,14 +95,12 @@ public class HomeFragment extends BaseMvpFragment<CommonPresenter, HomePageModel
     TextView name_7;
     @BindView(R.id.down_promotion_info)
     TextView name_8;
-
     @BindView(R.id.card3)
     RelativeLayout cardThree;
     @BindView(R.id.card4)
     RelativeLayout cardFour;
     @BindView(R.id.rl_home_bg)
     RelativeLayout home;
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.search_key)

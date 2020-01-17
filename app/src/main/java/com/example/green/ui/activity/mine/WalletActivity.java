@@ -66,6 +66,8 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
     TextView mNumber;
     @BindView(R.id.member)
     ImageView mMember;
+    @BindView(R.id.recommend_code)
+    TextView mRecommendCode;
     @BindView(R.id.user_level)
     TextView mUserLevel;
     @BindView(R.id.rl_user_level)
@@ -207,7 +209,8 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
                         RequestOptions options = new RequestOptions().circleCrop();
                         Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
                         mName.setText(mMember_info.getUser_name());
-                        mNumber.setText(mMember_info.getMobile() + "  （推荐码" + mMember_info.getInviter_code() + "）");
+                        mNumber.setText(mMember_info.getMobile());
+                        mRecommendCode.setText("推荐码:" + mMember_info.getInviter_code());
                         mUserLevel.setText(mMember_info.getLevel_name());
 
                         if (mMember_info.getCompany_level().equals("0")) {
@@ -229,7 +232,8 @@ public class WalletActivity extends BaseMvpActivity<CommonPresenter, MineModel> 
                         RequestOptions options = new RequestOptions().circleCrop();
                         Glide.with(this).load(mMember_info.getAvator()).apply(options).into(mHeaderIv);
                         mName.setText(mMember_info.getUser_name());
-                        mNumber.setText(mMember_info.getMobile() + "  （推荐码" + mMember_info.getInviter_code() + "）");
+                        mNumber.setText(mMember_info.getMobile());
+                        mRecommendCode.setText("推荐码:" + mMember_info.getInviter_code());
                         mUserLevel.setText(mMember_info.getLevel_name());
 
                         if (mMember_info.getCompany_level().equals("0")) {

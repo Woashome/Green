@@ -106,6 +106,7 @@ public class PayModeActivity extends BaseMvpActivity<CommonPresenter, ShopModel>
                         intent.putExtra("payment", pay_amount);
                         intent.putExtra("pay_sn", payOrderInfobean.getResult().getPay_sn());
                         intent.putExtra("type", TYPE);
+                        intent.putExtra("draw", payOrderInfobean.getResult().getDraw());
                         startActivity(intent);
                         finish();
                     }

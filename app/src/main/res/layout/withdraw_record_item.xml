@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/dp_5"
-    android:layout_marginBottom="@dimen/dp_10"
     android:background="@drawable/editor_bg"
     android:padding="@dimen/dp_10">
 

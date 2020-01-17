@@ -124,7 +124,7 @@ public class ShoppingCarAdapter extends BaseExpandableListAdapter {
         if (isSelect_shop) {
             groupViewHolder.ivSelect.setImageResource(R.mipmap.select);
         } else {
-            groupViewHolder.ivSelect.setImageResource(R.mipmap.unselect);
+            groupViewHolder.ivSelect.setImageResource(R.mipmap.cart_unselect);
         }
 
         //店铺选择框的点击事件
@@ -158,9 +158,9 @@ public class ShoppingCarAdapter extends BaseExpandableListAdapter {
             }
         }
         if (isSelectAll) {
-            ivSelectAll.setBackgroundResource(R.mipmap.cart_select);
+            ivSelectAll.setBackgroundResource(R.mipmap.all_select);
         } else {
-            ivSelectAll.setBackgroundResource(R.mipmap.unselect);
+            ivSelectAll.setBackgroundResource(R.mipmap.all_unselect);
         }
 
         //全选的点击事件
@@ -366,7 +366,7 @@ public class ShoppingCarAdapter extends BaseExpandableListAdapter {
         if (isSelect) {
             childViewHolder.ivSelect.setImageResource(R.mipmap.select);
         } else {
-            childViewHolder.ivSelect.setImageResource(R.mipmap.unselect);
+            childViewHolder.ivSelect.setImageResource(R.mipmap.cart_unselect);
         }
 
         //商品选择框的点击事件

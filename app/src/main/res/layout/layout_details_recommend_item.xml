@@ -25,8 +25,7 @@
         android:maxEms="8"
         android:singleLine="true"
         android:textColor="@color/c_999999"
-        android:textSize="@dimen/dp_10"
-        android:textStyle="bold" />
+        android:textSize="@dimen/dp_10" />
 
 </RelativeLayout>
 

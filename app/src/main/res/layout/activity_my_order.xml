@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="订单"
+            android:text="订单列表"
             android:textColor="@color/c_242424"
             android:textSize="@dimen/dp_15" />
 

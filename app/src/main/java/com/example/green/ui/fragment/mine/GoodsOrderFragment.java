@@ -2,6 +2,7 @@ package com.example.green.ui.fragment.mine;
 
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ import com.example.green.bean.mine.ChangeOrderStatebean;
 import com.example.green.bean.pay.AcquireOrderInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.customs.RoundCornerDialog;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.example.green.ui.activity.PayModeActivity;
@@ -122,13 +125,13 @@ public class GoodsOrderFragment extends BaseMvpFragment<CommonPresenter, MineMod
             @Override
             public void click(int order_id, int order_state) {
                 if (order_state == 10) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_cancel", order_id + "");
+                    showChangeDialog("确认取消订单", order_state, order_id);
                 } else if (order_state == 30) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_receive", order_id + "");
+                    showChangeDialog("确认收货", order_state, order_id);
                 } else if (order_state == 40) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_delete", order_id + "");
+                    showChangeDialog("确认删除订单", order_state, order_id);
                 } else if (order_state == 0) {
-                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_delete", order_id + "");
+                    showChangeDialog("确认删除订单", order_state, order_id);
                 }
             }
         });
@@ -148,6 +151,40 @@ public class GoodsOrderFragment extends BaseMvpFragment<CommonPresenter, MineMod
                 } else {
                     mSmartRefreshLayout.finishLoadmore();
                 }
+            }
+        });
+    }
+
+    private void showChangeDialog(String msg, final int order_state, final int order_id) {
+        View view = View.inflate(getContext(), R.layout.dialog_withdraw_hint, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(getContext(), 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_cancel = (TextView) view.findViewById(R.id.tv_logout_cancel);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+        tv_message.setText(msg);
+        // 确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View pView) {
+                if (order_state == 10) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_cancel", order_id + "");
+                } else if (order_state == 30) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_receive", order_id + "");
+                } else if (order_state == 40 || order_state == 0) {
+                    mPresenter.getData(ApiConfig.CHANGER_ORDER_STATE, mToken, "order_delete", order_id + "");
+                }
+                roundCornerDialog.dismiss();
+            }
+        });
+        // 取消
+        tv_logout_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roundCornerDialog.dismiss();
             }
         });
     }
@@ -236,4 +273,14 @@ public class GoodsOrderFragment extends BaseMvpFragment<CommonPresenter, MineMod
                 break;
         }
     }
+
+    DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener() {
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
 }

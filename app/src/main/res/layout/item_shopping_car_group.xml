@@ -18,7 +18,7 @@
             android:layout_height="@dimen/dp_15"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp_10"
-            android:background="@mipmap/unselect" />
+            android:background="@mipmap/cart_unselect" />
 
         <ImageView
             android:layout_width="@dimen/dp_20"

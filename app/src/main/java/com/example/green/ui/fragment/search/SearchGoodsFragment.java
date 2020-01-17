@@ -3,7 +3,6 @@ package com.example.green.ui.fragment.search;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +22,9 @@ import com.example.green.config.LoadConfig;
 import com.example.green.model.HomePageModel;
 import com.example.green.ui.activity.GoodsDetailsActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +43,11 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
     private int KEY_STYLE;// 0为默认综合排序，2为价格排序，3销量排序，5人气排序
     private String keyWord;
     private String gcId;
-    private int page = 1;
+    private int page;
     private static final String TAG = "SearchGoodsFragment";
     private MySearchListAdapter mMySearchListAdapter;
     private List<SearchListbean.ResultBean.GoodsListBean> mGoodsListBeans;
+    private SearchListbean mSearchListbean;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -89,6 +92,24 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mMySearchListAdapter);
 
+        mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                page = 1;
+                mPresenter.getData(ApiConfig.SEARCH_GOODS, keyWord, page, KEY_STYLE, gcId, LoadConfig.REFRESH);
+            }
+        });
+        mSmartRefreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                if (mSearchListbean.isHasmore()) {
+                    mPresenter.getData(ApiConfig.SEARCH_GOODS, keyWord, ++page, KEY_STYLE, gcId, LoadConfig.LOADMORE);
+                } else {
+                    mSmartRefreshLayout.finishLoadmore();
+                }
+            }
+        });
+
         mMySearchListAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -109,6 +130,7 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
 
     @Override
     protected void initData() {
+        page = 1;
         mPresenter.getData(ApiConfig.SEARCH_GOODS, keyWord, page, KEY_STYLE, gcId, LoadConfig.NORMAL);
     }
 
@@ -121,11 +143,10 @@ public class SearchGoodsFragment extends BaseMvpFragment<CommonPresenter, HomePa
     public void onResponse(int whichApi, Object[] t) {
         switch (whichApi) {
             case ApiConfig.SEARCH_GOODS:
-                SearchListbean searchListbean = (SearchListbean) t[0];
-                if (null != searchListbean) {
-                    List<SearchListbean.ResultBean.GoodsListBean> goods_list = searchListbean.getResult().getGoods_list();
+                mSearchListbean = (SearchListbean) t[0];
+                if (null != mSearchListbean) {
+                    List<SearchListbean.ResultBean.GoodsListBean> goods_list = mSearchListbean.getResult().getGoods_list();
                     int loadMode = (int) t[1];
-                    Log.e(TAG, "onResponse: " + loadMode);
                     if (loadMode == LoadConfig.NORMAL) {
                         mGoodsListBeans.addAll(goods_list);
                     } else if (loadMode == LoadConfig.REFRESH) {

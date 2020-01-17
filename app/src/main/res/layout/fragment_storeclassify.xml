@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp_35"
         android:layout_marginLeft="@dimen/dp_25"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_2"
         android:elevation="@dimen/dp_1"
         app:xTabIndicatorHeight="@dimen/dp_0"
         app:xTabIndicatorWidth="@dimen/dp_0"

@@ -1,5 +1,6 @@
 package com.example.green.ui.activity.mine.wallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,18 +19,26 @@ public class InviteActivity extends AppCompatActivity {
 
     private WebView mIntiveWeb;
     private ImageView mBack;
+    private TextView Title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite);
         mBack = findViewById(R.id.back);
+        Title = findViewById(R.id.tv_title);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View pView) {
                 finish();
             }
         });
+
+        Intent intent = getIntent();
+        int type = intent.getIntExtra("type", 0);
+        if (type == 1) {
+            Title.setText("推广海报");
+        }
         String mToken = SPUtils.getInstance().getValue(SPUtils.KEY_USER_TOKEN, "");
         mIntiveWeb = findViewById(R.id.intiveWeb);
         mIntiveWeb.getSettings().setJavaScriptEnabled(true);

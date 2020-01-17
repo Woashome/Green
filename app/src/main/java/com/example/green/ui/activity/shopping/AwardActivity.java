@@ -44,6 +44,8 @@ public class AwardActivity extends BaseMvpActivity<CommonPresenter, ShopModel>
     ImageView mBack;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+    @BindView(R.id.draw_rule)
+    TextView mDrawRule;
     @BindView(R.id.lucky_view)
     LuckyView mLuckyView;
     private String key;
@@ -184,6 +186,26 @@ public class AwardActivity extends BaseMvpActivity<CommonPresenter, ShopModel>
             }
         });
     }
+    // 抽奖规则
+    private void showRuleDialog() {
+        View view = View.inflate(this, R.layout.dialog_draw_rule, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(this, 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+//        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+//        tv_message.setText(msg);
+
+        //确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roundCornerDialog.dismiss();
+            }
+        });
+    }
 
     DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener() {
         public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
@@ -195,13 +217,16 @@ public class AwardActivity extends BaseMvpActivity<CommonPresenter, ShopModel>
         }
     };
 
-    @OnClick(R.id.back)
+    @OnClick({R.id.back, R.id.draw_rule})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
             case R.id.back:
                 this.finish();
+                break;
+            case R.id.draw_rule:
+                showRuleDialog();
                 break;
         }
     }

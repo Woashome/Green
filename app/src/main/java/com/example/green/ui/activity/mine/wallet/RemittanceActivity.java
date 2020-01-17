@@ -73,7 +73,7 @@ public class RemittanceActivity extends BaseMvpActivity<CommonPresenter, MineMod
                     mTvKaihuming.setText(remittanceInfobean.getResult().getName());
                     mTvBank.setText(remittanceInfobean.getResult().getBank());
                     mTvCardNum.setText(remittanceInfobean.getResult().getAccount());
-                    mRemark.setText("转账备注:" + remittanceInfobean.getResult().getCode());
+                    mRemark.setText(remittanceInfobean.getResult().getCode());
                 } else {
                     toastActivity(remittanceInfobean.getMessage());
                 }

@@ -1,9 +1,11 @@
 package com.example.green.ui.activity.mine.wallet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +20,7 @@ import com.example.green.bean.mine.QueryPropertybean;
 import com.example.green.bean.mine.wallet.StoredValueListbean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.customs.RoundCornerDialog;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.MineModel;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -117,8 +120,8 @@ public class StoredActivity extends BaseMvpActivity<CommonPresenter, MineModel>
                 if (null != queryPropertybean && queryPropertybean.getCode().equals("200")) {
                     String predepoit = queryPropertybean.getResult().getPredepoit();
                     mJiang.setText(predepoit + "(元)");
-                } else {
-                    toastActivity(queryPropertybean.getMessage());
+                } else if (queryPropertybean.getCode().equals("10086")) {
+                    showInfoDialog(queryPropertybean.getMessage());
                 }
                 break;
             case ApiConfig.CHUZHI_DETAIL:
@@ -141,6 +144,36 @@ public class StoredActivity extends BaseMvpActivity<CommonPresenter, MineModel>
                 break;
         }
     }
+
+    private void showInfoDialog(String msg) {
+        View view = View.inflate(this, R.layout.dialog_withdraw_confirm, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(this, 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+        tv_message.setText(msg);
+        // 确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View pView) {
+                roundCornerDialog.dismiss();
+                finish();
+            }
+        });
+    }
+
+    DialogInterface.OnKeyListener keylistener = new DialogInterface.OnKeyListener() {
+        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
 
     @OnClick({R.id.login_back, R.id.ll_chongzhi})
     public void onClick(View v) {

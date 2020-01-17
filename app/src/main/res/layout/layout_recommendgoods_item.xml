@@ -28,7 +28,7 @@
         android:maxEms="10"
         android:maxLines="2"
         android:textColor="@color/black"
-        android:textSize="@dimen/dp_11"
+        android:textSize="@dimen/dp_13"
         android:textStyle="bold" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_marginBottom="@dimen/dp_11"
         android:maxLength="15"
         android:textColor="@color/red"
-        android:textSize="@dimen/dp_10"
+        android:textSize="@dimen/dp_13"
         android:textStyle="bold" />
 
     <TextView
@@ -54,6 +54,6 @@
         android:layout_marginBottom="@dimen/dp_10"
         android:singleLine="true"
         android:textColor="@color/price_gray"
-        android:textSize="@dimen/dp_11" />
+        android:textSize="@dimen/dp_13" />
 </RelativeLayout>
 

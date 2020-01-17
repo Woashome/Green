@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +30,7 @@ import com.example.green.bean.pay.CreateOrderbean;
 import com.example.green.bean.pay.ShoppingInfobean;
 import com.example.green.config.ApiConfig;
 import com.example.green.config.LoadConfig;
+import com.example.green.customs.RoundCornerDialog;
 import com.example.green.local_utils.SPUtils;
 import com.example.green.model.ShopModel;
 import com.example.green.ui.activity.PayModeActivity;
@@ -170,23 +170,7 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
                         toastActivity("请选择收货地址");
                     }
                 } else {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("温馨提示:");
-                    builder.setMessage(shoppingInfobean.getMessage());
-                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface pDialogInterface, int pI) {
-                            finish();
-                        }
-                    });
-                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface pDialogInterface, int pI) {
-                            finish();
-                        }
-                    });
-                    builder.show();
-                    builder.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+                    showInfoDialog(shoppingInfobean.getMessage());
                 }
                 break;
             case ApiConfig.SHOPPING_STEP_TWO:
@@ -220,6 +204,26 @@ public class AffirmOrderActivity extends BaseMvpActivity<CommonPresenter, ShopMo
                 }
                 break;
         }
+    }
+
+    private void showInfoDialog(String msg) {
+        View view = View.inflate(this, R.layout.dialog_withdraw_confirm, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(this, 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+        tv_message.setText(msg);
+        // 确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View pView) {
+                roundCornerDialog.dismiss();
+                finish();
+            }
+        });
     }
 
     @OnClick({R.id.back, R.id.rl_site, R.id.bt_commit_order})

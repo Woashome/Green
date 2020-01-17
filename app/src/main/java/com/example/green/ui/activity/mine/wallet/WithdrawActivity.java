@@ -136,8 +136,8 @@ public class WithdrawActivity extends BaseMvpActivity<CommonPresenter, MineModel
                     mJifen.setText(mAvailable);
                     mLowWithDraw.setText("最低提现" + mWithdraw + "积分");
                     mProcedure.setText("手续费：" + mCommission + "%");
-                } else {
-                    toastActivity(queryPropertybean.getMessage());
+                } else if (queryPropertybean.getCode().equals("10086")) {
+                    showInfoDialog(queryPropertybean.getMessage());
                 }
                 break;
             case ApiConfig.WITHDRAW_APPLY:
@@ -150,6 +150,26 @@ public class WithdrawActivity extends BaseMvpActivity<CommonPresenter, MineModel
                 }
                 break;
         }
+    }
+
+    private void showInfoDialog(String msg) {
+        View view = View.inflate(this, R.layout.dialog_withdraw_confirm, null);
+        final RoundCornerDialog roundCornerDialog = new RoundCornerDialog(this, 0, 0, view, R.style.RoundCornerDialog);
+        roundCornerDialog.show();
+        roundCornerDialog.setCanceledOnTouchOutside(false);// 设置点击屏幕Dialog不消失
+        roundCornerDialog.setOnKeyListener(keylistener);//设置点击返回键Dialog不消失
+
+        TextView tv_message = (TextView) view.findViewById(R.id.tv_message);
+        TextView tv_logout_confirm = (TextView) view.findViewById(R.id.tv_logout_confirm);
+        tv_message.setText(msg);
+        // 确定
+        tv_logout_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View pView) {
+                roundCornerDialog.dismiss();
+                finish();
+            }
+        });
     }
 
     @OnClick({R.id.back, R.id.tixian_record, R.id.all_jifen, R.id.acquire_yanzheng, R.id.bt_withdraw})
